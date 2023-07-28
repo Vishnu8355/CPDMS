@@ -1,0 +1,173 @@
+﻿@model IEnumerable<CPDMSEF.ReportViewEF>
+
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Report";
+    Layout = "~/Areas/CompanyRegistraion/Views/Shared/_CompanyRegisLayout.cshtml";
+}
+
+@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+
+    </script>
+    ViewBag.msg = null;
+}
+@if (TempData["Message"] != null)
+{
+    <script>
+        swal("", '@TempData["Message"]', "warning");
+    </script>
+}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/CompanyRegistraion/CompanyRegistration/CompanyDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Report</li>
+
+                            <li class="breadcrumb-item active">List of Units</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>List of Units</b></a> </li>
+                                </ul>
+                                <div class="excel-icon-container" id="exportButton">
+
+                                    <img src="~/ExecImage.png" alt="Export Excel" id="exportButton" class="excel-icon" onclick="exportfun()">
+                                </div>
+                                <div role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="viewtable">
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table table-sm table-bordered table-textbreak">
+
+                                                        <thead class="header-style">
+                                                           @* <tr>
+                                                                <th rowspan="2" width="20px">Sl#</th>
+                                                                <th rowspan="2">NameOfUnitCode</th>
+                                                                <th colspan="2">Unit Details</th>
+                                                                <th colspan="8">Unit Contact Details</th>
+
+                                                                <th colspan="4" class="nowrap">Unit Nodal Person Contact Details</th>
+                                                                <th colspan="4" class="nowrap">Unit Admin Person Contact Details</th>
+
+                                                            </tr>*@
+                                                            <tr>
+                                                                <th rowspan="2" width="20px">Sl.No.</th>
+                                                                <th>
+                                                                    CPIIC
+                                                                </th>
+                                                                <th class="nowrap">
+                                                                   Name of Unit
+                                                                </th>
+
+                                                                <th>Address</th>
+                                                                <th>Pin code</th>
+                                                                <th>Latitude </th>
+                                                                <th>Longitude</th>
+                                                                <th>Authorize Person Name</th>
+                                                                <th>Authorize Person Address</th>
+                                                                <th>Authorize Person Mobile no</th>
+                                                                <th>Authorize Person Email</th>
+
+                                                                <th>Nodel Person Name</th>
+                                                                <th>Nodel Person Address</th>
+                                                                <th>Nodel Person Mobile no</th>
+                                                                <th>Nodel Person Email</th>
+
+                                                                <th>State Name</th>
+                                                                <th>District Name</th>
+                                                                <th>Block Name</th>
+                                                                
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in Model)
+                                                            {
+                                                                <tr>
+                                                                    <td>@item.ID</td>
+                                                                    <td>@item.CPIIC</td>
+                                                                    <td>@item.NameOfUnitCode</td>
+                                                                    <td>@item.Address</td>
+                                                                    <td>@item.PinCode</td>
+                                                                    <td>@item.Lat</td>
+                                                                    <td>@item.Lon</td>
+                                                                    <td>@item.AD_Name</td>
+                                                                    <td>@item.AD_Address</td>
+                                                                    <td>@item.AD_Mobile_no</td>
+                                                                    <td>@item.AD_Email</td>
+                                                                    <td>@item.ND_Name</td>
+                                                                    <td>@item.ND_Address</td>
+                                                                    <td>@item.ND_Mobile_no</td>
+                                                                    <td>@item.ND_Email</td>
+                                                                    <td>@item.State_Name</td>
+                                                                    <td>@item.District_Name</td>
+                                                                    <td>@item.Block_Name</td>
+                                                                    
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+<!-- Start State,City,Block -->
+
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+<script type="text/javascript">
+    function exportfun() {
+        var table = document.getElementById('datatable');
+
+        var workbook = XLSX.utils.table_to_book(table);
+
+        var excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+        var blob = new Blob([excelData], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'Report.xlsx';
+        document.body.appendChild(link);
+
+        link.click();
+
+        URL.revokeObjectURL(url);
+        document.body.removeChild(link);
+    }
+
+</script>

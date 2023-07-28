@@ -1,0 +1,112 @@
+﻿@model CPDMSEF.LoginEF
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "LoginV1";
+    Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+}
+
+<link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">
+<!-- template-style-->
+<link href="~/LandinCss/css/style1.css" rel="stylesheet">
+
+
+<script>
+    function Validate() {
+        debugger;
+        var Iss = false;
+        let inputVal = $('#Enter_chaptcha').val().split('').join(' ');
+
+        if (!DropDownValidation("Source", "Login type")) {
+            return false;
+        }
+
+        else if (!blankFieldValidation("UserName", "User Name")) {
+            return false;
+        }
+        else if (!blankFieldValidation("Password", "User Password")) {
+            return false;
+        }
+        else if (!blankFieldValidation("Enter_chaptcha", "Captcha")) {
+            return false;
+        }
+
+        else if ($('#capt1').html().trim() != inputVal) {
+            //alert('Invalid Captcha');
+            swal("", 'Invalid Captcha', "warning");
+            return false;
+        }
+        //else if (!$("#customControlAutosizing1").is(":checked")) {
+        //    swal("", 'Please consent to the terms of use', "warning");
+
+        //    return false;
+        //}
+        Iss = true;
+        return Iss;
+    }
+
+</script>
+<div class="bt-content-wrap btClear section_Top">
+    <div class="bt-content-holder">
+        <section class="login-page">
+            <div class="v-center m-auto">
+                <div class="login-form-div">
+                    <h4 class="mb40 text-center">Login to your Account</h4>
+                    <div class="form-block">
+                        <form id="contact-form" method="post" asp-action="Login">
+                            <div class="fieldsets row">
+                                <div class="col-md-12 form-group">
+                                    <select name="Source" id="Source" required>
+                                        <option selected value="0">Select</option>
+                                        <option value="1">Dept.of Chemicals and Petro-Chemicals</option>
+                                        <option value="2l">Company</option>
+                                        <option value="3">Unit</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                   @* <input id="form_name UserName" type="text" placeholder="UserName" name="UserName" required>*@
+                                    <input name="UserName" type="text" placeholder="User Name" id="UserName" required>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input id="Password" name="Password" type="password" placeholder=" Password" required>
+                                   @* <input type="password" placeholder="password">*@
+                                </div>
+                                <div class="wrapper">
+                                    <input type="text" placeholder="Enter captcha" maxlength="6"
+                                           spellcheck="false" id="Enter_chaptcha" required />
+                                    <div class="captcha-area">
+                                        <div class="captcha-img">
+                                            <img src="~/LandinCss/images/captcha-bg.png" alt="Captch Background">
+                                            @*<span class="captcha"></span>*@
+                                            <div id="capt1" class="captcha"></div>
+                                        </div>
+                                        <button class="reload-btn" id="refreshCaptcha" type="button"><i class="fa fa-refresh"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fieldsets row ">
+                                <div class="col-md-6 form-group v-center">
+                                    <button class="text-white p-2 "
+                                            style="background-color: #024828!important;" type="submit" onclick="return Validate();">
+                                        Signin
+                                    </button>
+                                </div>
+                                <div class="col-md-6 form-group v-center text-right">
+                                    <a href="#"
+                                       class="psforgt"><u>Forgot Password?</u></a>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <p class="mb5"><u>OR Register As</u></p>
+                                <div class="social-btnnxx">
+                                    <a href="#" class="btn-main fb-btn">Company</a>
+                                    <a href="#" class="btn-main google-btn">Unit</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+

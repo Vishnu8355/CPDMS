@@ -1,0 +1,1375 @@
+﻿@model CPDMSEF.YearlyChemicalEF
+
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Yearly Petro Chemical Entry";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+
+}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<style>
+    .authentication-box .container 
+    {
+        max-width:0px;
+    }
+</style>
+<style>
+    #suggestionList, #suggestionList1, #suggestionList2, #suggestionList3, #suggestionList4 {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+        #suggestionList, #suggestionList1, #suggestionList2, #suggestionList3, #suggestionList4  li {
+            margin-bottom: 5px;
+            cursor: pointer;
+            display: grid;
+        }
+        input[type=text]:focus {
+  border: 3px solid black;
+}
+</style>
+<style>
+    .fixed-columns {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background-color: #fff;
+    }
+
+    #tblMain_Constituents_Data thead th:first-child,
+    #tblMain_Constituents_Data tbody td:first-child {
+        position: sticky;
+        left: 0;
+        background-color: #fff;
+        z-index: 2;
+    }
+
+    #tblMain_Constituents_Data thead th:nth-child(2),
+    #tblMain_Constituents_Data tbody td:nth-child(2) {
+        position: sticky;
+        left: 50px;
+        background-color: #fff;
+        z-index: 2;
+    }
+    input[type=text]:focus {
+  border: 3px solid black;
+}
+</style>
+<style>
+    div.searchable {
+       
+    }
+
+    .searchable input {
+        width: 100%;
+       
+      
+        display: block;
+      
+       
+       
+    }
+
+    .searchable ul {
+        display: none;
+      
+      
+        border-radius: 0 0 5px 5px;
+        border: 1px solid #add8e6;
+        border-top: none;
+        max-height: 180px;
+        margin: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding: 0;
+    }
+
+        .searchable ul li {
+            display:grid;
+            padding: 7px 9px;
+            border-bottom: 1px solid #e1e1e1;
+            cursor: pointer;
+        }
+
+            .searchable ul li.selected {
+              
+            }
+</style>
+@*@if (TempData["Message"] != null)
+{
+    <script>
+        var vv = '@TempData["Message"]';
+
+        if (vv == 1) {
+            swal("", "Unit created successfully.", "success");
+        }
+        else if (vv == 2) {
+            swal("", "Unit already exists.", "warning");
+        }
+        else if (vv == 3) {
+            swal("", "Something Errror occured. Please Try After Sometime!!", "error");
+        }
+    </script>
+}*@
+
+@if (TempData["Message"] != null)
+{
+    <script>
+        swal("", '@TempData["Message"]', "warning");
+        alert('1');
+        alert('@TempData["Message"]');
+        alert(@TempData["Message"]);
+
+    </script>
+}
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Entry</li>
+
+                            <li class="breadcrumb-item active">Yearly</li>
+                            <li class="breadcrumb-item active">Petro-Chemicals Entry</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Petro-Chemicals</b></a> </li>
+                                </ul>
+                                <form method="post" enctype="multipart/form-data" action="#" class="file-upload-form">
+                                    <label for="file-upload" class="file-upload-label">
+                                        <span>CSV&Excel Import</span>
+                                        <input type="file" id="file-upload" name="file" accept=".xlsx, .xls" />
+                                    </label>
+                                    <button type="submit" class="upload-button">Upload</button>
+                                </form>
+                                <div role="tabpanel">
+                                    @using (Html.BeginForm("YearlyPetroChemicalAdd", "UnitRegistration", FormMethod.Post, new { AUTOCOMPLETE = "Off", id = "form1" }))
+                                    {
+                                        <div class="form-group">
+                                            <label>Select Group</label> <label class="RequiredField">*</label>
+                                            @Html.DropDownListFor(m => m.PChemical_Code, ViewBag.ViewChemicalGroupList as IEnumerable<SelectListItem>, "-- Select Group --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <input type="text" id="PChemical_Product_Code1" name="PChemical_Product_Code" hidden>
+
+                                        <div class="form-group">
+                                            <label> Chemical Product</label> <label class="RequiredField">*</label>
+
+                                            <div class="searchable form-group">
+
+                                                <input type="text" id="PChemical_Product_Code" name="PChemical_Product_Name" class = "form-control" placeholder="-- Select Chemical Product -" onkeyup="filterFunction(this,event)">
+                                                <ul>
+                                                    <li>-- Select Chemical Product - </li>
+                                                  
+                                                </ul>
+                                            </div>
+                                            
+                                            @*  <select name="PChemical_Product_Code" id="PChemical_Product_Code" class="form-control searchableselect">
+
+                                                <option value="">-- Select Chemical Product --</option>
+                                                @{
+                                                    List<CPDMSEF.PetroChemicalProductGroup> lstChemicalProdModel = (List<CPDMSEF.PetroChemicalProductGroup>)ViewData["ChemicalProd"];
+                                                    if (lstChemicalProdModel != null)
+                                                    {
+                                                        foreach (var item in lstChemicalProdModel)
+                                                        {
+                                                            if (item.PChemical_Product_Code == Model.PChemical_Product_Code)
+
+                                                            {
+                                                                <option selected="selected" value="@item.PChemical_Product_Code">@item.PChemical_Product_Name</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.PChemical_Product_Code">@item.PChemical_Product_Name</option>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            </select>*@
+                                        </div>
+                                        <div class="form-group ">
+                                            <button type="button" class="form-control "
+                                                    style="background: #00baf2; color: black;">
+                                                Substance/Articles/Mixtures details
+                                            </button>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Select Substance/Articles/Mixtures</label> <label class="RequiredField">*</label>
+                                            @Html.DropDownListFor(m => m.Substance_Detail_ID, ViewBag.ViewSubstanceList as IEnumerable<SelectListItem>, "--Select Substance/Articles/Mixtures--", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(m => m.C_Name, new {onkeypress = "lettersOnly()", @class = "form-control",placeholder="Name of Articles/Mixtures/Substance " })
+                                        </div>
+                                        @*<div class="form-group">
+                                    @Html.TextBoxFor(m => m.C_Substance_Present_mixture_concentration, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="If mixture/article, then all substance present in mixture along with at least 10% concentration." })
+                                    </div>*@
+                                        @*  <div class="form-group ">
+                                    <button type="button" class="form-control "
+                                    style="background: #00baf2; color: black;">
+                                    List main constituents of the substance with 10% (w/w) or more concentration
+                                    </button>
+                                    </div>*@
+                                        @*<div class="form-group ">*@
+                                        <div class="table-responsive">
+                                            <table id="Main_Constituents" class="table table-bordered Main_Constituents">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th colspan="11" style="background: #00baf2; color: black;">List main constituents of the substance/ mixture/article with 10% (w/w) or more concentration </th>
+                                                        <th colspan="16" style="background: #00baf2; color: black;">Details of all impurities contained in concentrations of greater than 0.1% (w/w)</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>#SL.No.</th>
+                                                        <th>IUPAC Name</th>
+                                                        <th>Common Name</th>
+                                                        <th>CAS No.</th>
+                                                        <th>HS Code</th>
+                                                        <th>Molecular Structure</th>
+                                                        <th>Isomer</th>
+                                                        <th>(%) Conc.</th>
+                                                        <th>Physical State</th>
+                                                        <th>Annual Installed Capacity</th>
+                                                        <th>Unit</th>
+                                                        <th>(%) Purity of the Substance</th>
+                                                        <th>Name of impurities 1</th>
+                                                        <th>CAS No.</th>
+                                                        <th>(%) Range of impurities</th>
+                                                        <th>
+                                                            Nature of impurities including isomers and by-products
+                                                        </th>
+                                                        <th>Name of impurities 2</th>
+                                                        <th>CAS No.</th>
+                                                        <th>(%) Range of impurities</th>
+                                                        <th>
+                                                            Nature of impurities including isomers and by-products
+                                                        </th>
+                                                        <th>Name of impurities 3</th>
+                                                        <th>CAS No.</th>
+                                                        <th>(%) Range of impurities</th>
+                                                        <th>
+                                                            Nature of impurities including isomers and by-products
+                                                        </th>
+
+                                                        <th>Name of impurities 4</th>
+                                                        <th>CAS No.</th>
+                                                        <th>(%) Range of impurities</th>
+                                                        <th>
+                                                            Nature of impurities including isomers and by-products
+                                                        </th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td><input type="text" class="IUPAC" /></td>
+                                                        <td><input type="text" class="CommonName" /></td>
+                                                        <td><input type="text" class="CASNo" />
+                                                            <ul id="suggestionList"></ul>
+                                                        </td>
+                                                        <td><input type="text" class="HsCode" /></td>
+                                                        <td><input type="text" class="Molecular" /></td>
+                                                        <td><input type="text" class="Isomer" /></td>
+                                                        <td><input type="text" class="Conc" /></td>
+                                                        <td>
+                                                            <select id="PhysicalStateID" name="PhysicalStateID" class="physicalState">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="Solid">Solid</option>
+                                                                <option value="Liqued">Liquid</option>
+                                                                <option value="Gas">Gas</option>
+                                                            </select>
+                                                        </td>
+                                                        <td><input type="text" class="AnnualInstalledCapacity" /></td>
+                                                        <td>
+                                                            <select id="UnitID" name="UnitID" class="Unit">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="kg">kg</option>
+                                                                <option value="mt">mt</option>
+                                                                <option value="MMBtu">MMBtu</option>
+                                                            </select>
+                                                        </td>
+                                                        <td><input type="text" class="PuritySubstance" /></td>
+
+                                                        <td><input type="text" class="impurities1" /></td>
+                                                        <td><input type="text" class="CASNo1" />
+                                                             <ul id="suggestionList1"></ul></td>
+                                                        <td><input type="text" class="Range1" /></td>
+                                                        <td><input type="text" class="Nature1" /></td>
+
+                                                        <td><input type="text" class=" impurities2" /></td>
+                                                        <td><input type="text" class=" CASNo2" />
+                                                             <ul id="suggestionList2"></ul></td>
+                                                        <td><input type="text" class="Range2" /></td>
+                                                        <td><input type="text" class="Nature2" /></td>
+
+                                                        <td><input type="text" class=" impurities3" /></td>
+                                                        <td><input type="text" class=" CASNo3" />
+                                                             <ul id="suggestionList3"></ul></td>
+                                                        <td><input type="text" class="Range3" /></td>
+                                                        <td><input type="text" class="Nature3" /></td>
+
+                                                        <td><input type="text" class=" impurities4" /></td>
+                                                        <td><input type="text" class=" CASNo4" />
+                                                             <ul id="suggestionList4"></ul></td>
+                                                        <td><input type="text" class="Range4" /></td>
+                                                        <td><input type="text" class="Nature4" /></td>
+
+                                                        <td> <button type="button" onclick="AddRow()" class="btn btn-success"><i class="icon-plus-solid pr-1"></i><i class='fa fa-plus'></i></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        @*</div>*@
+                                        @Html.HiddenFor(model => model.lstMainConstituents, new { id = "Main_Constituents_Data" })
+                                        <div class="table-responsive">
+                                            <table id="tblMain_Constituents_Data" class="table table-bordered tblMain_Constituents_Data">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="fixed-columns">#SL</th>
+                                                        <th class="fixed-columns">IUPAC Name</th>
+                                                        <th>Common Name</th>
+                                                        <th>CAS No.</th>
+                                                        <th>HS Code</th>
+                                                        <th>Molecular Structure</th>
+                                                        <th>Isomer</th>
+                                                        <th>(%) Conc.</th>
+                                                        <th>Physical State</th>
+                                                        <th>Annual Installed Capacity</th>
+                                                        <th>Unit</th>
+                                                        <th>(%) Purity of the Substance</th>
+                                                        <th>Name of impurities 1</th>
+                                                        <th>CAS No.</th>
+                                                        <th>(%) Range of impurities</th>
+                                                        <th>
+                                                            Nature of impurities including isomers and by-products
+                                                        </th>
+                                                        <th>Name of impurities 2</th>
+                                                        <th>CAS No.</th>
+                                                        <th>(%) Range of impurities</th>
+                                                        <th>
+                                                            Nature of impurities including isomers and by-products
+                                                        </th>
+                                                        <th>Name of impurities 3</th>
+                                                        <th>CAS No.</th>
+                                                        <th>(%) Range of impurities</th>
+                                                        <th>
+                                                            Nature of impurities including isomers and by-products
+                                                        </th>
+
+                                                        <th>Name of impurities 4</th>
+                                                        <th>CAS No.</th>
+                                                        <th>(%) Range of impurities</th>
+                                                        <th>
+                                                            Nature of impurities including isomers and by-products
+                                                        </th>
+                                                        <th>Edit</th>
+                                                        <th>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        @*<div class="form-group">
+                                    @Html.TextBoxFor(m => m.C_Annual_Installed_Capacity , new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Annual Installed Capacity of the Substances (in KG) " })
+                                    </div>
+                                    <div class="form-group">
+                                    @Html.TextBoxFor(m => m.C_Purity_Substance, new {onkeypress = "lettersOnly()", @class = "form-control",placeholder="Purity of the Substance" })
+                                    </div>
+                                    <div class="form-group">
+                                    @Html.TextBoxFor(m => m.C_Details_Impurities , new { @class = "form-control",placeholder="Details of all impurities contained in concentrations of greater than 0.1% (w/w)" })
+                                    </div>*@
+
+                                        @* <table id="Impurities" class="table table-bordered Impurities">
+                                    <thead>
+                                    <tr>
+                                    <th>Name of Impurities</th>
+                                    <th>(%) in Impurities</th>
+                                    <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    <td><input type="text" class="NameImpurities" /></td>
+                                    <td><input type="text" class="PerImpurities" /></td>
+                                    <td> <button type="button" onclick="addImpurities()" class="btn btn-success"><i class="icon-plus-solid pr-1"></i>Add Row</button></td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                                    @Html.HiddenFor(model => model.lstImpurities, new { id = "Impurities_Data" })
+                                    <table id="tblImpurities_Data" class="table table-bordered tblImpurities_Data">
+                                    <thead>
+                                    <tr>
+                                    <th>#SL</th>
+                                    <th>Name of Impurities</th>
+                                    <th>(%) in Impurities</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    </table>
+
+                                    <div class="form-group">
+                                    @Html.TextBoxFor(m => m.C_Nature_of_Impurities , new { @class = "form-control",placeholder="Nature of impurities, including isomers and by-products" })
+                                    </div>*@
+                                        <div class="form-group ">
+                                            <button type="button" class="form-control "
+                                                    style="background: #00baf2; color: black;">
+                                                Classification and labelling information: (according to 9th revision of UN-GHS)
+                                            </button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Hazard Classification</label> <label class="RequiredField">*</label>
+                                            @Html.DropDownListFor(m => m.Hazard_Classification_ID, ViewBag.ViewHazardList as IEnumerable<SelectListItem>, "-- Select Hazard Classification --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Resulting Hazard</label> <label class="RequiredField">*</label>
+                                            <select name="Resulting_Hazard_ID" id="Resulting_Hazard_ID" class="form-control searchableselect">
+                                                <option value="">-- Select Resulting Hazard --</option>
+                                                @{
+                                                    List<CPDMSEF.ResultingHazardSubstance> ResultingHazard = (List<CPDMSEF.ResultingHazardSubstance>)ViewData["Resulting_Hazard_ID"];
+                                                    if (ResultingHazard != null)
+                                                    {
+                                                        foreach (var item in ResultingHazard)
+                                                        {
+                                                            if (item.Resulting_Hazard_ID == Model.Resulting_Hazard_ID)
+                                                            {
+                                                                <option selected="selected" value="@item.Resulting_Hazard_ID">@item.Resulting_Hazard_ID</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.Resulting_Hazard_ID">@item.Resulting_Hazard_ID</option>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(m => m.C_Specific_Concentration_Limits , new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Specific concentration limits, where applicable" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Main use category</label> <label class="RequiredField">*</label>
+                                            @Html.DropDownListFor(m => m.Main_Use_Category_ID, ViewBag.ViewMainCategoryList as IEnumerable<SelectListItem>, "-- Select Main use category --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Specification Industrial Professional</label> <label class="RequiredField">*</label>
+                                            @Html.DropDownListFor(m => m.Specification_Industrial_Professional_ID, ViewBag.ViewSpecificationList as IEnumerable<SelectListItem>, "-- Select Specification Industrial Professional --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Route Exposure</label> <label class="RequiredField">*</label>
+                                            @Html.DropDownListFor(m => m.Significant_Route_Exposure_ID, ViewBag.ViewRouteList as IEnumerable<SelectListItem>, "-- Select Route Exposure --", new { @class = "form-control", autofocus = "autofocus",  })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Environmental Exposure</label> <label class="RequiredField">*</label>
+                                            @Html.DropDownListFor(m => m.Environmental_Exposure_ID, ViewBag.ViewEnvironmentalList as IEnumerable<SelectListItem>, "-- Select Environmental Exposure --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <div class="form-group">
+                                             <label>Pattern Exposure</label> <label class="RequiredField">*</label>
+                                            @Html.DropDownListFor(m => m.Pattern_Exposure_ID, ViewBag.ViewPatterList as IEnumerable<SelectListItem>, "-- Select Pattern Exposure --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Storage Capacity</label> <label class="RequiredField">*</label>
+                                            @Html.TextBoxFor(m => m.C_Maximum_Storage_Capacity , new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Storage Capacity" })
+                                        </div>
+                                        <div class="form-group ">
+                                            <button type="button" class="form-control "
+                                                    style="background: #00baf2; color: black;">
+                                                Name of known Downstream Users (at least top 3; will be kept confidential)
+
+                                            </button>
+                                        </div>
+
+                                        @*<div class="form-group ">*@
+                                        <table id="Downstream" class="table table-bordered Downstream">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name of Unit </th>
+                                                    <th>Designated user</th>
+                                                    <th>Location</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><input type="text" class="NameUnit" /></td>
+                                                    <td><input type="text" class="designateduser" /></td>
+                                                    <td><input type="text" class="Location" /></td>
+                                                    @*<td><button id="addDownstream">Add Row</button></td>*@
+                                                    <td> <button type="button" onclick="addDownstream()" class="btn btn-success"><i class="icon-plus-solid pr-1"></i><i class='fa fa-plus'></i></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        @*</div>*@
+                                        @Html.HiddenFor(model => model.lstDownstream, new { id = "Downstream_Data" })
+                                        <table id="tblDownstream_Data" class="table table-bordered tblDownstream_Data">
+                                            <thead>
+                                                <tr>
+                                                    <th>#SL</th>
+                                                    <th>Name of Unit</th>
+                                                    <th>Designated User</th>
+                                                    <th>Location</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+
+
+                                       
+                                        @*  <div class="form-group">
+                                    @Html.TextBoxFor(m => m.C_Maximum_Quantity_Stored , new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Maximum Quantity Stored" })
+                                    </div>*@
+
+                                        <div class="row">
+                                            <div class="col-sm" style="text-align: right;">
+                                                <div class="form-button">
+                                                    <input type="submit" value='@ViewBag.Button' class="btn btn-primary" name="btnSubmit" id="btnSubmit" onclick="return Validate();" />
+                                                    @*<button class="btn btn-primary" type="submit">Save</button>*@
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <div class="form-button">
+                                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+
+
+    <script>
+        $('.single-item').slick({
+            arrows: false,
+            dots: true
+        }
+        );
+    </script>
+<script>
+    function lettersOnly() {
+        var regex = new RegExp("^[a-zA-Z ]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    }
+    function decimalOnly() {
+        var regex = /^\d*\.?\d*$/;
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    }
+
+    //$('#btnSubmit').on('click', function (e) {
+    //    if (Validate()) {
+    //        e.preventDefault(); //cancel default action
+    //        //pop up
+    //        swal({
+    //            title: "Are you confirmed to submit Form",
+    //            //text: 'Hello',
+    //            icon: "warning",
+    //            //buttons: true,
+    //            buttons: ["No", "Yes"],
+    //            //dangerMode: true,
+    //        })
+    //            .then((willDelete) => {
+    //                if (willDelete) {
+    //                    $('#screenLoading').show();
+    //                    $('#btnSubmit').prop('disabled', true);
+    //                    $('#form1').submit();
+    //                }
+    //            });
+    //    }
+    //    else { return false; }
+
+    //});
+    function Validate() {
+        debugger;
+        if (!DropDownValidation("Chemical_Code", "Chemical Code")) {
+            return false;
+        }
+        else if (!DropDownValidation("Chemical_Product_Code", "Chemical Product Code")) {
+            return false;
+
+        }
+        else if (!DropDownValidation("Substance_Detail_ID", "Substance Detail")) {
+            return false;
+        }
+        else if (!blankFieldValidation("C_Name", "Chemical Name")) {
+            return false;
+        }
+        //else if (!blankFieldValidation("C_Substance_Present_mixture_concentration", "Mixture Concentration")) {
+        //    return false;
+        //}
+        //else if (!blankFieldValidation("C_Annual_Installed_Capacity", "Annual Installed Capacity")) {
+        //    return false;
+        //}
+        //else if (!blankFieldValidation("C_Purity_Substance", "Purity of the Substance")) {
+        //    return false;
+        //}
+        //else if (!blankFieldValidation("C_Details_Impurities", "Details of all impurities")) {
+        //    return false;
+        //}
+        //else if (!blankFieldValidation("C_Nature_of_Impurities", "Nature of impurities")) {
+        //    return false;
+        //}
+        else if (!DropDownValidation("Hazard_Classification_ID", "Hazard Classification")) {
+            return false;
+        }
+        else if (!DropDownValidation("Resulting_Hazard_ID", "Resulting Hazard Label")) {
+            return false;
+        }
+        else if (!blankFieldValidation("C_Specific_Concentration_Limits", "Specific concentration limits")) {
+            return false;
+        }
+
+        else if (!DropDownValidation("Main_Use_Category_ID", "Main use category")) {
+            return false;
+        }
+        else if (!DropDownValidation("Specification_Industrial_Professional_ID", "Specification")) {
+            return false;
+        }
+        else if (!DropDownValidation("Significant_Route_Exposure_ID", "Significant Route(s) of Exposure")) {
+            return false;
+        }
+        else if (!DropDownValidation("Environmental_Exposure_ID", "Environmental Exposure")) {
+            return false;
+        }
+        else if (!DropDownValidation("Pattern_Exposure_ID", "Pattern of exposure ")) {
+            return false;
+        }
+        else if (!blankFieldValidation("C_Maximum_Storage_Capacity", "Maximum Storage Capacity")) {
+            return false;
+        }
+        //else if (!blankFieldValidation("C_Maximum_Quantity_Stored", "Maximum Quantity Stored")) {
+        //    return false;
+        //}
+        var tbody = $("#tblMain_Constituents_Data tbody");
+        if (tbody.children().length != 0) {
+            var Constituents = '';
+            $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+                var IUPAC = $(this).find('td:eq(1)').text();
+                var CommonName = $(this).find('td:eq(2)').text();
+                var CASNo = $(this).find('td:eq(3)').text();
+                var HSCode = $(this).find('td:eq(4)').text();
+                var Molecular = $(this).find('td:eq(5)').text();
+                var Isomer = $(this).find('td:eq(6)').text();
+                var Conc = $(this).find('td:eq(7)').text();
+
+                var physicalState = $(this).find('td:eq(8)').text();
+
+                var AnnualInstalledCapacity = $(this).find('td:eq(9)').text();
+                var Unit = $(this).find('td:eq(10)').text();
+                var PuritySubstance = $(this).find('td:eq(11)').text();
+                var impurities1 = $(this).find('td:eq(12)').text();
+                var CASNo1 = $(this).find('td:eq(13)').text();
+                var Range1 = $(this).find('td:eq(14)').text();
+                var Nature1 = $(this).find('td:eq(15)').text();
+
+                var impurities2 = $(this).find('td:eq(16)').text();
+                var CASNo2 = $(this).find('td:eq(17)').text();
+                var Range2 = $(this).find('td:eq(18)').text();
+                var Nature2 = $(this).find('td:eq(19)').text();
+
+                var impurities3 = $(this).find('td:eq(20)').text();
+                var CASNo3 = $(this).find('td:eq(21)').text();
+                var Range3 = $(this).find('td:eq(22)').text();
+                var Nature3 = $(this).find('td:eq(23)').text();
+
+                var impurities4 = $(this).find('td:eq(24)').text();
+                var CASNo4 = $(this).find('td:eq(25)').text();
+                var Range4 = $(this).find('td:eq(26)').text();
+                var Nature4 = $(this).find('td:eq(27)').text();
+
+
+                Constituents += IUPAC + '|' + CommonName + '|' + CASNo + '|' + HSCode + '|' + Molecular + '|' + Isomer + '|' + Conc + '|' + physicalState + '|' + AnnualInstalledCapacity + '|' + Unit + '|' + PuritySubstance + '|' + impurities1 + '|' + CASNo1 + '|' + Range1 + '|' + Nature1 + '|' + impurities2 + '|' + CASNo2 + '|' + Range2 + '|' + Nature2 + '|' + impurities3 + '|' + CASNo3 + '|' + Range3 + '|' + Nature3 + '|' + impurities4 + '|' + CASNo4 + '|' + Range4 + '|' + Nature4 + '^';
+
+
+            });
+            if (Constituents != '') {
+                $('#Main_Constituents_Data').val(Constituents);
+            }
+        }
+
+        //var tbodyImpurities = $("#tblImpurities_Data tbody");
+        //if (tbodyImpurities.children().length != 0) {
+        //    var Impurities = '';
+        //    $('#tblImpurities_Data tbody tr').each(function (index) {
+        //        var NameImpurities = $(this).find('td:eq(1)').text();
+        //        var PerImpurities = $(this).find('td:eq(2)').text();
+
+        //        Impurities += NameImpurities + '|' + PerImpurities + '^';
+        //    });
+        //    if (Impurities != '') {
+        //        $('#Impurities_Data').val(Impurities);
+        //    }
+        //}
+
+        var tbodyDownstream = $("#tblDownstream_Data tbody");
+        if (tbodyDownstream.children().length != 0) {
+            var Downstream = '';
+            $('#tblDownstream_Data tbody tr').each(function (index) {
+                var NameUnit = $(this).find('td:eq(1)').text();
+                var user = $(this).find('td:eq(2)').text();
+                var Location = $(this).find('td:eq(3)').text();
+
+                Downstream += NameUnit + '|' + user + '|' + Location + '^';
+            });
+            if (Downstream != '') {
+                $('#Downstream_Data').val(Downstream);
+            }
+        }
+
+
+        return true;
+    }
+</script>
+
+<script>
+
+    // $(document).ready(function () {
+
+    function AddRow() {
+
+        //$('#add').click(function () {
+        var checkVal = 0;
+        var cont = 1;
+        var table = document.getElementById("Main_Constituents");
+        var textbox1 = table.getElementsByClassName("IUPAC")[0];
+        //var row = $(this).closest('tr');
+        //var textbox = row.find('input[type="text"]');
+        //var IUPACvalue = textbox.val();
+        var IUPACvalue = textbox1.value;
+        $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+            $(this).find('td:eq(0)').text(cont++);
+            var UPAC = $(this).find('td:eq(1)').text();
+            if (IUPACvalue == UPAC) {
+                checkVal = 1;
+                swal('Same IUPAC name alredy exist !');
+                // $("#PillarName").focus();
+                return false;
+            }
+        });
+        if (checkVal != 1) {
+            var IUPAC = $('.IUPAC').val();
+            var CommonName = $('.CommonName').val();
+            var CASNo = $('.CASNo').val();
+            var HsCode = $('.HsCode').val();
+            var Molecular = $('.Molecular').val();
+            var Isomer = $('.Isomer').val();
+            var Conc = $('.Conc').val();
+
+            var physicalState = $('.physicalState').val();
+            var AnnualInstalledCapacity = $('.AnnualInstalledCapacity').val();
+            var Unit = $('.Unit').val();
+            var PuritySubstance = $('.PuritySubstance').val();
+            var impurities1 = $('.impurities1').val();
+            var CASNo1 = $('.CASNo1').val();
+            var Range1 = $('.Range1').val();
+            var Nature1 = $('.Nature1').val();
+
+            var impurities2 = $('.impurities2').val();
+            var CASNo2 = $('.CASNo2').val();
+            var Range2 = $('.Range2').val();
+            var Nature2 = $('.Nature2').val();
+
+            var impurities3 = $('.impurities3').val();
+            var CASNo3 = $('.CASNo3').val();
+            var Range3 = $('.Range3').val();
+            var Nature3 = $('.Nature3').val();
+
+            var impurities4 = $('.impurities4').val();
+            var CASNo4 = $('.CASNo4').val();
+            var Range4 = $('.Range4').val();
+            var Nature4 = $('.Nature4').val();
+            // create new row with input values
+               // create new row with input values
+            var editButton = '<button class="btn btn-success" style="background-color: blue;" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete additional-class" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+           
+            var newRow = $('<tr><td></td><td>' + IUPAC + '</td><td>' + CommonName + '</td><td>' + CASNo + '</td><td>' + HsCode + '</td><td>' + Molecular + '</td><td>' + Isomer + '</td><td>' + Conc + '</td><td>' + physicalState + '</td><td>' + AnnualInstalledCapacity + '</td><td>' + Unit + '</td><td>' + PuritySubstance + '</td><td>' + impurities1 + '</td><td>' + CASNo1 + '</td><td>' + Range1 + '</td><td>' + Nature1 + '</td><td>' + impurities2 + '</td><td>' + CASNo2 + '</td><td>' + Range2 + '</td><td>' + Nature2 + '</td><td>' + impurities3 + '</td><td>' + CASNo3 + '</td><td>' + Range3 + '</td><td>' + Nature3 + '</td><td>' + impurities4 + '</td><td>' + CASNo4 + '</td><td>' + Range4 + '</td><td>' + Nature4 + '</td><td>' + editButton + '</td><td>' + deleteButton + '</td></tr>');
+
+           // var newRow = $('<tr><td>' + cont++ + '</td><td>' + IUPAC + '</td><td>' + CommonName + '</td><td>' + CASNo + '</td><td>' + HsCode + '</td><td>' + Molecular + '</td><td>' + Isomer + '</td><td>' + Conc + '</td><td>' + physicalState + '</td><td>' + AnnualInstalledCapacity + '</td><td>' + Unit + '</td><td>' + PuritySubstance + '</td><td>' + impurities1 + '</td><td>' + CASNo1 + '</td><td>' + Range1 + '</td><td>' + Nature1 + '</td><td>' + impurities2 + '</td><td>' + CASNo2 + '</td><td>' + Range2 + '</td><td>' + Nature2 + '</td><td>' + impurities3 + '</td><td>' + CASNo3 + '</td><td>' + Range3 + '</td><td>' + Nature3 + '</td><td>' + impurities4 + '</td><td>' + CASNo4 + '</td><td>' + Range4 + '</td><td>' + Nature4 + '</td></tr>');
+            // append new row to table
+            $('#tblMain_Constituents_Data tbody').append(newRow);
+            UpdateSerialNumbers();
+            // clear input values
+            $('.IUPAC').val('');
+            $('.CommonName').val('');
+            $('.CASNo').val('');
+            $('.HsCode').val('');
+            $('.Molecular').val('');
+            $('.Isomer').val('');
+            $('.Conc').val('');
+
+            $('.physicalState').val('');
+            $('.AnnualInstalledCapacity').val('');
+            $('.Unit').val('');
+            $('.PuritySubstance').val('');
+            $('.impurities1').val('');
+            $('.CASNo1').val('');
+            $('.Range1').val('');
+            $('.Nature1').val('');
+
+            $('.impurities2').val('');
+            $('.CASNo2').val('');
+            $('.Range2').val('');
+            $('.Nature2').val('');
+
+            $('.impurities3').val('');
+            $('.CASNo3').val('');
+            $('.Range3').val('');
+            $('.Nature3').val('');
+
+            $('.impurities4').val('');
+            $('.CASNo4').val('');
+            $('.Range4').val('');
+            $('.Nature4').val('');
+        }
+        // });
+    }
+    function UpdateSerialNumbers() {
+        $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+            $(this).find('td:first').text(index + 1);
+        });
+    }
+
+    function EditRow(row) {
+        var currentRow = $(row).closest('tr');
+        var cells = currentRow.find('td');
+
+        // retrieve the values from the selected row
+        var IUPAC = cells.eq(1).text();
+        var CommonName = cells.eq(2).text();
+        var CASNo = cells.eq(3).text();
+        var HsCode = cells.eq(4).text();
+        var Molecular = cells.eq(5).text();
+        var Isomer = cells.eq(6).text();
+        var Conc = cells.eq(7).text();
+        var physicalState = cells.eq(8).text();
+        var AnnualInstalledCapacity = cells.eq(9).text();
+        var Unit = cells.eq(10).text();
+        var PuritySubstance = cells.eq(11).text();
+        var impurities1 = cells.eq(12).text();
+        var CASNo1 = cells.eq(13).text();
+        var Range1 = cells.eq(14).text();
+        var Nature1 = cells.eq(15).text();
+        var impurities2 = cells.eq(16).text();
+        var CASNo2 = cells.eq(17).text();
+        var Range2 = cells.eq(18).text();
+        var Nature2 = cells.eq(19).text();
+        var impurities3 = cells.eq(20).text();
+        var CASNo3 = cells.eq(21).text();
+        var Range3 = cells.eq(22).text();
+        var Nature3 = cells.eq(23).text();
+        var impurities4 = cells.eq(24).text();
+        var CASNo4 = cells.eq(25).text();
+        var Range4 = cells.eq(26).text();
+        var Nature4 = cells.eq(27).text();
+
+        $('.IUPAC').val(IUPAC);
+        $('.CommonName').val(CommonName);
+        $('.CASNo').val(CASNo);
+        $('.HsCode').val(HsCode);
+        $('.Molecular').val(Molecular);
+        $('.Isomer').val(Isomer);
+        $('.Conc').val(Conc);
+        $('.physicalState').val(physicalState);
+        $('.AnnualInstalledCapacity').val(AnnualInstalledCapacity);
+        $('.Unit').val(Unit);
+        $('.PuritySubstance').val(PuritySubstance);
+        $('.impurities1').val(impurities1);
+        $('.CASNo1').val(CASNo1);
+        $('.Range1').val(Range1);
+        $('.Nature1').val(Nature1);
+        $('.impurities2').val(impurities2);
+        $('.CASNo2').val(CASNo2);
+        $('.Range2').val(Range2);
+        $('.Nature2').val(Nature2);
+        $('.impurities3').val(impurities3);
+        $('.CASNo3').val(CASNo3);
+        $('.Range3').val(Range3);
+        $('.Nature3').val(Nature3);
+        $('.impurities4').val(impurities4);
+        $('.CASNo4').val(CASNo4);
+        $('.Range4').val(Range4);
+        $('.Nature4').val(Nature4);
+
+
+        currentRow.remove();
+
+
+        UpdateSerialNumbers();
+    }
+
+    function DeleteRow(row) {
+        var currentRow = $(row).closest('tr');
+
+
+        currentRow.remove();
+
+
+        UpdateSerialNumbers();
+    }
+    function addImpurities() {
+        // $('#addImpurities').click(function () {
+        var cont = 1;
+        $('#tblImpurities_Data tbody tr').each(function (index) {
+            $(this).find('td:eq(0)').text(cont++);
+        });
+        var NameImpurities = $('.NameImpurities').val();
+        var PerImpurities = $('.PerImpurities').val();
+        // create new row with input values
+        var newRow = $('<tr><td>' + cont++ + '</td><td>' + NameImpurities + '</td><td>' + PerImpurities + '</td></tr>');
+        // append new row to table
+        $('#tblImpurities_Data tbody').append(newRow);
+        // clear input values
+        $('.NameImpurities').val('');
+        $('.PerImpurities').val('');
+        //  });
+    }
+
+    function addDownstream() {
+        //  $('#addDownstream').click(function () {
+        var cont = 1;
+        $('#tblDownstream_Data tbody tr').each(function (index) {
+            $(this).find('td:eq(0)').text(cont++);
+        });
+        var NameUnit = $('.NameUnit').val();
+        var designateduser = $('.designateduser').val();
+        var Location = $('.Location').val();
+        // create new row with input values
+        var editButton = '<button class="btn btn-success" style="background-color: blue;" onclick="EditRow1(this)"><i class="fa fa-edit"></i></button>';
+        var deleteButton = '<button class="btn btn-danger btn-delete additional-class" onclick="DeleteRow1(this)"><i class="fa fa-trash-o"></i></button>';
+
+        var newRow = $('<tr><td></td><td>' + NameUnit + '</td><td>' + designateduser + '</td><td>' + Location + '</td><td>' + editButton + '</td><td>' + deleteButton + '</td></tr>');
+        // append new row to table
+        $('#tblDownstream_Data tbody').append(newRow);
+        UpdateSerialNumbers1();
+        // clear input values
+        $('.NameUnit').val('');
+        $('.designateduser').val('');
+        $('.Location').val('');
+        // });
+    }
+    function EditRow1(row) {
+        var currentRow = $(row).closest('tr');
+        var cells = currentRow.find('td');
+
+        var NameUnit = cells.eq(1).text();
+        var designateduser = cells.eq(2).text();
+        var Location = cells.eq(3).text();
+
+        $('.NameUnit').val(NameUnit);
+        $('.designateduser').val(designateduser);
+        $('.Location').val(Location);
+
+        currentRow.remove();
+
+        UpdateSerialNumbers1();
+    }
+
+    function DeleteRow1(row) {
+        var currentRow = $(row).closest('tr');
+        currentRow.remove();
+
+        UpdateSerialNumbers1();
+    }
+    //  });
+     function UpdateSerialNumbers1() {
+        $('#tblDownstream_Data tbody tr').each(function (index) {
+            $(this).find('td:first').text(index + 1);
+        });
+    }
+
+
+    $('#PChemical_Code').change(function () {
+        debugger;
+        if ($('#PChemical_Code').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetPetroChemicalProductByID',
+                data: { 'PChemical_Code': $('#PChemical_Code').val() },
+                dataType: 'json',
+                type: 'post',
+               success: function (data) {
+                    var vl = "";
+                    $('#PChemical_Product_Code').val('');
+
+                    debugger;
+                    var ul = $('#PChemical_Product_Code').closest(".searchable").find("ul");
+                    ul.empty();
+
+                    $.each(data, function (ind, item) {
+                        ul.append("<li value='" + item.pChemical_Product_Code + "'>" + item.pChemical_Product_Name + "</li>");
+                    });
+},
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#PChemical_Product_Code').html('');
+          //  District2 += "<option value=''>-- Select Chemical Product --</option>";
+            $('#PChemical_Product_Code').html(District2);
+
+        }
+    });
+
+
+</script>
+<script>
+    $('#Hazard_Classification_ID').change(function () {
+        debugger;
+        if ($('#Hazard_Classification_ID').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetResultingHazardByID',
+                data: { 'Hazard_Classification_ID': $('#Hazard_Classification_ID').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    debugger;
+                    var row = "";
+                    $('#Resulting_Hazard_ID').html('');
+                    row += "<option value=''>-- Select Resulting Hazard --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.resulting_Hazard_ID + "'>" + item.resulting_Hazard_Name + "</option>";
+                    });
+                    $('#Resulting_Hazard_ID').html(row);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#Resulting_Hazard_ID').html('');
+            District2 += "<option value=''>-- Select Resulting Hazard --</option>";
+            $('#Resulting_Hazard_ID').html(District2);
+
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Bind the change event of the dropdown
+        $("#Substance_Detail_ID").change(function () {
+            var selectedOption = $(this).val(); // Get the selected value from the dropdown
+
+            // Update the placeholder attribute of the text input based on the selected option
+            switch (selectedOption) {
+                case "1":
+                    $("#C_Name").attr("placeholder", "Name of Substances ");
+                    break;
+                case "2":
+                    $("#C_Name").attr("placeholder", "Name of Articles ");
+                    break;
+                case "3":
+                    $("#C_Name").attr("placeholder", "Name of Mixtures ");
+                    break;
+                default:
+                    $("#C_Name").attr("placeholder", "Name of Substances ");
+            }
+        });
+    });
+</script>
+<script>
+    $('.CASNo').on('input', function () {
+        var inputText = $(this).val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/CashNoSuggestion',
+            data: { 'inputText': inputText ,'mode':2},
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var suggestionList = $('#suggestionList');
+                suggestionList.empty();
+
+
+                $.each(data, function (index, suggestion) {
+                    var listItem = $('<li>' + suggestion.casnO_Code + '</li>');
+                    listItem.on('click', function () {
+                        $('.CASNo').val(suggestion.casnO_Code);
+                        suggestionList.empty();
+                    });
+                    suggestionList.append(listItem);
+                });
+            }
+        });
+    });
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.CASNo').length) {
+            var suggestionList = $('#suggestionList');
+            suggestionList.empty();
+        }
+    });
+
+    //cash1
+    $('.CASNo1').on('input', function () {
+        var inputText1 = $(this).val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/CashNoSuggestion',
+            data: { 'inputText': inputText1,'mode':2 },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var suggestionList = $('#suggestionList1');
+                suggestionList.empty();
+
+
+                $.each(data, function (index, suggestion) {
+                    var listItem = $('<li>' + suggestion.casnO_Code + '</li>');
+                    listItem.on('click', function () {
+                        $('.CASNo1').val(suggestion.casnO_Code);
+                        suggestionList.empty();
+                    });
+                    suggestionList.append(listItem);
+                });
+            }
+        });
+    });
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.CASNo').length) {
+            var suggestionList = $('#suggestionList1');
+            suggestionList.empty();
+        }
+    });
+    //cash2
+    $('.CASNo2').on('input', function () {
+        var inputText1 = $(this).val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/CashNoSuggestion',
+            data: { 'inputText': inputText1 ,'mode':2},
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var suggestionList = $('#suggestionList2');
+                suggestionList.empty();
+
+
+                $.each(data, function (index, suggestion) {
+                    var listItem = $('<li>' + suggestion.casnO_Code + '</li>');
+                    listItem.on('click', function () {
+                        $('.CASNo2').val(suggestion.casnO_Code);
+                        suggestionList.empty();
+                    });
+                    suggestionList.append(listItem);
+                });
+            }
+        });
+    });
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.CASNo2').length) {
+            var suggestionList = $('#suggestionList2');
+            suggestionList.empty();
+        }
+    });
+    //cash3
+    $('.CASNo3').on('input', function () {
+        var inputText1 = $(this).val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/CashNoSuggestion',
+            data: { 'inputText': inputText1,'mode':2 },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var suggestionList = $('#suggestionList3');
+                suggestionList.empty();
+
+
+                $.each(data, function (index, suggestion) {
+                    var listItem = $('<li>' + suggestion.casnO_Code + '</li>');
+                    listItem.on('click', function () {
+                        $('.CASNo3').val(suggestion.casnO_Code);
+                        suggestionList.empty();
+                    });
+                    suggestionList.append(listItem);
+                });
+            }
+        });
+    });
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.CASNo3').length) {
+            var suggestionList = $('#suggestionList3');
+            suggestionList.empty();
+        }
+    });
+    //cash4
+    $('.CASNo4').on('input', function () {
+        var inputText1 = $(this).val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/CashNoSuggestion',
+            data: { 'inputText': inputText1, 'mode': 2 },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var suggestionList = $('#suggestionList4');
+                suggestionList.empty();
+
+
+                $.each(data, function (index, suggestion) {
+                    var listItem = $('<li>' + suggestion.casnO_Code + '</li>');
+                    listItem.on('click', function () {
+                        $('.CASNo4').val(suggestion.casnO_Code);
+                        suggestionList.empty();
+                    });
+                    suggestionList.append(listItem);
+                });
+            }
+        });
+    });
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.CASNo4').length) {
+            var suggestionList = $('#suggestionList4');
+            suggestionList.empty();
+        }
+    });
+</script>
+<script>
+    function filterFunction(that, event) {
+        let container, input, filter, li, input_val;
+        container = $(that).closest(".searchable");
+        input_val = container.find("input").val().toUpperCase();
+
+        if (["ArrowDown", "ArrowUp", "Enter"].indexOf(event.key) != -1) {
+            keyControl(event, container);
+        } else {
+            li = container.find("ul li");
+            li.each(function (i, obj) {
+                if ($(this).text().toUpperCase().indexOf(input_val) > -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+
+            container.find("ul li").removeClass("selected");
+            setTimeout(function () {
+                container.find("ul li:visible").first().addClass("selected");
+            }, 100);
+        }
+    }
+
+    function keyControl(e, container) {
+        if (e.key == "ArrowDown") {
+            if (container.find("ul li").hasClass("selected")) {
+                if (container.find("ul li:visible").index(container.find("ul li.selected")) + 1 < container.find("ul li:visible").length) {
+                    container.find("ul li.selected").removeClass("selected").nextAll().not('[style*="display: none"]').first().addClass("selected");
+                }
+            } else {
+                container.find("ul li:first-child").addClass("selected");
+            }
+        } else if (e.key == "ArrowUp") {
+            if (container.find("ul li:visible").index(container.find("ul li.selected")) > 0) {
+                container.find("ul li.selected").removeClass("selected").prevAll().not('[style*="display: none"]').first().addClass("selected");
+            }
+        } else if (e.key == "Enter") {
+            container.find("input").val(container.find("ul li.selected").text()).blur();
+            onSelect(container.find("ul li.selected").text());
+        }
+
+        container.find("ul li.selected")[0].scrollIntoView({
+            behavior: "smooth",
+        });
+    }
+
+    function onSelect(val, text) {
+        $("#PChemical_Product_Code1").val(val);
+        $("#PChemical_Product_Code").val(text);
+        // $("#PChemical_Product_Code").text(text);
+        //  alert(val + text);
+
+
+    }
+
+    $(".searchable input").focus(function () {
+        $(this).closest(".searchable").find("ul").show();
+        $(this).closest(".searchable").find("ul li").show();
+    });
+    var clickTriggered = false;
+
+    $(".searchable input").blur(function () {
+        let that = this;
+        setTimeout(function () {
+            const container = $(that).closest(".searchable");
+            const inputVal = $(that).val();
+            const selectedLi = container.find("ul li.selected");
+            if (!clickTriggered) {
+                if (selectedLi.length > 0 && selectedLi.text().toUpperCase() === inputVal.toUpperCase()) {
+                    const val = selectedLi.attr("value");
+                    const text = selectedLi.text();
+                    $(that).val(text);
+                    onSelect(val, text);
+                    //alert(val+text)
+                } else {
+                    onSelect(null, inputVal);
+                    // alert("null");
+                }
+                container.find("ul").hide();
+            }
+
+
+            clickTriggered = false;
+        }, 300);
+    });
+
+    $(document).on('click', '.searchable ul li', function () {
+        var val = $(this).attr("value");
+        var text = $(this).text();
+        $(this).closest(".searchable").find("input").val(text).blur();
+        onSelect(val, text);
+        clickTriggered = true;
+        const container = $(this).closest(".searchable");
+        container.find("ul").hide();
+
+    });
+
+
+    $(".searchable ul li").hover(function () {
+        $(this).closest(".searchable").find("ul li.selected").removeClass("selected");
+        $(this).addClass("selected");
+
+    });
+
+
+</script>

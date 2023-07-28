@@ -1,0 +1,70 @@
+$shortPassword : #614AD3;
+$weakPassword : #e42c64;
+$fairPassword : #FFB961;
+$goodPassword : #28C3D4;
+$strongPassword : #08FFC8;
+
+
+body{
+  background: #F2F4F6;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Roboto' , sans-serif;
+  font-weight: 400;
+  display: flex;
+  height:100vh;
+  align-items:center;
+  justify-content:center;
+  font-size: 16px;
+}
+
+.container{
+  .heading-2{
+    font-weight: 700;
+    color:#0D3F67;
+    font-size:2rem;
+    margin:1rem 0;
+    text-transform:capitalize;
+  }
+  .form-inline{
+    display: flex;
+    flex-direction:column;
+    width:100%;
+    overflow: hidden;
+    .input-password{
+      border-radius:3px; 
+      border:1px solid rgba(#111,.2);
+      height:20px;
+      font-size: 1.1rem;
+      padding:.7rem 1rem;
+      outline:none;
+      transition: border .4s ease-in-out;
+    }
+    .meter-text{
+      display: flex;
+      width:70%;
+      justify-content:space-between;
+      margin:1rem 0 .1rem 0;
+      color:rgba(#111,.6);
+      text-transform:capitalize;
+      .meter-status{
+        text-transform:capitalize;
+      }
+    }
+    .meter{
+      display: block;
+      width:70%;
+      height:10px;
+      border-radius:3px;
+      background: rgba(#111,.1);
+      overflow: hidden;   
+      .meter-bar{
+        display: block;
+        width:0;
+        height:100%;
+        transition:width .4s ease-in-out , transform .4s ease-in-out;
+      }
+    }
+  }
+}

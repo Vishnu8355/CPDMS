@@ -1,0 +1,1038 @@
+﻿@*@model IEnumerable<CPDMSEF.MonthlyChemicalListEF>
+*@@using CPDMSEF;
+@using CPDMS.Web;
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    UserLoginSession profile = HttpContextAccessor.HttpContext.Session.Get<UserLoginSession>(KeyHelper.UserKey);
+        <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "MonthlyPetroChemicalList";
+    if (profile.Role == "COMADM")
+    {
+
+        Layout = "~/Areas/CompanyRegistraion/Views/Shared/_CompanyRegisLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+
+    }
+
+}
+
+@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+
+    </script>
+    ViewBag.msg = null;
+}
+@if (TempData["Message"] != null)
+{
+    <script>
+        swal("", '@TempData["Message"]', "warning");
+    </script>
+}
+<style>
+    #loading-gif {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .table-row:hover {
+        cursor: zoom-in;
+    }
+
+    /* Styling for the popup container */
+
+
+    #popupContainer {
+        width: 80%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        z-index: 9999;
+        height: 600px;
+        max-height: 600px;
+        overflow: auto;
+    }
+
+    #popupContainerApp {
+        width: 30%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        z-index: 9999;
+        height: 300px;
+        max-height: 600px;
+        overflow: auto;
+    }
+
+    #closePopup2 {
+        float: right;
+        color: red;
+        text-decoration: underline;
+    }
+    /* Styling for the close link */
+    #closePopup {
+        float: right;
+        color: red;
+        text-decoration: underline;
+    }
+
+    /* Styling for the table inside the popup */
+
+
+
+</style>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        @if (profile.Role == "DPTAPP" && ViewBag.mode == "Approval")
+                        {
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item">
+                                    <a href="~/UnitRegistration/UnitRegistration/UnitDashboard"><i data-feather="home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active">Approval</li>
+
+                                <li class="breadcrumb-item active">Monthly</li>
+                                <li class="breadcrumb-item active"> Petro-Chemicals</li>
+                            </ol>
+                        }
+                        else
+                        {
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item">
+                                    <a href="~/UnitRegistration/UnitRegistration/UnitDashboard"><i data-feather="home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active">Report</li>
+
+                                <li class="breadcrumb-item active">Monthly</li>
+                                <li class="breadcrumb-item active"> Petro-Chemicals List</li>
+                            </ol>
+                        }
+                    </div>
+                </div>
+
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Petro-Chemicals List</b></a> </li>
+                                </ul>
+                                @if (profile.Role == "COMADM")
+                                {
+
+
+
+                                    <img src="~/Image/fa-filter.png" alt="filter" id="filter" class="filter-icon" onclick="filter()">
+
+                                    <form method="post">
+
+                                        <div class="row">
+                                            <div class="col-sm">
+
+                                                <div class="form-group">
+                                                    Financial Year <span class="RequiredField"></span>
+
+                                                    <select name="finyear" id="finyear" class="form-control searchableselect">
+                                                        <option value="0">--All Financial year --</option>
+                                                        @foreach (var finyear in ViewBag.ViewFinYEarList)
+                                                        {
+                                                            <option value="@finyear.Value">@finyear.Text</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+
+                                                <div class="form-group">
+                                                    Chemicals group <span class="RequiredField"></span>
+
+                                                    <select name="chemcode" id="Chemical_Code" class="form-control searchableselect">
+                                                        <option value="0">--All Chemicals group --</option>
+                                                        @foreach (var Chemgroup in ViewBag.ViewChemicalGroupList)
+                                                        {
+                                                            <option value="@Chemgroup.Value">@Chemgroup.Text</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Chemicals sub group <span class="RequiredField"></span>
+
+                                                    <select name="Chemical_Product_Code" id="Chemical_Product_Code" class="form-control searchableselect">
+                                                        <option value="">-- All Chemical Product --</option>
+                                                        @{
+                                                            List<CPDMSEF.ChemicalProductGroup> lstChemicalProdModel = (List<CPDMSEF.ChemicalProductGroup>)ViewData["ChemicalProd"];
+                                                            if (lstChemicalProdModel != null)
+                                                            {
+                                                                foreach (var item in lstChemicalProdModel)
+                                                                {
+                                                                    if (item.Chemical_Product_Code == Model.Chemical_Product_Code)
+                                                                    {
+                                                                        <option selected="selected" value="@item.Chemical_Product_Code">@item.Chemical_Product_Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@item.Chemical_Product_Code">@item.Chemical_Product_Name</option>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Units <span class="RequiredField">*</span>
+                                                    <select name="ID" id="Unit" class="form-control searchableselect" required>
+                                                        <option value="0">-- Select Unit --</option>
+                                                        @foreach (var unit in ViewBag.ViewUnitList)
+                                                        {
+                                                            <option value="@unit.Value">@unit.Text</option>
+                                                        }
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    State <span class="RequiredField"></span>
+                                                    <select name="State_Code" id="State_Code" class="form-control searchableselect">
+                                                        <option value="0">-- All State --</option>
+                                                        @foreach (var stateItem in ViewBag.ViewStateList)
+                                                        {
+                                                            <option value="@stateItem.Value">@stateItem.Text</option>
+                                                        }
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    District <span class="RequiredField"></span>
+                                                    <select name="District_Code" id="District_Code" class="form-control searchableselect">
+                                                        <option value="">-- ALL District --</option>
+                                                        @{
+                                                            List<CPDMSEF.MasterEF> lstDistrictModel = (List<CPDMSEF.MasterEF>)ViewData["DistrictDetails"];
+                                                            if (lstDistrictModel != null)
+                                                            {
+                                                                foreach (var item in lstDistrictModel)
+                                                                {
+
+                                                                    <option value="@item.District_Code">@item.District_Name</option>
+
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Block <span class="RequiredField"></span>
+                                                    <select name="Block_Code" id="Block_Code" class="form-control searchableselect">
+                                                        <option value="">-- All Block --</option>
+                                                        @{
+                                                            List<CPDMSEF.MasterEF> lstRBlockModel = (List<CPDMSEF.MasterEF>)ViewData["BlockDetails"];
+                                                            if (lstRBlockModel != null)
+                                                            {
+                                                                foreach (var item in lstRBlockModel)
+                                                                {
+                                                                    if (item.Block_Code == Model.Block_Code)
+                                                                    {
+                                                                        <option selected="selected" value="@item.Block_Code">@item.Block_Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@item.Block_Code">@item.Block_Name</option>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <div>
+                                                    <button style=" background-color: #024828;  color: white;  border: none;  padding: 8px 16px;  cursor: pointer;">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                }
+                                @if (profile.Role == "DPTADM" || profile.Role == "DPTAPP")
+                                {
+                                    <img src="~/Image/fa-filter.png" alt="filter" id="filter" class="filter-icon" onclick="filter()">
+
+                                    <form method="post">
+
+                                        <div class="row">
+                                            <div class="col-sm">
+
+                                                <div class="form-group">
+                                                    Financial Year <span class="RequiredField"></span>
+
+                                                    <select name="finyear" id="finyear" class="form-control searchableselect">
+                                                        <option value="0">--All Financial year --</option>
+                                                        @foreach (var finyear in ViewBag.ViewFinYEarList)
+                                                        {
+                                                            <option value="@finyear.Value">@finyear.Text</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+
+                                                <div class="form-group">
+                                                    Chemicals group <span class="RequiredField"></span>
+
+                                                    <select name="chemcode" id="Chemical_Code" class="form-control searchableselect">
+                                                        <option value="0">--All Chemicals group --</option>
+                                                        @foreach (var Chemgroup in ViewBag.ViewChemicalGroupList)
+                                                        {
+                                                            <option value="@Chemgroup.Value">@Chemgroup.Text</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Chemicals sub group <span class="RequiredField"></span>
+
+                                                    <select name="Chemical_Product_Code" id="Chemical_Product_Code" class="form-control searchableselect">
+                                                        <option value="">-- All Chemical Product --</option>
+                                                        @{
+                                                            List<CPDMSEF.ChemicalProductGroup> lstChemicalProdModel = (List<CPDMSEF.ChemicalProductGroup>)ViewData["ChemicalProd"];
+                                                            if (lstChemicalProdModel != null)
+                                                            {
+                                                                foreach (var item in lstChemicalProdModel)
+                                                                {
+                                                                    if (item.Chemical_Product_Code == Model.Chemical_Product_Code)
+                                                                    {
+                                                                        <option selected="selected" value="@item.Chemical_Product_Code">@item.Chemical_Product_Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@item.Chemical_Product_Code">@item.Chemical_Product_Name</option>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Compnay <span class="RequiredField"></span>
+                                                    <select name="ID" id="compnaycode" class="form-control searchableselect">
+                                                        <option value="0">--All Compnay --</option>
+                                                        @foreach (var comItem in ViewBag.ViewCompanyList)
+                                                        {
+                                                            <option value="@comItem.Value">@comItem.Text</option>
+                                                        }
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    State <span class="RequiredField"></span>
+                                                    <select name="State_Code" id="State_Code" class="form-control searchableselect">
+                                                        <option value="0">-- All State --</option>
+                                                        @foreach (var stateItem in ViewBag.ViewStateList)
+                                                        {
+                                                            <option value="@stateItem.Value">@stateItem.Text</option>
+                                                        }
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    District <span class="RequiredField"></span>
+                                                    <select name="District_Code" id="District_Code" class="form-control searchableselect">
+                                                        <option value="">-- ALL District --</option>
+                                                        @{
+                                                            List<CPDMSEF.MasterEF> lstDistrictModel = (List<CPDMSEF.MasterEF>)ViewData["DistrictDetails"];
+                                                            if (lstDistrictModel != null)
+                                                            {
+                                                                foreach (var item in lstDistrictModel)
+                                                                {
+
+                                                                    <option value="@item.District_Code">@item.District_Name</option>
+
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Block <span class="RequiredField"></span>
+                                                    <select name="Block_Code" id="Block_Code" class="form-control searchableselect">
+                                                        <option value="">-- All Block --</option>
+                                                        @{
+                                                            List<CPDMSEF.MasterEF> lstRBlockModel = (List<CPDMSEF.MasterEF>)ViewData["BlockDetails"];
+                                                            if (lstRBlockModel != null)
+                                                            {
+                                                                foreach (var item in lstRBlockModel)
+                                                                {
+                                                                    if (item.Block_Code == Model.Block_Code)
+                                                                    {
+                                                                        <option selected="selected" value="@item.Block_Code">@item.Block_Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@item.Block_Code">@item.Block_Name</option>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <div>
+                                                    <button style=" background-color: #024828;  color: white;  border: none;  padding: 8px 16px;  cursor: pointer;">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                }
+                                <div role="tabpanel">
+                                    @* <div class="form-group">
+                                    @Html.DropDownListFor(m => m.Fyear_Code, ViewBag.ViewFinYEarList as IEnumerable<SelectListItem>, "-- Select Financial Year --", new { @class = "form-control", autofocus = "autofocus" })
+                                    </div>
+                                    <div class="form-group">
+                                    @Html.DropDownListFor(m => m.Month_Code, ViewBag.ViewMonthList as IEnumerable<SelectListItem>, "-- Select Month --", new { @class = "form-control", autofocus = "autofocus" })
+                                    </div>*@
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="viewtable">
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table table-sm table-bordered table-textbreak">
+                                                        <thead>
+                                                            <tr>
+                                                                <th width="20px">Sl#</th>
+                                                                <th hidden>Chemical ID</th>
+                                                                <th>Financial Year</th>
+                                                                <th>Month </th>
+                                                                <th>Chemicals</th>
+                                                                <th>Chemicals Product </th>
+
+                                                                <th>Physical State</th>
+                                                                <th>Production Quantity</th>
+                                                                <th>Product Value (in INR)</th>
+                                                             
+                                                                <th>Dispatch Quantity of <br /> the Final Product</th>
+
+                                                                @*<th>Sales Quantity <br />(To be entered Quarterly)</th>*@
+                                                                <th>Click Here for<br />More Details</th>
+                                                                @if (profile.Role == "DPTAPP" && ViewBag.mode == "Approval")
+                                                                {
+
+                                                                    <th width="40" class="text-center noprint">Action</th>
+
+                                                                }
+                                                                <th>Status</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                                                                var count = 0;
+                                                                foreach (var item in Model)
+                                                                {
+                                                                    count++;
+                                                                    <tr class="table-row" title="Click for Substance Details">
+                                                                         <td>@count</td>
+                                                                        <td hidden>@item.Production_ID</td>
+
+                                                                        <td>@item.Fyear_Name</td>
+                                                                        <td>@item.Month_Name</td>
+                                                                        <td>@item.PChemical_Name</td>
+                                                                        <td>@item.PChemical_Product_Name</td>
+
+                                                                        <td>@item.PhysicalStateName</td>
+                                                                        <td>@item.M_Production_Quantity @item.ProductionUnit</td>
+                                                                        <td>@item.M_Product_Value</td>
+                                                                    
+                                                                        <td>@item.M_Dispatched_Quantity @item.DispatchedUnit</td>
+
+                                                                       
+                                                                        <td><a href="#" id="showPopup">Click Here for<br />More Details</a></td>
+                                                                        @if (profile.Role == "DPTAPP" && ViewBag.mode == "Approval")
+                                                                        {
+
+                                                                            <td class="text-center noprint">
+
+
+                                                                                <a data-toggle="tooltip" data-placement="top" id="lnkApprove" onclick="return UApproval('@item.Production_ID');" title="Approved" style="color:green" href="javascript:void(0)"
+                                                                                   class="text-success btn-sm">
+                                                                                    <i class="icon-pencil-alt-solid"></i>
+                                                                                    Approve
+                                                                                </a>
+                                                                                <a data-toggle="tooltip" data-placement="top" id="lnkReject" title="Reject" href="javascript:void(0)" onclick="UReject('@item.Production_ID');" style="color:red"
+                                                                                   class="text-success btn-sm">
+                                                                                    <i class="icon-pencil-alt-solid"></i>
+                                                                                    Reject
+                                                                                </a>
+
+                                                                            </td>
+                                                                        }
+                                                                        <td>@item.Status_Desc </td>
+
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+<!-- Start State,City,Block -->
+<!-- END State,City,Block -->
+
+<div id="loading-gif" style="display: none;">
+    <img src="/Image/loading-4.gif" alt="Loading..." />
+</div>
+
+
+<div id="popupContainer" style="display: none;">
+    <a href="#" id="closePopup">Close</a>
+    @{
+        List<string> headerGroups = new List<string> { "Reactants" };
+        List<string> headerGroups2 = new List<string> { "Catalyst" };
+        List<string> headerGroups3 = new List<string> { "Solvent" };
+        List<string> headerGroups4 = new List<string> { "Any other substances" };
+
+    }
+
+    <table id="popupTable" class="table table-sm table-bordered table-textbreak">
+        <thead>
+            <tr>
+                <th colspan="1"></th>
+
+                @foreach (var headerGroup in headerGroups)
+                {
+                    <th colspan="6">@headerGroup</th>
+                }
+            </tr>
+            <tr>
+                <th>Sr#</th>
+                @foreach (var headerGroup in headerGroups)
+                {
+                    <th>CAS No</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>Physical State</th>
+                    <th>Reactants Procured</th>
+
+
+                }
+            </tr>
+        </thead>
+        <tbody id="dataRows">
+            <!-- Add table rows with data here -->
+        </tbody>
+    </table>
+
+    <table id="popupTable" class="table table-sm table-bordered table-textbreak">
+        <thead>
+            <tr>
+                <th colspan="1"></th>
+
+                @foreach (var headerGroup in headerGroups2)
+                {
+                    <th colspan="6">@headerGroup</th>
+                }
+            </tr>
+            <tr>
+                <th>Sr#</th>
+                @foreach (var headerGroup in headerGroups2)
+                {
+                    <th>CAS No</th>
+
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>Physical State</th>
+                    <th>Reactants Procured</th>
+
+
+                }
+            </tr>
+        </thead>
+        <tbody id="dataRows2">
+            <!-- Add table rows with data here -->
+        </tbody>
+    </table>
+    <table id="popupTable" class="table table-sm table-bordered table-textbreak">
+        <thead>
+            <tr>
+                <th colspan="1"></th>
+
+                @foreach (var headerGroup in headerGroups3)
+                {
+                    <th colspan="6">@headerGroup</th>
+                }
+            </tr>
+            <tr>
+                <th>Sr#</th>
+                @foreach (var headerGroup in headerGroups3)
+                {
+                    <th>CAS No</th>
+
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>Physical State</th>
+                    <th>Reactants Procured</th>
+
+
+                }
+            </tr>
+        </thead>
+        <tbody id="dataRows3">
+            <!-- Add table rows with data here -->
+        </tbody>
+    </table>
+
+    <br />
+    <table id="popupTable" class="table table-sm table-bordered table-textbreak">
+        <thead>
+            <tr>
+                <th colspan="1"></th>
+                @foreach (var headerGroup in headerGroups4)
+                {
+                    <th colspan="6">@headerGroup</th>
+                }
+            </tr>
+            <tr>
+                <th>Sr#</th>
+
+                @foreach (var headerGroup in headerGroups4)
+                {
+                    <th>CAS No</th>
+
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>Physical State</th>
+                    <th>Reactants Procured</th>
+
+
+                }
+            </tr>
+        </thead>
+        <tbody id="dataRows4">
+            <!-- Add table rows with data here -->
+        </tbody>
+    </table>
+
+
+</div>
+<div id="loading-gif" style="display: none;">
+    <img src="/Image/loading-4.gif" alt="Loading..." />
+</div>
+<div id="popupContainerApp" style="display: none;">
+    <a href="#" id="closePopup2">Close</a>
+    @using (Html.BeginForm("MonthlyReportApprovalByDeptApp", "Chemical", FormMethod.Post, new { enctype = "multipart/form-data", AUTOCOMPLETE = "Off", id = "form1" }))
+    {
+        <input type="text" class="form-control small-input center-input" id="chemtype" name="chemtype" value="Monthlypetrochemicals" hidden>
+
+        <input type="text" class="form-control small-input center-input" id="type" name="type" hidden>
+
+        <input type="text" class="form-control small-input center-input" id="ChemicalsID" name="ChemicalsId" hidden>
+        <div class="form-group">
+            <label for="remark" class="form-label small-input center-input">Remark <span class="RequiredField">*</span></label>
+            <input type="text" class="form-control small-input center-input" id="remark" name="Remarks" placeholder="Remark" required>
+        </div>
+        <br />
+
+        <div class="d-flex justify-content-center space-x-2">
+            <div class="">
+                <div class="form-button"> <button class="btn btn-primary" id="btn" type="submit" style="background: #3f9b53 !important;">Update </button> </div>
+            </div>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+
+        </div>
+    }
+</div>
+
+<!-- Link to show the popup -->
+<script>
+    document.getElementById("showPopup").addEventListener("click", function (e) {
+        e.preventDefault();
+        var chemicalId = e.target.parentElement.parentElement.cells[1].textContent;
+
+        getdetails(chemicalId);
+
+        document.getElementById("popupContainer").style.display = "block";
+    });
+
+    document.getElementById("closePopup").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("popupContainer").style.display = "none";
+    });
+    document.getElementById("closePopup2").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("popupContainerApp").style.display = "none";
+
+    });
+    // Close the popup if clicked outside
+    //document.addEventListener("click", function (e) {
+    //    var popupContainer = document.getElementById("popupContainer");
+    //    var target = e.target;
+
+    //    if (!popupContainer.contains(target) && target !== document.getElementById("showPopup")) {
+    //        popupContainer.style.display = "none";
+    //    }
+    //});
+    var tableRows = document.getElementsByClassName("table-row");
+    for (var i = 0; i < tableRows.length; i++) {
+        tableRows[i].addEventListener("click", function (e) {
+            debugger;
+            e.preventDefault();
+            var clickedElement = e.target;
+            var elementId = clickedElement.id;
+            if (elementId === "lnkApprove" || elementId === "lnkReject") {
+                return;
+            }
+            var selectedRow = e.currentTarget;
+            var chemicalId = selectedRow.cells[1].textContent;
+            getdetails(chemicalId);
+            // GetReportDetails(i);
+            // document.getElementById("popupContainer").style.display = "block";
+        });
+    }
+</script>
+<script>
+    function getdetails(id) {
+        showLoading();
+
+        var url = '/UnitRegistration/UnitRegistration/GetOptReportDetails';
+        //var data = JSON.stringify({ rowid: id });
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+
+            data: {
+                'rowid': id
+
+            },
+            dataType: 'json',
+            success: function (response) {
+
+                var monthlySubDetails = response[0].montlySubDetails;
+                var tableBody = $('#dataRows');
+                tableBody.empty();
+
+                var monthlySubDetails2 = response[0].montlySubDetails2;
+                var tableBody2 = $('#dataRows2');
+                tableBody2.empty();
+
+                var monthlySubDetails3 = response[0].montlySubDetails3;
+                var tableBody3 = $('#dataRows3');
+                tableBody3.empty();
+
+                var monthlySubDetails4 = response[0].montlySubDetails4;
+                var tableBody4 = $('#dataRows4');
+                tableBody4.empty();
+
+                $.each(monthlySubDetails, function (index, detail) {
+                    var row = $('<tr></tr>');
+                    var srno = index + 1;
+                    row.append($('<td></td>').text(srno));
+
+                    row.append($('<td></td>').text(detail.reactants_Cas));
+                    row.append($('<td></td>').text(detail.reactants_Name));
+                    row.append($('<td></td>').text(detail.reactants_Quantity));
+                    row.append($('<td></td>').text(detail.reactants_Unit));
+                    row.append($('<td></td>').text(detail.reactants_Physical_State));
+                    row.append($('<td></td>').text(detail.reactants_Procured));
+
+
+
+                    tableBody.append(row);
+
+
+                });
+
+                $.each(monthlySubDetails2, function (index, detail) {
+                    var row = $('<tr></tr>');
+                    var srno = index + 1;
+                    row.append($('<td></td>').text(srno));
+                    row.append($('<td></td>').text(detail.catelyst_Cas));
+
+                    row.append($('<td></td>').text(detail.catalyst_Name));
+                    row.append($('<td></td>').text(detail.catalyst_Quantity));
+                    row.append($('<td></td>').text(detail.catalyst_Unit));
+                    row.append($('<td></td>').text(detail.catalyst_Physical_State));
+                    row.append($('<td></td>').text(detail.catalyst_Procured));
+
+
+                    tableBody2.append(row);
+
+
+                });
+
+
+                $.each(monthlySubDetails3, function (index, detail) {
+                    var row = $('<tr></tr>');
+                    var srno = index + 1;
+                    row.append($('<td></td>').text(srno));
+                    row.append($('<td></td>').text(detail.solvant_Cas));
+                    row.append($('<td></td>').text(detail.solvent_Name));
+                    row.append($('<td></td>').text(detail.solvent_Quantity));
+                    row.append($('<td></td>').text(detail.solvent_Unit));
+                    row.append($('<td></td>').text(detail.solvent_Physical_State));
+                    row.append($('<td></td>').text(detail.solvent_Procured));
+
+                    tableBody3.append(row);
+
+
+                });
+
+                $.each(monthlySubDetails4, function (index, detail) {
+                    var row = $('<tr></tr>');
+                    var srno = index + 1;
+                    row.append($('<td></td>').text(srno));
+                    row.append($('<td></td>').text(detail.other_Cas));
+                    row.append($('<td></td>').text(detail.other_Name));
+                    row.append($('<td></td>').text(detail.other_Quantity));
+                    row.append($('<td></td>').text(detail.other_Unit));
+                    row.append($('<td></td>').text(detail.other_Physical_State));
+                    row.append($('<td></td>').text(detail.other_Procured));
+
+                    tableBody4.append(row);
+
+
+                });
+
+
+                hideLoading();
+                $('#popupContainer').show();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                hideLoading();
+                alert("errow while fetching data");
+                console.log('API request failed:', errorThrown);
+            }
+        });
+    }
+
+
+</script>
+<script>
+    function showLoading() {
+        document.getElementById("loading-gif").style.display = "block";
+    }
+
+    function hideLoading() {
+        document.getElementById("loading-gif").style.display = "none";
+    }
+
+</script>
+<script>
+    $('#State_Code').change(function () {
+        debugger;
+        if ($('#State_Code').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetDistrictByStateId',
+                data: { 'State_Code': $('#State_Code').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    debugger;
+                    var row = "";
+                    $('#District_Code').html('');
+                    row += "<option value=''>-- All District --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.district_Code + "'>" + item.district_Name + "</option>";
+                    });
+                    $('#District_Code').html(row);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#District_Code').html('');
+            District2 += "<option value=''>-- Select District --</option>";
+            $('#District_Code').html(District2);
+
+            $('#Block_Code').empty();
+            $('#Block_Code').append("<option value=''>-- Select Block --</option>");
+
+
+        }
+    });
+    $('#District_Code').change(function () {
+        debugger;
+        if ($('#District_Code').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetBlockByDistrictId',
+                data: {
+                    'State_Code': $('#State_Code').val(),
+                    'District_Code': $('#District_Code').val()
+                },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    debugger;
+                    var row = "";
+                    $('#Block_Code').html('');
+                    row += "<option value=''>-- Select Block --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.block_Code + "'>" + item.block_Name + "</option>";
+                    });
+                    $('#Block_Code').html(row);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+
+            $('#Block_Code').empty();
+            $('#Block_Code').append("<option value=''>-- Select Block --</option>");
+
+
+        }
+    });
+
+</script>
+<script>
+    $('#Chemical_Code').change(function () {
+        debugger;
+        if ($('#Chemical_Code').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetChemicalProductByID',
+                data: { 'Chemical_Code': $('#Chemical_Code').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    debugger;
+                    var row = "";
+                    $('#Chemical_Product_Code').html('');
+                    row += "<option value=''>-- Select Chemical Product --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.chemical_Product_Code + "'>" + item.chemical_Product_Name + "</option>";
+                    });
+                    $('#Chemical_Product_Code').html(row);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#Chemical_Product_Code').html('');
+            District2 += "<option value=''>-- Select Chemical Product --</option>";
+            $('#Chemical_Product_Code').html(District2);
+
+        }
+    });
+
+</script>
+<script>
+    function UApproval(id) {
+        // const compnayname = document.getElementById("Compnayname");
+        const ChemicalsID = document.getElementById("ChemicalsID");
+        const Atype = document.getElementById("type");
+
+        //compnayname.value = name;
+        ChemicalsID.value = id;
+        Atype.value = "Approve";
+
+        document.getElementById("btn").innerHTML = "Approve";
+        document.getElementById("popupContainer").style.display = "none";
+
+        document.getElementById("popupContainerApp").style.display = "block";
+        //  document.getElementById("popupContainer").style.display = "none";
+
+    }
+    function UReject(id) {
+        //const compnayname = document.getElementById("Compnayname");
+        const ChemicalsID = document.getElementById("ChemicalsID");
+        const Atype = document.getElementById("type");
+        // compnayname.value = name;
+        ChemicalsID.value = id;
+        Atype.value = "Reject";
+        document.getElementById("btn").innerHTML = "Reject";
+        document.getElementById("popupContainerApp").style.display = "block";
+
+    }
+</script>

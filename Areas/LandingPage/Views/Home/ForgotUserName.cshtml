@@ -1,0 +1,261 @@
+﻿@model CPDMSEF.LoginEF
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Forgot user name";
+       Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+
+}
+
+<link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">
+<!-- template-style-->
+<link href="~/LandinCss/css/style1.css" rel="stylesheet">
+
+    <script>
+        //$(document).ready(function () {
+
+        //});
+        function Validate1() {
+            debugger
+            var Iss = false;
+            if (!blankFieldValidation("Source", "Mobile/Email")) {
+                return false;
+            }
+            Iss = true;
+            return Iss;
+        }
+        function Validate() {
+            debugger
+            var Iss = false;
+
+
+            if (!blankFieldValidation("OTP", "OTP")) {
+                return false;
+            }
+         
+            Iss = true;
+            return Iss;
+        }
+    </script>
+    <style>
+    .button_text1{
+        background: #024828!important;
+       
+        margin-left: 85px !important;
+        width: 44% !important;
+    }
+
+        .button_text:hover {
+        background: #024828!important;
+    }
+
+   
+
+    ,
+     input:not([type='checkbox']):not([type='radio']), .btHardRoundedButtons a.select2-choice {
+    border-radius: 0px!important;
+}
+    </style>
+
+
+<div class="bt-content-wrap btClear section_Top">
+    <div class="bt-content-holder">
+        <section class="login-page">
+            <div class="v-center m-auto">
+                <div class="login-form-div" style="max-width:641px !important;">
+                 
+                    <div class="form-block">
+
+        
+        @using (Html.BeginForm("ForgotUserName", "Home", FormMethod.Post, new { AUTOCOMPLETE = "Off", id = "form1" }))
+        {
+            <br />
+            <div class="row">
+
+                <div class="col-25 ml-[5rem]" >
+                    <label for="fname" class="text-xl font-[popins] font-semibold">Enter Your Email/Mobile No.</label>
+                </div>
+
+                <div>
+                    <div class="col-70 w-[27rem] ml-[5rem] mt-[2.5rem]">
+                        <input type="text" id="Source" name="Source" placeholder="" style="border-radius:0px!important; border:1px solid lightgray!important">
+                        <span style="color:red">@TempData["Msg"]</span>
+                    </div>
+                </div>
+            </div>
+            <br />
+                            <button class="  bg-[#024828] p-2 rounded-full text-white  font-[popins] button_text1 button_text" >
+               Get User Name  with E-mail/Mobile
+            </button>
+
+            <div class=" flex items-center justify-center ">
+                <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+                    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+                    <div class="modal-container bg-white w-[28rem] md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+                        <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+                            <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18"
+                                 height="18" viewBox="0 0 18 18">
+                                <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                </path>
+                            </svg>
+                            <span class="text-sm">(Esc)</span>
+                        </div>
+                        <div class=" py-4  px-4" style="background: azure">
+                            <div class="block max-w-sm rounded-lg bg-white p-6 ml-[1rem] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+
+                                <div class="relative" data-te-input-wrapper-init>
+                                    <label>@TempData["Msg"]</label>
+                                    <label>OTP</label>
+                                    <input type="text"
+                                           class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                           id="OTP" name="OTP" placeholder="New Password" />
+                                    <i class="myClass ml-16 mt-12 fa fa-info-circle" style="color: rgb(32, 10, 10);"
+                                       title="Do you like my fa-cog icon?"></i>
+                                </div>
+                               <br/>
+
+                                <div class="d-flex">
+                                    <button class="border bg-green-600 text-white text-green-500 hover:text-white-500 font-bold ml-40 py-2 px-4 rounded-full" style="margin-left:120px" id="btnSubmit" type="submit" onclick="return Validate();">Submit</button>
+
+                                    @*<button type="submit"
+                                class="modal-open  border border-green-500 bg-green-600 text-white hover:bg-orange-400 text-green-500  font-bold py-2 px-4 rounded-full">
+                                Reset</button>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<br />
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    debugger
+    $(".button1").click(function () {
+        debugger
+        if (Validate1()) {
+            var emailmobile = $("#Source").val();
+            $.get('/LandingPage/Home/SendOTP?MobileEmail=' + emailmobile)
+                .success(function (response) {
+                    $(".FNF").val(response.FNF);
+                })
+        }
+    })
+    //$(document).ready(function () {
+    //    $('.modal-open').click(function () {
+    //        debugger
+    //        var getVal = $("#emailmobile").val();
+    //        $("p").html($("p").html() + " " + getVal);
+    //    });
+    //});
+</script>
+<script type="text/javascript">
+    function checkPass() {
+        //Store the password field objects into variables ...
+        var password = document.getElementById('NewPassword');
+        var confirm = document.getElementById('ConfirmPassword');
+        //Store the Confirmation Message Object ...
+        var message = document.getElementById('confirm-message2');
+        //Set the colors we will be using ...
+        var good_color = "#66cc66";
+        var bad_color = "#ff6666";
+        //Compare the values in the password field
+        //and the confirmation field
+        if (password.value == confirm.value) {
+            //The passwords match.
+            //Set the color to the good color and inform
+            //the user that they have entered the correct password
+            confirm.style.backgroundColor = good_color;
+            message.style.color = good_color;
+            message.innerHTML = "Passwords Match!"
+        } else {
+            //The passwords do not match.
+            //Set the color to the bad color and
+            //notify the user.
+            confirm.style.backgroundColor = bad_color;
+            message.style.color = bad_color;
+            message.innerHTML = "Passwords Do Not Match!"
+        }
+    }
+</script>
+<script>
+    var openmodal = document.querySelectorAll('.modal-open')
+    for (var i = 0; i < openmodal.length; i++) {
+        openmodal[i].addEventListener('click', function (event) {
+            event.preventDefault()
+            toggleModal()
+        })
+    }
+
+    const overlay = document.querySelector('.modal-overlay')
+    overlay.addEventListener('click', toggleModal)
+
+    var closemodal = document.querySelectorAll('.modal-close')
+    for (var i = 0; i < closemodal.length; i++) {
+        closemodal[i].addEventListener('click', toggleModal)
+    }
+
+    document.onkeydown = function (evt) {
+        evt = evt || window.event
+        var isEscape = false
+        if ("key" in evt) {
+            isEscape = (evt.key === "Escape" || evt.key === "Esc")
+        } else {
+            isEscape = (evt.keyCode === 27)
+        }
+        if (isEscape && document.body.classList.contains('modal-active')) {
+            toggleModal()
+        }
+    };
+
+
+    function toggleModal() {
+        const body = document.querySelector('body')
+        const modal = document.querySelector('.modal')
+        modal.classList.toggle('opacity-0')
+        modal.classList.toggle('pointer-events-none')
+        body.classList.toggle('modal-active')
+    }
+
+
+</script>
+<script>
+    function ResetPassword() {
+        if (Validate()) {
+            //var Remarks = $(this).closest("tr").find(".Remarks").val();
+            var OTP = $('#OTP').val();
+            var NewPassword = $('#NewPassword').val();
+            var ConfirmPassword = $('#ConfirmPassword').val();
+            var Source = $('#Source').val();
+            $.ajax({
+                url: '/LandingPage/Home/ResetPassword',
+                data: { 'OTP': OTP, "NewPassword": NewPassword, 'CofirmPassword': ConfirmPassword, 'source': Source },
+                dataType: 'json',
+                type: 'post',
+                success: function (response) {
+                    // Handle the response from the controller action
+                    console.log(response);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+    }
+</script>
+
+@if (TempData["Message"] != null)
+{
+    <script>
+        swal("", '@TempData["Message"]', "warning");
+    </script>
+}

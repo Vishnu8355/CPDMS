@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ArcGIS </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true
+        };
+    </script>
+    <style>@@import url("https://fonts.googleapis.com/css?family=Sen&display=swap");
+
+body {
+  background: blue;
+  font-family: "Sen";
+}
+.menu {
+  padding: 2px;
+  width: 100%;
+  max-width: 100%;
+  height: 60px;
+}
+.menu .container {
+  padding: 10px;
+}
+ul li {
+            /* max-width: 150px;*/
+  width: 100%;
+}
+ul {
+  display: flex;
+  justify-content: center;
+  column-gap: 5px;
+  list-style: none;
+  margin: auto;
+}
+ul li a {
+  text-decoration: none;
+                color: #231885;
+                background-color: white;
+  display: block;
+  padding: 10px;
+  text-align: center;
+}
+ul li:hover ul.dropdown {
+  display: block;
+
+  animation-timing-function: linear;
+}
+
+         
+ul li ul.dropdown {
+  display: none;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+            ul :hover ul.dropdownbasemap {
+                display: block;
+                animation-timing-function: linear;
+                z-index: 1;
+            }
+
+            ul ul.dropdownbasemap {
+                display: none;
+                padding: 0;
+                overflow: scroll;
+                height:500px
+            }
+            
+        select 
+        {
+            z-index: 1;
+        }
+
+        ul li ul.dropdown li {
+            margin: 0px 0!important;
+        }
+
+        .form-group11 {
+            margin-top: -5px;
+            margin-bottom: -5px!important;
+        }
+/* Mainnav animation */
+
+@@keyframes mainnav {
+  0% {
+    height: 0px;
+                background-color: #024828;
+  }
+  100% {
+    height: 100px;
+    background-color: transparent;
+  }
+}
+
+ul li ul.dropdown li {
+  margin: 5px 0;
+}
+
+.menu {
+  position: relative;
+            background: #024828;
+  background-blend-mode: overlay;
+ 
+}
+
+
+/* Navanim animation */
+
+
+        ul li a  {
+  transition: all 0.2s linear;
+  position: relative;
+  z-index: 1;
+}
+ul li > a:after {
+  content: "";
+  background-color: lightblue;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0%;
+  height: 0%;
+  transition: all 0.3s linear;
+  z-index: -1;
+}
+ul li:hover > a:after {
+            color: lightblue;
+  content: "";
+            background-color: lightblue;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+     
+</style>
+    <link rel='stylesheet' href='https://js.arcgis.com/4.27/esri/css/main.css'>
+    <link rel='stylesheet' href='https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.0.2/css/calcite-web.min.css'>
+
+    <link href="~/testgis/style.css" rel="stylesheet" />
+</head>
+<body>
+    <nav>
+        <div class="menu">
+            <div class="container">
+                <ul class="inner-menu">
+                    <li>
+                        <a href="#">
+                            Dashboard
+                        </a>
+                        <ul class="dropdownbasemap">
+                            <li>
+                                <div class="form-group">
+                                    <select name="state" id="inputState" class="form-control">
+                                        <option value="SelectState">Select State</option>
+                                        <option value="Andra Pradesh">Andhra Pradesh</option>
+                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                        <!-- Add more options here as needed -->
+                                    </select>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Administrative Boundaries
+                        </a>
+                        <ul class="dropdownbasemap">
+                            <li>
+                                <div class="form-group form-group11">
+                                 
+                                    <select name="State_Code" id="State_Code" class="form-control">
+                                        <option value="0">-- All State --</option>
+                                        @foreach (var stateItem in ViewBag.ViewStateList)
+                                        {
+                                            <option value="@stateItem.Value">@stateItem.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <select name="state" id="inputState" class="form-control">
+                                        <option value="SelectState">Select State</option>
+                                        <option value="Andra Pradesh">Andhra Pradesh</option>
+                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                        <!-- Add more options here as needed -->
+                                    </select>
+                                </div>
+                            </li>
+                        </ul>
+                    </li> 
+                    <li>
+                        <a href="#">
+                            Administrative Layers
+                        </a>
+                        <ul class="dropdown">
+                      
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Base map</a>
+                        <ul class="dropdownbasemap" id="basemapGalleryDiv">
+                           
+                         
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Layer</a>
+                        <ul class="layerddl">
+                          
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- partial:index.partial.html -->
+    <div id="viewDiv"></div>
+    <!-- partial -->
+    <script src='https://js.arcgis.com/4.27/'></script>
+
+    <script src="~/testgis/script.js"></script>
+</body>
+</html>

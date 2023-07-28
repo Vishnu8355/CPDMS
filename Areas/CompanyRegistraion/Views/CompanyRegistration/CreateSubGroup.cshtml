@@ -1,0 +1,62 @@
+﻿
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Create SubGroup";
+    Layout = "~/Areas/CompanyRegistraion/Views/Shared/_CompanyRegisLayout.cshtml";
+}
+<div class="page-body">
+
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="page-header-left">
+                        <h6>
+                            <b>Master Entry >>Group >>Create Sub Group</b>
+
+                        </h6>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <ol class="breadcrumb pull-right">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"><i data-feather="home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+    <!-- Container-fluid starts-->
+    <div class="form-group " style="width:50%">
+        <button type="button" class="form-control "
+                style="background: #00baf2; color: black;">
+            Create Sub Group
+        </button>
+    </div>
+    <div class="form-group" style="width:50%">
+        <select required="" name="login[username]" type="email" class="form-control"
+                placeholder="Select Group" id="exampleInputEmail12">
+
+            <option>Select Group</option>
+
+        </select>
+    </div>
+    <div class="form-group" style="width:50%">
+        <input required="" name="login[username]" type="email"
+               class="form-control" placeholder=" Enter Name"
+               id="exampleInputEmail12">
+    </div>
+    <!-- Container-fluid Ends-->
+
+
+    <div class="col-sm" style="text-align: left;">
+        <div class="form-button">
+            <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+    </div>
+</div>
+

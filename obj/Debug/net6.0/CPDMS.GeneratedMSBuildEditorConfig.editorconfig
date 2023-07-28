@@ -1,0 +1,640 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = CPDMS
+build_property.RootNamespace = CPDMS
+build_property.ProjectDir = g:\Vishnu\Govt_Project\CPDMS\CPDMS\CPDMS\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = g:\Vishnu\Govt_Project\CPDMS\CPDMS\CPDMS
+build_property._RazorSourceGeneratorDebug = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Chemical/MonthlyChemicalList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXENoZW1pY2FsXE1vbnRobHlDaGVtaWNhbExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Chemical/MonthlyChemicalListApproval.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXENoZW1pY2FsXE1vbnRobHlDaGVtaWNhbExpc3RBcHByb3ZhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Chemical/MonthlyPetroChemicalList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXENoZW1pY2FsXE1vbnRobHlQZXRyb0NoZW1pY2FsTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Chemical/MonthlyPetroChemicalListApproval.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXENoZW1pY2FsXE1vbnRobHlQZXRyb0NoZW1pY2FsTGlzdEFwcHJvdmFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Chemical/YearlyChemicalList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXENoZW1pY2FsXFllYXJseUNoZW1pY2FsTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Chemical/YearlyChemicalListApproval.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXENoZW1pY2FsXFllYXJseUNoZW1pY2FsTGlzdEFwcHJvdmFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Chemical/YearlyPetroChemicalList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXENoZW1pY2FsXFllYXJseVBldHJvQ2hlbWljYWxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Chemical/YearlyPetroChemicalListApproval.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXENoZW1pY2FsXFllYXJseVBldHJvQ2hlbWljYWxMaXN0QXBwcm92YWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Reports/ChemicalExport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXFJlcG9ydHNcQ2hlbWljYWxFeHBvcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Reports/ChemicalImport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXFJlcG9ydHNcQ2hlbWljYWxJbXBvcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Reports/ChemicalsDescription.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXFJlcG9ydHNcQ2hlbWljYWxzRGVzY3JpcHRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Reports/PetroChemicalExport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXFJlcG9ydHNcUGV0cm9DaGVtaWNhbEV4cG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Reports/PetroChemicalImport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXFJlcG9ydHNcUGV0cm9DaGVtaWNhbEltcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CMS/Views/Reports/PetroChemicalsDescription.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ01TXFZpZXdzXFJlcG9ydHNcUGV0cm9DaGVtaWNhbHNEZXNjcmlwdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/BestPractisesReports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQmVzdFByYWN0aXNlc1JlcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ2hhbmdlUGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CompanyDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ29tcGFueURhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CompanyEntryAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ29tcGFueUVudHJ5QWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CompanyTRegistration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ29tcGFueVRSZWdpc3RyYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CompanyTRegistrationOTP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ29tcGFueVRSZWdpc3RyYXRpb25PVFAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CompanyUnitTagging.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ29tcGFueVVuaXRUYWdnaW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CompnayProfileReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ29tcG5heVByb2ZpbGVSZXBvcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CreateEightDigit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ3JlYXRlRWlnaHREaWdpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CreateFourDigit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ3JlYXRlRm91ckRpZ2l0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CreateGroup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ3JlYXRlR3JvdXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CreateSixDigit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ3JlYXRlU2l4RGlnaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CreateSubGroup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ3JlYXRlU3ViR3JvdXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/CreateTwoDigit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cQ3JlYXRlVHdvRGlnaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/DocNotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cRG9jTm90Rm91bmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/GishDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cR2lzaERhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/ListOfCompany.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cTGlzdE9mQ29tcGFueS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/ListOfGroup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cTGlzdE9mR3JvdXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/ListOfProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cTGlzdE9mUHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/Report.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cUmVwb3J0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/CompanyRegistration/TestGis.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXENvbXBhbnlSZWdpc3RyYXRpb25cVGVzdEdpcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/Shared/_CompanyRegisLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXFNoYXJlZFxfQ29tcGFueVJlZ2lzTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/CompanyRegistraion/Views/Shared/_HCRLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ29tcGFueVJlZ2lzdHJhaW9uXFZpZXdzXFNoYXJlZFxfSENSTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/about.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxhYm91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Analyticalstudy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxBbmFseXRpY2Fsc3R1ZHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Appreciations.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxBcHByZWNpYXRpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Chemicals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxDaGVtaWNhbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/ChemicalsClassification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxDaGVtaWNhbHNDbGFzc2lmaWNhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Data.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxEYXRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Disclaimer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxEaXNjbGFpbWVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/dram.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxkcmFtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Faq.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxGYXEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/feedback.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxmZWVkYmFjay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/ForgotPasswordV1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxGb3Jnb3RQYXNzd29yZFYxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/ForgotUserName.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxGb3Jnb3RVc2VyTmFtZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/HazardousClassification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxIYXphcmRvdXNDbGFzc2lmaWNhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/InterestingFacts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxJbnRlcmVzdGluZ0ZhY3RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/KnowledgeDirectory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxLbm93bGVkZ2VEaXJlY3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/LandingPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxMYW5kaW5nUGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/LoginV1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxMb2dpblYxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/ManufacturingUnits.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxNYW51ZmFjdHVyaW5nVW5pdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/MChemical.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxNQ2hlbWljYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/PDF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxQREYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/PetroChemicals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxQZXRyb0NoZW1pY2Fscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxTZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Sitemap.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxTaXRlbWFwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Team.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxUZWFtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/TermsConditions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxUZXJtc0NvbmRpdGlvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVx0ZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/VIDEO.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxWSURFTy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Websitepolicy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxXZWJzaXRlcG9saWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Home/Welcome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcSG9tZVxXZWxjb21lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTGFuZGluZ1BhZ2VcVmlld3NcU2hhcmVkXF9MYW5kaW5nUGFnZUxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xTaGFyZWRcX1VuaXRSZWdpc0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/BestPractises.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEJlc3RQcmFjdGlzZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/BestPractisesReports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEJlc3RQcmFjdGlzZXNSZXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/Block2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEJsb2NrMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/Block2Petrochemical.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEJsb2NrMlBldHJvY2hlbWljYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/Block3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEJsb2NrMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/Blockmonth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEJsb2NrbW9udGguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXENoYW5nZVBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/ChemicalBlockEntry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXENoZW1pY2FsQmxvY2tFbnRyeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/ChemicalGroup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXENoZW1pY2FsR3JvdXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/ChemicalgroupReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXENoZW1pY2FsZ3JvdXBSZXBvcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/ChemicalSubgroupReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXENoZW1pY2FsU3ViZ3JvdXBSZXBvcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/CompanyUnitTagging.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXENvbXBhbnlVbml0VGFnZ2luZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/CompnayProfileReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXENvbXBuYXlQcm9maWxlUmVwb3J0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/ContactList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXENvbnRhY3RMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/DocNotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXERvY05vdEZvdW5kLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/DptadmSubgroup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXERwdGFkbVN1Ymdyb3VwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/EnvironmentalExposure.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEVudmlyb25tZW50YWxFeHBvc3VyZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/EnvironmentalExposureReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEVudmlyb25tZW50YWxFeHBvc3VyZVJlcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/FeedackList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEZlZWRhY2tMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/GisDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEdpc0Rhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/HazardClassificationSubstanceReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEhhemFyZENsYXNzaWZpY2F0aW9uU3Vic3RhbmNlUmVwb3J0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/HclassifiSub.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXEhjbGFzc2lmaVN1Yi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/MainUseCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXE1haW5Vc2VDYXRlZ29yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/MainUseCategoryReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXE1haW5Vc2VDYXRlZ29yeVJlcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/MonthlyChemicalAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXE1vbnRobHlDaGVtaWNhbEFkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/MonthlyPetroChemicalAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXE1vbnRobHlQZXRyb0NoZW1pY2FsQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/MonthlySubstanceChemicalAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXE1vbnRobHlTdWJzdGFuY2VDaGVtaWNhbEFkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/MonthlySubstancePetroChemicalAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXE1vbnRobHlTdWJzdGFuY2VQZXRyb0NoZW1pY2FsQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/NotificationsManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXE5vdGlmaWNhdGlvbnNNYW5hZ2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/NProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXE5Qcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/PatternExposure.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFBhdHRlcm5FeHBvc3VyZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/PatternExposureReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFBhdHRlcm5FeHBvc3VyZVJlcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/PetroChemical.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFBldHJvQ2hlbWljYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/PetroPurchaseofChemicals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFBldHJvUHVyY2hhc2VvZkNoZW1pY2Fscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/ProductReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFByb2R1Y3RSZXBvcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/Report.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFJlcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/ResultingHazardSubstance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFJlc3VsdGluZ0hhemFyZFN1YnN0YW5jZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/ResultingHazardSubstanceReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFJlc3VsdGluZ0hhemFyZFN1YnN0YW5jZVJlcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/SignificantRouteExposure.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFNpZ25pZmljYW50Um91dGVFeHBvc3VyZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/SignificantRouteExposureReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFNpZ25pZmljYW50Um91dGVFeHBvc3VyZVJlcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/SpecificationIndustrialProfessional.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFNwZWNpZmljYXRpb25JbmR1c3RyaWFsUHJvZmVzc2lvbmFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/SpecificationIndustrialProfessionalRe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFNwZWNpZmljYXRpb25JbmR1c3RyaWFsUHJvZmVzc2lvbmFsUmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/SubstanceDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFN1YnN0YW5jZURldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/SubstanceDetailReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFN1YnN0YW5jZURldGFpbFJlcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/SubstancesWhetherFrom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFN1YnN0YW5jZXNXaGV0aGVyRnJvbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/SubstancesWhetherFromReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFN1YnN0YW5jZXNXaGV0aGVyRnJvbVJlcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/Unit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFVuaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/UnitDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFVuaXREYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/UnitDPTADMDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFVuaXREUFRBRE1EYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/UnitDPTAPPDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFVuaXREUFRBUFBEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/UnitOPTDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFVuaXRPUFREYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/UnitsEntryAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFVuaXRzRW50cnlBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/UnitsEntryApproval.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFVuaXRzRW50cnlBcHByb3ZhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/UnitsEntryApprovalByDept.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFVuaXRzRW50cnlBcHByb3ZhbEJ5RGVwdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/UnitsEntryView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFVuaXRzRW50cnlWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/UnitTRegistration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFVuaXRUUmVnaXN0cmF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/UnitTRegistrationOTP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFVuaXRUUmVnaXN0cmF0aW9uT1RQLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/YearlyChemicalAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFllYXJseUNoZW1pY2FsQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/YearlyChemicalExport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFllYXJseUNoZW1pY2FsRXhwb3J0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/YearlyPetroChemicalAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFllYXJseVBldHJvQ2hlbWljYWxBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Areas/UnitRegistration/Views/UnitRegistration/YearlyPetroChemicalExport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVW5pdFJlZ2lzdHJhdGlvblxWaWV3c1xVbml0UmVnaXN0cmF0aW9uXFllYXJseVBldHJvQ2hlbWljYWxFeHBvcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Account/ComRegistration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDb21SZWdpc3RyYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Account/ComRegistrationOTP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDb21SZWdpc3RyYXRpb25PVFAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Account/Registration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RyYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Account/RegistrationOTP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RyYXRpb25PVFAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/DashBoard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Shared/_NavbarLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXZiYXJMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[g:/Vishnu/Govt_Project/CPDMS/CPDMS/CPDMS/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

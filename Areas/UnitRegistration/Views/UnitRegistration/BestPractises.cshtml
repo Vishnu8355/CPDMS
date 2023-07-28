@@ -1,0 +1,366 @@
+﻿
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Best Practices";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+}
+<script src="~/adminlayout/assets/js/jquery-3.3.1.min.js"></script>
+
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitDashboard"><i data-feather="home"></i></a>
+                            </li>
+@*                            <li class="breadcrumb-item active">Unit Entry</li>
+*@
+                            <li class="breadcrumb-item active">Best Practices</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Best Practices</b></a> </li>
+                                </ul>
+                                <h5>Following the Chemical Management Strategy’s Compliance Guidelines as Best Practises within organization </h5><br/>
+                                <div role="tabpanel">
+                                    <form method="post" asp-action="BestPractices">
+
+                                        <div class="form-group">
+                                            <label>1.A Do you Focus on Chemical Safety?</label>
+                                            <select name="Q1" id="Q1" class="form-control searchableselect" required>
+                                                <option value="0">--Select Answer--</option>
+                                                @foreach (var qu in ViewData["ViewBestPracticesQu1"] as List<CPDMSEF.BestPracticesQuEF>)
+                                                {
+                                                    <option value="@qu.QusetionDetails">@qu.QusetionDetails</option>
+                                                }
+                                                <option value="Other">Other</option>
+
+                                            </select>
+                                            
+
+                                            <br/>
+                                            <input type="text" class="form-control" name="Q1" id="OtherQuestion1" placeholder="Other Answer" maxlength="300" style="display:none;" />
+                                            <input type="text" name="Q1Radio" id="Q1Radio" value="yes" hidden />
+                                         @*   Yes<input type="radio" name="Q1Radio" value="yes" onchange="toggleTextarea(this)" required />
+                                            No<input type="radio" name="Q1Radio" value="no" onchange="toggleTextarea(this)" required />
+                                            <textarea class="form-control" name="Q1Answer" style="display: none;" placeholder="Mention details in not more than 300 words" maxlength="300" required></textarea>*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label>2.Policies for Chemical Management?</label>
+                                            <select name="Q2" id="Q2" class="form-control searchableselect" required>
+                                                <option value="0">--Select Answer--</option>
+                                                @foreach (var qu in ViewData["ViewBestPracticesQu2"] as List<CPDMSEF.BestPracticesQuEF>)
+                                                {
+                                                    <option value="@qu.QusetionDetails">@qu.QusetionDetails</option>
+                                                }
+                                                <option value="Other">Other</option>
+                                            </select>
+                                            <br />
+                                            <input type="text" class="form-control" name="Q2" id="OtherQuestion2" placeholder="Other Answer" maxlength="300" style="display:none;" />
+                                            <input type="text" name="Q2Radio" id="Q2Radio" value="yes" hidden />
+                                           @* Yes<input type="radio" name="Q2Radio" value="yes" onchange="toggleTextarea(this)" required />
+                                            No<input type="radio" name="Q2Radio" value="no" onchange="toggleTextarea(this)" required />
+                                            <textarea class="form-control" name="Q2Answer" style="display: none;" placeholder="Mention details in not more than 300 words" maxlength="300" required></textarea>*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label>3.Chemical Restriction Testing?</label>
+                                            <select name="Q3" id="Q3" class="form-control searchableselect" required>
+                                                <option value="0">--Select Answer--</option>
+                                                @foreach (var qu in ViewData["ViewBestPracticesQu3"] as List<CPDMSEF.BestPracticesQuEF>)
+                                                {
+                                                    <option value="@qu.QusetionDetails">@qu.QusetionDetails</option>
+                                                }
+                                                <option value="Other">Other</option>
+
+                                            </select>
+                                            <br />
+                            <input type="text" class="form-control" name="Q3" id="OtherQuestion3" placeholder="Other Answer" maxlength="300" style="display:none;" />
+                                            <input type="text" name="Q3Radio" id="Q3Radio" value="yes" hidden />
+                                          @*  Yes<input type="radio" name="Q3Radio" value="yes" onchange="toggleTextarea(this)" required />
+                                            No<input type="radio" name="Q3Radio" value="no" onchange="toggleTextarea(this)" required />
+                                            <textarea class="form-control" name="Q1Answer" style="display: none;" placeholder="Mention details in not more than 300 words" maxlength="300" required></textarea>*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label>4.Supplier Administration?</label>
+                                            <select name="Q4" id="Q4" class="form-control searchableselect">
+                                                <option value="0">--Select Answer--</option>
+                                                @foreach (var qu in ViewData["ViewBestPracticesQu4"] as List<CPDMSEF.BestPracticesQuEF>)
+                                                {
+                                                    <option value="@qu.QusetionDetails">@qu.QusetionDetails</option>
+                                                }
+                                                <option value="Other">Other</option>
+                                            </select>
+                                            <br />
+                                            <input type="text" class="form-control" name="Q4" id="OtherQuestion4" placeholder="Other Answer" maxlength="300" style="display:none;" />
+
+                                            <input type="text" name="Q4Radio" id="Q4Radio" value="yes" hidden />
+                                           @* Yes<input type="radio" name="Q4Radio" value="yes" onchange="toggleTextarea(this)" required />
+                                            No<input type="radio" name="Q4Radio" value="no" onchange="toggleTextarea(this)" required />
+                                            <textarea class="form-control" name="Q1Answer" style="display: none;" placeholder="Mention details in not more than 300 words" maxlength="300" required></textarea>*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label>5.Materials Purchasing?</label>
+                                            <select name="Q5" id="Q5" class="form-control searchableselect">
+                                                <option value="0">--Select Answer--</option>
+                                                @foreach (var qu in ViewData["ViewBestPracticesQu5"] as List<CPDMSEF.BestPracticesQuEF>)
+                                                {
+                                                    <option value="@qu.QusetionDetails">@qu.QusetionDetails</option>
+                                                }
+                                                <option value="Other">Other</option>
+                                            </select>
+                                            <br />
+                                            <input type="text" class="form-control" name="Q5" id="OtherQuestion5" placeholder="Other Answer" maxlength="300" style="display:none;" />
+                                            <input type="text" name="Q5Radio" id="Q5Radio" value="yes" hidden />
+                                           @* Yes<input type="radio" name="Q5Radio" value="yes" onchange="toggleTextarea(this)" required />
+                                            No<input type="radio" name="Q5Radio" value="no" onchange="toggleTextarea(this)" required />
+                                            <textarea class="form-control" name="Q5Answer" style="display: none;" placeholder="Mention details in not more than 300 words" maxlength="300" required></textarea>*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label>6.Training Chemical management training for internal teams is essential?</label>
+                                            <select name="Q6" id="Q6" class="form-control searchableselect" required>
+                                                <option value="0">--Select Answer--</option>
+                                                @foreach (var qu in ViewData["ViewBestPracticesQu6"] as List<CPDMSEF.BestPracticesQuEF>)
+                                                {
+                                                    <option value="@qu.QusetionDetails">@qu.QusetionDetails</option>
+                                                }
+                                                <option value="Other">Other</option>
+
+                                            </select>
+                                            <br/>
+                                            <input type="text" class="form-control" name="Q6" id="OtherQuestion6" placeholder="Other Answer" maxlength="300" style="display:none;" />
+
+                                            <input type="text" name="Q6Radio" id="Q6Radio" value="yes" hidden />
+                                          @*  Yes<input type="radio" name="Q6Radio" value="yes" onchange="toggleTextarea(this)" required />
+                                            No<input type="radio" name="Q6Radio" value="no" onchange="toggleTextarea(this)" required />
+                                            <textarea class="form-control" name="Q6Answer" style="display: none;" placeholder="Mention details in not more than 300 words" maxlength="300" required></textarea>*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label>7.Auditing?</label>
+                                            <select name="Q7" id="Q7" class="form-control searchableselect">
+                                                <option value="0">--Select Answer--</option>
+                                                @foreach (var qu in ViewData["ViewBestPracticesQu7"] as List<CPDMSEF.BestPracticesQuEF>)
+                                                {
+                                                    <option value="@qu.QusetionDetails">@qu.QusetionDetails</option>
+                                                }
+                                                <option value="Other">Other</option>
+                                            </select>
+                                                <br/>
+                                            <input type="text" class="form-control" name="Q7" id="OtherQuestion7" placeholder="Other Answer" maxlength="300" style="display:none;" />
+                                            <input type="text" name="Q7Radio" id="Q7Radio" value="yes" hidden />
+                                            <br />
+                                          @*  Yes<input type="radio" name="Q7Radio" value="yes" onchange="toggleTextarea(this)" required />
+                                            No<input type="radio" name="Q7Radio" value="no" onchange="toggleTextarea(this)" required />
+                                            <textarea class="form-control" name="Q7Answer" style="display: none;" placeholder="Mention details in not more than 300 words" maxlength="300" required></textarea>*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label>8.Future-Readiness?</label>
+                                            <select name="Q8" id="Q8" class="form-control searchableselect" required>
+                                                <option value="0">--Select Answer--</option>
+                                                @foreach (var qu in ViewData["ViewBestPracticesQu8"] as List<CPDMSEF.BestPracticesQuEF>)
+                                                {
+                                                    <option value="@qu.QusetionDetails">@qu.QusetionDetails</option>
+                                                }
+                                                <option value="Other">Other</option>
+                                            </select>
+                                            <br/>
+                                            <input type="text" class="form-control" name="Q8" id="OtherQuestion8" placeholder="Other Answer" maxlength="300" style="display:none;" />
+                                            <input type="text" name="Q8Radio" id="Q8Radio" value="yes" hidden />
+                                          @*  Yes<input type="radio" name="Q8Radio" value="yes" onchange="toggleTextarea(this)" required />
+                                            No<input type="radio" name="Q8Radio" value="no" onchange="toggleTextarea(this)" required />
+                                            <textarea class="form-control" name="Q8Answer" style="display: none;" placeholder="Mention details in not more than 300 words" maxlength="300" required></textarea>*@
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm" style="text-align: right;">
+                                                <div class="form-button">
+                                                    <input type="submit" value='@ViewBag.Button' class="btn btn-primary" name="Submit" id="Submit" />
+                                                    @*<button class="btn btn-primary" type="submit">Save</button>*@
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <div class="form-button">
+                                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+
+<script>
+    function toggleTextarea(checkbox) {
+        var textarea = checkbox.parentElement.querySelector('textarea');
+        textarea.style.display = checkbox.checked ? 'block' : 'none';
+    }
+</script>
+
+@if (TempData["Message"] != null)
+{
+    <script>
+        swal("", '@TempData["Message"]', "warning");
+    </script>
+}
+
+<script>
+    $(document).ready(function () {
+        var select1 = $("#Q1");
+        var textbox1 = $("#OtherQuestion1");
+        var radio1 = $("#Q1Radio");
+        select1.on("change", function () {
+            if (select1.val() == "Other") {
+                textbox1.css("display", "block");
+                radio1.val("other");
+
+                select1.removeAttr("name");
+
+               
+            } else {
+                textbox1.css("display", "none");
+                textbox1.val('');
+                radio1.val('');
+                select1.attr("name", "Q1");
+            }
+        });
+    
+    //second
+    var select2 = $("#Q2");
+    var textbox2 = $("#OtherQuestion2");
+        var radio2 = $("#Q2Radio");
+    select2.on("change", function () {
+        if (select2.val() == "Other") {
+            textbox2.css("display", "block");
+               radio2.val("other");
+                               select2.removeAttr("name");
+
+        } else {
+            textbox2.css("display", "none");
+            textbox2.val('');
+                radio2.val('');
+                select2.attr("name", "Q2");
+
+        }
+    });
+  
+         //third
+    var select3 = $("#Q3");
+    var textbox3 = $("#OtherQuestion3");
+        var radio3 = $("#Q3Radio");
+    select3.on("change", function () {
+        if (select3.val() == "Other") {
+            textbox3.css("display", "block");
+                radio3.val("other");
+                 select3.removeAttr("name");
+
+        } else {
+            textbox3.css("display", "none");
+            textbox3.val('');
+                radio3.val('');
+                select3.attr("name", "Q3");
+        }
+    });
+ 
+    //four
+    var select4 = $("#Q4");
+    var textbox4 = $("#OtherQuestion4");
+        var radio4 = $("#Q4Radio");
+    select4.on("change", function () {
+        if (select4.val() == "Other") {
+            textbox4.css("display", "block");
+                radio4.val("other");
+                select4.removeAttr("name");
+        } else {
+            textbox4.css("display", "none");
+            textbox4.val('');
+              radio4.val('');
+                select4.attr("name", "Q4");
+        }
+    });
+  
+              //five
+    var select5 = $("#Q5");
+    var textbox5 = $("#OtherQuestion5");
+        var radio5 = $("#Q5Radio");
+    select5.on("change", function () {
+        if (select5.val() == "Other") {
+            textbox5.css("display", "block");
+                radio5.val("other");
+                select5.removeAttr("name");
+
+        } else {
+            textbox5.css("display", "none");
+            textbox5.val('');
+                radio5.val('');
+                select5.attr("name", "Q5");
+        }
+    });
+
+    //six
+    var select6 = $("#Q6");
+    var textbox6 = $("#OtherQuestion6");
+        var radio6 = $("#Q6Radio");
+    select6.on("change", function () {
+        if (select6.val() == "Other") {
+            textbox6.css("display", "block");
+                radio6.val("other");
+                  select6.removeAttr("name");
+        } else {
+            textbox6.css("display", "none");
+            textbox6.val('');
+              radio6.val('');
+                    select6.attr("name", "Q6");
+        }
+    });
+  
+    //seven
+    var select7 = $("#Q7");
+    var textbox7 = $("#OtherQuestion7");
+      var radio7 = $("#Q7Radio");
+    select7.on("change", function () {
+        if (select7.val() == "Other") {
+            textbox7.css("display", "block");
+               radio7.val("other");
+                select7.removeAttr("name");
+        } else {
+            textbox7.css("display", "none");
+            textbox7.val('');
+                select7.attr("name", "Q7");
+        }
+    });
+
+    //eight
+    var select8 = $("#Q8");
+    var textbox8 = $("#OtherQuestion8");
+        var radio8 = $("#Q8Radio");
+    select8.on("change", function () {
+        if (select8.val() == "Other") {
+            textbox8.css("display", "block");
+               select8.removeAttr("name");
+        } else {
+            textbox8.css("display", "none");
+            textbox8.val('');
+                radio8.val('');
+                    select8.attr("name", "Q8");
+        }
+    });
+ });
+</script>

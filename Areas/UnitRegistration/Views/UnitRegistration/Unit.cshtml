@@ -1,0 +1,555 @@
+﻿@model CPDMSEF.Unit
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Unit";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+}
+@{
+    var unitDetails = ViewBag.unitDetails;
+
+}
+@*<style>
+    .lgcl {
+        width: 22rem;
+    }
+
+    media screen and (min-width: 480px) {
+        .lgcl1
+    {
+        width: 36rem;
+        margin-left: -5rem;
+    }
+    }
+    media screen and (min-width: 480px) {
+        .myClass
+    {
+        margin-left: 35rem;
+        margin-top: 4.5rem;
+    }
+    }
+    .myClass {
+        font-size: 20px;
+        position: absolute;
+        margin-top: 2.8rem;
+        left: 41.5em;
+    }
+</style>*@
+
+@*@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+
+    </script>
+    ViewBag.msg = null;
+}*@
+<style>
+
+    .popup-container {
+        width: 40%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        z-index: 9999;
+        height: 500px;
+        max-height: 600px;
+        overflow: auto;
+    }
+
+    .popup-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+        position: relative;
+        width: auto;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Unit Entry</li>
+
+                            <li class="breadcrumb-item active">Create User Id of Authorized Person</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false">
+                                            <span class="icon-unlock me-2"></span><b>
+                                                Create User Id of Authorized Person
+                                            </b>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div role="tabpanel">
+                                    <form  method="post" name="myForm" onsubmit="return validateForm()">
+                                           <div class="row" >
+
+
+                                        <div class="col-sm">
+
+                                                <div class="form-group">
+                                                    <label> Name</label> <label class="RequiredField">*</label>
+                                                    @Html.TextBoxFor(m => m.ND_Name, new { @class = "form-control",required = "required",placeholder="Enter Name"  })
+                                                </div>
+                                          </div>
+
+                                            <div class="col-sm">
+
+                                                <div class="form-group">
+                                                    <label>Address</label> <label class="RequiredField">*</label>
+                                                    @Html.TextBoxFor(m => m.AD_Address, new { @class = "form-control",required = "required",placeholder="Enter Address" })
+                                                </div>
+                                            </div>
+
+                                                                                 
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Mobile Number <span class="RequiredField">*</span>
+                                                    @Html.TextBoxFor(m => m.ND_Mobile_no, new { @class = "form-control",required = "required", maxlength="10", oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);",placeholder="+91 Mobile Number",id = "mobileNumber" })
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Email Id <span class="RequiredField">*</span>
+                                                    @Html.TextBoxFor(m => m.ND_Email, new { @class = "form-control",type="email",required = "required",placeholder="abc@gmail.com" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+@*                                        <div class="row">
+
+                                            <div class="col-sm">
+
+                                                <div class="form-group">
+                                                    <label>Mobile</label> <label class="RequiredField">*</label>
+                                                    @Html.TextBoxFor(m => m.AD_Mobile_no, new{ @class = "form-control",type = "number",required = "required",placeholder="Mobile No",pattern="[0-9]{10}", maxlength="10", oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);",id = "mobileNumber" } )
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm">
+
+                                                <div class="form-group">
+                                                    <label>Email</label> <label class="RequiredField">*</label>
+                                                    @Html.TextBoxFor(m => m.AD_Email, new { @class = "form-control",required = "required",placeholder="Email.id" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+*@                                        <div class="row">
+
+                                            <div class="col-sm">
+                                                <label>Date of Joining</label> <label class="RequiredField">*</label>
+                                                @Html.TextBoxFor(m => m.AD_DOJ, new { @class = "form-control",required = "required",placeholder="Date of Joining",type ="Date" ,   max = DateTime.Now.ToString("yyyy-MM-dd")})
+                                            </div>
+
+                                            <div class="col-sm">
+
+                                                <div class="form-group">
+                                                    <div class="col-sm">
+                                                        <div class="form-group">
+                                                            <label>User Id</label> <label class="RequiredField">*</label>
+
+                                                            <input name="UserId" type="text" class="form-control" placeholder="User Id" id="" ,required="required"  />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <br />
+                                      
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Password <span class="RequiredField">*</span>
+                                                    <input id="password2" onkeyup="checkPass();" name="Password" type="password" class="form-control" placeholder="Enter Password" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Confirm Password <span class="RequiredField">*</span>
+                                                    <input required="" id="confirm2" onkeyup="checkPass();"
+                                                           name="ConfirmPassword" type="password" class="form-control"
+                                                           placeholder="Enter Confirm Password"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                          <span id="confirm-message2" class="confirm-message"></span>
+
+                                          <br/>
+                                          <br/>
+                                    <div class="form-terms" style="margin-top: -2.4rem;">
+                                        <div class="custom-control custom-checkbox form-check mr-sm-2">
+                                            <br />
+                                            <input class="form-check-input" id="termsCheckbox" type="checkbox" value="1" name="IsTerms" >
+
+                                            <label class="custom-control-label form-check-label"
+                                                   for="customControlAutosizing1">
+                                                <span>
+                                                        I consent to
+                                                        <a href="javascript:void(0)" onclick="showPopup()" class="pull-right">
+                                                            &nbsp; Terms of use
+                                                        </a>
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                       
+                                        <div class="d-flex justify-content-center space-x-2">
+                                            <div class="">
+                                                <div class="form-button"> <button class="btn btn-primary" type="submit" style="background: #024828 !important;">Register</button> </div>
+                                            </div>
+                                            &nbsp;
+                                            &nbsp;
+                                            &nbsp;
+                                            &nbsp;
+                                            <div class="">
+                                                <div class="form-button"> <button class="btn btn-primary" type="reset" style="background:  #024828 !important;">Reset</button> </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+<div class="authentication-box" style="margin-top:-35px">
+    <div class="">
+        <div class="authentication-box">
+            <div class="">
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b> Authorized Person Lists</b></a> </li>
+                                </ul>
+                                <div role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="viewtable">
+                                                <div id="table-container">
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table table-sm table-bordered table-textbreak">
+
+                                                        <thead class="header-style">
+                                                            <tr>
+                                                                <th>Sr no</th>
+                                                                <th> Name</th> 
+                                                                <th> User id</th>
+                                                                <th>Mobile Number</th>
+                                                                <th>Email</th>
+                                                                <th>Address</th>
+                                                                <th>Password</th>
+                                                                <th>Action</th>
+
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                                                                var count = 0;
+                                                                foreach (var item in unitDetails)
+                                                                {
+                                                                    count++;
+                                                                    <tr>
+                                                                        <td>@count</td>
+                                                                            <td>@item.AD_Name</td>
+                                                                            <td>@item.UserId</td>
+                                                                        <td>@item.AD_Mobile_no</td>
+                                                                        <td>@item.AD_Email</td>
+                                                                        <td>@item.AD_Address</td>
+                                                                        <td>@item.Password</td>
+                                                                       
+                                                                        <td>
+                                                                                <form action="Unit" method="Post">
+                                                                                    <input type="hidden" name="id" value="@item.UserId" id="id" />
+                                                                                    <input type="hidden" name="type" value="delete" id="delete" />
+                                                                                <button type="submit" class="btn btn-link" id="sbutton">
+                                                                                    <span class="bi bi-trash" style="font-size: 1.5rem; color: rgb(255, 0, 0);"></span>
+                                                                                </button>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                                </div>
+                                                <div id="pagination-container">
+                                                    <ul id="pagination" class="pagination"></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script src="~/adminlayout/assets/js/registration-script.js"></script>
+*@<script>
+    function checkStrength(password) {
+        let meterBar = $("#meter").find("#meter-bar");
+        let meterStatus = $("#meter-text").find("#meter-status");
+        let strength = 0;
+        if (password.length < 6) {
+            meterBar.css({
+                "background": "#6B778D",
+                "width": "10%"
+            });
+            meterStatus.css("color", "#6B778D");
+            meterStatus.text("too short");
+        }
+        if (password.length > 7) strength += 1;
+        if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1
+        if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1
+        if (password.match(/([!,%,&,#,$,^,*,?,_,~])/)) strength += 1
+        if (strength < 2) {
+            meterBar.css({
+                "background": "#ff0000",
+                "width": "25%"
+            });
+            meterStatus.css("color", "#ff0000");
+            meterStatus.text("weak");
+        } else if (strength == 2) {
+            meterBar.css({
+                "background": "#00BCD4",
+                "width": "75%"
+            });
+            meterStatus.css("color", "#00BCD4");
+            meterStatus.text("good");
+        } else {
+            meterBar.css({
+                "background": "#4CAF50",
+                "width": "100%"
+            });
+            meterStatus.css("color", "#4CAF50");
+            meterStatus.text("strong");
+        }
+    }
+
+    $("#password2").on("keyup", function () {
+        checkStrength($(this).val());
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    function checkPass() {
+        //Store the password field objects into variables ...
+        var password = document.getElementById('password2');
+        var confirm = document.getElementById('confirm2');
+        //Store the Confirmation Message Object ...
+        var message = document.getElementById('confirm-message2');
+        //Set the colors we will be using ...
+        var good_color = "#66cc66";
+        var bad_color = "#ff6666";
+        //Compare the values in the password field
+        //and the confirmation field
+        if (password.value == confirm.value) {
+            //The passwords match.
+            //Set the color to the good color and inform
+            //the user that they have entered the correct password
+            confirm.style.backgroundColor = good_color;
+            message.style.color = good_color;
+            message.innerHTML = "Passwords Match!"
+        } else {
+            //The passwords do not match.
+            //Set the color to the bad color and
+            //notify the user.
+            confirm.style.backgroundColor = bad_color;
+            message.style.color = bad_color;
+            message.innerHTML = "Passwords Do Not Match!"
+        }
+    }
+    document.querySelector("#mobileNumber").addEventListener("keypress", function (evt) {
+        if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+            evt.preventDefault();
+        }
+    });
+
+    function validateForm() {
+        var termsCheckbox = document.getElementById("termsCheckbox");
+
+        if (!termsCheckbox.checked) {
+            swal("", 'Please consent to the terms of use.', "warning");
+
+            return false;
+        }
+
+        return true;
+    }
+</script>
+@*<script>
+    var message = "@TempData["Message"]";
+
+    if (message) {
+    swal({
+        title: "Message",
+        text: message,
+        icon: "info",
+        button: "OK"
+    });
+    }
+</script>*@
+
+<script>
+    window.onload = function () {
+        var popupContainer = document.getElementById("popupContainer");
+        popupContainer.style.display = "hidden";
+    };
+</script>
+<script>
+    function validateForm() {
+        var termsCheckbox = document.getElementById("termsCheckbox");
+
+        if (!termsCheckbox.checked) {
+            swal("", 'Please consent to the terms of use.', "warning");
+
+            return false;
+        }
+
+        return true;
+    }
+</script>
+<script>
+    function showPopup() {
+        var popupContainer = document.getElementById("popupContainer");
+        popupContainer.style.display = "block";
+    }
+
+    function closePopup() {
+        var popupContainer = document.getElementById("popupContainer");
+        popupContainer.style.display = "none";
+    }
+    function agreePopup() {
+
+        var popupContainer = document.getElementById("popupContainer");
+        popupContainer.style.display = "none";
+        var termsCheckbox = document.getElementById("termsCheckbox");
+
+        if (!termsCheckbox.checked) {
+            termsCheckbox.checked = true;
+
+        }
+
+    }
+</script>
+<div id="popupContainer" class="popup-container" style="display:none">
+    <div class="popup-content">
+        <h5>Terms and Conditions</h5>
+        <br />
+        <p style="text-align:justify">
+            This website is designed, developed and maintained by National Informatics Centre for the Department of Chemicals and Petrochemicals, Ministry of Chemicals and Fertilizers, Government of India.
+            Though all efforts have been made to ensure the accuracy and correctness of the content on this website, the same should not be construed as a statement of law or used for any legal purposes. In case of any ambiguity or doubts, users are advised to verify / check with the Ministry and / or other source(s), and to obtain appropriate professional advice.
+            Under no circumstances will this Ministry be liable for any expense, loss or damage including, without limitation, indirect or consequential loss or damage, or any expense, loss or damage whatsoever arising from use, or loss of use, of data, arising out of or in connection with the use of this website.
+            These terms and conditions shall be governed by and construed in accordance with the Indian Laws. Any dispute arising under these terms and conditions shall be subject to the jurisdiction of the courts of India.
+            The information posted on this website could include hypertext links or pointers to information created and maintained by non-Government / private organizations. Department of Chemicals and Petrochemicals, Ministry of Chemicals and Fertilizers is providing these links and pointers solely for your information and convenience. When you select a link to an outside website, you are leaving the Ministry of Chemicals and Fertilizers’ website and are subject to the privacy and security policies of the owners / sponsors of the outside website.
+            Department of Chemicals and Petrochemicals, Ministry of Chemicals and Fertilizers does not guarantee the availability of such linked pages at all times.
+        </p>
+        <br />
+        <button onclick="agreePopup()" class=" btn btn-primary" style="background-color:#3f9b53 !important; width:30%; border-radius:10px">Agree</button>
+        <span class="close-button" onclick="closePopup()">&#10006;</span>
+    </div>
+</div>
+<script>
+    var currentPage = 1;
+    var rowsPerPage = 5; 
+    $(document).ready(function () {
+        function paginateTable() {
+            var table = $('#datatable');
+            var rows = table.find('tbody tr');
+
+            
+            var totalPages = Math.ceil(rows.length / rowsPerPage);
+
+         
+            var pagination = $('#pagination');
+            pagination.empty();
+
+            for (var i = 1; i <= totalPages; i++) {
+                var link = $('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
+
+                
+                if (i === currentPage) {
+                    link.addClass('active');
+                }
+
+                pagination.append(link);
+            }
+
+           
+            var startIndex = (currentPage - 1) * rowsPerPage;
+            var endIndex = startIndex + rowsPerPage;
+             
+            rows.hide().slice(startIndex, endIndex).show();
+        }
+
+        
+        paginateTable();
+
+        $(document).on('click', '#pagination li a', function (event) {
+            event.preventDefault();
+
+            var clickedPage = parseInt($(this).text());
+
+          
+            currentPage = clickedPage;
+            paginateTable();
+
+           
+            $('html, body').animate({ scrollTop: $('#table-container').offset().top }, 'slow');
+        });
+    });
+
+</script>

@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome CDN Link for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Bigdeal admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+          content="admin template, Bigdeal admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="./Image/logo.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="./Image/logo.svg" type="image/x-icon">
+    <title>@ViewData["Title"]</title>
+
+
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="~/css2/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css2/font-awesome.css">
+
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="~/css2/themify.css">
+
+    <!-- slick icon-->
+    <link rel="stylesheet" type="text/css" href="~/css2/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/css2/slick-theme.css">
+
+    <!-- jsgrid css-->
+    <link rel="stylesheet" type="text/css" href="~/css2/jsgrid.css">
+
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="~/css2/bootstrap.css">
+
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="~/css2/admin.css">
+
+    <script src='@Url.Content("~/js/sweetalert.min.js")'></script>
+    <script src='@Url.Content("~/js/CSMValidation.js")'></script>
+   
+    <style>
+        .lgcl {
+            width: 17rem;
+        }
+        @@media screen and (min-width: 480px) {
+            .lgcl1 {
+                width: 36rem;
+                margin-left: 0rem;
+            }
+        }
+        @@media screen and (min-width: 480px) {
+            .myClas1 {
+                margin-left: 28rem;
+                margin-top: 4.5rem;
+            }
+        }
+
+        .myClas {
+            font-size: 20px;
+            position: absolute;
+            margin-top: 2.8rem;
+            left: 14.5rem;
+        }
+
+        
+    </style>
+
+</head>
+<body style="margin-top: 4rem;">
+
+    @RenderBody()
+    <script src="~/js/jquery-3.3.1.min.js"></script> <!-- Bootstrap js-->
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+
+    @*<script src="../assets/js/jquery-3.3.1.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>*@
+
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/slick.js"></script>
+
+    <!-- Jsgrid js-->
+    <script src="../assets/js/jsgrid/jsgrid.min.js"></script>
+    <script src="../assets/js/jsgrid/griddata-invoice.js"></script>
+    <script src="../assets/js/jsgrid/jsgrid-invoice.js"></script>
+
+    <!-- lazyload js-->
+    <script src="../assets/js/lazysizes.min.js"></script>
+
+    <!--right sidebar js-->
+    <script src="../assets/js/chat-menu.js"></script>
+
+    <!--script admin-->
+    <script src="../assets/js/admin-script.js"></script>
+@*
+    <script src='@Url.Content("~/js/sweetalert.min.js")'></script>
+    <script src='@Url.Content("~/js/CSMValidation.js")'></script>*@
+
+  @*  <script>
+        $('.single-item').slick({
+            arrows: false,
+            dots: true
+        }
+        );
+    </script>*@
+
+    <script src="script.js"></script>
+
+
+
+    <script>
+        function checkStrength(password) {
+            let meterBar = $("#meter").find("#meter-bar");
+            let meterStatus = $("#meter-text").find("#meter-status");
+            let strength = 0;
+            if (password.length < 6) {
+                meterBar.css({
+                    "background": "#6B778D",
+                    "width": "10%"
+                });
+                meterStatus.css("color", "#6B778D");
+                meterStatus.text("too short");
+            }
+            if (password.length > 7) strength += 1;
+            if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1
+            if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1
+            if (password.match(/([!,%,&,@@,#,$,^,*,?,_,~])/)) strength += 1
+            if (strength < 2) {
+                meterBar.css({
+                    "background": "#ff0000",
+                    "width": "25%"
+                });
+                meterStatus.css("color", "#ff0000");
+                meterStatus.text("weak");
+            } else if (strength == 2) {
+                meterBar.css({
+                    "background": "#00BCD4",
+                    "width": "75%"
+                });
+                meterStatus.css("color", "#00BCD4");
+                meterStatus.text("good");
+            } else {
+                meterBar.css({
+                    "background": "#4CAF50",
+                    "width": "100%"
+                });
+                meterStatus.css("color", "#4CAF50");
+                meterStatus.text("strong");
+            }
+        }
+
+        $("#password2").on("keyup", function () {
+            debugger
+            checkStrength($(this).val());
+        });
+    </script>
+
+
+
+
+
+    <script type="text/javascript">
+        function checkPass() {
+            //Store the password field objects into variables ...
+            var password = document.getElementById('password2');
+            var confirm = document.getElementById('confirm2');
+            //Store the Confirmation Message Object ...
+            var message = document.getElementById('confirm-message2');
+            //Set the colors we will be using ...
+            var good_color = "#66cc66";
+            var bad_color = "#ff6666";
+            //Compare the values in the password field 
+            //and the confirmation field
+            if (password.value == confirm.value) {
+                //The passwords match. 
+                //Set the color to the good color and inform
+                //the user that they have entered the correct password 
+                confirm.style.backgroundColor = good_color;
+                message.style.color = good_color;
+                message.innerHTML = "Passwords Match!"
+            } else {
+                //The passwords do not match.
+                //Set the color to the bad color and
+                //notify the user.
+                confirm.style.backgroundColor = bad_color;
+                message.style.color = bad_color;
+                message.innerHTML = "Passwords Do Not Match!"
+            }
+        }
+
+    </script>
+
+
+
+    <script>
+        document.getElementById("phone").onkeyup = function () {
+            const CHAR_AMOUNT = this.value.length;
+
+            if (CHAR_AMOUNT < 11) {
+
+                const LAST_CHAR_POS = CHAR_AMOUNT - 1;
+                if (LAST_CHAR_POS >= 0) {
+                    const LAST_CHAR = this.value.charAt(LAST_CHAR_POS);
+                    if (isNaN(LAST_CHAR)) {
+                        this.value = this.value.slice(0, -1);
+                        return;
+                    }
+                }
+
+                if ((CHAR_AMOUNT === 3) || (CHAR_AMOUNT === 7)) {
+                    this.value += "";
+                }
+            }
+            else {
+                this.value = this.value.slice(0, (10 - CHAR_AMOUNT));
+
+            }
+            return;
+        };
+    </script>
+    <script>
+        /////////////////////// Start captcha /////////////////
+        $(document).ready(function () {
+
+            $("#refreshCaptcha").click(function () {
+                debugger
+                /*$("#captcha").text('');*/
+                $("#capt1").empty();
+                getCaptcha();
+            });
+        });
+
+        const captchas = document.querySelector(".captcha"),
+            reloadBtns = document.querySelector(".reload-btn"),
+            inputFields = document.querySelector(".input-area input"),
+            checkBtns = document.querySelector(".check-btn"),
+            statusTxts = document.querySelector(".status-text");
+
+        //storing all captcha characters in array
+        let allsCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+            'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
+            'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+            't', 'u', 'v', 'w', 'x', 'y', 'z', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        function getCaptcha() {
+            for (let i = 0; i < 6; i++) { //getting 6 random characters from the array
+                let randomCharacter = allsCharacters[Math.floor(Math.random() * allsCharacters.length)];
+                captchas.innerText += ` ${randomCharacter}`; //passing 6 random characters inside captcha innerText
+            }
+        }
+        getCaptcha(); //calling getCaptcha when the page open
+        //calling getCaptcha & removeContent on the reload btn click
+        reloadBtns.addEventListener("click", () => {
+            removeContent();
+            getCaptcha();
+        });
+
+        checkBtns.addEventListener("click", e => {
+            e.preventDefault(); //preventing button from it's default behaviour
+            statusTxts.style.display = "block";
+            //adding space after each character of user entered values because I've added spaces while generating captcha
+            let inputVal = inputFields.value.split('').join(' ');
+            if (inputVal == captchas.innerText) { //if captcha matched
+                statusTxts.style.color = "#4db2ec";
+                statusTxts.innerText = "Nice! You don't appear to be a robot.";
+                setTimeout(() => { //calling removeContent & getCaptcha after 4 seconds
+                    removeContent();
+                    getCaptcha();
+                }, 2000);
+            } else {
+                statusTxts.style.color = "#ff0000";
+                statusTxts.innerText = "Captcha not matched. Please try again!";
+            }
+        });
+        function removeContent() {
+            inputFields.value = "";
+            captchas.innerText = "";
+            statusTxts.style.display = "none";
+        }                                    /////////////////////// END captcha /////////////////
+    </script>
+    @if (TempData["Message"] != null)
+    {
+        <script>
+            swal("", '@TempData["Message"]', "warning");
+            setTimeout(function () {
+                swal.close();
+            }, 5000);
+        </script>
+    }
+    @if (TempData["Messages"] != null)
+    {
+        <script>
+            swal("", '@TempData["Messages"]', "success");
+            setTimeout(function () {
+                swal.close();
+            }, 5000);
+        </script>
+    }
+</body>
+
+
+</html>

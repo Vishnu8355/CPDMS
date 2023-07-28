@@ -1,0 +1,288 @@
+﻿@{
+    <link rel="icon" type="image/x-icon"="./images/departmentlogo.png">
+    ViewData["Title"] = "KnowledgeDirectory";
+    Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+}
+<link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">
+<!-- template-style-->
+<link href="~/LandinCss/css/style1.css" rel="stylesheet">
+<style>
+    .card {
+        background: white;
+        text-decoration: none;
+        color: #444;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        position: relative;
+        top: 0;
+        transition: all .1s ease-in;
+    }
+
+    .card:hover {
+        top: -2px;
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .card article {
+        padding: 20px;
+    }
+
+    .card .video-thumb {}
+
+    /* typography */
+    .card h1 {
+        font-size: 20px;
+        margin: 0;
+        color: #333;
+    }
+
+    .card p {
+        line-height: 1.4;
+    }
+
+    .card span {
+        font-size: 9px;
+        font-weight: bold;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        margin: 2em 0 0 0;
+    }
+
+    .date {
+        white-space: nowrap;
+    }
+</style>
+
+<div class="bt-content-wrap btClear section_Top ">
+    <div class="bt-content-holder">
+        <div class="bt-content">
+            <h1 class="text-[#024828]  text-2xl  ml-[170px] mt-5">Knowledge Directory </h1>
+
+            <section class="  border border-2 border-black mt-6">
+
+                <div class="h-full mb-4">
+
+                    <div class=" lg:flex h-full  items-center justify-around container mx-auto" style="margin-top: 28px;
+    padding: 16px;
+    ">
+
+                        <!-- Right column container -->
+                        <div class="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12" style="margin-top:-54px">
+                            <h3 style="color:#024828" class="text-left text-2xl font-[popins] font-semibol">Knowledge
+                                Directory Documents</h3>
+                            <div
+                                class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 border border-black border-2 p-4">
+                                <div class="mt-4">
+
+                                    <img src="/LandinCss/images/pdf.jpg" class="h-20 w-20 cursor-pointer  "
+                                        alt="fhg" /><br />
+                                    <p class="  underline text-black cursor-pointer"> Download Pdf</p>
+                                </div>
+                                <div class="mt-4">
+
+                                    <img src="/LandinCss/images/pdf.jpg" class="h-20 w-20 cursor-pointer  "
+                                        alt="fhg" /><br />
+                                    <p class=" underline text-black cursor-pointer"> Download Pdf</p>
+                                </div>
+                                <div class="mt-4">
+
+                                    <img src="/LandinCss/images/pdf.jpg" class="h-20 w-20 cursor-pointer  "
+                                        alt="fhg" /><br />
+                                    <p class="  underline text-black cursor-pointer"> Download Pdf</p>
+                                </div>
+                                <div class="mt-4">
+
+                                    <img src="/LandinCss/images/pdf.jpg" class="h-20 w-20 cursor-pointer  "
+                                        alt="fhg" /><br />
+                                    <p class="  underline text-black cursor-pointer"> Download Pdf</p>
+                                </div>
+                                <div class="mt-4">
+
+                                    <img src="/LandinCss/images/pdf.jpg" class="h-20 w-20 cursor-pointer  "
+                                        alt="fhg" /><br />
+                                    <p class="  underline text-black cursor-pointer"> Download Pdf</p>
+                                </div>
+                                <div class="mt-4">
+
+                                    <img src="/LandinCss/images/pdf.jpg" class="h-20 w-20 cursor-pointer  "
+                                        alt="fhg" /><br />
+                                    <p class="  underline text-black cursor-pointer"> Download Pdf</p>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12 pb-2">
+                            <h1  style="color:#024828" class="text-left text-2xl font-[popins] font-semibold">Knowledge Directory Video</h1>
+                            <div
+                                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 border border-black border-2 p-4">
+                                <div class="item-6">
+                                    <a class="card">
+                                        <div class="video-thumb">
+
+                                            <div class="vide-container">
+
+
+
+                                                <video class='video' controls="controls" preload='none'>
+
+                                                    <source src="~/videoguide/one.mp4" type="video/mp4" />
+                                                </video>
+
+                                            </div>
+                                        </div>
+                                        <article>
+                                            <span>
+                                                <i class="fas fa-lg fa-video" style="color: inherit;"></i>
+                                                <span class="date text-black">
+                                                    7 Types of chemicals used in <br />Chemical Industries
+                                                </span>
+                                            </span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-6">
+                                    <a class="card">
+                                        <div class="video-thumb">
+
+                                            <div class="vide-container">
+
+
+
+                                                <video class='video' controls="controls" preload='none'>
+
+                                                    <source src="~/videoguide/two.mp4" type="video/mp4" />
+                                                </video>
+
+                                            </div>
+                                        </div>
+                                        <article>
+                                            <span>
+                                                <i class="fas fa-lg fa-video" style="color: inherit;"></i>
+                                                <span class="date text-black">
+                                                    An Overview of PPE'S
+                                                </span>
+                                            </span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-6">
+                                    <a class="card">
+                                        <div class="video-thumb">
+
+                                            <div class="vide-container">
+
+
+                                                <video class='video' controls="controls" preload='none'>
+
+                                                    <source src="~/videoguide/three.mp4" type="video/mp4" />
+                                                </video>
+
+                                            </div>
+                                        </div>
+                                        <article>
+                                            <span>
+                                                <i class="fas fa-lg fa-video" style="color: inherit;"></i>
+                                                <span class="date text-black">
+                                                    Toxic release due to mixed connection
+                                                </span>
+                                            </span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-6">
+                                    <a class="card">
+                                        <div class="video-thumb">
+
+                                            <div class="vide-container">
+
+
+
+                                                <video class='video' controls="controls" preload='none'>
+
+                                                    <source src="~/videoguide/four.mp4" type="video/mp4" />
+                                                </video>
+
+                                            </div>
+                                        </div>
+                                        <article>
+                                            <span>
+                                                <i class="fas fa-lg fa-video" style="color: inherit;"></i>
+                                                <span class="date text-black">
+                                                    Ethylene Release and Fire
+                                                </span>
+                                            </span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-6">
+                                    <a class="card">
+                                        <div class="video-thumb">
+
+                                            <div class="vide-container">
+
+
+
+                                                <video class='video' controls="controls" preload='none'>
+
+                                                    <source src="~/videoguide/five.mp4" type="video/mp4" />
+                                                </video>
+
+                                            </div>
+                                        </div>
+                                        <article>
+                                            <span>
+                                                <i class="fas fa-lg fa-video" style="color: inherit;"></i>
+                                                <span class="date text-black">
+                                                    Safe working with chemicals
+                                                </span>
+                                            </span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-6">
+                                    <a class="card">
+                                        <div class="video-thumb">
+
+                                            <div class="vide-container">
+
+
+
+                                                <video class='video' controls="controls" preload='none'>
+
+                                                    <source src="~/videoguide/six.mp4" type="video/mp4" />
+                                                </video>
+
+                                            </div>
+                                        </div>
+                                        <article>
+                                            <span>
+                                                <i class="fas fa-lg fa-video" style="color: inherit;"></i>
+                                                <span class="date text-black">
+                                                    Hydrogen Sulphide release
+                                                </span>
+                                            </span>
+                                        </article>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+</div>
+
+
+
+

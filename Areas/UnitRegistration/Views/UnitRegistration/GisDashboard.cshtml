@@ -1,0 +1,775 @@
+﻿@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html lang="en-US" data-bt-theme="CHARAK 0.0.1">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>ChemIndia-Chemicals Inventory of india </title>
+    <meta name='robots' content='max-image-preview:large' />
+
+    <!--tailwind css cdn-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--tailwind css cdn-->
+    <!--this all are thems script and css link-->
+
+    <link rel='stylesheet' id='bt_bb_content_elements-css'
+          href='https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/css/front_end/content_elements.crush.css?ver=4.5.6'
+          type='text/css' media='all' />
+    <link rel='stylesheet' id='novalab-style-css'
+          href='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/style.css?ver=6.2.2' type='text/css'
+          media='screen' />
+
+    <link rel='stylesheet' id='novalab-print-css'
+          href='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/print.css?ver=6.2.2' type='text/css'
+          media='print' />
+    <link rel='stylesheet' id='novalab-fonts-css'
+          href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100italic%2C200italic%2C300italic%2C400italic%2C500italic%2C600italic%2C700italic%2C800italic%2C900italic%7CRoboto+Slab%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100italic%2C200italic%2C300italic%2C400italic%2C500italic%2C600italic%2C700italic%2C800italic%2C900italic%7CRoboto%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100italic%2C200italic%2C300italic%2C400italic%2C500italic%2C600italic%2C700italic%2C800italic%2C900italic%7CRoboto%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100italic%2C200italic%2C300italic%2C400italic%2C500italic%2C600italic%2C700italic%2C800italic%2C900italic%7CRoboto%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100italic%2C200italic%2C300italic%2C400italic%2C500italic%2C600italic%2C700italic%2C800italic%2C900italic%7CBarlow%3A600&#038;subset=latin%2Clatin-ext&#038;ver=1.0.0'
+          type='text/css' media='all' />
+
+    <link rel='stylesheet' id='boldthemes-framework-css'
+          href='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/framework/css/style.css?ver=6.2.2'
+          type='text/css' media='all' />
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-includes/js/jquery/jquery.min.js?ver=3.6.4'
+            id='jquery-core-js'></script>
+
+
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.0'
+            id='jquery-migrate-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/slick/slick.min.js?ver=4.5.6'
+            id='bt_bb_slick-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/content_elements_misc/js/jquery.magnific-popup.min.js?ver=4.5.6'
+            id='bt_bb_magnific-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/content_elements_misc/js/content_elements.js?ver=4.5.6'
+            id='bt_bb-js'></script>
+    <!--these all are script and css link-->
+    <!-- local css links-->
+    <link rel="stylesheet" href="~/GisCss/css/style.css">
+    <!--local css links-->
+    <!-- font-awesome icon cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--icon cdn-->
+    <link href="~/GisCss/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- template-style-->
+    <link href="~/GisCss/css/style1.css" rel="stylesheet">
+    <link href="~/GisCss/css/dashboard.css" rel="stylesheet">
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="~/GisCss/assets/css/font-awesome.css">
+
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="~/GisCss/assets/css/flag-icon.css">
+
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="~/GisCss/assets/css/icofont.css">
+
+    <!-- Prism css-->
+    <link rel="stylesheet" type="text/css" href="~/GisCss/assets/css/prism.css">
+
+    <!-- Chartist css -->
+    <link rel="stylesheet" type="text/css" href="~/GisCss/assets/css/chartist.css">
+
+    <!-- vector map css -->
+    <link rel="stylesheet" type="text/css" href="~/GisCss/assets/css/vector-map.css">
+
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="~/GisCss/assets/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="~/GisCss/assets/css/admin.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <script src="~/GisCss/Gisjs/init.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/GisCss/Gisjs/esri.css" rel="stylesheet" />
+    <style>
+        html,
+        body,
+        #map {
+            height: 1024px;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <script src="~/GisCss/Gisjs/MapScript.js"></script>
+
+
+
+</head>
+
+<body class="home page-template-default page page-id-1689 page-parent theme-novalab bt_bb_plugin_active bt_bb_fe_preview_toggle woocommerce-no-js btHeadingWeight_normal btSupertitleWeight_normal btSubtitleWeight_normal btMenuWeight_default btButtonWeight_default btCapitalizeMainMenuItems btMenuLeftEnabled btStickyEnabled btHideHeadline btLightSkin btNoDashInSidebar noBodyPreloader btHardRoundedButtons btTransparentDarkHeader btNoSidebar">
+    <div class="bt-page-wrap  " id="top">
+        <div class="bt-vertical-header-top" style="display: flex;">
+            <div class="bt-vertical-menu-trigger">
+                &nbsp;
+                <div class="bt_bb_icon bt_bb_text_empty" data-bt-override-class="{}">
+                    <a href="#" target="_self" data-ico-fa="&#xf0c9;" class="bt_bb_icon_holder"></a>
+                </div>
+            </div>
+            <div class="bt-logo-area">
+                <div class="logo">
+                    <span>
+                        <a href="./index1.html">
+                            <img class="btMainLogo" data-hw="2.1875" src="~/Gisdashboard/images/logo_green (3).png"
+                                 alt="CHARAK_LOGO">
+                        </a>
+                    </span>
+                </div>
+                <!-- /logo -->
+            </div>
+            <!-- /bt-logo-area -->
+        </div>
+
+        <header class="mainHeader btClear  ">
+            <div class="main-header-inner">
+
+                <div class="bt-logo-area menu-holder btClear">
+                    <div class="port">
+                        <div class="bt-horizontal-menu-trigger">
+                            &nbsp;
+                            <div class="bt_bb_icon bt_bb_text_empty">
+                                <a href="#" target="_self" class="bt_bb_icon_holder"></a>
+                            </div>
+                        </div>
+                        <div class="logo">
+                            <span>
+                                <a href="./index1.html">
+                                    <img class="btMainLogo" data-hw="2.1875" src="./images/logo_green (4).png"
+                                         alt="CHARAK_LOGO">
+                                </a>
+                            </span>
+
+                        </div>
+
+                        <!-- /logo -->
+                        <div class="menuPort">
+                            <div class="topBarInMenu">
+                                <div>
+                                    <span>Last Login:15/07/2023</span>
+                                </div>
+                                <span>4:30PM</span>
+                                <!-- /topBarInMenu -->
+                            </div>
+                            <!-- /topBarInMenuCell -->
+
+                        </div>
+                        <!-- .menuPort -->
+                    </div>
+                    <!-- /port -->
+                </div>
+                <!-- /menu-holder / bt-below-logo-area -->
+            </div>
+            <div class="main-header-inner menuPort2" style="background-color: #104d31; color: #ffffff;">
+                <div class="bt-logo-area menu-holder btClear">
+                    <div class="port " style="margin-top: -20px;">
+
+                        <!-- /logo -->
+                        <div class="menuPort ">
+
+                            <!-- /topBarInMenuCell -->
+                            <nav class="dashboard_nav">
+                                <ul id="menu-primary-menu" class="menu ">
+                                    <li id="menu-item-3056"
+                                        class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-1689 current_page_item menu-item-3056">
+                                        <a href="#" aria-current="page">Gis Dashboard</a>
+                                    </li>
+
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="#">
+                                            Dashboard
+                                        </a>
+
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="#">
+                                            Administrative Boundaries
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="bg-green-100 cursor-pointer">
+                                                <div class="flex  text-black container mx-auto p-2">
+                                                    <label for="cars">State:</label>
+                                                    <select name="cars" id="inputState" class="h-7 "
+                                                            style="border-radius: 0px!important;">
+                                                        <option value="SelectState">Select State</option>
+                                                        <option value="Andra Pradesh">Andra Pradesh</option>
+                                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                        <option value="Assam">Assam</option>
+                                                        <option value="Bihar">Bihar</option>
+                                                        <option value="Chhattisgarh">Chhattisgarh</option>
+                                                        <option value="Goa">Goa</option>
+                                                        <option value="Gujarat">Gujarat</option>
+                                                        <option value="Haryana">Haryana</option>
+                                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                        <option value="Jharkhand">Jharkhand</option>
+                                                        <option value="Karnataka">Karnataka</option>
+                                                        <option value="Kerala">Kerala</option>
+                                                        <option value="Madya Pradesh">Madya Pradesh</option>
+                                                        <option value="Maharashtra">Maharashtra</option>
+                                                        <option value="Manipur">Manipur</option>
+                                                        <option value="Meghalaya">Meghalaya</option>
+                                                        <option value="Mizoram">Mizoram</option>
+                                                        <option value="Nagaland">Nagaland</option>
+                                                        <option value="Orissa">Orissa</option>
+                                                        <option value="Punjab">Punjab</option>
+                                                        <option value="Rajasthan">Rajasthan</option>
+                                                        <option value="Sikkim">Sikkim</option>
+                                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                                        <option value="Telangana">Telangana</option>
+                                                        <option value="Tripura">Tripura</option>
+                                                        <option value="Uttaranchal">Uttaranchal</option>
+                                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                        <option value="West Bengal">West Bengal</option>
+                                                        <option disabled style="background-color:#aaa; color:#fff">
+                                                            UNION
+                                                            Territories
+                                                        </option>
+                                                        <option value="Andaman and Nicobar Islands">
+                                                            Andaman and Nicobar
+                                                            Islands
+                                                        </option>
+                                                        <option value="Chandigarh">Chandigarh</option>
+                                                        <option value="Dadar and Nagar Haveli">
+                                                            Dadar and Nagar Haveli
+                                                        </option>
+                                                        <option value="Daman and Diu">Daman and Diu</option>
+                                                        <option value="Delhi">Delhi</option>
+                                                        <option value="Lakshadeep">Lakshadeep</option>
+                                                        <option value="Pondicherry">Pondicherry</option>
+                                                    </select>
+                                                </div>
+                                                <div class="flex text-black container mx-auto p-2">
+                                                    <label for="cars">District:</label>
+                                                    <select name="cars" id="inputDistrict" class="h-7  "
+                                                            style="border-radius: 0px!important;">
+                                                        <option value="">-- select one --</option>
+
+                                                    </select>
+                                                </div>
+                                            </li>
+
+
+                                        </ul>
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="#">
+                                            Administrative Layers
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li class="bg-green-100">
+                                                <div class="p-2 ml-4">
+                                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                                    <label for="vehicle1"> State</label><br>
+                                                    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                                                    <label for="vehicle2"> District</label><br>
+
+                                                </div>
+                                            </li>
+
+
+
+                                        </ul>
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="#">
+                                            Layers
+                                        </a>
+                                        <ul class="sub-menu  ">
+                                            <li class="p-2   bg-green-100">
+                                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                                <label for="vehicle1">Units</label><br>
+
+
+                                            </li>
+
+                                        </ul>
+                                    </li>
+
+
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+
+                                        <a href="#">Other Features</span></a>
+                                        <ul class="sidebar-submenu">
+                                            <li class="border border-red-400">
+                                                <div class="bg-green-100  w-full text-black space-x-4 container mx-auto">
+                                                    <button class="text-black font-bold text-2xl cursor-pointer"
+                                                            id="formButton">
+                                                        +
+                                                    </button>
+                                                    <span class="text-black cursor-pointer underline"
+                                                          id="formButton">
+                                                        Water
+                                                        Irrigration
+                                                    </span>
+
+                                                    <div id="form10" class="ml-4">
+
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">Rivers</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">Canals</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">Main Canal</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">Strems</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">Water Body</label><br>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+
+                                            <!-- <li class="border border-red-400">
+                                                <div class="bg-green-100  w-full text-black space-x-4 container mx-auto">
+                                                    <button class="text-black font-bold text-2xl" id="formButton1">+</button>
+                                                    <span
+                                                        class="text-black underline" id="formButton1">ULB Location
+                                                    </span>
+                                                    <div id="form11">
+
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                                        <label for="vehicle1">Urban Boundary</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                                        <label for="vehicle1">Nagar Nigam</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                                        <label for="vehicle1">Nagar Parishad</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                                        <label for="vehicle1">Nagar Panchayat</label><br>
+                                                    </div>
+
+
+                                                </div>
+                                            </li> -->
+                                            <li class="border border-red-400">
+                                                <div class="bg-green-100  w-full text-black space-x-4 container mx-auto">
+                                                    <button class="text-black font-bold text-2xl"
+                                                            id="formButton2">
+                                                        +
+                                                    </button><span class="text-black underline"
+                                                                   id="formButton2 ">Roads</span>
+                                                    <div id="form12">
+
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">Express Way Roads</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">NH Roads</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">SH Roads</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">MDR Roads</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">Core Habitations</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">Core Habitations Level</label><br>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+                                            <li class="border border-red-400">
+                                                <div class="bg-green-100  w-full text-black space-x-4 container mx-auto ">
+                                                    <button class="text-black font-bold text-2xl cursor-pointer"
+                                                            id="formButton3">
+                                                        +
+                                                    </button><span class="text-black cursor-pointer underline"
+                                                                   id="formButton3">Other Layers</span>
+                                                    <div id="form13">
+
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">
+                                                            District Headquarters
+                                                        </label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1"> Block Headquarters</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1"> Airport</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1"> Railway Tracts</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1"> Sancturies</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1">Habitations</label><br>
+                                                        <input type="checkbox" id="vehicle1" name="vehicle1"
+                                                               value="Bike">
+                                                        <label for="vehicle1"> Police station</label><br>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+
+
+
+                                        </ul>
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="  menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="#">
+                                            Base Maps
+                                        </a>
+
+                                        <ul class="Card_back">
+                                            <div class="scroller scroller1  bg-black px-2 py-2 grid grid-cols-3 md:grid-cols-3 lg:grid-cols-1 gap-2">
+
+                                            <li id="menu-item-1995">
+                                                <img src="./assets/images/dg_canvas_in.jpg" alt="map_image"
+                                                     style="height: 50px; width: 100px; border: 3px solid green; cursor: pointer;" />
+                                                <p class="text-white font-[popins] underline">Dark Gray Canvas</p>
+                                            </li>
+                                            <li id="menu-item-1995">
+                                                <img src="./assets/images/thumbnail1591224931210.jpeg"
+                                                     alt="map_image"
+                                                     style="height: 50px; width: 100px; border: 3px solid green; cursor: pointer;" />
+                                                <p class="text-white font-[popins] underline">Imagery</p>
+                                            </li>
+                                            <li id="menu-item-1995">
+                                                <img src="./assets/images/imagery_hybrid_in.jpg" alt="map_image"
+                                                     style="height: 50px; width: 100px; border: 3px solid green; cursor: pointer;" />
+                                                <p class="text-white font-[popins] underline">Imagery Hybrid</p>
+                                            </li>
+                                            <li id="menu-item-1995">
+                                                <img src="./assets/images/lg_canvas_in.jpg" alt="map_image"
+                                                     style="height: 50px; width: 100px; border: 3px solid green; cursor: pointer;" />
+                                                <p class="text-white font-[popins] underline">Dark Gray Canvas</p>
+                                            </li>
+                                            <li id="menu-item-1995">
+                                                <img src="./assets/images/navigation_in.jpg" alt="map_image"
+                                                     style="height: 50px; width: 100px; border: 3px solid green; cursor: pointer;" />
+                                                <p class="text-white font-[popins] underline">Navigation Map</p>
+                                            </li>
+                                            <li id="menu-item-1995">
+                                                <img src="./assets/images/india_oceans.jpg" alt="map_image"
+                                                     style="height: 50px; width: 100px; border: 3px solid green; cursor: pointer;" />
+                                                <p class="text-white font-[popins] underline">Oceans</p>
+                                            </li>
+                                            <li id="menu-item-1995">
+                                                <img src="./assets/images/streets_night_in.jpg" alt="map_image"
+                                                     style="height: 50px; width: 100px; border: 3px solid green; cursor: pointer;" />
+                                                <p class="text-white font-[popins] underline">Streets(Night)</p>
+                                            </li>
+                                            <li id="menu-item-1995">
+                                                <img src="./assets/images/streets_in.jpg" alt="map_image"
+                                                     style="height: 50px; width: 100px; border: 3px solid green; cursor: pointer;" />
+                                                <p class="text-white font-[popins] underline">Streets Map</p>
+                                            </li>
+                                            <li id="menu-item-1995">
+                                                <img src="./assets/images/terrain_in.jpg" alt="map_image"
+                                                     style="height: 50px; width: 100px; border: 3px solid green; cursor: pointer;" />
+                                                <p class="text-white font-[popins] underline">Terrain Labels</p>
+                                            </li>
+                                            <li id="menu-item-1995">
+                                                <img src="./assets/images/TPTOsmall.png" alt="map_image"
+                                                     style="height: 50px; width: 100px; border: 3px solid green; cursor: pointer;" />
+                                                <p class="text-white font-[popins] underline">Topographic Map</p>
+                                            </li>
+                                            <li id="menu-item-1995">
+                                                <img src="./assets/images/Blank.jpg" alt="map_image"
+                                                     style="height: 50px; width: 100px; border: 3px solid green; cursor: pointer;" />
+                                                <p class="text-white font-[popins] underline">Blank Map</p>
+                                            </li>
+                        </div>
+
+                        </ul>
+
+                        </li>
+
+
+
+
+
+                        </ul>
+                        </nav>
+                    </div>
+                    <!-- .menuPort -->
+                </div>
+                <!-- /port -->
+            </div>
+            <!-- /menu-holder / bt-below-logo-area -->
+    </div>
+    <!-- / inner header for scrolling -->
+    </header>
+    <!-- /.mainHeader -->
+    <div class="mt-10">
+        <div class="bt-content-holder">
+
+
+            <section class="about-agency " id="about">
+                <div>
+                    <div class="row">
+                        <div class="col-lg-12 v-center ">
+                            <div class="image-block">
+                                <div class="page-wrapper">
+
+
+                                    <div class="page-body-wrapper">
+
+                                        <!-- Page Sidebar Start-->
+                                        <!-- Page Sidebar Ends-->
+                                        <!-- Right sidebar Start-->
+                                        <!-- Right sidebar Ends-->
+
+                                        <div class="page-body">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="card">
+
+
+                                                            <div class="card-body">
+
+                                                                <div class="row">
+                                                                    <div class="col-xl-12 col-sm-12">
+                                                                        <div id="map"></div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="code-box-copy">
+                                                                    <button class="code-box-copy__btn btn-clipboard"
+                                                                            data-clipboard-target="#example-hea6"
+                                                                            title="" data-original-title="Copy">
+                                                                        <i class="icofont icofont-copy-alt"></i>
+                                                                    </button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!-- Container-fluid Ends-->
+                                        </div>
+                                        <!--sticky sidebar-->
+                                        <div class="sticky-icon">
+
+                                            <a href="#" class="Instagram">
+                                                <i class="fa fa-eraser"></i> Clear
+                                            </a>
+                                            <a href="#" class="Facebook">
+                                                <i class="fa fa-search-plus"></i>
+                                                Zoom In
+                                            </a>
+                                            <a href="#" class="Google">
+                                                <i class='fas fa-search-minus'></i>
+                                                Zoom Out
+                                            </a>
+                                            <a href="#" class="Youtube"> <i class="fa fa-hand-paper-o"></i>pan </a>
+                                            <a href="#" class="Twitter">
+                                                <i class="fa fa-arrow-left"></i>
+                                                prev exit.
+                                            </a>
+                                            <a href="#" class="Twitter">
+                                                <i class="fa fa-arrow-right"></i>
+                                                last exit.
+                                            </a>
+                                            <a href="#" class="Twitter">
+                                                <i class="fa fa-expand"></i> Full
+                                                Exit.
+                                            </a>
+                                            <a href="#" class="Twitter">
+                                                <i class="fa fa-expand"></i> Twitter
+                                            </a>
+                                        </div>
+                                        <!--sticky sidebar-->
+                                        <!--sticky bottom Navbar-->
+                                        <!--sticky bottom Navbar-->
+                                        <!-- footer start-->
+                                        <!-- footer end-->
+                                    </div>
+
+                                </div>
+                                <footer class="footer">
+                                    <div class="container mx-auto">
+                                        <nav class="nav  container mx-auto">
+                                            <a href="#" class="nav__link">
+                                                <i class="fa fa-download " aria-hidden="true"
+                                                   style="font-size: 24px;"></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class="fa fa-area-chart" style="font-size:24px"></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class="fa fa-area-chart" style="font-size:24px"></i>
+
+                                            </a>
+
+                                            <a href="#" class="nav__link">
+                                                <i class='fas fa-compress-arrows-alt' style='font-size:24px'></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class="fa fa-print" style="font-size:24px"></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class="fa fa-sitemap" style="font-size:24px"></i>
+
+                                            </a>
+
+                                            <a href="#" class="nav__link">
+                                                <i class="fa fa-print" style="font-size:24px"></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class='fas fa-chart-line' style='font-size:24px'></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class='fas fa-flask' style='font-size:24px'></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class="fa fa-print" style="font-size:24px"></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class='fas fa-flask' style='font-size:24px'></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class="fa fa-download " aria-hidden="true"
+                                                   style="font-size: 24px;"></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class='fas fa-flask' style='font-size:24px'></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class="fa fa-sitemap" style="font-size:24px"></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class="fa fa-print" style="font-size:24px"></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class='fas fa-flask' style='font-size:24px'></i>
+
+                                            </a>
+                                            <a href="#" class="nav__link">
+                                                <i class="fa fa-sitemap" style="font-size:24px"></i>
+                                            </a>
+                                        </nav>
+                                    </div>
+                                </footer>
+                            </div>
+                        </div>
+            </section>
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+
+    </div>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/framework/js/header.misc.js?ver=6.2.2'
+            id='novalab-header-misc-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/framework/js/misc.js?ver=6.2.2'
+            id='novalab-misc-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/content_elements/bt_bb_section/bt_bb_elements.js?ver=4.5.6'
+            id='bt_bb_elements-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/bold-page-builder/content_elements/bt_bb_progress_bar_advanced/bb_progressbar_advanced.js?ver=6.2.2'
+            id='bt_bb_progressbar_advanced_js-js'></script>
+    <!--report count script-->
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/bold-page-builder/content_elements_misc/js/bt_bb_progress_bar_advanced.js?ver=6.2.2'
+            id='bt_bb_progressbar_advanced-js'></script>
+
+
+
+    <!-- latest jquery-->
+    <script src="~/GisCss/assets/js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap js-->
+    <script src="~/GisCss/assets/js/popper.min.js"></script>
+    <script src="~/GisCss/assets/js/bootstrap.js"></script>
+    <!-- feather icon js-->
+    <script src="~/GisCss/assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="~/GisCss/assets/js/icons/feather-icon/feather-icon.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="~/GisCss/assets/js/sidebar-menu.js"></script>
+
+    <!--chartist js-->
+    <script src="~/GisCss/assets/js/chart/chartist/chartist.js"></script>
+    <!--copycode js-->
+    <script src="~/GisCss/assets/js/prism/prism.min.js"></script>
+    <script src="~/GisCss/assets/js/clipboard/clipboard.min.js"></script>
+    <script src="~/GisCss/assets/js/custom-card/custom-card.js"></script>
+    <!--map js-->
+    <!--dashboard custom js-->
+    <script src="~/GisCss/assets/js/dashboard/default.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#formButton").click(function () {
+                $("#form10").toggle();
+            });
+        });
+        $(document).ready(function () {
+            $("#formButton1").click(function () {
+                $("#form11").toggle();
+            });
+        });
+        $(document).ready(function () {
+            $("#formButton2").click(function () {
+                $("#form12").toggle();
+            });
+        });
+        $(document).ready(function () {
+            $("#formButton3").click(function () {
+                $("#form13").toggle();
+            });
+        });
+    </script>
+
+    <script src="~/GisCss/js/stateDropdown.js"></script>
+
+
+</body>
+
+</html>

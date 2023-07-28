@@ -1,0 +1,521 @@
+﻿
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Company Dashboard";
+    Layout = "~/Areas/CompanyRegistraion/Views/Shared/_CompanyRegisLayout.cshtml";
+  
+}
+@{
+    var unitDetails = ViewBag.ViewUnitDetailsLis[0];
+
+}
+<script>
+    var ImportExportGraphList = @Html.Raw(Json.Serialize(ViewBag.ViewGraphImportexportmonth));
+
+    var capacityGraphList = @Html.Raw(Json.Serialize(ViewBag.ViewGrapDetailsYearlyChem));
+    var MonthChemGraphList = @Html.Raw(Json.Serialize(ViewBag.ViewGrapDetailsMonthChem));
+
+    var salesexpense = @Html.Raw(Json.Serialize(ViewBag.ViewCompanyPerformanceList));
+    var salesexpensearr = salesexpense.reduce(function (acc, item) {
+        acc.push([item.year, item.sales, item.expenses]);
+        return acc;
+    }, [['Year', 'Sales', 'Expenses']]);
+   
+</script>
+<div class="page-wrapper">
+    <div class="page-body-wrapper">
+        <div class="page-body">
+
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="page-header">
+
+                    <div class="col-lg-12">
+
+                        <marquee width="100%" direction="left" height="30px" style="color:red">
+                            @ViewBag.MarqueeMsg
+                        </marquee>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item">
+                                    <a href="~/CompanyRegistraion/CompanyRegistration/CompanyDashboard"><i data-feather="home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid Ends-->
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-md-2 ">
+                        <div class="card o-hidden  widget-cards">
+                            <div class="bg-secondary card-body" style="background: #329D9C!important">
+                                <div class="media static-top-widget">
+                                    <div class="media-body">
+                                        <span class="m-0">Total Units</span>
+                                        <br>
+                                        <h3 class="m-0">@unitDetails.UnitCount</h3>
+                                    </div>
+
+                                    <div class="icons-widgets">
+                                        <i data-feather="box"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-2 ">
+                        <div class="card o-hidden widget-cards">
+                            <div class="bg-primary card-body" style="background: #56C596 !important;">
+                                <div class="media static-top-widget">
+                                    <div class="media-body">
+                                        <span class="m-0">Both Chemicals &amp; Petro-Chemicals</span>
+                                        <br>
+                                        <h3 class="m-0">@unitDetails.Productions</h3>
+                                    </div>
+
+                                    <div class="icons-widgets">
+                                        <i data-feather="box"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-2 ">
+                        <div class="card o-hidden widget-cards">
+                            <div class="bg-warning card-body" style="background: #329D9C!important">
+                                <div class="media static-top-widget">
+                                    <div class="media-body">
+                                        <span class="m-0">Chemicals</span>
+                                        <br>
+                                        <h3 class="m-0">@unitDetails.Chemicals</h3>
+                                    </div>
+
+                                    <div class="icons-widgets">
+                                        <i data-feather="box"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-2 ">
+                        <div class="card o-hidden widget-cards">
+                            <div class="bg-primary card-body" style="background: #56C596 !important;">
+                                <div class="media static-top-widget">
+                                    <div class="media-body">
+                                        <span class="m-0">Petro-Chemicals</span>
+                                        <br>
+                                        <h3 class="m-0">@unitDetails.PetroChemical</h3>
+                                    </div>
+
+                                    <div class="icons-widgets">
+                                        <i data-feather="box"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 " style="display:none">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Production</h5>
+
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="icofont icofont-simple-left"></i></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card-body expense-chart">
+
+                                <div class="chart-overflow" id="area-chart1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="display:none">
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h5>Top Performers</h5>
+
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="icofont icofont-simple-left"></i></li>
+
+                                    </ul>
+                                </div>
+
+                                <div>
+
+                                    &nbsp;
+                                    <table class="table">
+
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <i data-feather="map-pin"></i>
+                                                        </div>
+
+                                                        <div class="col-sm-10">
+                                                            <p style="color: #56C596;">
+
+                                                                xyz Unit
+                                                            </p>
+
+                                                            <p>chemical</p>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </td>
+
+                                                <td>300 Kg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <i data-feather="map-pin"></i>
+                                                        </div>
+
+                                                        <div class="col-sm-10">
+                                                            <p style="color: #56C596;">
+
+                                                                abc Unit
+                                                            </p>
+
+                                                            <p>Petro-chemical</p>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </td>
+
+                                                <td>200 Kg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <i data-feather="map-pin"></i>
+                                                        </div>
+
+                                                        <div class="col-sm-10">
+                                                            <p style="color: #56C596;">
+
+                                                                bcd Unit
+                                                            </p>
+
+                                                            <p>chemical</p>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </td>
+
+                                                <td> 254 Kg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <i data-feather="map-pin"></i>
+                                                        </div>
+
+                                                        <div class="col-sm-10">
+                                                            <p style="color: #56C596;">
+
+                                                                xyz Unit
+                                                            </p>
+
+                                                            <p>Petro-Chemical</p>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </td>
+
+                                                <td>300 Kg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <i data-feather="map-pin"></i>
+                                                        </div>
+
+                                                        <div class="col-sm-10">
+                                                            <p style="color: #56C596;">
+
+                                                                xyz Unit
+                                                            </p>
+
+                                                            <p>chemical</p>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </td>
+
+                                                <td>200 Kg</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                            <div class="card-body">
+                                <div id="" class="report-table"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+
+
+
+                                <h5> Chemical Production</h5>
+
+                                <div class="chart-value-box pull-right " style="margin-top: 3rem;">
+                                    <div class="value-square-box-success"></div><span class="f-12 f-w-600">Capacity</span>
+                                    <div class="value-square-box-secondary ms-3"></div><span class="f-12 f-w-600">Production Quantity</span>
+                                </div>
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="icofont icofont-simple-left"></i></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="sales-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Petro-Chemical Production </h5>
+                                <div class="chart-value-box pull-right " style="margin-top: 3rem;">
+                                    <div class="value-square-box-success"></div><span class="f-12 f-w-600">Capacity</span>
+                                    <div class="value-square-box-secondary ms-3"></div><span class="f-12 f-w-600">Production Quantity</span>
+                                </div>
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="icofont icofont-simple-left"></i></li>
+                                        <li><i class="view-html fa fa-code"></i></li>
+                                        <li><i class="icofont icofont-maximize full-card"></i></li>
+                                        <li><i class="icofont icofont-minus minimize-card"></i></li>
+                                        <li><i class="icofont icofont-refresh reload-card"></i></li>
+                                        <li><i class="icofont icofont-error close-card"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="market-chart"></div>
+                                <div class="code-box-copy">
+                                    <button class="code-box-copy__btn btn-clipboard"
+                                            data-clipboard-target="#example-head" title="Copy">
+                                        <i class="icofont icofont-copy-alt"></i>
+                                    </button>
+                                    <pre><code class="language-html" id="example-head">&lt;!-- Cod Box Copy begin --&gt;
+&lt;div class="market-chart"&gt;&lt;/div&gt;
+&lt;!-- Cod Box Copy end --&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Monthly Chemicals Production </h5>
+                                <div class="chart-value-box pull-right " style="margin-top: 3rem;">
+                                    <div class="value-square-box-success" style="background-color:#00baf2"></div><span class="f-12 f-w-600">Chemicals</span>
+                                    <div class="value-square-box-secondary ms-3"></div><span class="f-12 f-w-600">Petro-Chemicals</span>
+                                </div>
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="icofont icofont-simple-left"></i></li>
+                                        <li><i class="view-html fa fa-code"></i></li>
+                                        <li><i class="icofont icofont-maximize full-card"></i></li>
+                                        <li><i class="icofont icofont-minus minimize-card"></i></li>
+                                        <li><i class="icofont icofont-refresh reload-card"></i></li>
+                                        <li><i class="icofont icofont-error close-card"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="monthchemgraph"></div>
+                                <div class="code-box-copy">
+                                    <button class="code-box-copy__btn btn-clipboard"
+                                            data-clipboard-target="#example-head" title="Copy">
+                                        <i class="icofont icofont-copy-alt"></i>
+                                    </button>
+                                    <pre><code class="language-html" id="example-head">&lt;!-- Cod Box Copy begin --&gt;
+&lt;div class="market-chart"&gt;&lt;/div&gt;
+&lt;!-- Cod Box Copy end --&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h5>Import</h5>
+                                <div class="chart-value-box pull-right " style="margin-top: 3rem;">
+                                    <div class="value-square-box-success" style="background-color:lightgreen"></div><span class="f-12 f-w-600"> Chemicals</span>
+                                    <div class="value-square-box-secondary ms-3" style="background-color:darkgreen"></div><span class="f-12 f-w-600">Petro-Chemicals</span>
+
+                                </div>
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="icofont icofont-simple-left"></i></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body sell-graph">
+                                <canvas id="myGraphImport"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h5>Export</h5>
+                                <div class="chart-value-box pull-right " style="margin-top: 3rem;">
+
+                                    <div class="value-square-box-success" style="background-color:mediumvioletred"></div><span class="f-12 f-w-600">Chemicals</span>
+                                    <div class="value-square-box-secondary ms-3" style="background-color:darkred"></div><span class="f-12 f-w-600">Petro-Chemicals</span>
+                                </div>
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="icofont icofont-simple-left"></i></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body sell-graph">
+                                <canvas id="myGraphExport"></canvas>
+                            </div>
+                        </div>
+                    </div>                
+                    <div class="col-lg-6" style="display:none">
+                        <div class="card report-employee">
+                            <div class="card-header">
+                                <h2>75%</h2>
+                                <h6 class="mb-0">Monthly Data Submitted</h6>
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="icofont icofont-simple-left"></i></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="ct-4 flot-chart-container"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12" style="display:none">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5> Import / Export</h5>
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="icofont icofont-simple-left"></i></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body sell-graph">
+                                <canvas id="myLineCharts"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="col-lg-12">
+                <div>
+                    <div class='tableauPlaceholder' id='viz1685627062602' style='position: relative'>
+                        <noscript>
+                            <a href='https:&#47;&#47;chemicals.gov.in&#47;'>
+                                <img alt='Dashboard 1 '
+                                     src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;HT&#47;HTTG8QYMT&#47;1_rss.png'
+                                     style='border: none' />
+                            </a>
+                        </noscript>
+                        <object class='tableauViz' style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                            <param name='embed_code_version' value='3' />
+                            <param name='path'
+                                   value='views&#47;Book1_16539111828500&#47;Dashboard1?:language=en-US&amp;:embed=y&amp;:toolbar=yes&amp;:embed_code_version=3&amp;:loadOrderID=0&amp;:display_count=yes' />
+                            <param name='toolbar' value='yes' />
+                            <param name='static_image'
+                                   value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;HT&#47;HTTG8QYMT&#47;1.png' />
+                            <param name='animate_transition' value='yes' />
+                            <param name='display_static_image' value='yes' />
+                            <param name='display_spinner' value='yes' />
+                            <param name='display_overlay' value='yes' />
+                            <param name='display_count' value='yes' />
+                            <param name='language' value='en-US' />
+                        </object>
+                    </div>
+                    <script type='text/javascript'>
+                        var divElement = document.getElementById('viz1685627062602'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.minWidth = '1820px'; vizElement.style.maxWidth = '1920px'; vizElement.style.width = '100%'; vizElement.style.minHeight = '487px'; vizElement.style.maxHeight = '887px'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else if (divElement.offsetWidth > 500) { vizElement.style.minWidth = '1820px'; vizElement.style.maxWidth = '1920px'; vizElement.style.width = '100%'; vizElement.style.minHeight = '487px'; vizElement.style.maxHeight = '887px'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '727px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                    </script>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>

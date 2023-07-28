@@ -1,0 +1,103 @@
+﻿@model CPDMSEF.feedbackEF
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "feedback";
+    Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+}
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+    }</style>
+
+<link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">
+    <!-- template-style-->
+    <link href="~/LandinCss/css/style1.css" rel="stylesheet">
+
+<div class="bt-content-wrap btClear section_Top">
+    <div class="bt-content-holder">
+
+        <div class="bt-content">
+            <div class="bt_bb_wrapper">
+                <section class="contact-page pad-tb bg-gradient5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                <div class="niwax23form shadow">
+                                    <div class="common-heading text-l">
+                                    
+                                        <h3 class="text-left text-[#024828]  mb-[1rem]">Feedback</h3>
+                                      
+                                    </div>
+                                   
+                                  <br/>
+                                    <div class="contact-form-card-pr contact-block-sw m0 iconin">
+                                        <div class="form-block niwaxform">
+                                            @*<form method="post" action="">*@
+                                            @using (Html.BeginForm("feedback", "Home", FormMethod.Post, new { enctype = "multipart/form-data", AUTOCOMPLETE = "Off", id = "form1" }))
+                                            {
+                                                <div class="fieldsets row">
+                                                    <div class="fieldsets row">
+                                                        <div class="col-md-12 form-group floating-label">
+                                                            <div class="formicon"><i class="fas fa-map-marker-alt"></i></div>
+                                                            <input type="text" placeholder=" " required="required" class="floating-input" name="Name">
+                                                            <label>Name</label>
+                                                            <div class="error-label"></div>
+                                                        </div>
+
+                                                    
+
+
+                                                    </div>
+                                                    <div class="fieldsets row">
+                                                        <div class="col-md-6 form-group floating-label">
+                                                            <div class="formicon"><i class="fas fa-map-marker-alt"></i></div>
+
+
+                                                            @Html.TextBoxFor(m => m.Phone, new { @class = "floating-input",id="your_location", required = "required", type="number" ,pattern="[0-9]{4}", maxlength="10", oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                                            @*<input type="text" placeholder=" +91  Mobile Number" required="required" class="floating-input" name="Phone">*@
+                                                            <label>Phone</label>
+
+                                                            <div class="error-label"></div>
+                                                        </div>
+
+
+                                                       
+
+                                                        <div class="col-md-6 form-group floating-label">
+                                                            <div class="formicon"><i class="fas fa-map-marker-alt"></i></div>
+                                                            @Html.TextBoxFor(m => m.Email, new { @class = "floating-input",type="email",required = "required" })
+                                                            @*<input type="text" placeholder=" " required="required" class="floating-input" name="Email">*@
+                                                             <label>Email</label>
+                                                            <div class="error-label"></div>
+                                                        </div>
+
+                                                       
+                                                    </div>
+                                                    <textarea rows="4" placeholder="&nbsp; &nbsp; Enter your feedback here" cols="50" name="Feedbacks" required></textarea>
+
+                                                    <div class="fieldsets ">
+                                                        <button type="submit" name="submit"
+                                                                class="btn btn-main  w-fit mt-4 text-button" style=" background-color: #024828 !important; color: #fff; width:120px" >
+                                                            Submit
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                }
+                                            @*</form>*@
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                           
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

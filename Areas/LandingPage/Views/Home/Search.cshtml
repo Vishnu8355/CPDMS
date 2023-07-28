@@ -1,0 +1,173 @@
+﻿@*@model CPDMSEF.SearchResultEF*@
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Contact";
+    Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+}
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+    }
+
+
+    .card-box {
+        padding: 20px;
+        border-radius: 3px;
+        margin-bottom: 30px;
+        background-color: #fff;
+    }
+
+    .search-result-box .tab-content {
+        padding: 30px 30px 10px 30px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        -moz-box-shadow: none
+    }
+
+    .search-result-box .search-item {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e3eaef;
+        margin-bottom: 20px
+    }
+
+    .text-success {
+        color: #0acf97 !important;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+        background-color: transparent;
+    }
+
+    .btn-custom {
+        background-color: #02c0ce;
+        border-color: #02c0ce;
+    }
+
+    .btn-custom,
+    .btn-danger,
+    .btn-info,
+    .btn-inverse,
+    .btn-pink,
+    .btn-primary,
+    .btn-purple,
+    .btn-success,
+    .btn-warning {
+        color: #fff !important;
+    }
+
+    input:not([type='checkbox']):not([type='radio']),
+    .btHardRoundedButtons a.select2-choice {
+        border-radius: 0px !important;
+    }
+
+    input:not([type='checkbox']):not([type='radio']),
+    textarea,
+    select {
+        outline: none;
+        font: inherit;
+        width: 100%;
+        line-height: 1;
+        display: block;
+        padding: 0.2em 1em;
+        background: transparent;
+        color: inherit;
+    }
+
+   
+</style>
+
+<link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">
+<!-- template-style-->
+<link href="~/LandinCss/css/style1.css" rel="stylesheet">
+
+<div class="bt-content-wrap btClear section_Top">
+    <div class="bt-content-holder">
+
+
+        <div class="bt-content">
+            <div class="bt_bb_wrapper">
+
+                <section class="contact-page pad-tb bg-gradient5">
+
+                    <div class="content">
+                        <div class="container">
+                           
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="search-result-box card-box">
+                                        <div class="row">
+                                            <div class="col-md-8 offset-md-2">
+                                                <div class="mt-4 text-center">
+                                                    <h4>Search Results Here</h4>
+                                                </div>
+                                                <div class="pt-3 pb-4">
+                                                    <form class=" d-flex gap-2" id="searchForm"
+                                                        action="/LandingPage/Home/search" method="get">
+                                                        <input type="search" name="searchQuery" class="form-control"
+                                                            value="Search here.....">
+                                                        <div class="input-group-append ">
+                                                            <button type="submit " class="btn btn-success d-flex"
+                                                                id="allsearch">
+                                                                <i class="fa fa-search mr-1 p-1"></i>
+                                                                Search
+                                                            </button>
+                                                        </div>
+                                                    </form>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end row -->
+                                        @foreach (var item in Model)
+                                        {
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="home">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="search-item">
+                                                                <h4 class="mb-1"> <a
+                                                                        href="/LandingPage/Home/@item.FileName">
+                                                                        @item.FileName</a></h4>
+
+                                                                <p class="mb-0 text-xl font-[popins]"> @item.Title</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end row -->
+                        </div>
+                        <!-- container -->
+                    </div>
+
+
+
+
+            </div>
+            <button type="button" class="btn btn-dark" style="margin-left:290px" onclick="history.back()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-left"
+                    width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M5 12l14 0" />
+                    <path d="M5 12l4 4" />
+                    <path d="M5 12l4 -4" />
+                </svg>
+            </button>
+            </section>
+        </div>
+    </div>
+</div>

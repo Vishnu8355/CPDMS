@@ -1,0 +1,76 @@
+﻿
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+}
+
+<link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">
+<!-- template-style-->
+<link href="~/LandinCss/css/style1.css" rel="stylesheet">
+<br/>
+
+
+<div class="bt-content-wrap btClear section_Top">
+    <div class="bt-content-holder">
+    <br/>
+    
+    <br/>
+        <div>
+            <h4 class="mb10 text-left text-2xl  ml-10  font-bold  mt-2 p-2 text-[#024828]">Dashboard</h4>
+        </div>
+        <div class="bt-content">
+            <div class="bt_bb_wrapper">
+                <section class="about-agency pad-tb" id="about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 v-center">
+                                <div class="image-block">
+                                    <div id="myChart" class="chart--container">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="common-heading text-l">
+                                    <div class="card" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: center;">Chemicals</h5>
+                                            <p class="card-text" style="text-align: center;">@TempData["Chemicals"]</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="card text-center" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: center;">
+                                                Petro-Chemicals
+                                            </h5>
+                                            <p class="card-text" style="text-align: center;">@TempData["PeroChemicals"]</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card text-right" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: center;">Import</h5>
+                                            <p class="card-text" style="text-align: center;">@TempData["Export"]</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card text-right" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: center;">Export</h5>
+                                            <p class="card-text" style="text-align: center;">@TempData["Import"]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

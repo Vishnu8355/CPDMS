@@ -1,0 +1,226 @@
+﻿@model CPDMSEF.SpecificationIndustrialProfessionalEF
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Specification Industrial Professional";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+}
+@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "success");
+    </script>
+    ViewBag.msg = null;
+}
+<style>
+    #loading-gif {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .table-row:hover {
+        cursor: zoom-in;
+    }
+
+    /* Styling for the popup container */
+
+
+    #popupContainer {
+        width: 30%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        z-index: 9999;
+        height: 400px;
+        max-height: 600px;
+        overflow: auto;
+    }
+
+    /* Styling for the close link */
+    #closePopup {
+        float: right;
+        color: red;
+        text-decoration: underline;
+    }
+    
+element.style {
+}
+
+    /* Styling for the table inside the popup */
+
+</style>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="/UnitRegistration/UnitRegistration/UnitDPTADMDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Master Entry </li>
+                            <li class="breadcrumb-item active">Group </li>
+                            <li class="breadcrumb-item active">Specification Industrial Professional</li>
+                        </ol>
+
+                    </div>
+                </div>
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false">
+                                            <span class="icon-unlock me-2">
+                                            </span><b>Specification Industrial Professional Name</b>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div role="tabpanel">
+                                    @using (Html.BeginForm("SpecificationIndustrialProfessional", "UnitRegistration", FormMethod.Post, new { AUTOCOMPLETE = "Off", id = "form1" }))
+                                    {
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                Specification Industrial Professional Name  <span class="RequiredField">*</span>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input type="text" name="Specification_Industrial_Professional_Name" class="form-control" required>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-button">
+                                                    <input type="submit" class="btn btn-primary" style="background:#024828!important" Value="Save" id="save" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="authentication-box">
+    <div class="">
+        <div class="authentication-box">
+            <div class="">
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <div role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="viewtable">
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table table-sm table-bordered table-textbreak">
+
+                                                        <thead class="header-style">
+                                                            <tr>
+                                                                <th>Sr no</th>
+                                                                <th hidden>Specification_Industrial_Professional_ID</th>
+                                                                <th>Specification Industrial Professional Name</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                                                                var count = 0;
+                                                                foreach (var item in ViewBag.SpecificationIndustrialProfessionalList)
+                                                                {
+                                                                    count++;
+                                                                    <tr class="table-row">
+                                                                        <td>@count</td>
+                                                                        <td hidden>@item.Specification_Industrial_Professional_ID</td>
+                                                                        <td>@item.Specification_Industrial_Professional_Name</td>
+                                                                        <td>
+                                                                            <form action="#" method="get">
+                                                                                <input type="hidden" name="Sid" value="@item.Specification_Industrial_Professional_ID" id="DId" />
+                                                                                <button type="submit" class="btn btn-link" id="sbutton">
+                                                                                    <span id="showPopup" class="btn btn-success" style="background:#024828!important"><i class='fa fa-edit'></i></span>
+                                                                                </button>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popupContainer" style="display: none;">
+    <a href="#" id="closePopup">Close</a>
+    @using (Html.BeginForm("SpecificationIndustrialProfessional", "UnitRegistration", FormMethod.Post, new { enctype = "multipart/form-data", AUTOCOMPLETE = "Off", id = "form1" }))
+    {
+        <div class="form-group">
+            <label for="currentSpecificationIndustrialProfessional" class="form-label small-input center-input">Current SpecificationIndustrialProfessional <span class="RequiredField">*</span></label>
+            <input type="text" class="form-control small-input center-input" id="currentSpecificationIndustrialProfessional" name="CurrentSpecificationIndustrialProfessional" disabled>
+        </div>
+        <input type="text" class="form-control small-input center-input" id="SpecificationIndustrialProfessionalID" name="Specification_Industrial_Professional_ID" hidden>
+        <div class="form-group">
+            <label for="newSpecificationIndustrialProfessional" class="form-label small-input center-input">New SpecificationIndustrialProfessional <span class="RequiredField">*</span></label>
+            <input type="text" class="form-control small-input center-input" id="newSpecificationIndustrialProfessional" name="Specification_Industrial_Professional_Name" placeholder="New SpecificationIndustrialProfessional" required>
+        </div>
+        <div class="d-flex justify-content-center space-x-2">
+            <div class="">
+                <div class="form-button"> <button class="btn btn-primary" type="submit" style="background:#024828!important">Update SpecificationIndustrialProfessional</button> </div>
+            </div>         
+        </div>
+    }
+</div>
+<!-- Link to show the popup -->
+<script>
+    document.getElementById("showPopup").addEventListener("click", function (e) {
+        e.preventDefault();
+        debugger
+        var SpecificationIndustrialProfessional = e.target.parentElement.parentElement.cells[1].textContent;
+        document.getElementById("popupContainer").style.display = "block";
+    });
+
+    document.getElementById("closePopup").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("popupContainer").style.display = "none";
+    });
+    var tableRows = document.getElementsByClassName("table-row");
+    for (var i = 0; i < tableRows.length; i++) {
+        tableRows[i].addEventListener("click", function (e) {
+            debugger;
+            e.preventDefault();
+            var selectedRow = e.currentTarget;
+            var SpecificationIndustrialProfessionalID = selectedRow.cells[1].textContent;
+            var SpecificationIndustrialProfessional = selectedRow.cells[2].textContent;
+            document.getElementById("SpecificationIndustrialProfessionalID").value = SpecificationIndustrialProfessionalID;
+            document.getElementById("currentSpecificationIndustrialProfessional").value = SpecificationIndustrialProfessional;
+            document.getElementById("popupContainer").style.display = "block";
+        });
+    }
+</script>
+

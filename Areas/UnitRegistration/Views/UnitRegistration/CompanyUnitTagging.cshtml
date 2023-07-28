@@ -1,0 +1,170 @@
+﻿@model CPDMSEF.CUnitTagging
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Company Unit Tagging";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+}
+@{
+    var unitDetails = ViewBag.Unitlist;
+    bool disableDropdown = unitDetails != null && unitDetails.Count > 0;
+    string disabledAttribute = disableDropdown ? "true" : "false";
+
+
+}
+
+@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+
+    </script>
+    ViewBag.msg = null;
+}
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                 <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Unit Entry</li>
+
+                            <li class="breadcrumb-item active">Company Tagging</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false">
+                                            <span class="icon-unlock me-2"></span><b>
+                                                Company Tagging
+                                            </b>
+                                        </a>
+                                    </li>
+                                </ul>
+                               
+                                <div role="tabpanel">
+                                    @using (Html.BeginForm("CompanyUnitTagging", "UnitRegistration", FormMethod.Post, new { AUTOCOMPLETE = "Off", id = "form1" }))
+                                    {
+                                        <div class="form-group">
+                                            <lable>Unit</lable>
+                                            @Html.DropDownListFor(m => m.Unit_Code,  ViewBag.ViewUnitList as IEnumerable<SelectListItem>, "-- Select Unit --", new {@class = "form-control" ,@onchange="UnitTagging()", autofocus = "autofocus",hidden="hidden"})
+                                            <select name="Unit_Code" class="form-control"><option value="@ViewBag.UserName">@ViewBag.Name_of_Unit</option></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <lable>Company</lable>
+                                            @Html.DropDownListFor(m => m.Company_Code, ViewBag.ViewCompanyList as IEnumerable<SelectListItem>, "-- Select Company --", new { @class = "form-control", autofocus = "autofocus", required = "required",id="compnaytag"})
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm text-center" >
+                                                <div class="form-button">
+                                                    <input type="submit" value='@ViewBag.Button' class="btn btn-primary" name="Submit" id="Submit" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="authentication-box">
+    <div class="">
+        <div class="authentication-box">
+            <div class="">
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Unit Lists</b></a> </li>
+                                </ul>
+                                <div role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="viewtable">
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table table-sm table-bordered table-textbreak">
+
+                                                        <thead class="header-style">
+                                                            <tr>
+                                                                <th>
+                                                                    Sr#
+                                                                </th>
+                                                                <th>Company Name</th>
+                                                                <th>Unit Name</th>
+                                                                <th>Action</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in unitDetails)
+                                                            {
+                                                                <tr>
+                                                                    <td>@item.ID</td>
+                                                                    <td>@item.Company_Name</td>
+                                                                    <td>@item.Name_of_Unit</td>
+                                                                    <td>
+                                                                        <form action="CompanyUnitTagging" method="get">
+                                                                            <input type="hidden" name="actionid" value="1" id="action" />
+                                                                            <input type="hidden" name="Cid" value="@item.ID" id="DId" />
+                                                                            <button type="submit" class="btn btn-link" id="sbutton">
+                                                                                <span class="bi bi-trash" style="font-size: 1.5rem; color: rgb(255, 0, 0);"></span>
+                                                                            </button>
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+
+
+<script>
+    var inputElementcom = document.getElementById("compnaytag");
+    var inputElementbtn = document.getElementById("Submit");
+
+    
+    inputElementcom.disabled = @disabledAttribute.ToString().ToLower();
+    inputElementbtn.disabled = @disabledAttribute.ToString().ToLower();
+</script>

@@ -1,0 +1,396 @@
+﻿@model CPDMSEF.yearlyChemicalExport
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "YearlyChemicalExport";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+}
+<style>
+    input[type=text]:focus {
+        border: 2px solid black;
+</style>
+<style>
+    #suggestionList {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+        #suggestionList li {
+            margin-bottom: 5px;
+            cursor: pointer;
+            display: grid;
+        }
+
+    input[type=text]:focus {
+        border: 3px solid black;
+    }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    function Validate() {
+        if (!DropDownValidation("Source", "Source")) {
+            return false;
+        }
+        else if (!DropDownValidation("Chemical_Product_Code", "Product")) {
+            return false;
+        }
+        else if (!DropDownValidation("Substance", "Substance")) {
+            return false;
+
+        }
+
+        var tbodyDownstream = $("#tblDownstream_Data tbody");
+        if (tbodyDownstream.children().length != 0) {
+            var Constituents = '';
+            $('#tblDownstream_Data tbody tr').each(function (index) {
+                var CasNo = $(this).find('td:eq(1)').text();
+                var ExportQuantity = $(this).find('td:eq(2)').text();
+                var ExportUnit = $(this).find('td:eq(3)').text();
+                var ExportValue = $(this).find('td:eq(4)').text();
+
+                Constituents += CasNo + '|' + ExportQuantity + '|' + ExportUnit + '|' + ExportValue + '^';
+            });
+            if (Constituents != '') {
+                $('#Downstream_Data').val(Constituents);
+            }
+        }
+        else {
+            swal('Please Fill all mandatory input !');
+            return false;
+        }
+
+        return true;
+
+    }
+</script>
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitOPTDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Entry</li>
+                            <li class="breadcrumb-item active">Master Entry</li>
+                            <li class="breadcrumb-item active">Sales of Chemicals</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Sales of Petro-Chemicals</b></a> </li>
+                                </ul>
+                                 <div role="tabpanel">
+                                    @using (Html.BeginForm("YearlyPetroChemicalExport", "UnitRegistration", FormMethod.Post, new { AUTOCOMPLETE = "Off", id = "form1" }))
+                                    {
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Source</label> <label class="RequiredField">*</label>
+
+                                        <select class="form-select form-control Source" id="Source" name="Source" aria-label="Default select example">
+                                            <option value="" selected>--Source--</option>
+                                            <option value="1">Produced</option>
+                                            <option value="2">International</option>
+                                            <option value="3">Domestic</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label>Product</label> <label class="RequiredField">*</label>
+
+                                        <select name="Chemical_Product_Code" id="Chemical_Product_Code" class="form-control searchableselect">
+                                            <option value="">-- Select Petro-Chemicals Product --</option>
+                                            @{
+                                                List<CPDMSEF.ChemicalProductGroup> lstChemicalProdModel = (List<CPDMSEF.ChemicalProductGroup>)ViewData["ChemicalProd"];
+                                                if (lstChemicalProdModel != null)
+                                                {
+                                                    foreach (var item in lstChemicalProdModel)
+                                                    {
+                                                        if (item.Chemical_Product_Code == Model.Chemical_Product_Code)
+                                                        {
+                                                                        <option selected="selected" value="@item.Chemical_Product_Code">@item.Chemical_Product_Name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                                        <option value="@item.Chemical_Product_Code">@item.Chemical_Product_Name</option>
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        </select>
+
+                                    </div>
+
+
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label>Substance/Articles/Mixtures</label> <label class="RequiredField">*</label>
+
+                                                    <select class="form-select form-control Substance" id="Substance" name="Substance_Detail_ID" aria-label="Default select example">
+                                                <option value=""  selected>--Select Substance/Articles/Mixtures--</option>
+                                                <option value="1">Articles</option>
+                                                <option value="2">Mixtures</option>
+                                                <option value="3">Substance</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <table id="Downstream" class="table table-bordered Downstream">
+                                        <thead>
+                                            <tr>
+                                                <th>CAS No.</th>
+                                                <th>Export Quantity</th>
+                                                <th>Export Unit</th>
+                                                <th>Export Value(INR)</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" class="form-control CASNo" placeholder="CAS No" />
+                                                            <ul id="suggestionList"></ul>
+                                                </td>
+
+                                                <td><input type="text" placeholder="Export Quantity" class="form-control ExportQuantity" /></td>
+                                                <td>
+                                                    <select id="ReactantsUnitID" name="ReactantsUnitID" class="ExportUnit form-control">
+                                                        <option value="">-- Select --</option>
+                                                        <option value="kg">Kg</option>
+                                                        <option value="mt">MT</option>
+                                                        <option value="MMBtu">MMBtu</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text" placeholder="Export Value" class="form-control ExportValue" />
+                                                </td>
+                                                <td> <button type="button" onclick="addDownstream()" class="btn btn-success" style="background: #329466 !important;"><i class="icon-plus-solid pr-1"></i><i class='fa fa-plus'></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    @Html.HiddenFor(model => model.lstDownstream, new { id = "Downstream_Data" })
+                                    <table id="tblDownstream_Data" class="table table-bordered tblDownstream_Data">
+                                        <thead>
+                                            <tr>
+                                                <th>#SL</th>
+                                                <th>CAS No.</th>
+                                                <th>Export Quantity</th>
+                                                <th>Export Unit</th>
+                                                <th>Export Value</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+
+                                            <div class="row">
+                                                <div class="col-sm" style="text-align: center;">
+                                                    <div class="form-button">
+                                                        <input type="submit" class="btn btn-primary" style="background: #329466 !important;" value="Save" id="save" onclick="return Validate();">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#tblDownstream_Data').hide();
+        function addDownstream() {
+            var checkVal = 0;
+            var cont = 1;
+            var table = document.getElementById("Downstream");
+            var textbox1 = table.getElementsByClassName("CASNo")[0].value;
+            var textbox2 = table.getElementsByClassName("ExportQuantity")[0].value;
+            var textbox3 = table.getElementsByClassName("ExportUnit")[0].value;
+            var textbox4 = table.getElementsByClassName("ExportValue")[0].value;
+
+
+            /*     var ISolvantName = textbox1.value;
+                 $('#Downstream tbody tr').each(function (index) {
+                     // $(this).find('td:eq(0)').text(cont++);
+                     var SolventName = $(this).find('td:eq(1)').text();
+                     if (ISolvantName == SolventName) {
+                         checkVal = 1;
+                         swal('Same Solvent Name alredy exist !');
+                         return false;
+                     }*/
+            if (!(textbox1 == "" || textbox2 == "" || textbox3 == "" || textbox4 == "")) {
+            $('#tblDownstream_Data').show();
+
+            //  $('#addDownstream').click(function () {
+            var cont = 1;
+            /* $('#tblDownstream_Data).show();*/
+            $('#tblDownstream_Data tbody tr').each(function (index) {
+                $(this).find('td:eq(0)').text(cont++);
+            });
+            var CASNo = $('.CASNo').val();
+            var ExportQuantity = $('.ExportQuantity').val();
+            var ExportUnit = $('.ExportUnit').val();
+            var ExportValue = $('.ExportValue').val();
+            // create new row with input values
+            var editButton = '<button class="btn btn-success" style="background:#024828!important;" onclick="EditRow1(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete additional-class" onclick="DeleteRow1(this)"><i class="fa fa-trash-o"></i></button>';
+
+            var newRow = $('<tr><td></td><td>' + CASNo + '</td><td>' + ExportQuantity + '</td><td>' + ExportUnit + '</td><td>' + ExportValue + '</td><td>' + editButton + '</td><td>' + deleteButton + '</td></tr>');
+
+            //var newRow = $('<tr><td>' + cont++ + '</td><td>' + NameUnit + '</td><td>' + designateduser + '</td><td>' + Location + '</td></tr>');
+            // append new row to table
+            $('#tblDownstream_Data tbody').append(newRow);
+            UpdateSerialNumbers1();
+
+            // clear input values
+            $('.CASNo').val('');
+            $('.ExportQuantity').val('');
+            $('.ExportUnit').val('');
+            $('.ExportValue').val('');
+            // });
+            }
+            else {
+                swal('all Field mandatory');
+            }
+        }
+    </script>
+    <script>
+        $('.tblDownstream_Data').change(function () {
+            debugger;
+            if ($('.tblDownstream_Data').val() == "1") {
+                debugger
+
+                $('.tblDownstream_Datat').hide();
+                var rowCount = $("#tblDownstream_Data tr").length;
+                alert(rowCount);
+            }
+            else {
+
+                $('.tblDownstream_Datat').show();
+
+            }
+        });
+
+    </script>
+    <script>
+
+        $('#Chemical_Code').change(function () {
+            debugger;
+            if ($('#Chemical_Code').val() != "") {
+                $.ajax({
+                    url: '/UnitRegistration/UnitRegistration/GetChemicalPetroProduct',
+                    data: { 'Chemical_Code': $('#Chemical_Code').val() },
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
+                        debugger;
+                        var row = "";
+                        $('#Chemical_Product_Code').html('');
+                        row += "<option value=''>-- Select Chemicals Product --</option>";
+                        $.each(data, function (ind, item) {
+                            row += "<option value='" + item.chemical_Product_Code + "'>" + item.chemical_Product_Name + "</option>";
+                        });
+                        $('#Chemical_Product_Code').html(row);
+                    },
+                    error: function (err) {
+
+                    }
+                });
+            }
+            else {
+                var District2 = "";
+                $('#Chemical_Product_Code').html('');
+                District2 += "<option value=''>-- Select Chemicals Product --</option>";
+                $('#Chemical_Product_Code').html(District2);
+
+            }
+        });
+
+        jQuery(document).ready(function () {
+            debugger;
+            if (true) {
+                $.ajax({
+                    url: '/UnitRegistration/UnitRegistration/GetChemicalPetroProduct',
+                    data: { 'Action': 27 },
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
+                        debugger;
+                        var row = "";
+                        $('#Chemical_Product_Code').html('');
+                        row += "<option value=''>-- Select Petro-Chemicals Product --</option>";
+                        $.each(data, function (ind, item) {
+                            row += "<option value='" + item.pChemical_Product_Code + "'>" + item.pChemical_Product_Name + "</option>";
+                        });
+                        $('#Chemical_Product_Code').html(row);
+                    },
+                    error: function (err) {
+
+                    }
+                });
+            }
+            else {
+                var District2 = "";
+                $('#Chemical_Product_Code').html('');
+                District2 += "<option value=''>-- Select Petro-Chemicals Product --</option>";
+                $('#Chemical_Product_Code').html(District2);
+
+            }
+        });
+
+    </script>
+    <script>
+        $('.CASNo').on('input', function () {
+            var inputText = $(this).val();
+            $.ajax({
+                url: '/UnitRegistration/UnitRegistration/CashNoSuggestion',
+                data: { 'inputText': inputText, 'mode': 1 },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    var suggestionList = $('#suggestionList');
+                    suggestionList.empty();
+
+
+                    $.each(data, function (index, suggestion) {
+                        var listItem = $('<li>' + suggestion.casnO_Code + '</li>');
+                        listItem.on('click', function () {
+                            $('.CASNo').val(suggestion.casnO_Code);
+                            suggestionList.empty();
+                        });
+                        suggestionList.append(listItem);
+                    });
+                }
+            });
+        });
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest('.CASNo').length) {
+                var suggestionList = $('#suggestionList');
+                suggestionList.empty();
+            }
+        });
+
+    </script>

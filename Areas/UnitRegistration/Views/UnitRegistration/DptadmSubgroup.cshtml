@@ -1,0 +1,366 @@
+﻿@model CPDMSEF.MasterSubgroup
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Master Subgroup";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+}
+@{
+    var ShowSubgrouplist = ViewBag.ShowSubgrouplist;
+
+}
+<style>
+    #loading-gif {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+
+    /* Styling for the popup container */
+
+
+    #popupContainer {
+        width: 40%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        z-index: 9999;
+        height: 400px;
+        max-height: 600px;
+        overflow: auto;
+    }
+
+    /* Styling for the close link */
+    #closePopup {
+        float: right;
+        color: red;
+        text-decoration: underline;
+    }
+
+    /* Styling for the table inside the popup */
+
+
+
+</style>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+
+    </script>
+    ViewBag.msg = null;
+}
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitDPTADMDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Master Entry</li>
+                            <li class="breadcrumb-item active">Group</li>
+                            <li class="breadcrumb-item active">Chemical SubGroup</li>
+
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false">
+                                            <span class="icon-unlock me-2"></span><b>
+                                                Chemical SubGroup 
+                                            </b>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div role="tabpanel">
+                                    @using (Html.BeginForm("DptadmSubgroup", "UnitRegistration", FormMethod.Post, new { AUTOCOMPLETE = "Off", id = "form1" }))
+                                    {
+                                        <div class="d-flex gap-5">
+                                            <lable style="margin-top: 5px"><h5>Chemical:</h5></lable>
+                                            <div class="form-group">
+
+                                                @Html.DropDownListFor(m => m.Chemical_Code, ViewBag.ViewChemicalList as IEnumerable<SelectListItem>, "-- Select Chemicals --", new { @class = "form-control",autofocus = "autofocus", required = "required" ,style = "width:190px;" })
+
+                                            </div>
+
+                                            <div class="d-flex gap-5">
+                                                <lable style="margin-top: 5px"><h5>Chemical Sub Group:</h5></lable>
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.Chemical_Product_Name, new { @class = "form-control",required = "required",placeholder="Name" , style="width:122%;" })
+
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="margin-left:5px;">
+                                                <div class="col-sm" style="text-align: right;">
+                                                    <div class="col-md-3">
+                                              <div class="form-button">
+                                                            <input type="submit" value='@ViewBag.Button' class="btn btn-primary" name="Submit" id="Submit" style="background:#024828!important; margin-top:-3px;margin-right:-143px;" />
+                                                 </div>
+                                              </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="authentication-box">
+    <div class="">
+        <div class="authentication-box">
+            <div class="">
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Chemical SubGroup</b></a> </li>
+                                </ul>
+                                <div role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="viewtable">
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table table-sm table-bordered table-textbreak">
+
+                                                        <thead class="header-style">
+                                                            <tr>
+
+                                                                <th>
+                                                                    Sr#
+                                                                </th>
+                                                                <th hidden>code</th>
+
+                                                                <th>Chemical Name</th>
+                                                                <th>Chemical Sub Group</th>
+                                                                <th hidden>chemcode</th>
+                                                                <th>Action</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in ShowSubgrouplist)
+                                                            {
+                                                                <tr class="table-row">
+                                                                    <td>@item.ID</td>
+                                                                    <td hidden>@item.Chemical_Product_Code</td>
+                                                                    <td>@item.Chemical_Name</td>
+                                                                    <td>@item.Chemical_Product_Name</td>
+                                                                    <td hidden>@item.Chemical_Code</td>
+
+                                                                    <td>
+                                                                        <form action="#" method="get">
+                                                                            <input type="hidden" name="actionid" value="1" id="action" />
+                                                                            <input type="hidden" name="Cid" value="@item.ID" id="DId" />
+                                                                            <button type="submit" class="btn btn-link" id="showPopup" >
+                                                                                <span class="btn btn-success" style="background:#024828!important"><i class='fa fa-edit'></i></span>
+                                                                            </button>                                                                         
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                                <div id="pagination-container">
+                                                    <ul id="pagination" class="pagination"></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+<div id="popupContainer" style="display: none;">
+    <a href="#" id="closePopup">Close</a>
+    @using (Html.BeginForm("DptadmSubgroup", "UnitRegistration", FormMethod.Post, new { enctype = "multipart/form-data", AUTOCOMPLETE = "Off", id = "form1" }))
+    {
+        <div class="form-group">
+            <label for="currentChemicals" class="form-label small-input center-input">Current Chemicals <span class="RequiredField">*</span></label>
+            <input type="text" class="form-control small-input center-input" id="currentChemicals" name="CurrentChemicals" disabled>
+
+        </div>
+        <input type="text" class="form-control small-input center-input" id="Chemical_Code1" name="Chemical_Code1" hidden>
+
+        <input type="text" class="form-control small-input center-input" id="Chemical_Product_Code" name="Chemical_Product_Code" hidden>
+
+        <div class="form-group">
+            <label for="currentsubChemicals" class="form-label small-input center-input">Current sub Chemicals <span class="RequiredField">*</span></label>
+            <input type="text" class="form-control small-input center-input" id="currentsubChemicals" name="CurrentsubChemicals" disabled>
+
+
+        </div>
+        <div class="form-group">
+            <label for="newSubGroup" class="form-label small-input center-input">New Sub Group <span class="RequiredField">*</span></label>
+            <input type="text" class="form-control small-input center-input" id="newSubGroup" name="NewChemical_Product_Name" placeholder="New Sub Group" required>
+        </div>
+
+
+
+        <div class="d-flex justify-content-center space-x-2">
+            <div class="">
+                <div class="form-button"> <button class="btn btn-primary" type="submit" style="background:#024828!important;">Update Chemicals</button> </div>
+            </div>            
+        </div>
+    }
+</div>
+<!-- Link to show the popup -->
+<script>
+    document.getElementById("showPopup").addEventListener("click", function (e) {
+        e.preventDefault();
+        debugger
+        // var chemicalId = e.target.parentElement.parentElement.cells[1].textContent;
+
+
+
+        document.getElementById("popupContainer").style.display = "block";
+    });
+
+    document.getElementById("closePopup").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("popupContainer").style.display = "none";
+    });
+
+    // Close the popup if clicked outside
+    //document.addEventListener("click", function (e) {
+    //    var popupContainer = document.getElementById("popupContainer");
+    //    var target = e.target;
+
+    //    if (!popupContainer.contains(target) && target !== document.getElementById("showPopup")) {
+    //        popupContainer.style.display = "none";
+    //    }
+    //});
+    var tableRows = document.getElementsByClassName("table-row");
+    for (var i = 0; i < tableRows.length; i++) {
+        tableRows[i].addEventListener("click", function (e) {
+            debugger;
+            e.preventDefault();
+            var selectedRow = e.currentTarget;
+            var chemlId = selectedRow.cells[4].textContent;
+
+            var chemicasublId = selectedRow.cells[1].textContent;
+            var chemicalname = selectedRow.cells[2].textContent;
+            var chemicalsubname = selectedRow.cells[3].textContent;
+
+            // getdetails(chemicalId);
+            // GetReportDetails(i);
+            //chemcode
+            const chemcode1 = document.getElementById("Chemical_Code1");
+            console.log("chemid");
+            console.log(chemlId);
+            chemcode1.value = chemlId;
+
+            const chemcode = document.getElementById("Chemical_Product_Code");
+            chemcode.value = chemicasublId;
+
+            console.log(chemicalsubname);
+            //console.log(chemcode.value);
+
+            //chemical
+            const chemname = document.getElementById("currentChemicals");
+            chemname.value = chemicalname;
+            //subchem
+            //chemical
+            const chemsubname = document.getElementById("currentsubChemicals");
+            chemsubname.value = chemicalsubname;
+
+            document.getElementById("popupContainer").style.display = "block";
+        });
+    }
+</script>
+<script>
+    var currentPage = 1;
+    var rowsPerPage = 5;
+    $(document).ready(function () {
+        function paginateTable() {
+            var table = $('#datatable');
+            var rows = table.find('tbody tr');
+
+
+            var totalPages = Math.ceil(rows.length / rowsPerPage);
+
+
+            var pagination = $('#pagination');
+            pagination.empty();
+
+            for (var i = 1; i <= totalPages; i++) {
+                var link = $('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
+
+
+                if (i === currentPage) {
+                    link.addClass('active');
+                }
+
+                pagination.append(link);
+            }
+
+
+            var startIndex = (currentPage - 1) * rowsPerPage;
+            var endIndex = startIndex + rowsPerPage;
+
+            rows.hide().slice(startIndex, endIndex).show();
+        }
+
+
+        paginateTable();
+
+        $(document).on('click', '#pagination li a', function (event) {
+            event.preventDefault();
+
+            var clickedPage = parseInt($(this).text());
+
+
+            currentPage = clickedPage;
+            paginateTable();
+
+
+            $('html, body').animate({ scrollTop: $('#table-container').offset().top }, 'slow');
+        });
+    });
+
+</script>

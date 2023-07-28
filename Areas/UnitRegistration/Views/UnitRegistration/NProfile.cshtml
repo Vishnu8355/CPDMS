@@ -1,0 +1,182 @@
+﻿@model IEnumerable<CPDMSEF.NProfileEF>
+
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Nodal Profile";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+}
+
+@{
+    var protocol = ViewBag.Protocol;
+    var host = ViewBag.Host;
+
+}
+@if (TempData["Message"] != null)
+{
+    <script>
+        swal("", '@TempData["Message"]', "warning");
+        alert('1');
+        alert('@TempData["Message"]');
+        alert(@TempData["Message"]);
+
+    </script>
+}
+<div class="page-wrapper">
+
+    <div class="page-body-wrapper">
+
+        <div class="page-body">
+
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item">
+                                    <a href="~/CompanyRegistraion/CompanyRegistration/CompanyDashboard"><i data-feather="home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active">Settings</li>
+
+                                <li class="breadcrumb-item active">Profile</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="profile-details text-center">
+                                    <img src="../assets/images/dashboard/designer.jpg" alt=""
+                                         class="img-fluid img-90 rounded-circle blur-up lazyloaded">
+                                    <h5 class="f-w-600 mb-0"> @ViewBag.NameOfUnitCode </h5>
+                                    <span>@ViewBag.Email</span>
+
+                                </div>
+                                <hr>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8">
+                        <div class="card tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="top-profile-tab"
+                                           data-bs-toggle="tab" href="#top-profile" role="tab"
+                                           aria-controls="top-profile" aria-selected="true">
+                                            <i data-feather="user"
+                                               class="me-2"></i>Profile
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-top-tab"
+                                           data-bs-toggle="tab" href="#top-contact" role="tab"
+                                           aria-controls="top-contact" aria-selected="false">
+                                            <i data-feather="settings" class="me-2"></i>Change Password
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="top-tabContent">
+                                    <div class="tab-pane fade show active" id="top-profile" role="tabpanel"
+                                         aria-labelledby="top-profile-tab">
+                                        <h5 class="f-w-600">Profile</h5>
+                                        <div class="table-responsive profile-table">
+                                            <table class="table table-responsive">
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {                                                                                                           
+                                                            <tr>
+                                                                <td>Nodal Name</td>
+                                                                <td>@item.NameOfUnitCode</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>CPIIC Code</td>
+                                                                <td>@item.CPIIC</td>
+                                                            </tr>
+                                                        <tr>
+                                                            <td> Name</td>
+                                                            <td>@item.AD_Name</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Mobile No </td>
+                                                            <td>@item.AD_Mobile_no</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> Email ID</td>
+                                                            <td>@item.AD_Email</td>
+                                                        </tr>
+                                                            <tr>
+                                                                <td>Unit Address</td>
+                                                                <td>@item.Address</td>
+                                                            </tr>
+                                                         
+                                                            @*<tr>
+                                                                <td>latitude</td>
+                                                                <td>@item.Lat</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>longitude</td>
+                                                                <td>@item.Lon</td>
+                                                            </tr> *@                        
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="top-contact" role="tabpanel"
+                                         aria-labelledby="contact-top-tab">
+                                        <div class="container dash dash1">
+                                            @using (Html.BeginForm("ChangePassword", "UnitRegistration", FormMethod.Post, new { enctype = "multipart/form-data", AUTOCOMPLETE = "Off", id = "form1" }))
+                                            {
+                                                <div class="form-group">
+                                                    <label for="currentPassword" class="form-label small-input center-input">Current Password <span class="RequiredField">*</span></label>
+                                                    <input type="text" class="form-control small-input center-input" id="currentPassword" name="CurrentPassword" placeholder="Current Password" required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="newPassword" class="form-label small-input center-input">New Password <span class="RequiredField">*</span></label>
+                                                    <input type="text" class="form-control small-input center-input" id="newPassword" name="NewPassword" placeholder="New Password" required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="confirmNewPassword" class="form-label small-input center-input">Confirm New Password <span class="RequiredField">*</span></label>
+                                                    <input type="text" class="form-control small-input center-input" id="confirmNewPassword" name="ConfirmNewPassword" placeholder="Confirm New Password" required>
+                                                </div>
+
+                                                <div class="d-flex justify-content-center space-x-2">
+                                                    <div class="">
+                                                        <div class="form-button"> <button class="btn btn-primary" type="submit" style="background: #3f9b53 !important;">Update Password</button> </div>
+                                                    </div>
+                                                    &nbsp;
+                                                    &nbsp;
+                                                    &nbsp;
+                                                    &nbsp;
+                                                    <div class="">
+                                                        <div class="form-button"> <button class="btn btn-primary" type="reset" style="background: #3f9b53 !important;">Reset</button> </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+

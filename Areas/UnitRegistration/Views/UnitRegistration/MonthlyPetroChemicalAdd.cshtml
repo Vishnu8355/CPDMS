@@ -1,0 +1,1340 @@
+﻿@model CPDMSEF.MonthlyChemicalEF
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Monthly petro Chemical Add";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+    label {
+        display: inline-block;
+        marginLeft: -2rem;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+        marginLeft: 1rem
+    }
+
+    .col-75 {
+        float: left !important;
+        width: 95% !important;
+        margin-top: 6px !important;
+    }
+
+    .col-70 {
+        float: left !important;
+        width: 50% !important;
+        margin-top: 6px !important;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+    @@media screen and (max-width: 600px) {
+
+        .col-75,
+        .col-70 input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+        }
+
+        .sell2 {
+            margin-left: 0rem;
+        }
+
+        .sell4 {
+            margin-left: 0rem;
+        }
+    }
+
+    .sell3 {
+        margin-left: -2rem;
+    }
+
+    .sell {
+        margin-left: -2rem;
+    }
+
+    input[type=text]:focus {
+        border: 2px solid gray;
+    }
+</style>
+<style>
+    .fixed-columns {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background-color: #fff;
+    }
+
+    #tblMain_Constituents_Data thead th:first-child,
+    #tblMain_Constituents_Data tbody td:first-child {
+        position: sticky;
+        left: 0;
+        background-color: #fff;
+        z-index: 2;
+    }
+
+    #tblMain_Constituents_Data thead th:nth-child(2),
+    #tblMain_Constituents_Data tbody td:nth-child(2) {
+        position: sticky;
+        left: 50px;
+        background-color: #fff;
+        z-index: 2;
+    }
+
+    input[type=text]:focus {
+        border: 3px solid black;
+    }
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    function lettersOnly() {
+        var regex = new RegExp("^[a-zA-Z ]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    }
+    function decimalOnly() {
+        var regex = /^\d*\.?\d*$/;
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    }
+
+
+    function Validate() {
+        debugger;
+        if (!DropDownValidation("Fyear_Code", "Financial Year")) {
+            return false;
+        }
+        else if (!DropDownValidation("Month_Code", "Month")) {
+            return false;
+        }
+        //else if (!DropDownValidation("Chemical_Code", "Chemical Code")) {
+        //    return false;
+        //}
+        else if (!DropDownValidation("Chemical_Product_Code", "Chemical Product Code")) {
+            return false;
+
+        }
+
+        else if (!DropDownValidation("PhysicalStateID", "Physical State")) {
+            return false;
+        }
+        else if (!blankFieldValidation("M_Production_Quantity", "Production Quantity")) {
+            return false;
+        }
+        //else if (!DropDownValidation("ProductionUnitID", "Production Unit")) {
+        //    return false;
+        
+        else if (!blankFieldValidation("M_Product_Value", "Product Value")) {
+            return false;
+        }
+        else if (!blankFieldValidation("M_Export_Quantity_KG", "Export Quantity")) {
+            return false;
+        }
+        else if (!DropDownValidation("ExportUnitID", "Export Unit")) {
+            return false;
+        }
+        else if (!blankFieldValidation("M_Export_Value_Rs", "Export Value")) {
+            return false;
+        }
+        var tbody = $("#tblMain_ReactantsData tbody");
+        if (tbody.children().length != 0) {
+            var ReactantsConstituents = '';
+            $('#tblMain_ReactantsData tbody tr').each(function (index) {
+                var ReactantsCas = $(this).find('td:eq(0)').text();
+                var ReactantsName = $(this).find('td:eq(1)').text();
+                var ReactantsQuantity = $(this).find('td:eq(2)').text();
+                var ReactantsUnit = $(this).find('td:eq(3)').text();
+                var ReactantsPhysicalState = $(this).find('td:eq(4)').text();
+                var ReactantsProcuredfrom = $(this).find('td:eq(5)').text();
+
+
+                ReactantsConstituents += ReactantsCas + '|' + ReactantsName + '|' + ReactantsQuantity + '|' + ReactantsUnit + '|' + ReactantsPhysicalState + '|' + ReactantsProcuredfrom + '^';
+
+            });
+            if (ReactantsConstituents != '') {
+                $('#Main_Constituents_ReactantsData').val(ReactantsConstituents);
+            }
+        }
+        var tbody2 = $("#tblMain_CatalystData tbody");
+        if (tbody2.children().length != 0) {
+            var CatalystConstituents = '';
+            $('#tblMain_CatalystData tbody tr').each(function (index) {
+
+                var CatalystCas = $(this).find('td:eq(0)').text();
+                var CatalystName = $(this).find('td:eq(1)').text();
+                var CatalystQuantity = $(this).find('td:eq(2)').text();
+                var CatalystUnit = $(this).find('td:eq(3)').text();
+                var CatalystPhysicalStat = $(this).find('td:eq(4)').text();
+                var CatalystProcuredfrom = $(this).find('td:eq(5)').text();
+
+                CatalystConstituents += CatalystCas + '|' + CatalystName + '|' + CatalystQuantity + '|' + CatalystUnit + '|' + CatalystPhysicalStat + '|' + CatalystProcuredfrom + '^';
+
+            });
+            if (CatalystConstituents != '') {
+                $('#Main_Constituents_CatalystData').val(CatalystConstituents);
+            }
+        }
+        var tbody3 = $("#tblMain_SolventData tbody");
+        if (tbody3.children().length != 0) {
+            var SolvantConstituents = '';
+            $('#tblMain_SolventData tbody tr').each(function (index) {
+                var SolvantCas = $(this).find('td:eq(0)').text();
+                var SolventName = $(this).find('td:eq(1)').text();
+                var SolventQuantity = $(this).find('td:eq(2)').text();
+                var SolventUnit = $(this).find('td:eq(3)').text();
+                var SolventPhysicalState = $(this).find('td:eq(4)').text();
+                var SolventProcuredfrom = $(this).find('td:eq(5)').text();
+
+                SolvantConstituents += SolvantCas + '|' + SolventName + '|' + SolventQuantity + '|' + SolventUnit + '|' + SolventPhysicalState + '|' + SolventProcuredfrom + '^';
+
+            });
+            if (SolvantConstituents != '') {
+                $('#Main_Constituents_SolventData').val(SolvantConstituents);
+            }
+        }
+        var tbody4 = $("#tblMain_AnyOtherData tbody");
+        if (tbody4.children().length != 0) {
+            var AnyOhterConstituents = '';
+            $('#tblMain_AnyOtherData tbody tr').each(function (index) {
+
+                var AnyOtherCas = $(this).find('td:eq(0)').text();
+                var AnyOtherName = $(this).find('td:eq(1)').text();
+                var AnyOtherQuantity = $(this).find('td:eq(2)').text();
+                var AnyOtherUnit = $(this).find('td:eq(3)').text();
+                var AnyOtherPhysicalState = $(this).find('td:eq(4)').text();
+                var AnyOtherProcuredfrom = $(this).find('td:eq(5)').text();
+
+                AnyOhterConstituents += AnyOtherCas + '|' + AnyOtherName + '|' + AnyOtherQuantity + '|' + AnyOtherUnit + '|' + AnyOtherPhysicalState + '|' + AnyOtherProcuredfrom + '^';
+
+            });
+            if (AnyOhterConstituents != '') {
+                $('#Main_Constituents_AnyOtherData').val(AnyOhterConstituents);
+            }
+        }
+        //var tbody = $("#tblMain_Constituents_Data tbody");
+        //if (tbody.children().length != 0) {
+        //    var Constituents = '';
+        //    $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+        //        var ReactantsName = $(this).find('td:eq(1)').text();
+        //        var ReactantsQuantity = $(this).find('td:eq(2)').text();
+        //        var ReactantsUnit = $(this).find('td:eq(3)').text();
+        //        var ReactantsPhysicalState = $(this).find('td:eq(4)').text();
+        //        var ReactantsProcuredfrom = $(this).find('td:eq(5)').text();
+
+        //        var CatalystName = $(this).find('td:eq(6)').text();
+        //        var CatalystQuantity = $(this).find('td:eq(7)').text();
+        //        var CatalystUnit = $(this).find('td:eq(8)').text();
+        //        var CatalystPhysicalStat = $(this).find('td:eq(9)').text();
+        //        var CatalystProcuredfrom = $(this).find('td:eq(10)').text();
+
+        //        var SolventName = $(this).find('td:eq(11)').text();
+        //        var SolventQuantity = $(this).find('td:eq(12)').text();
+        //        var SolventUnit = $(this).find('td:eq(13)').text();
+        //        var SolventPhysicalState = $(this).find('td:eq(14)').text();
+        //        var SolventProcuredfrom = $(this).find('td:eq(15)').text();
+
+        //        var AnyOtherName = $(this).find('td:eq(16)').text();
+        //        var AnyOtherQuantity = $(this).find('td:eq(17)').text();
+        //        var AnyOtherUnit = $(this).find('td:eq(18)').text();
+        //        var AnyOtherPhysicalState = $(this).find('td:eq(19)').text();
+        //        var AnyOtherProcuredfrom = $(this).find('td:eq(20)').text();
+
+        //        Constituents += ReactantsName + '|' + ReactantsQuantity + '|' + ReactantsUnit + '|' + ReactantsPhysicalState + '|' + ReactantsProcuredfrom + '|' + CatalystName + '|' + CatalystQuantity + '|' + CatalystUnit + '|' + CatalystPhysicalStat + '|' + CatalystProcuredfrom + '|' + SolventName + '|' + SolventQuantity + '|' + SolventUnit + '|' + SolventPhysicalState + '|' + SolventProcuredfrom + '|' + AnyOtherName + '|' + AnyOtherQuantity + '|' + AnyOtherUnit + '|' + AnyOtherPhysicalState + '|' + AnyOtherProcuredfrom + '^';
+
+        //    });
+        //    if (Constituents != '') {
+        //        $('#Main_Constituents_Data').val(Constituents);
+        //    }
+        //}
+        return true;
+    }
+</script>
+
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Entry</li>
+                            <li class="breadcrumb-item active">Monthly</li>
+                            <li class="breadcrumb-item active">Petro-Chemicals</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Petro-Chemicals</b></a> </li>
+                                </ul>
+                                <form method="post" enctype="multipart/form-data" action="#" class="file-upload-form">
+                                    <label for="file-upload" class="file-upload-label">
+                                        <span>Excel Import</span>
+                                        <input type="file" id="file-upload" name="file" accept=".xlsx, .xls" />
+                                    </label>
+                                    <button type="submit" class="upload-button">Upload</button>
+                                </form>
+                                <div role="tabpanel">
+                                    @using (Html.BeginForm("MonthlyPetroChemicalAdd", "UnitRegistration", FormMethod.Post, new { AUTOCOMPLETE = "Off", id = "form1" }))
+                                    {
+                                        <div class="row mb-4">
+                                            <div class="col">
+                                                <div class="form-outline ">
+                                                    <label for="lname">
+                                                        Financial Year
+                                                    </label>
+                                                    <div class="col-75">
+                                                        @Html.DropDownListFor(m => m.Fyear_Code, ViewBag.ViewFinYEarList as IEnumerable<SelectListItem>, "-- Select Financial Year --", new { @class = "form-control", autofocus = "autofocus",style="height: 42px;width : 94%" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-outline">
+                                                    <div class="row">
+                                                        <label for="lname">
+                                                            Month
+                                                        </label>
+                                                        <div class="col-75">
+                                                            @Html.DropDownListFor(m => m.Month_Code, ViewBag.ViewMonthList as IEnumerable<SelectListItem>, "-- Select Month --", new { @class = "form-control", autofocus = "autofocus",style="height: 42px;width : 94%" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col">
+                                                <div class="form-outline ">
+                                                    <label for="lname">
+                                                        Product
+                                                    </label>
+                                                    <div class="col-75">
+                                                        @Html.DropDownListFor(m => m.Chemical_Product_Code, ViewBag.ViewChemicalGroupList as IEnumerable<SelectListItem>, "-- Select Product --", new { @class = "form-control", autofocus = "autofocus",style="height: 42px;width : 94%" })
+                                                        @* <select name="Chemical_Product_Code" id="Chemical_Product_Code" class="form-control searchableselect" style="height: 42px;
+                                                    width : 94%">
+                                                    <option value="">-- Select Chemical Product --</option>
+                                                    @{
+                                                    List<CPDMSEF.ChemicalProductGroup> lstChemicalProdModel = (List<CPDMSEF.ChemicalProductGroup>)ViewData["ChemicalProd"];
+                                                    if (lstChemicalProdModel != null)
+                                                    {
+                                                    foreach (var item in lstChemicalProdModel)
+                                                    {
+                                                    if (item.Chemical_Product_Code == Model.Chemical_Product_Code)
+                                                    {
+                                                    <option selected="selected" value="@item.Chemical_Product_Code">@item.Chemical_Product_Name</option>
+                                                    }
+                                                    else
+                                                    {
+                                                    <option value="@item.Chemical_Product_Code">@item.Chemical_Product_Name</option>
+                                                    }
+                                                    }
+                                                    }
+                                                    }
+                                                    </select>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-outline">
+                                                    <div class="row">
+                                                        <label for="lname">
+                                                            Physical State
+                                                        </label>
+                                                        <div class="col-75">
+                                                            @Html.DropDownListFor(m => m.PhysicalStateID, ViewBag.ViewPhyStateList as IEnumerable<SelectListItem>, "-- Select Physical State --", new { @class = "form-control", autofocus = "autofocus",style="height: 42px;width : 94%"  })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" style="display:none">
+                                            <label>Group</label> <label class="RequiredField">*</label>
+
+                                            @Html.DropDownListFor(m => m.Chemical_Code, ViewBag.ViewChemicalGroupList as IEnumerable<SelectListItem>, "-- Select Group --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+
+
+                                        <div class="form-group ">
+                                            <button type="button" class="form-control "
+                                                    style="background: #329466; color: white; text-align: center;">
+                                                Substance details &nbsp; <h5 style="color:white;">Note : Leave the Field empty if not applicable</h5>
+
+                                            </button>
+                                        </div>
+                                        <div class="row mb-4">
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <div class="col">
+                                                <div class="form-outline">
+                                                    <div class="row">
+                                                        <label for="lname">
+                                                            Production Quantity
+                                                        </label>
+                                                        <div class="col-75 d-flex">
+
+                                                            @Html.TextBoxFor(m => m.M_Production_Quantity, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Production Quantity" })
+                                                            @Html.DropDownListFor(m => m.ProductionUnitID, ViewBag.ViewPhyUnitList as IEnumerable<SelectListItem>, "-- Select Unit --", new { @class = "physicalState", autofocus = "autofocus",style="width: 31%; display:none"})
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col">
+                                                <div class="form-outline">
+                                                    <div class="row">
+                                                        <label for="lname">
+                                                            Product Value(in INR)
+                                                        </label>
+                                                        <div class="col-75 d-flex">
+                                                            @Html.TextBoxFor(m => m.M_Product_Value, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Product Value(in INR)" })
+                                                            @Html.DropDownListFor(m => m.ProductionUnitID, ViewBag.ViewPhyUnitList as IEnumerable<SelectListItem>, "-- Select Unit --", new { @class = "physicalState", autofocus = "autofocus",style="width: 31%; display:none"})
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col">
+                                                <div class="form-outline">
+                                                    <div class="row">
+                                                        <label for="lname">
+                                                            Dispatch Quantity of the Final Product
+                                                        </label>
+                                                        <div class="col-75 d-flex">
+
+                                                            @Html.TextBoxFor(m => m.M_Dispatched_Quantity, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Dispatch Quantity of the Final Product" })
+                                                            @Html.DropDownListFor(m => m.DispatchedUnitID, ViewBag.ViewPhyUnitList as IEnumerable<SelectListItem>, "-- Select Unit --", new { @class = "physicalState", autofocus = "autofocus",style="width: 31%; display:none" })
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        @* <div class="row">
+                                    <div class="col-sm">
+                                    <div class="form-group">
+                                    <label>Export Quantity</label> <label class="RequiredField">*</label>
+                                    @Html.TextBoxFor(m => m.M_Export_Quantity_KG, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Export quantity" })
+                                    @Html.DropDownListFor(m => m.ExportUnitID, ViewBag.ViewPhyUnitList as IEnumerable<SelectListItem>, "-- Select Physical Unit --", new { @class = "form-control", autofocus = "autofocus" })
+                                    </div>
+                                    </div>
+
+                                    <div class="col-sm">
+                                    <div class="form-group">
+                                    <label>Export Value(in INR)</label> <label class="RequiredField">*</label>
+                                    @Html.TextBoxFor(m => m.M_Export_Value_Rs, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Export value(in INR)" })
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-sm">
+                                    <div class="form-group">
+                                    <label>
+                                    If procured from Domestic Industry (Mention Quantity)
+                                    </label> <label class="RequiredField">*</label>
+                                    @Html.TextBoxFor(m => m.M_Domestic_Quantity, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="If procured from Domestic Industry (Mention Quantity)" })
+                                    @Html.DropDownListFor(m => m.DomesticUnitID, ViewBag.ViewPhyUnitList as IEnumerable<SelectListItem>, "-- Select Physical Unit --", new { @class = "form-control", autofocus = "autofocus" })
+                                    </div>
+                                    </div>
+
+                                    <div class="col-sm">
+                                    <div class="form-group">
+                                    <label>
+                                    Value of the Procured Quantity  (in INR)
+                                    </label> <label class="RequiredField">*</label>
+                                    @Html.TextBoxFor(m => m.M_Domestic_Value, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Value of the Procured Quantity  (in INR)" })
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-sm">
+                                    <div class="form-group">
+                                    <label>
+                                    if procured from Imported  (Mention Quantity)
+                                    </label> <label class="RequiredField">*</label>
+                                    @Html.TextBoxFor(m => m.M_Import_Quantity_KG, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="if procured from Imported  (Mention Quantity)" })
+                                    @Html.DropDownListFor(m => m.ImportedUnitID, ViewBag.ViewPhyUnitList as IEnumerable<SelectListItem>, "-- Select Physical Unit --", new { @class = "form-control", autofocus = "autofocus" })
+                                    </div>
+                                    </div>
+
+                                    <div class="col-sm">
+                                    <div class="form-group">
+                                    <label>
+                                    Value of the Procured Quantity  (in INR)
+                                    </label> <label class="RequiredField">*</label>
+                                    @Html.TextBoxFor(m => m.M_Import_Value, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Value of the Procured Quantity  (in INR)" })
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-sm">
+                                    <div class="form-group">
+                                    <label>
+                                    Dispatch Quantity of the Final Product
+
+                                    </label> <label class="RequiredField">*</label>
+
+                                    </div>
+                                    </div>
+
+                                    <div class="col-sm">
+                                    <div class="form-group">
+                                    <label>
+                                    Sales Quantity (To be entered Quarterly)
+                                    </label> <label class="RequiredField">*</label>
+                                    @Html.TextBoxFor(m => m.M_Sales_Quantity, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder=" Sales Quantity (To be entered Quarterly)" })
+                                    @Html.DropDownListFor(m => m.SalesUnitID, ViewBag.ViewPhyUnitList as IEnumerable<SelectListItem>, "-- Select Physical Unit --", new { @class = "form-control", autofocus = "autofocus" })
+                                    </div>
+                                    </div>
+                                    </div>*@
+                                        @* <div class="form-group">
+                                    @Html.TextBoxFor(m => m.M_Reason_Variation, new {onkeypress = "lettersOnly()", @class = "form-control",placeholder="Reason for variation in the production" })
+                                    </div>
+                                    <div class="form-group">
+                                    @Html.TextBoxFor(m => m.M_Opening_Stocks_KG, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Opening Stocks (quantity in KG)" })
+                                    </div>
+                                    <div class="form-group">
+                                    @Html.TextBoxFor(m => m.M_Closing_Stocks_KG, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Closing Stocks (quantity in KG)" })
+                                    </div>
+                                    <div class="form-group">
+                                    @Html.TextBoxFor(m => m.M_Exfactory_Value, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Per unit ex-factory value (in Rs)" })
+                                    </div>
+                                    <div class="form-group">
+                                    @Html.TextBoxFor(m => m.M_Sales_Quantity, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Sales quantity (Domestic in KG)" })
+                                    </div>
+                                    <div class="form-group">
+                                    @Html.TextBoxFor(m => m.M_Export_Quantity_KG, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Export quantity (in KG)" })
+                                    </div>
+                                    <div class="form-group">
+
+                                    </div>
+                                    <div class="form-group">
+                                    @Html.TextBoxFor(m => m.M_Import_Quantity_KG, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Import quantity (in KG)" })
+                                    </div>
+                                    <div class="form-group">
+                                    @Html.TextBoxFor(m => m.M_Import_Value, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="Import value(in Rs)" })
+                                    </div>*@
+                                        <div class="table-responsive">
+                                            <table id="tblMain_Constituents_ReactantsData" class="table table-bordered tblMain_Constituents_Data">
+                                                <thead>
+                                                    <tr style="background: #329466 !important; color: black; text-align: center;">
+
+                                                        <th colspan="3" style="background: #329466 !important; color: white; text-align: center;">Reactants</th>
+                                                        <th colspan="3">
+                                                            <select id="ReatantSubsType" name="ReatantSubsType" class="" style="width: 31%">
+                                                                <option value="0">Select</option>
+                                                                <option value="1">Substance</option>
+                                                                <option value="2">Mixture</option>
+                                                            </select>
+                                                        </th>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="fixed-columns">CAS No.</th>
+                                                        <th class="fixed-columns">Name</th>
+                                                        <th>Quantity</th>
+                                                        <th>Unit</th>
+                                                        <th>Physical State</th>
+                                                        <th>Procured from </th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="text" class="ReactantsCas" /></td>
+                                                        <td><input type="text" class="ReactantsName" /></td>
+                                                        <td><input type="text" class="ReactantsQuantity" /></td>
+                                                        <td>
+                                                            <select id="ReactantsUnitID" name="ReactantsUnitID" class="ReactantsUnit">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="kg">Kg</option>
+                                                                <option value="mt">MT</option>
+                                                                <option value="MMBtu">MMBtu</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select id="ReactantsPhysicalStateID" name="ReactantsPhysicalStateID" class="ReactantsPhysicalState">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="Solid">Solid</option>
+                                                                <option value="Liqued">Liquid</option>
+                                                                <option value="Gas">Gas</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select id="ReactantsProcuredfromID" name="ReactantsProcuredfromID" class="ReactantsProcuredfrom">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="Domestic Industry">Domestic Industry </option>
+                                                                <option value="Imported">Imported</option>
+                                                            </select>
+                                                        </td>
+                                                        <td> <button type="button" onclick="AddReactantsRow()" class="btn btn-success"><i class="icon-plus-solid pr-1"></i><i class='fa fa-plus'></i></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="table-responsive">
+                                                <table id="tblMain_ReactantsData" class="table table-bordered tblMain_Constituents_Data">
+                                                    <thead>
+                                                        <tr style="background: #329466 !important; color: black; text-align: center;">
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th class="fixed-columns">CAS No.</th>
+                                                            <th class="fixed-columns">Name</th>
+                                                            <th>Quantity</th>
+                                                            <th>Unit</th>
+                                                            <th>Physical State</th>
+                                                            <th>Procured from </th>
+                                                            <th>Action </th>
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table id="tblMain_Constituents_CatalystData" class="table table-bordered tblMain_Constituents_Data">
+                                                <thead>
+                                                    <tr style="background: #329466 !important; color: black; text-align: center;">
+
+                                                        <th colspan="3" style="background: #329466 !important; color: white; text-align: center;">Catalyst</th>
+                                                        <th colspan="3">
+                                                            <select id="PhysicalStateID" name="PhysicalStateID" class="" style="width: 31%">
+                                                                <option value="">Select</option>
+                                                                <option>Substance</option>
+                                                                <option>Mixture</option>
+                                                            </select>
+                                                        </th>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="fixed-columns">CAS No.</th>
+                                                        <th class="fixed-columns">Name</th>
+                                                        <th>Quantity</th>
+                                                        <th>Unit</th>
+                                                        <th>Physical State</th>
+                                                        <th>Procured from </th>
+
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="text" class="CatalystCas" /></td>
+                                                        <td><input type="text" class="CatalystName" /></td>
+                                                        <td><input type="text" class="CatalystQuantity" /></td>
+                                                        <td>
+                                                            <select id="CatalystUnitID" name="CatalystUnitID" class="CatalystUnit">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="kg">Kg</option>
+                                                                <option value="mt">MT</option>
+                                                                <option value="MMBtu">MMBtu</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select id="CatalystPhysicalStateID" name="CatalystPhysicalStateID" class="CatalystPhysicalState">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="Solid">Solid</option>
+                                                                <option value="Liqued">Liquid</option>
+                                                                <option value="Gas">Gas</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select id="CatalystProcuredfromID" name="CatalystProcuredfromID" class="CatalystProcuredfrom">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="Domestic Industry">Domestic Industry </option>
+                                                                <option value="Imported">Imported</option>
+                                                            </select>
+                                                        </td>
+                                                        <td> <button type="button" onclick="AddCatalystRow()" class="btn btn-success"><i class="icon-plus-solid pr-1"></i><i class='fa fa-plus'></i></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="table-responsive">
+                                                <table id="tblMain_CatalystData" class="table table-bordered tblMain_Constituents_Data">
+                                                    <thead>
+                                                        <tr style="background: #329466 !important; color: black; text-align: center;">
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th class="fixed-columns">CAS No.</th>
+                                                            <th class="fixed-columns">Name</th>
+                                                            <th>Quantity</th>
+                                                            <th>Unit</th>
+                                                            <th>Physical State</th>
+                                                            <th>Procured from </th>
+                                                            <th>Action </th>
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table id="tblMain_Constituents_SolventData" class="table table-bordered tblMain_Constituents_Data">
+                                                <thead>
+                                                    <tr style="background: #329466 !important; color: black; text-align: center;">
+
+                                                        <th colspan="3" style="background: #329466 !important; color: white; text-align: center;">Solvent</th>
+                                                        <th colspan="3">
+                                                            <select id="PhysicalStateID" name="PhysicalStateID" class="" style="width: 31%">
+                                                                <option value="">Select</option>
+                                                                <option>Substance</option>
+                                                                <option>Mixture</option>
+                                                            </select>
+                                                        </th>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="fixed-columns">CAS No.</th>
+                                                        <th class="fixed-columns">Name</th>
+                                                        <th>Quantity</th>
+                                                        <th>Unit</th>
+                                                        <th>Physical State</th>
+                                                        <th>Procured from </th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="text" class="SolventCas" /></td>
+                                                        <td><input type="text" class="SolventName" /></td>
+                                                        <td><input type="text" class="SolventQuantity" /></td>
+                                                        <td>
+                                                            <select id="SolventUnitID" name="SolventUnitID" class="SolventUnit">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="kg">Kg</option>
+                                                                <option value="mt">MT</option>
+                                                                <option value="MMBtu">MMBtu</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select id="SolventPhysicalStateID" name="SolventPhysicalStateID" class="SolventPhysicalState">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="Solid">Solid</option>
+                                                                <option value="Liqued">Liquid</option>
+                                                                <option value="Gas">Gas</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select id="SolventProcuredfromID" name="SolventProcuredfromID" class="SolventProcuredfrom">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="Domestic Industry">Domestic Industry </option>
+                                                                <option value="Imported">Imported</option>
+                                                            </select>
+                                                        </td>
+                                                        <td> <button type="button" onclick="AddSolventRow()" class="btn btn-success"><i class="icon-plus-solid pr-1"></i><i class='fa fa-plus'></i></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="table-responsive">
+                                                <table id="tblMain_SolventData" class="table table-bordered tblMain_Constituents_Data">
+                                                    <thead>
+                                                        <tr style="background: #329466 !important; color: black; text-align: center;">
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th class="fixed-columns">CAS No.</th>
+                                                            <th class="fixed-columns">Name</th>
+                                                            <th>Quantity</th>
+                                                            <th>Unit</th>
+                                                            <th>Physical State</th>
+                                                            <th>Procured from </th>
+                                                            <th>Action </th>
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table id="tblMain_Constituents_AnyOtherData" class="table table-bordered tblMain_Constituents_Data">
+                                                <thead>
+                                                    <tr style="background: #329466 !important; color: black; text-align: center;">
+
+                                                        <th colspan="3" style="background: #329466 !important; color: white; text-align: center;">Any other substances</th>
+                                                        <th colspan="3">
+                                                            <select id="PhysicalStateID" name="PhysicalStateID" class="" style="width: 31%">
+                                                                <option value="">Select</option>
+                                                                <option>Substance</option>
+                                                                <option>Mixture</option>
+                                                            </select>
+                                                        </th>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="fixed-columns">CAS No.</th>
+                                                        <th class="fixed-columns">Name</th>
+                                                        <th>Quantity</th>
+                                                        <th>Unit</th>
+                                                        <th>Physical State</th>
+                                                        <th>Procured from </th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="text" class="AnyOtherCas" /></td>
+                                                        <td><input type="text" class="AnyOtherName" /></td>
+                                                        <td><input type="text" class="AnyOtherQuantity" /></td>
+                                                        <td>
+                                                            <select id="AnyOtherUnitID" name="AnyOtherUnitID" class="AnyOtherUnit">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="kg">Kg</option>
+                                                                <option value="mt">MT</option>
+                                                                <option value="MMBtu">MMBtu</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select id="AnyOtherPhysicalStateID" name="AnyOtherPhysicalStateID" class="AnyOtherPhysicalState">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="Solid">Solid</option>
+                                                                <option value="Liqued">Liquid</option>
+                                                                <option value="Gas">Gas</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select id="AnyOtherProcuredfromID" name="AnyOtherProcuredfromID" class="AnyOtherProcuredfrom">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="Domestic Industry">Domestic Industry </option>
+                                                                <option value="Imported">Imported</option>
+                                                            </select>
+                                                        </td>
+                                                        <td> <button type="button" onclick="AddAnyOtherRow()" class="btn btn-success"><i class="icon-plus-solid pr-1"></i><i class='fa fa-plus'></i></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="table-responsive">
+                                                <table id="tblMain_AnyOtherData" class="table table-bordered tblMain_Constituents_Data">
+                                                    <thead>
+                                                        <tr style="background: #329466 !important; color: black; text-align: center;">
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th class="fixed-columns">CAS No.</th>
+                                                            <th class="fixed-columns">Name</th>
+                                                            <th>Quantity</th>
+                                                            <th>Unit</th>
+                                                            <th>Physical State</th>
+                                                            <th>Procured from </th>
+                                                            <th>Action </th>
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        @Html.HiddenFor(model => model.lstMainReactantsConstituents, new { id = "Main_Constituents_ReactantsData" })
+                                        @Html.HiddenFor(model => model.lstMainCatalystConstituents, new { id = "Main_Constituents_CatalystData" })
+                                        @Html.HiddenFor(model => model.lstMainSolventConstituents, new { id = "Main_Constituents_SolventData" })
+                                        @Html.HiddenFor(model => model.lstMainAnyOtherConstituents, new { id = "Main_Constituents_AnyOtherData" })
+
+                                        <div class="row">
+                                            <div class="col-sm" style="text-align: right;">
+                                                <div class="form-button">
+                                                    <input type="submit" value='@ViewBag.Button' style="background: #329466 !important;" class="btn btn-primary" name="btnSubmit" id="btnSubmit" onclick="return Validate();" />
+                                                    @*<button class="btn btn-primary" type="submit">Save</button>*@
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <div class="form-button">
+                                                    <button class="btn btn-primary" style="background: #329466 !important;" type="reset">Reset</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+
+
+
+
+<script>
+
+    //$('#Chemical_Code').change(function () {
+    //    debugger;
+    //    if ($('#Chemical_Code').val() != "") {
+    //        $.ajax({
+    //            url: '/UnitRegistration/UnitRegistration/GetChemicalProductByID',
+    //            data: { 'Chemical_Code': $('#Chemical_Code').val() },
+    //            dataType: 'json',
+    //            type: 'post',
+    //            success: function (data) {
+    //                debugger;
+    //                var row = "";
+    //                $('#Chemical_Product_Code').html('');
+    //                row += "<option value=''>-- Select Chemical Product --</option>";
+    //                $.each(data, function (ind, item) {
+    //                    row += "<option value='" + item.chemical_Product_Code + "'>" + item.chemical_Product_Name + "</option>";
+    //                });
+    //                $('#Chemical_Product_Code').html(row);
+    //            },
+    //            error: function (err) {
+
+    //            }
+    //        });
+    //    }
+    //    else {
+    //        var District2 = "";
+    //        $('#Chemical_Product_Code').html('');
+    //        District2 += "<option value=''>-- Select Chemical Product --</option>";
+    //        $('#Chemical_Product_Code').html(District2);
+
+    //    }
+    //});
+
+    //jQuery(document).ready(function () {
+    //    debugger;
+    //    if (true) {
+    //        $.ajax({
+    //            url: '/UnitRegistration/UnitRegistration/GetChemicalProductByUserId',
+    //            data: { 'Action':1},
+    //            dataType: 'json',
+    //            type: 'post',
+    //            success: function (data) {
+    //                debugger;
+    //                var row = "";
+    //                $('#Chemical_Product_Code').html('');
+    //                row += "<option value=''>-- Select Chemical Product --</option>";
+    //                $.each(data, function (ind, item) {
+    //                    row += "<option value='" + item.chemical_Product_Code + "'>" + item.chemical_Product_Name + "</option>";
+    //                });
+    //                $('#Chemical_Product_Code').html(row);
+    //            },
+    //            error: function (err) {
+
+    //            }
+    //        });
+    //    }
+    //    else {
+    //        var District2 = "";
+    //        $('#Chemical_Product_Code').html('');
+    //        District2 += "<option value=''>-- Select Chemical Product --</option>";
+    //        $('#Chemical_Product_Code').html(District2);
+
+    //    }
+    //});
+
+    //$('#Chemical_Product_Code').change(function () {
+    //    debugger;
+    //    if ($('#Chemical_Product_Code').val() != "") {
+    //        $.ajax({
+
+    //            url: '/UnitRegistration/UnitRegistration/GetYearlyChemicalEntryByID',
+    //            data: {
+    //                'Chemical_Code': $('#Chemical_Code').val(),
+    //                'Chemical_Product_Code': $('#Chemical_Product_Code').val()
+    //            },
+    //            dataType: 'json',
+    //            type: 'post',
+    //            success: function (data) {
+    //                debugger;
+    //                var row = "";
+    //                $('#Y_Chemical_ID').html('');
+    //                row += "<option value=''>-- Select Yearly Chemical Product --</option>";
+    //                $.each(data, function (ind, item) {
+    //                    row += "<option value='" + item.y_Chemical_ID + "'>" + item.c_Name + "</option>";
+    //                });
+    //                $('#Y_Chemical_ID').html(row);
+    //            },
+    //            error: function (err) {
+
+    //            }
+    //        });
+    //    }
+    //    else {
+    //        var District2 = "";
+    //        $('#Y_Chemical_ID').html('');
+    //        District2 += "<option value=''>-- Select Yearly Chemical Product --</option>";
+    //        $('#Y_Chemical_ID').html(District2);
+
+    //    }
+    //});
+
+
+</script>
+<script>
+
+    function AddAnyOtherRow() {
+        var checkVal = 0;
+        var cont = 1;
+        var table = document.getElementById("tblMain_Constituents_AnyOtherData");
+        var textbox1 = table.getElementsByClassName("AnyOtherName")[0];
+
+        var IAnyOtherName = textbox1.value;
+        $('#tblMain_Constituents_AnyOtherData tbody tr').each(function (index) {
+            // $(this).find('td:eq(0)').text(cont++);
+            var AnyOtherName = $(this).find('td:eq(1)').text();
+            if (IAnyOtherName == AnyOtherName) {
+                checkVal = 1;
+                swal('Same Other Name alredy exist !');
+                return false;
+            }
+        });
+        if (checkVal != 1) {
+            var AnyOtherCas = $('.AnyOtherCas').val();
+            var AnyOtherName = $('.AnyOtherName').val();
+            var AnyOtherQuantity = $('.AnyOtherQuantity').val();
+            var AnyOtherUnit = $('.AnyOtherUnit').val();
+            var AnyOtherPhysicalState = $('.AnyOtherPhysicalState').val();
+            var AnyOtherProcuredfrom = $('.AnyOtherProcuredfrom').val();
+
+            var editButton = '<button class="btn btn-success" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+
+            // create new row with input AnyOtherQuantity
+            var newRow = $('<tr><td>' + AnyOtherCas + '</td><td>' + AnyOtherName + '</td><td>' + AnyOtherQuantity + '</td><td>' + AnyOtherUnit + '</td><td>' + AnyOtherPhysicalState + '</td><td>' + AnyOtherProcuredfrom + '</td><td>' + editButton + '</td><td>' + deleteButton + '</td></tr>');
+            // append new row to table
+            $('#tblMain_AnyOtherData tbody').append(newRow);
+            UpdateSerialNumbers();
+            // clear input values
+            $('.AnyOtherCas').val('');
+            $('.AnyOtherName').val('');
+            $('.AnyOtherQuantity').val('');
+
+        }
+        // });
+    }
+    function AddSolventRow() {
+        var checkVal = 0;
+        var cont = 1;
+        var table = document.getElementById("tblMain_Constituents_SolventData");
+        var textbox1 = table.getElementsByClassName("SolventName")[0];
+
+        var ISolvantName = textbox1.value;
+        $('#tblMain_Constituents_SolventData tbody tr').each(function (index) {
+            // $(this).find('td:eq(0)').text(cont++);
+            var SolventName = $(this).find('td:eq(1)').text();
+            if (ISolvantName == SolventName) {
+                checkVal = 1;
+                swal('Same Solvent Name alredy exist !');
+                return false;
+            }
+        });
+        if (checkVal != 1) {
+
+            var SolventCas = $('.SolventCas').val();
+            var SolventName = $('.SolventName').val();
+            var SolventQuantity = $('.SolventQuantity').val();
+            var SolventUnit = $('.SolventUnit').val();
+            var SolventPhysicalState = $('.SolventPhysicalState').val();
+            var SolventProcuredfrom = $('.SolventProcuredfrom').val();
+
+            var editButton = '<button class="btn btn-success" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+
+            // create new row with input values
+            var newRow = $('<tr><td>' + SolventCas + '</td><td>' + SolventName + '</td><td>' + SolventQuantity + '</td><td>' + SolventUnit + '</td><td>' + SolventPhysicalState + '</td><td>' + SolventProcuredfrom + '</td><td>' + editButton + '</td><td>' + deleteButton + '</td></tr>');
+            // append new row to table
+            $('#tblMain_SolventData tbody').append(newRow);
+            UpdateSerialNumbers();
+            // clear input values
+            $('.SolventCas').val('');
+            $('.SolventName').val('');
+            $('.SolventQuantity').val('');
+
+        }
+        // });
+    }
+    function AddCatalystRow() {
+        var checkVal = 0;
+        var cont = 1;
+        var table = document.getElementById("tblMain_Constituents_CatalystData");
+        var textbox1 = table.getElementsByClassName("CatalystName")[0];
+
+        var ICatalystName = textbox1.value;
+        $('#tblMain_Constituents_CatalystData tbody tr').each(function (index) {
+            // $(this).find('td:eq(0)').text(cont++);
+            var CatalystName = $(this).find('td:eq(1)').text();
+            if (ICatalystName == CatalystName) {
+                checkVal = 1;
+                swal('Same Catelyst Name alredy exist !');
+                return false;
+            }
+        });
+        if (checkVal != 1) {
+
+
+            var CatalystCas = $('.CatalystCas').val();
+            var CatalystName = $('.CatalystName').val();
+            var CatalystQuantity = $('.CatalystQuantity').val();
+            var CatalystUnit = $('.CatalystUnit').val();
+            var CatalystPhysicalState = $('.CatalystPhysicalState').val();
+            var CatalystProcuredfrom = $('.CatalystProcuredfrom').val();
+
+            var editButton = '<button class="btn btn-success" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+
+            // create new row with input values
+            var newRow = $('<tr><td>' + CatalystCas + '</td><td>' + CatalystName + '</td><td>' + CatalystQuantity + '</td><td>' + CatalystUnit + '</td><td>' + CatalystPhysicalState + '</td><td>' + CatalystProcuredfrom + '</td><td>' + editButton + '</td><td>' + deleteButton + '</td></tr>');
+            // append new row to table
+            $('#tblMain_CatalystData tbody').append(newRow);
+            UpdateSerialNumbers();
+            // clear input values
+            $('.CatalystCas').val('');
+            $('.CatalystName').val('');
+            $('.CatalystQuantity').val('');
+
+        }
+        // });
+    }
+    function AddReactantsRow() {
+        var ReatantSubsType = $('#ReatantSubsType').val();
+        if (ReatantSubsType == "0") {
+            swal('Please select Reactant Substance Type !');
+            return;
+        }
+        else if (ReatantSubsType == "1") {
+
+        }
+        var checkVal = 0;
+        var cont = 1;
+        var table = document.getElementById("tblMain_Constituents_ReactantsData");
+        var textbox1 = table.getElementsByClassName("ReactantsName")[0];
+
+        var IReactantsName = textbox1.value;
+        $('#tblMain_Constituents_ReactantsData tbody tr').each(function (index) {
+            // $(this).find('td:eq(0)').text(cont++);
+            var ReactantsName = $(this).find('td:eq(1)').text();
+            if (IReactantsName == ReactantsName) {
+                checkVal = 1;
+                swal('Same Reactants Name alredy exist !');
+                return false;
+            }
+        });
+        if (checkVal != 1) {
+            var ReactantsCas = $('.ReactantsCas').val();
+            var ReactantsName = $('.ReactantsName').val();
+            var ReactantsQuantity = $('.ReactantsQuantity').val();
+            var ReactantsUnit = $('.ReactantsUnit').val();
+            var ReactantsPhysicalState = $('.ReactantsPhysicalState').val();
+            var ReactantsProcuredfrom = $('.ReactantsProcuredfrom').val();
+
+            var editButton = '<button class="btn btn-success" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+
+            // create new row with input values
+            var newRow = $('<tr><td>' + ReactantsCas + '</td><td>' + ReactantsName + '</td><td>' + ReactantsQuantity + '</td><td>' + ReactantsUnit + '</td><td>' + ReactantsPhysicalState + '</td><td>' + ReactantsProcuredfrom + '</td><td>' + editButton + '</td><td>' + deleteButton + '</td></tr>');
+            // append new row to table
+            $('#tblMain_ReactantsData tbody').append(newRow);
+            UpdateSerialNumbers();
+            // clear input values
+            $('.ReactantsCas').val('');
+            $('.ReactantsName').val('');
+            $('.ReactantsQuantity').val('');
+
+        }
+        // });
+    }
+    function AddRow() {
+        var checkVal = 0;
+        var cont = 1;
+        var table = document.getElementById("Main_Constituents");
+        var textbox1 = table.getElementsByClassName("ReactantsName")[0];
+
+        var IReactantsName = textbox1.value;
+        $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+            $(this).find('td:eq(0)').text(cont++);
+            var ReactantsName = $(this).find('td:eq(1)').text();
+            if (IReactantsName == ReactantsName) {
+                checkVal = 1;
+                swal('Same Reactants Name alredy exist !');
+                return false;
+            }
+        });
+        if (checkVal != 1) {
+            var ReactantsName = $('.ReactantsName').val();
+            var ReactantsQuantity = $('.ReactantsQuantity').val();
+            var ReactantsUnit = $('.ReactantsUnit').val();
+            var ReactantsPhysicalState = $('.ReactantsPhysicalState').val();
+            var ReactantsProcuredfrom = $('.ReactantsProcuredfrom').val();
+
+            var CatalystName = $('.CatalystName').val();
+            var CatalystQuantity = $('.CatalystQuantity').val();
+            var CatalystUnit = $('.CatalystUnit').val();
+            var CatalystPhysicalState = $('.CatalystPhysicalState').val();
+            var CatalystProcuredfrom = $('.CatalystProcuredfrom').val();
+
+            var SolventName = $('.SolventName').val();
+            var SolventQuantity = $('.SolventQuantity').val();
+            var SolventUnit = $('.SolventUnit').val();
+            var SolventPhysicalState = $('.SolventPhysicalState').val();
+            var SolventProcuredfrom = $('.SolventProcuredfrom').val();
+
+            var AnyOtherName = $('.AnyOtherName').val();
+            var AnyOtherQuantity = $('.AnyOtherQuantity').val();
+            var AnyOtherUnit = $('.AnyOtherUnit').val();
+            var AnyOtherPhysicalState = $('.AnyOtherPhysicalState').val();
+            var AnyOtherProcuredfrom = $('.AnyOtherProcuredfrom').val();
+
+            var editButton = '<button class="btn btn-success" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+
+            // create new row with input values
+            var newRow = $('<tr><td></td><td>' + ReactantsName + '</td><td>' + ReactantsQuantity + '</td><td>' + ReactantsUnit + '</td><td>' + ReactantsPhysicalState + '</td><td>' + ReactantsProcuredfrom + '</td><td>' + CatalystName + '</td><td>' + CatalystQuantity + '</td><td>' + CatalystUnit + '</td><td>' + CatalystPhysicalState + '</td><td>' + CatalystProcuredfrom + '</td><td>' + SolventName + '</td><td>' + SolventQuantity + '</td><td>' + SolventUnit + '</td><td>' + SolventPhysicalState + '</td><td>' + SolventProcuredfrom + '</td><td>' + AnyOtherName + '</td><td>' + AnyOtherQuantity + '</td><td>' + AnyOtherUnit + '</td><td>' + AnyOtherPhysicalState + '</td><td>' + AnyOtherProcuredfrom + '</td><td>' + editButton + '</td><td>' + deleteButton + '</td></tr>');
+            // append new row to table
+            $('#tblMain_Constituents_Data tbody').append(newRow);
+            UpdateSerialNumbers();
+            // clear input values
+            $('.ReactantsName').val('');
+            $('.ReactantsQuantity').val('');
+            $('.CatalystName').val('');
+            $('.CatalystQuantity').val('');
+            $('.SolventName').val('');
+            $('.SolventQuantity').val('');
+            $('.AnyOtherName').val('');
+
+            $('.AnyOtherQuantity').val('');
+        }
+        // });
+    }
+    function EditRow(row) {
+        var currentRow = $(row).closest('tr');
+        var cells = currentRow.find('td');
+
+        var ReactantsName = cells.eq(1).text();
+        var ReactantsQuantity = cells.eq(2).text();
+        var ReactantsUnit = cells.eq(3).text();
+        var ReactantsPhysicalState = cells.eq(4).text();
+        var ReactantsProcuredfrom = cells.eq(5).text();
+        var CatalystName = cells.eq(6).text();
+        var CatalystQuantity = cells.eq(7).text();
+        var CatalystUnit = cells.eq(8).text();
+        var CatalystPhysicalState = cells.eq(9).text();
+        var CatalystProcuredfrom = cells.eq(10).text();
+        var SolventName = cells.eq(11).text();
+        var SolventQuantity = cells.eq(12).text();
+        var SolventUnit = cells.eq(13).text();
+        var SolventPhysicalState = cells.eq(14).text();
+        var SolventProcuredfrom = cells.eq(15).text();
+        var AnyOtherName = cells.eq(16).text();
+        var AnyOtherQuantity = cells.eq(17).text();
+        var AnyOtherUnit = cells.eq(18).text();
+        var AnyOtherPhysicalState = cells.eq(19).text();
+        var AnyOtherProcuredfrom = cells.eq(20).text();
+
+
+        $('.ReactantsName').val(ReactantsName);
+        $('.ReactantsQuantity').val(ReactantsQuantity);
+        $('.ReactantsUnit').val(ReactantsUnit);
+        $('.ReactantsPhysicalState').val(ReactantsPhysicalState);
+        $('.ReactantsProcuredfrom').val(ReactantsProcuredfrom);
+        $('.CatalystName').val(CatalystName);
+        $('.CatalystQuantity').val(CatalystQuantity);
+        $('.CatalystUnit').val(CatalystUnit);
+        $('.CatalystPhysicalState').val(CatalystPhysicalState);
+        $('.CatalystProcuredfrom').val(CatalystProcuredfrom);
+        $('.SolventName').val(SolventName);
+        $('.SolventQuantity').val(SolventQuantity);
+        $('.SolventUnit').val(SolventUnit);
+        $('.SolventPhysicalState').val(SolventPhysicalState);
+        $('.SolventProcuredfrom').val(SolventProcuredfrom);
+        $('.AnyOtherName').val(AnyOtherName);
+        $('.AnyOtherQuantity').val(AnyOtherQuantity);
+        $('.AnyOtherUnit').val(AnyOtherUnit);
+        $('.AnyOtherPhysicalState').val(AnyOtherPhysicalState);
+        $('.AnyOtherProcuredfrom').val(AnyOtherProcuredfrom);
+
+        // remove the row from the table
+        currentRow.remove();
+        UpdateSerialNumbers();
+    }
+
+    function DeleteRow(row) {
+        var currentRow = $(row).closest('tr');
+        currentRow.remove();
+        UpdateSerialNumbers();
+    }
+    function UpdateSerialNumbers() {
+        $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+            $(this).find('td:first').text(index + 1);
+        });
+    }
+</script>
+

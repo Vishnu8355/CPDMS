@@ -1,0 +1,265 @@
+﻿@model CPDMSEF.MasterHcsn
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Hazard Classification Substance";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+}
+@{
+    var ShowHCSNlist = ViewBag.ShowHCSNlist;
+}
+<style>
+    #loading-gif {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+
+    /* Styling for the popup container */
+
+
+    #popupContainer {
+        width: 40%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        z-index: 9999;
+        height: 400px;
+        max-height: 600px;
+        overflow: auto;
+    }
+
+    /* Styling for the close link */
+    #closePopup {
+        float: right;
+        color: red;
+        text-decoration: underline;
+    }
+
+    /* Styling for the table inside the popup */
+
+
+
+</style>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+
+    </script>
+    ViewBag.msg = null;
+}
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitDPTADMDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Unit Entry</li>
+
+                            <li class="breadcrumb-item active">Hazard Classification Substance</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false">
+                                            <span class="icon-unlock me-2"></span><b>
+                                                Hazard Classification Substance
+                                            </b>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div role="tabpanel">
+                                    @using (Html.BeginForm("HclassifiSub", "UnitRegistration", FormMethod.Post, new { AUTOCOMPLETE = "Off", id = "form1" }))
+                                    {
+                                        <div class="d-flex gap-5">
+                                            
+                                            <div class="d-flex gap-5">
+                                                <lable style="margin-top: 5px"><h5>Hazard Classification Name:</h5></lable>
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.Hazard_Classification_Name, new { @class = "form-control",required = "required",placeholder="Name" , style="width:122%;" })
+
+                                                </div>
+                                                  &nbsp;
+                                            </div>
+                                            <div class="d-flex" style="margin-left:5 px">
+                                                <div class="col-sm" style="text-align: right;">
+                                                    <div class="form-button">
+                                                        <input type="submit" class="btn btn-primary" style="background:#024828!important;" Value="Save" id="save" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="authentication-box">
+    <div class="">
+        <div class="authentication-box">
+            <div class="">
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Hazard Classification Substance Lists</b></a> </li>
+                                </ul>
+                                <div role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="viewtable">
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table table-sm table-bordered table-textbreak">
+
+                                                        <thead class="header-style">
+                                                            <tr>
+
+                                                                <th>
+                                                                    Sr#
+                                                                </th>
+                                                                <th hidden>HazardClassificationID</th>
+                                                                <th>Hazard Classification</th>                               
+                                                                <th>Action</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in ShowHCSNlist)
+                                                            {
+                                                                <tr class="table-row">
+                                                                    <td>@item.Hazard_Classification_ID</td>
+                                                                    <td>@item.Hazard_Classification_Name</td>
+
+                                                                    <td>
+                                                                        <form action="#" method="get">
+                                                                            <input type="hidden" name="actionid" value="1" id="action" />
+                                                                            <input type="hidden" name="Cid" value="@item.ID" id="DId" />
+                                                                            <button type="submit" class="btn btn-link" id="showPopup">
+                                                                                <div id="showPopup" class="btn btn-success" style="background:#024828!important"><i class="icon-plus-solid pr-1"></i><i class='fa fa-edit'></i></div>
+                                                                            </button>
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+<div id="popupContainer" style="display: none;">
+    <a href="#" id="closePopup">Close</a>
+    @using (Html.BeginForm("HclassifiSub", "UnitRegistration", FormMethod.Post, new { enctype = "multipart/form-data", AUTOCOMPLETE = "Off", id = "form1" }))
+    {
+        <div class="form-group">
+            <label for="HazardClassifications" class="form-label small-input center-input">Hazard Classification<span class="RequiredField">*</span></label>
+            <input type="text" class="form-control small-input center-input" id="HazardClassifications" name="HazardClassifications" disabled>
+
+        </div>
+
+        <input type="text" class="form-control small-input center-input" id="HazardClassificationID1" name="Hazard_Classification_ID" hidden>
+       
+        <div class="form-group">
+            <label for="NewHazardClassificationName" class="form-label small-input center-input">New Hazard Classification Name <span class="RequiredField">*</span></label>
+            <input type="text" class="form-control small-input center-input" id="NewHazardClassificationName" name="NewHazard_Classification_Name" placeholder="NewHazardClassificationName" required>
+        </div>
+
+
+
+        <div class="d-flex justify-content-center space-x-2">
+            <div class="">
+                <div class="form-button"> <button class="btn btn-primary" type="submit" style="background: #024828 !important;">Edit Hazard Classification</button> </div>
+            </div>           
+        </div>
+    }
+</div>
+<!-- Link to show the popup -->
+<script>
+    document.getElementById("showPopup").addEventListener("click", function (e) {
+        e.preventDefault();
+        debugger
+        // var chemicalId = e.target.parentElement.parentElement.cells[1].textContent;
+
+
+
+        document.getElementById("popupContainer").style.display = "block";
+    });
+
+    document.getElementById("closePopup").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("popupContainer").style.display = "none";
+    });
+
+    // Close the popup if clicked outside
+    //document.addEventListener("click", function (e) {
+    //    var popupContainer = document.getElementById("popupContainer");
+    //    var target = e.target;
+
+    //    if (!popupContainer.contains(target) && target !== document.getElementById("showPopup")) {
+    //        popupContainer.style.display = "none";
+    //    }
+    //});
+    var tableRows = document.getElementsByClassName("table-row");
+    for (var i = 0; i < tableRows.length; i++) {
+        tableRows[i].addEventListener("click", function (e) {
+            debugger;
+            e.preventDefault();
+            var selectedRow = e.currentTarget;
+            var chemlId = selectedRow.cells[0].textContent;
+            var chemicasublId = selectedRow.cells[1].textContent;
+            document.getElementById("HazardClassificationID1").value = chemlId;
+            document.getElementById("HazardClassifications").value = chemicasublId;
+            document.getElementById("popupContainer").style.display = "block";
+        });
+    }
+</script>

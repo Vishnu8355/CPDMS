@@ -1,0 +1,1831 @@
+﻿@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "CompanyTRegistration";
+    Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+
+}
+
+
+<style> 
+ .rotated {
+        writing-mode: tb-rl;
+        transform: rotate(-180deg);
+        margin-left: -1.2rem;
+    margin-top: 0rem;
+    color : black ;
+  
+    margin-bottom: -10.1rem;
+    }
+</style>
+
+
+<div class="bt-content-wrap btClear section_Top">
+    <div class="bt-content-holder">
+        
+        <div class="bt-content">
+            <div class="bt_bb_wrapper">
+                <section id="bt_bb_section64869cd804a63"
+                         class="bt_bb_section bt_bb_color_scheme_6 bt_bb_layout_boxed_1200 bt_bb_vertical_align_top bt_bb_bottom_section_coverage_image bt_bb_section_with_bottom_coverage_image bt_bb_top_spacing_large bt_bb_bottom_spacing_large bt_bb_section_allow_content_outside"
+                         style=" --section-primary-color:#ffffff; --section-secondary-color:#0bc270;"
+                         data-bt-override-class="null">
+                    <div class="bt_bb_background_image_holder_wrapper">
+                        <div class="bt_bb_background_image_holder bt_bb_parallax" data-parallax="0.6"
+                             data-parallax-offset="0" data-parallax-zoom-start="1" data-parallax-zoom-end="1"
+                             data-parallax-blur-start="0" data-parallax-blur-end="0"
+                             data-parallax-opacity-start="1" data-parallax-opacity-end="1" style="">
+
+                            <img src="~/LandinCss/images/BannerCHARAK.png">
+                        </div>
+                    </div>
+                    <div class="bt_bb_port">
+                        <div class="bt_bb_cell">
+                            <div class="bt_bb_cell_inner">
+                                <div class="bt_bb_row_wrapper">
+                                    <div class="bt_bb_row" data-bt-override-class="{}" data-structure="9-3">
+                                        <div class="bt_bb_column col-xxl-9 col-xl-9 bt_bb_vertical_align_middle bt_bb_align_left bt_bb_padding_normal bt_bb_animation_fade_in animate animated"
+                                             data-width="9" data-bt-override-class="{}">
+                                            <div class="bt_bb_column_content">
+                                                <div class="bt_bb_column_content_inner">
+                                                    <header class="bt_bb_headline bt_bb_font_weight_medium bt_bb_dash_none bt_bb_subheadline bt_bb_size_extralarge bt_bb_align_inherit bt_bb_subtitle_font_weight_normal"
+                                                            data-bt-override-class="{}"  >
+                                                        <h1 class="bt_bb_headline_tag"
+                                                            style="color: white !important;">
+                                                            <span class="bt_bb_headline_content box target">
+                                                                <span style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                    ChemIndia - Chemicals Inventory of India
+                                                                </span>
+                                                            </span>
+                                                        </h1>
+                                                        <span >
+                                                            "A Web Based Chemicals and Petro-Chemicals Data
+                                                            Management System"
+                                                        </span>
+                                                        <div class="bt_bb_headline_subheadline"></div>
+                                                    </header>
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_normal"
+                                                         data-bt-override-class="null"></div>
+                                                    <div class="bt_bb_button bt_bb_color_scheme_6 bt_bb_icon_position_left bt_bb_style_outline bt_bb_size_normal bt_bb_width_inline bt_bb_shape_inherit bt_bb_target_self bt_bb_align_inherit"
+                                                         style=" --primary-color:#ffffff; --secondary-color:#0bc270;"
+                                                         data-bt-override-class="{}">
+                                                        <a href="/LandingPage/Home/Chemicals"
+                                                           target="_self" class="bt_bb_link"
+                                                    
+                                                            <span class="bt_bb_button_text">Chemicals</span>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="bt_bb_button bt_bb_color_scheme_10 bt_bb_icon_position_left bt_bb_style_filled bt_bb_size_normal bt_bb_width_inline bt_bb_shape_inherit bt_bb_target_self bt_bb_align_inherit bt_bb_icon_color_scheme_4"
+                                                         style=" --primary-color:#ffffff; --secondary-color:#0c2460;; --icon-primary-color:#0bc270; --icon-secondary-color:#ffffff;"
+                                                         data-bt-override-class="{}">
+                                                        <a href="/LandingPage/Home/PetroChemicals" target="_self"
+                                                           class="bt_bb_link" 
+                                                            <span class="bt_bb_button_text">Petro-Chemicals</span><span class="bt_bb_icon_holder"></span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_medium"
+                                                         data-bt-override-class="null"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bt_bb_column col-xxl-3 col-xl-3 bt_bb_vertical_align_top bt_bb_align_left bt_bb_padding_normal"
+                                             style="position: relative;" data-width="3"
+                                             data-bt-override-class="{}">
+                                            <div class="bt_bb_column_content">
+                                                <div class="bt_bb_column_content_inner"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- cell_inner -->
+                        </div><!-- cell -->
+                    </div><!-- port -->
+                    <div class="bt_bb_section_bottom_section_coverage_image" style="z-index: 0;" id="content1">
+                        <img src="~/LandinCss/images/bottom-cover.png" alt="bt_bb_section_bottom_section_coverage_image">
+                    </div>
+                </section>
+                <section id="bt_bb_section64869cd805210" 
+                         class="bt_bb_section bt_bb_layout_boxed_1200 bt_bb_vertical_align_top bt_bb_top_spacing_large bt_bb_bottom_spacing_medium"
+                         data-bt-override-class="null">
+                    <div class="bt_bb_background_image_holder_wrapper" >
+                        <div class="bt_bb_background_image_holder btLazyLoadBackground bt_bb_parallax"
+                             data-parallax="0.7" data-parallax-offset="0" data-parallax-zoom-start="1"
+                             data-parallax-zoom-end="1" data-parallax-blur-start="0" data-parallax-blur-end="0"
+                             data-parallax-opacity-start="1" data-parallax-opacity-end="1">
+                            <img src="~/LandinCss/images/sidebanner.png" style="width: 40rem; margin-top: 30rem;">
+                        </div>
+                    </div>
+                    <div class="bt_bb_port" >
+                        <div class="bt_bb_cell">
+                            <div class="bt_bb_cell_inner">
+                                <div class="bt_bb_row_wrapper" >
+                                    <div class="bt_bb_row" data-bt-override-class="{}" data-structure="8-4">
+                                        <div class="bt_bb_column col-xxl-8 col-xl-8 bt_bb_vertical_align_top bt_bb_align_left bt_bb_padding_normal bt_bb_animation_fade_in animate"
+                                             data-width="8" data-bt-override-class="{}">
+                                            <div class="bt_bb_column_content">
+                                                <div class="bt_bb_column_content_inner">
+                                                    <header class="bt_bb_headline bt_bb_dash_none bt_bb_subheadline bt_bb_size_normal bt_bb_align_inherit"
+                                                            data-bt-override-class="{}">
+                                                        <h2 class="bt_bb_headline_tag">
+                                                            <span class="bt_bb_headline_content">
+                                                                <span style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                    Benefits
+                                                                    of
+                                                                    <strong>ChemIndia</strong> 
+
+                                                                </span>
+                                                            </span>
+                                                        </h2>
+                                                        <div class="bt_bb_headline_subheadline" >
+                                                            <strong>ChemIndia</strong> Strengthens cooperation and partnership within the chemical industries ecosystem and promotes sustainable data management for the development of equitable policies.
+                                                        </div> 
+                                                    </header>
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_normal"
+                                                         data-bt-override-class="null"></div>
+                                                    <div class="bt_bb_button bt_bb_color_scheme_6 bt_bb_icon_position_left bt_bb_style_filled bt_bb_size_normal bt_bb_width_inline bt_bb_shape_inherit bt_bb_target_self bt_bb_align_inherit"
+                                                         style=" --primary-color:#ffffff; --secondary-color:#0bc270;"
+                                                         data-bt-override-class="{}">
+                                                        <a href="/LandingPage/Home/about"
+                                                           target="_self" class="bt_bb_link"
+                                                          
+                                                            <span class="bt_bb_button_text">KNOW MORE</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_large"
+                                                         data-bt-override-class="null"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bt_bb_column col-xxl-4 col-xl-4 bt_bb_vertical_align_top bt_bb_align_right bt_bb_padding_normal bt_bb_animation_fade_in animate"
+                                             style="position: relative;" data-width="4"
+                                             data-bt-override-class="{}">
+                                            <div class="bt_bb_column_content">
+                                                <div class="bt_bb_column_content_inner">
+                                                    <img src="~/LandinCss/images/benefitimg.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="bt_bb_row_wrapper">
+                                        <div class="bt_bb_row bt_bb_column_gap_0" data-bt-override-class="{}"
+                                             data-structure="3-3-3-3">
+                                            <div class="bt_bb_column col-xxl-3 col-xl-3 bt_bb_vertical_align_top bt_bb_align_left bt_bb_padding_30 bt_bb_animation_fade_in animate"
+                                                 data-width="3" data-bt-override-class="{}">
+                                                <div class="bt_bb_column_content"
+                                                     style="background-color:rgba(245, 245, 245, 1);">
+                                                    <div class="bt_bb_column_content_inner">
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal"
+                                                             data-bt-override-class="null"></div>
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal"
+                                                             data-bt-override-class="null"></div>
+                                                        <div class="bt_bb_service bt_bb_color_scheme_14 bt_bb_style_borderless bt_bb_size_normal bt_bb_shape_circle bt_bb_target_self bt_bb_align_inherit bt_bb_text_opacity_light"
+                                                             style=" --primary-color:#cccccc; --secondary-color:#0bc270;"
+                                                             data-bt-override-class="{}">
+                                                            <span class="bt_bb_icon_holder">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                     class="icon icon-tabler icon-tabler-clock-hour-9"
+                                                                     width="56" height="56" viewBox="0 0 24 24"
+                                                                     stroke-width="1" stroke="#00b341"
+                                                                     fill="none" stroke-linecap="round"
+                                                                     stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z"
+                                                                          fill="none" />
+                                                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                                                    <path d="M12 12h-3.5" />
+                                                                    <path d="M12 7v5" />
+                                                                </svg>
+                                                            </span>
+                                                            <div class="bt_bb_service_content">
+                                                                <div class="bt_bb_service_content_title">
+                                                                    Support
+                                                                    Time
+                                                                </div>
+                                                                <div class="bt_bb_service_content_text">
+                                                                    MON-SAT
+                                                                    | <br />
+                                                                    9am to 6pm<br>
+                                                                    SUN | 9am to 5pm
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_normal"
+                                                             data-bt-override-class="null"></div>
+                                                        <div class="bt_bb_service bt_bb_color_scheme_14 bt_bb_style_borderless bt_bb_size_normal bt_bb_shape_circle bt_bb_target_self bt_bb_align_inherit bt_bb_text_opacity_light"
+                                                             style=" --primary-color:#cccccc; --secondary-color:#0bc270;"
+                                                             data-bt-override-class="{}">
+                                                            <span class="bt_bb_icon_holder">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                     class="icon icon-tabler icon-tabler-map-pin"
+                                                                     width="56" height="56" viewBox="0 0 24 24"
+                                                                     stroke-width="1" stroke="#00b341"
+                                                                     fill="none" stroke-linecap="round"
+                                                                     stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z"
+                                                                          fill="none" />
+                                                                    <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                                                    <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
+                                                                </svg>
+                                                            </span>
+                                                            <div class="bt_bb_service_content">
+                                                                <div class="bt_bb_service_content_title">
+                                                                    LOCATION
+                                                                </div>
+                                                                <div class="bt_bb_service_content_text">
+                                                                    Room No. 309, 3rd Floor, B-Wing, Janpath
+                                                                    Bhawan, Janpath, New Delhi 110001
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_normal"
+                                                             data-bt-override-class="null"></div>
+                                                        <div class="bt_bb_service bt_bb_color_scheme_14 bt_bb_style_borderless bt_bb_size_normal bt_bb_shape_circle bt_bb_target_self bt_bb_align_inherit bt_bb_text_opacity_light"
+                                                             style=" --primary-color:#cccccc; --secondary-color:#0bc270;"
+                                                             data-bt-override-class="{}">
+                                                            <span class="bt_bb_icon_holder">
+                                                              <a href="tel: +912343434343">  
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                     class="icon icon-tabler icon-tabler-phone"
+                                                                     width="56" height="56" viewBox="0 0 24 24"
+                                                                     stroke-width="1" stroke="#00b341"
+                                                                     fill="none" stroke-linecap="round"
+                                                                     stroke-linejoin="round">
+                                                                    <path stroke="none" d="M0 0h24v24H0z"
+                                                                          fill="none" />
+                                                                    <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+                                                                </svg>
+                                                                </a>
+                                                            </span>
+                                                            <div class="bt_bb_service_content">
+                                                                <div class="bt_bb_service_content_title">
+                                                                Escalation Time
+                                                                </div>
+                                                                <div class="bt_bb_service_content_text">
+                                                                    
+                                                                    24x7 with Support Ticket Enabled with Technical Support
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal"
+                                                             data-bt-override-class="null"></div>
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_small"
+                                                             data-bt-override-class="null"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bt_bb_column col-xxl-3 col-xl-3 bt_bb_vertical_align_top bt_bb_align_left bt_bb_padding_normal bt_bb_animation_fade_in animate"
+                                                 data-width="3" data-bt-override-class="{}">
+                                                <div class="bt_bb_column_content">
+                                                    <div class="bt_bb_column_content_inner">
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_large bt_bb_hidden_xs bt_bb_hidden_ms bt_bb_hidden_sm"
+                                                             style="background: white;"
+                                                             data-bt-override-class="null"></div>
+                                                        <div class="bt_bb_card_icon bt_bb_color_scheme_4 bt_bb_text_style_transparent"
+                                                             style=" --card-icon-primary-color:#0bc270; --card-icon-secondary-color:#ffffff;">
+                                                            <div class="bt_bb_card_icon_icon">
+                                                                <a 
+                                                                   target="_self">
+                                                                    <span class="bt_bb_icon_holder">
+                                                                        <img src="~/LandinCss/images/a.svg"
+                                                                             style="width: 8rem;">
+                                                                    </span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_title" style="padding-bottom: 0.5em;">
+                                                                <header class="bt_bb_headline bt_bb_font_weight_normal bt_bb_size_small"
+                                                                        data-bt-override-class="{}">
+                                                                    <h3 class="bt_bb_headline_tag">
+                                                                        <span class="bt_bb_headline_content">
+                                                                            <span>
+                                                                               
+                                                                                 
+                                                                                  Analytical study
+                                                                             
+                                                                            </span>
+                                                                        </span>
+                                                                    </h3>
+                                                                </header>
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_text text-black">
+                                                                Chemicals
+                                                                compositions and structure of substances
+                                                                obtained. 
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_content_inner">
+                                                                <div class="bt_bb_button bt_bb_color_scheme_3 bt_bb_icon_position_right bt_bb_style_clean bt_bb_size_medium bt_bb_width_inline bt_bb_shape_inherit bt_bb_target_self bt_bb_align_inherit"
+                                                                     style=" --primary-color:#0bc270; --secondary-color:#191919;"
+                                                                     data-bt-override-class="{}">
+                                                                    <a href="/LandingPage/Home/Analyticalstudy"
+                                                                       target="_self" class="bt_bb_link"
+                                                                       title="FIND OUT MORE">
+                                                                        <span class="bt_bb_button_text">
+                                                                            FIND OUT
+                                                                            MORE
+                                                                        </span><span class="bt_bb_icon_holder">
+                                                                            <i class="fa fa-angle-right"
+                                                                               style="font-size:15px;color:green"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="bt_bb_card_icon bt_bb_color_scheme_4 bt_bb_text_style_transparent"
+                                                             style=" --card-icon-primary-color:#0bc270; --card-icon-secondary-color:#ffffff;">
+                                                            <div class="bt_bb_card_icon_icon">
+                                                                <a 
+                                                                   target="_self">
+                                                                    <span class="bt_bb_icon_holder">
+                                                                        <img src="~/LandinCss/images/b.svg"
+                                                                             style="width: 8rem;">
+                                                                    </span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_title" style="padding-bottom: 0.5em;">
+                                                                <header class="bt_bb_headline bt_bb_font_weight_normal bt_bb_size_small"
+                                                                        data-bt-override-class="{}">
+                                                                    <h3 class="bt_bb_headline_tag">
+                                                                        <span class="bt_bb_headline_content">
+                                                                            <span>
+                                                                               
+                                                                                
+                                                                                  Chemicals Classification
+                                                                               
+                                                                            </span>
+                                                                        </span>
+                                                                    </h3>
+                                                                </header>
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_text">
+                                                                Lists of
+                                                                classified Chemicals & Petro-Chemicals can
+                                                                provide information on domestic & export
+                                                                requirements
+                                                                .
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_content_inner">
+                                                                <div class="bt_bb_button bt_bb_color_scheme_3 bt_bb_icon_position_right bt_bb_style_clean bt_bb_size_medium bt_bb_width_inline bt_bb_shape_inherit bt_bb_target_self bt_bb_align_inherit"
+                                                                     style=" --primary-color:#0bc270; --secondary-color:#191919;"
+                                                                     data-bt-override-class="{}">
+                                                                    <a href="/LandingPage/Home/ChemicalsClassification"
+                                                                       target="_self" class="bt_bb_link"
+                                                                       title="FIND OUT MORE">
+                                                                        <span class="bt_bb_button_text">
+                                                                            FIND OUT
+                                                                            MORE
+                                                                        </span><span class="bt_bb_icon_holder">
+                                                                            <i class="fa fa-angle-right"
+                                                                               style="font-size:15px;color:green"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal bt_bb_hidden_md bt_bb_hidden_lg"
+                                                             data-bt-override-class="null"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bt_bb_column col-xxl-3 col-xl-3 btOverlap1px bt_bb_vertical_align_top bt_bb_align_left bt_bb_padding_normal bt_bb_animation_fade_in animate"
+                                                 data-width="3" data-bt-override-class="{}">
+                                                <div class="bt_bb_column_content">
+                                                    <div class="bt_bb_column_content_inner">
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_large bt_bb_hidden_xs bt_bb_hidden_ms bt_bb_hidden_sm"
+                                                             data-bt-override-class="null"></div>
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_large bt_bb_hidden_xs bt_bb_hidden_ms bt_bb_hidden_sm"
+                                                             data-bt-override-class="null"></div>
+                                                        <div class="bt_bb_card_icon bt_bb_color_scheme_4 bt_bb_text_style_transparent"
+                                                             style=" --card-icon-primary-color:#0bc270; --card-icon-secondary-color:#ffffff;">
+                                                            <div class="bt_bb_card_icon_icon">
+                                                                <a 
+                                                                   target="_self">
+                                                                    <span class="bt_bb_icon_holder">
+                                                                        <img src="~/LandinCss/images/c.png"
+                                                                             style="width: 14rem;">
+                                                                    </span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_title" style="padding-bottom: 0.5em;">
+                                                                <header class="bt_bb_headline bt_bb_font_weight_normal bt_bb_size_small"
+                                                                        data-bt-override-class="{}">
+                                                                    <h3 class="bt_bb_headline_tag">
+                                                                        <span class="bt_bb_headline_content">
+                                                                            <span>
+                                                                                Hazardous
+                                                                                Classification
+                                                                            </span>
+                                                                        </span>
+                                                                    </h3>
+                                                                </header>
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_text">
+                                                                The hazard
+                                                                classification and labeling process of the
+                                                                hazard the chemicals represents for man and the
+                                                                environment can be recognized.
+                                                                .
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_content_inner">
+                                                                <div class="bt_bb_button bt_bb_color_scheme_3 bt_bb_icon_position_right bt_bb_style_clean bt_bb_size_medium bt_bb_width_inline bt_bb_shape_inherit bt_bb_target_self bt_bb_align_inherit"
+                                                                     style=" --primary-color:#0bc270; --secondary-color:#191919;"
+                                                                     data-bt-override-class="{}">
+                                                                    <a href="/LandingPage/Home/HazardousClassification"                                 
+                                                                       target="_self" class="bt_bb_link"
+                                                                       title="FIND OUT MORE">
+                                                                        <span class="bt_bb_button_text">
+                                                                            FIND OUT
+                                                                            MORE
+                                                                        </span><span class="bt_bb_icon_holder">
+                                                                            <i class="fa fa-angle-right"
+                                                                               style="font-size:15px;color:green"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal bt_bb_hidden_md bt_bb_hidden_lg"
+                                                             data-bt-override-class="null"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bt_bb_column col-xxl-3 col-xl-3 btOverlap1px bt_bb_vertical_align_top bt_bb_align_left bt_bb_padding_normal bt_bb_animation_fade_in animate"
+                                                 data-width="3" data-bt-override-class="{}">
+                                                <div class="bt_bb_column_content">
+                                                    <div class="bt_bb_column_content_inner">
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_medium bt_bb_hidden_xs bt_bb_hidden_ms bt_bb_hidden_sm"
+                                                             data-bt-override-class="null"></div>
+                                                        <div class="bt_bb_card_icon bt_bb_color_scheme_4 bt_bb_text_style_transparent"
+                                                             style=" --card-icon-primary-color:#0bc270; --card-icon-secondary-color:#ffffff;">
+                                                            <div class="bt_bb_card_icon_icon">
+                                                                <a 
+                                                                   target="_self">
+                                                                    <span class="bt_bb_icon_holder">
+                                                                        <img src="~/LandinCss/images/e.svg"
+                                                                             style="width: 8rem;">
+                                                                    </span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_title"  style="padding-bottom: 0.5em;">
+                                                                <header class="bt_bb_headline bt_bb_font_weight_normal bt_bb_size_small"
+                                                                        data-bt-override-class="{}">
+                                                                    <h3 class="bt_bb_headline_tag">
+                                                                        <span class="bt_bb_headline_content">
+                                                                            <span>
+                                                                                <a  target="_self"
+                                                                                   title="In Vitro Testing for Cosmetics">
+                                                                                    GIS
+                                                                                    Dashboard
+                                                                                </a>
+                                                                            </span>
+                                                                        </span>
+                                                                    </h3>
+                                                                </header>
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_text">
+                                                                Enables users to
+                                                                convey information by presenting location-based
+                                                                analytics using intuitive and interactive data
+                                                                visualizations
+                                                                .
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_content_inner">
+                                                                <div class="bt_bb_button bt_bb_color_scheme_3 bt_bb_icon_position_right bt_bb_style_clean bt_bb_size_medium bt_bb_width_inline bt_bb_shape_inherit bt_bb_target_self bt_bb_align_inherit"
+                                                                     style=" --primary-color:#0bc270; --secondary-color:#191919;"
+                                                                     data-bt-override-class="{}">
+                                                                    <a href="/LandingPage/Home/Dashboard"
+                                                                       target="_self" class="bt_bb_link"
+                                                                       title="FIND OUT MORE">
+                                                                        <span class="bt_bb_button_text">
+                                                                            FIND OUT
+                                                                            MORE
+                                                                        </span><span class="bt_bb_icon_holder">
+                                                                            <i class="fa fa-angle-right"
+                                                                               style="font-size:15px;color:green"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="bt_bb_row_wrapper">
+                                                            <div class="bt_bb_row_inner bt_bb_column_inner_gap_15"
+                                                                 data-bt-override-class="{}" data-structure="12">
+                                                                <div class="bt_bb_column_inner col-xxl-12 col-xl-12 bt_bb_align_left bt_bb_vertical_align_top bt_bb_padding_double bt_bb_border_color_dark"
+                                                                     data-width="12" data-bt-override-class="{}">
+                                                                    <div class="bt_bb_column_inner_content"
+                                                                         style="background-color:rgba(11, 194, 112, 1); ">
+                                                                        
+                                                                       
+                                                                      
+                                                                      
+                                                                       
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                         <div class="bt_bb_card_icon bt_bb_color_scheme_4 bt_bb_text_style_transparent"
+                                                             style=" --card-icon-primary-color:#0bc270; --card-icon-secondary-color:#ffffff;">
+                                                            <div class="bt_bb_card_icon_icon">
+                                                                <a 
+                                                                   target="_self">
+                                                                    <img src="~/LandinCss/images/d.svg"
+                                                                         style="width: 8rem;"></span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_title" style="padding-bottom: 0.5em;">
+                                                                <header class="bt_bb_headline bt_bb_font_weight_normal bt_bb_size_small"
+                                                                        data-bt-override-class="{}">
+                                                                    <h3 class="bt_bb_headline_tag">
+                                                                        <span class="bt_bb_headline_content">
+                                                                            <span>
+                                                                                <a  target="_self"
+                                                                                   title="Safety Assessment (PIF)">
+                                                                                    Manufacturing
+                                                                                    Units
+                                                                                </a>
+                                                                            </span>
+                                                                        </span>
+                                                                    </h3>
+                                                                </header>
+                                                            </div>
+                                                            <div class="bt_bb_card_icon_text">
+                                                                Facilitating
+                                                                (Medium, Large and small scale units) producing
+                                                                major Chemicals and also Public Sector
+                                                                Undertakings that are producing Petro-Chemicals
+                                                                products for their report generation and
+                                                                analysis
+                                                            </div>
+
+                                                            
+                                                            <div class="bt_bb_card_icon_content_inner">
+                                                                <div class="bt_bb_button bt_bb_color_scheme_3 bt_bb_icon_position_right bt_bb_style_clean bt_bb_size_medium bt_bb_width_inline bt_bb_shape_inherit bt_bb_target_self bt_bb_align_inherit"
+                                                                     style=" --primary-color:#0bc270; --secondary-color:#191919;"
+                                                                     data-bt-override-class="{}">
+                                                                    <a href="/LandingPage/Home/ManufacturingUnits"
+                                                                       target="_self" class="bt_bb_link"
+                                                                       title="FIND OUT MORE">
+                                                                        <span class="bt_bb_button_text">
+                                                                            FIND OUT
+                                                                            MORE
+                                                                        </span><span class="bt_bb_icon_holder">
+                                                                            <i class="fa fa-angle-right"
+                                                                               style="font-size:15px;color:green"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bt_bb_row_wrapper">
+                                        <div class="bt_bb_row" data-bt-override-class="{}" data-structure="12">
+                                            <div class="bt_bb_column col-xxl-12 col-xl-12 bt_bb_vertical_align_top bt_bb_align_center bt_bb_padding_normal bt_bb_animation_fade_in animate"
+                                                 data-width="12" data-bt-override-class="{}">
+                                                <div class="bt_bb_column_content">
+                                                    <div class="bt_bb_column_content_inner">
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_top_spacing_normal bt_bb_bottom_spacing_medium"
+                                                             data-bt-override-class="null"></div>
+                                                        <header class="bt_bb_headline bt_bb_dash_none bt_bb_size_normal bt_bb_align_inherit"
+                                                                data-bt-override-class="{}">
+                                                            <h3 class="bt_bb_headline_tag">
+                                                                <span class="bt_bb_headline_content">
+                                                                    <span style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                        Seamless
+                                                                        Data Collection with High
+                                                                        <strong>Security</strong> & Validation
+
+                                                            </h3>
+                                                        </header>
+                                                        <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_medium"
+                                                             data-bt-override-class="null"></div>
+                                                        <div class="bt_bb_image bt_bb_shape_square bt_bb_align_inherit bt_bb_hover_style_simple bt_bb_content_display_always bt_bb_content_align_middle"
+                                                             data-bt-override-class="{}">
+                                                            <span>
+                                                                <img src="~/LandinCss/images/steps.png"
+                                                                     data-full_image_src="https://novalab.bold-themes.com/nova-b/wp-content/uploads/sites/11/2020/03/steps.png"
+                                                                    
+                                                                     alt="https://novalab.bold-themes.com/nova-b/wp-content/uploads/sites/11/2020/03/steps.png">
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                </section>
+
+                <section id="bt_bb_section64869cd8074b7"
+                         class="bt_bb_section bt_bb_color_scheme_6 bt_bb_layout_boxed_1200 bt_bb_vertical_align_top bt_bb_top_section_coverage_image bt_bb_section_with_top_coverage_image bt_bb_top_spacing_large bt_bb_bottom_spacing_large"
+                         style=" --section-primary-color:#ffffff; --section-secondary-color:#0bc270;"
+                         data-bt-override-class="null">
+                    <div class="bt_bb_background_image_holder_wrapper">
+                        <div class="bt_bb_background_image_holder btLazyLoadBackground bt_bb_parallax"
+                             data-background_image_src="https://invest.rajasthan.gov.in/storage/app/public/photos/rajasthan-petrochemicals-banner-1920.jpg"
+                             data-parallax-offset="0" data-parallax-zoom-start="1" data-parallax-zoom-end="1"
+                             data-parallax-blur-start="0" data-parallax-blur-end="0"
+                             data-parallax-opacity-start="1" data-parallax-opacity-end="1"
+                             style=" background-image: url(&#39;https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/img/blank.gif&#39;);">
+                        </div>
+                    </div>
+                    <div class="bt_bb_port">
+                        <div class="bt_bb_cell">
+                            <div class="bt_bb_cell_inner">
+                                <div class="bt_bb_row_wrapper">
+                                    <div class="bt_bb_row" data-bt-override-class="{}" data-structure="8-4">
+                                        <div class="bt_bb_column col-xxl-8 col-xl-8 bt_bb_vertical_align_middle bt_bb_align_left bt_bb_padding_20 bt_bb_animation_fade_in animate"
+                                             data-width="8" data-bt-override-class="{}">
+                                            <div class="bt_bb_column_content">
+                                                <div class="bt_bb_column_content_inner">
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_large bt_bb_hidden_xs bt_bb_hidden_ms bt_bb_hidden_sm"
+                                                         data-bt-override-class="null"></div>
+                                                    <header class="bt_bb_headline bt_bb_dash_none bt_bb_size_large bt_bb_align_inherit"
+                                                            data-bt-override-class="{}">
+                                                        <h4 class="bt_bb_headline_tag"
+                                                            style="color: white !important;">
+                                                            <span class="bt_bb_headline_content"
+                                                                  style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                @*<a href="./Pdf.html">-Manuals</a> <br />*@
+                                                                <a href="/LandingPage/Home/KnowledgeDirectory">
+                                                                    -Knowledge Directory
+                                                                </a>
+                                                            </span>
+                                                        </h4>
+                                                    </header>
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_normal"
+                                                         data-bt-override-class="null"></div>
+
+                                                    <div class="bt_bb_button bt_bb_color_scheme_10 bt_bb_icon_position_left bt_bb_style_filled bt_bb_size_normal bt_bb_width_inline bt_bb_shape_inherit bt_bb_target_self bt_bb_align_inherit bt_bb_hidden_ms bt_bb_hidden_sm bt_bb_hidden_md bt_bb_hidden_lg bt_bb_icon_color_scheme_4"
+                                                         style=" --primary-color:#ffffff; --secondary-color:#0c2460;; --icon-primary-color:#0bc270; --icon-secondary-color:#ffffff;"
+                                                         data-bt-override-class="{}">
+                                                        <a href="" target="_self"
+                                                           class="bt_bb_link" >
+                                                            <span class="bt_bb_button_text">COLLECTION</span><span data-ico-laboratory=""
+                                                                                                                   class="bt_bb_icon_holder"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bt_bb_column col-xxl-4 col-xl-4 bt_bb_vertical_align_top bt_bb_align_left bt_bb_padding_normal"
+                                             data-width="4" data-bt-override-class="{}">
+                                            <div class="bt_bb_column_content">
+                                                <div class="bt_bb_column_content_inner"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- cell_inner -->
+                        </div><!-- cell -->
+                    </div><!-- port -->
+                    <div class="bt_bb_section_top_section_coverage_image" style="z-index: 0;">
+                        <img src="~/LandinCss/images/top_wave_white.png"
+                             alt="bt_bb_section_top_section_coverage_image">
+                    </div>
+                </section>
+                <section id="bt_bb_section64869cd807afd"
+                         class="bt_bb_section bt_bb_color_scheme_13 bt_bb_layout_boxed_1200 bt_bb_vertical_align_top bt_bb_bottom_section_coverage_image bt_bb_section_with_bottom_coverage_image bt_bb_top_spacing_large bt_bb_bottom_spacing_large bt_bb_section_allow_content_outside"
+                         style=" --section-primary-color:#191919; --section-secondary-color:#f8f9fb;"
+                         data-bt-override-class="null">
+                    <div class="bt_bb_background_image_holder_wrapper">
+                        <div class="bt_bb_background_image_holder btLazyLoadBackground bt_bb_parallax"
+                             data-background_image_src="https://novalab.bold-themes.com/nova-b/wp-content/uploads/sites/11/2020/05/background_05_home2.png"
+                             data-parallax="0.7" data-parallax-offset="0" data-parallax-zoom-start="1"
+                             data-parallax-zoom-end="1" data-parallax-blur-start="0" data-parallax-blur-end="0"
+                             data-parallax-opacity-start="1" data-parallax-opacity-end="1" >
+                        </div>
+                    </div>
+                    <div class="bt_bb_port">
+                        <div class="bt_bb_cell">
+                            <div class="bt_bb_cell_inner">
+                                <div class="bt_bb_row_wrapper">
+                                    <div class="bt_bb_row" data-bt-override-class="{}" data-structure="6-6">
+                                        <div class="bt_bb_column col-xxl-6 col-xl-6 bt_bb_vertical_align_top bt_bb_align_center bt_bb_padding_normal bt_bb_animation_fade_in animate"
+                                             data-width="6" data-bt-override-class="{}">
+                                            <div class="bt_bb_column_content">
+                                                <div class="bt_bb_column_content_inner">
+                                                    <div class="bt_bb_image bt_bb_shape_oval bt_bb_align_inherit bt_bb_hover_style_simple bt_bb_content_display_always bt_bb_content_align_middle bt_bb_content_exists"
+                                                         data-bt-override-class="{}">
+
+                                                        <img src="~/LandinCss/images/dram2.png">
+
+
+                                                        <div class="bt_bb_image_content">
+                                                            <div class="bt_bb_image_content_flex">
+                                                                <div class="bt_bb_image_content_inner">
+                                                                    <div class="bt_bb_icon bt_bb_color_scheme_6 bt_bb_style_borderless bt_bb_size_large bt_bb_shape_circle bt_bb_target_self bt_bb_text_empty bt_bb_align_inherit"
+                                                                         style=" --primary-color:#ffffff; --secondary-color:#0bc270;"
+                                                                         data-bt-override-class="{}"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal"
+                                                         data-bt-override-class="null"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bt_bb_column col-xxl-6 col-xl-6 bt_bb_vertical_align_top bt_bb_align_left bt_bb_padding_15 bt_bb_animation_fade_in animate"
+                                             data-width="6" data-bt-override-class="{}">
+                                            <div class="bt_bb_column_content">
+                                                <div class="bt_bb_column_content_inner">
+                                                    <header class="bt_bb_headline bt_bb_dash_none bt_bb_subheadline bt_bb_size_normal bt_bb_align_inherit"
+                                                            data-bt-override-class="{}">
+                                                        <h3 class="bt_bb_headline_tag">
+                                                            <span class="bt_bb_headline_content">
+                                                                <span style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                    Data
+                                                                    Reporting, Analysis & Management
+                                                                    (DRAM)
+                                                                    benefits
+                                                                </span>
+                                                            </span>
+                                                        </h3>
+                                                        <div class="bt_bb_headline_subheadline" style="text-align: justify;">
+                                                            Report Generation for analysis comprising of automatic acknowledgement to the responding unit, Appreciation Letters, Automatic generation of non-response list on periodic basis, Programmed Reminder to Non- responding units etc. are the advantages of this application.
+                                                        </div>
+                                                    </header>
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_normal"
+                                                         data-bt-override-class="null"></div>
+                                                    <div class="bt_bb_button bt_bb_color_scheme_6 bt_bb_icon_position_left bt_bb_style_filled bt_bb_size_medium bt_bb_width_inline bt_bb_shape_inherit bt_bb_target_self bt_bb_align_inherit"
+                                                         style=" --primary-color:#ffffff; --secondary-color:#0bc270;"
+                                                         data-bt-override-class="{}">
+                                                        <a href="/LandingPage/Home/dram"
+                                                           target="_self" class="bt_bb_link"
+                                                          
+                                                            <span class="bt_bb_button_text">Know More</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_normal"
+                                                         data-bt-override-class="null"></div>
+                                                    <div class="bt_bb_separator bt_bb_border_style_solid bt_bb_top_spacing_normal bt_bb_bottom_spacing_normal"
+                                                         data-bt-override-class="null"></div>
+                                                    <div class="bt_bb_row_wrapper">
+                                                        <div class="bt_bb_row_inner" data-bt-override-class="{}"
+                                                             data-structure="4-4-4">
+                                                            <div class="bt_bb_column_inner col-xxl-4 col-xl-4 bt_bb_align_center bt_bb_vertical_align_top bt_bb_padding_normal"
+                                                                 data-width="4" data-bt-override-class="{}">
+                                                                <div class="bt_bb_column_inner_content">
+                                                                    <div class="bt_bb_progress_bar_advanced animate-adv_progressbar bt_bb_size_normal bt_bb_icon_color_scheme_3"
+                                                                         style="--progress-bar-advanced-icon-primary-color:#0bc270; --progress-bar-advanced-icon-secondary-color:#191919;"
+                                                                         data-container="container_8150"
+                                                                         data-container-pbid="8150"
+                                                                         data-container-type="circle"
+                                                                         data-container-percentage="0.95"
+                                                                         data-container-stroke-width="2"
+                                                                         data-container-trail-color="#e9e9e9"
+                                                                         data-container-trail-width="2"
+                                                                         data-container-easing="linear"
+                                                                         data-container-color-from="#0bc270"
+                                                                         data-container-depth-from="2"
+                                                                         data-container-color-to="#0bc270"
+                                                                         data-container-depth-to="2"
+                                                                         data-container-fill=""
+                                                                         data-container-duration="1500"
+                                                                         data-container-text="">
+                                                                        <div id="container_8150"
+                                                                             class="container">
+                                                                            <span class="bt_bb_icon_holder">
+                                                                                <img src="~/LandinCss/images/flask.png">
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_small"
+                                                                         data-bt-override-class="null"></div>
+                                                                    <div class="bt_bb_counter_holder bt_bb_size_normal"
+                                                                         data-bt-override-class="{}">
+                                                                        <span class="bt_bb_counter animate"
+                                                                              data-digit-length="3">
+                                                                            <span class="onedigit p3 d3"
+                                                                                  data-digit="@TempData["chemicalsfirst"]">
+                                                                                <span class="n0">0</span><span class="n1">1</span><span class="n2">2</span><span class="n3">3</span><span class="n4">4</span><span class="n5">5</span><span class="n6">6</span><span class="n7">7</span><span class="n8">8</span><span class="n9">9</span><span class="n0">0</span>
+                                                                            </span><span class="onedigit p2 d2"
+                                                                                         data-digit="@TempData["chemicalssecond"]">
+                                                                                <span class="n0">0</span><span class="n1">1</span><span class="n2">2</span><span class="n3">3</span><span class="n4">4</span><span class="n5">5</span><span class="n6">6</span><span class="n7">7</span><span class="n8">8</span><span class="n9">9</span><span class="n0">0</span>
+                                                                            </span><span class="onedigit p1 d0"
+                                                                                         data-digit="@TempData["chemicalsthird"]">
+                                                                                <span class="n0">0</span><span class="n1">1</span><span class="n2">2</span><span class="n3">3</span><span class="n4">4</span><span class="n5">5</span><span class="n6">6</span><span class="n7">7</span><span class="n8">8</span><span class="n9">9</span><span class="n0">0</span>
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <header class="bt_bb_headline bt_bb_dash_none bt_bb_size_extrasmall bt_bb_align_inher" @*data-bt-override-class="{}"*@>
+                                                                        <h4 class="bt_bb_headline_tag">
+                                                                            <span class="bt_bb_headline_content"><span>Chemicals Units</span></span>
+                                                                        </h4>
+                                                                    </header>
+                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_medium"
+                                                                         data-bt-override-class="null"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="bt_bb_column_inner col-xxl-4 col-xl-4 bt_bb_align_center bt_bb_vertical_align_top bt_bb_padding_normal"
+                                                                 data-width="4" data-bt-override-class="{}">
+                                                                <div class="bt_bb_column_inner_content">
+                                                                    <div class="bt_bb_progress_bar_advanced animate-adv_progressbar bt_bb_size_normal bt_bb_icon_color_scheme_3"
+                                                                         style="--progress-bar-advanced-icon-primary-color:#0bc270; --progress-bar-advanced-icon-secondary-color:#191919;"
+                                                                         data-container="container_78397"
+                                                                         data-container-pbid="78397"
+                                                                         data-container-type="circle"
+                                                                         data-container-percentage="0.8"
+                                                                         data-container-stroke-width="2"
+                                                                         data-container-trail-color="#e9e9e9"
+                                                                         data-container-trail-width="2"
+                                                                         data-container-easing="linear"
+                                                                         data-container-color-from="#0bc270"
+                                                                         data-container-depth-from="2"
+                                                                         data-container-color-to="#0bc270"
+                                                                         data-container-depth-to="2"
+                                                                         data-container-fill=""
+                                                                         data-container-duration="1500"
+                                                                         data-container-text="">
+                                                                        <div id="container_78397"
+                                                                             class="container">
+                                                                            <span data-ico-chemistry=""
+                                                                                  class="bt_bb_icon_holder">
+                                                                                <img src="~/LandinCss/images/2.png">
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_small"
+                                                                         data-bt-override-class="null"></div>
+                                                                      <div class="bt_bb_counter_holder bt_bb_size_normal"
+                                                                         data-bt-override-class="{}">
+                                                                        <span class="bt_bb_counter animate"
+                                                                              data-digit-length="3">
+                                                                            <span class="onedigit p3 d3"
+                                                                                  data-digit="@TempData["PeroChemicalsfirst"]">
+                                                                                <span class="n0">0</span><span class="n1">1</span><span class="n2">2</span><span class="n3">3</span><span class="n4">4</span><span class="n5">5</span><span class="n6">6</span><span class="n7">7</span><span class="n8">8</span><span class="n9">9</span><span class="n0">0</span>
+                                                                            </span><span class="onedigit p2 d2"
+                                                                                         data-digit="@TempData["PeroChemicalssecond"]">
+                                                                                <span class="n0">0</span><span class="n1">1</span><span class="n2">2</span><span class="n3">3</span><span class="n4">4</span><span class="n5">5</span><span class="n6">6</span><span class="n7">7</span><span class="n8">8</span><span class="n9">9</span><span class="n0">0</span>
+                                                                            </span><span class="onedigit p1 d0"
+                                                                                         data-digit="@TempData["PeroChemicalsthird"]">
+                                                                                <span class="n0">0</span><span class="n1">1</span><span class="n2">2</span><span class="n3">3</span><span class="n4">4</span><span class="n5">5</span><span class="n6">6</span><span class="n7">7</span><span class="n8">8</span><span class="n9">9</span><span class="n0">0</span>
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <header class="bt_bb_headline bt_bb_dash_none bt_bb_size_extrasmall bt_bb_align_inherit"
+                                                                            data-bt-override-class="{}">
+                                                                        <h4 class="bt_bb_headline_tag">
+                        
+                                                                            <span class="bt_bb_headline_content"><span>Petro-Chemicals Units</span></span>
+                                                                        </h4>
+                                                                    </header>
+                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_medium"
+                                                                         data-bt-override-class="null"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="bt_bb_column_inner col-xxl-4 col-xl-4 bt_bb_align_center bt_bb_vertical_align_top bt_bb_padding_normal"
+                                                                 data-width="4" data-bt-override-class="{}">
+                                                                <div class="bt_bb_column_inner_content">
+                                                                    <div class="bt_bb_progress_bar_advanced animate-adv_progressbar bt_bb_size_normal bt_bb_icon_color_scheme_3"
+                                                                         style="--progress-bar-advanced-icon-primary-color:#0bc270; --progress-bar-advanced-icon-secondary-color:#191919;"
+                                                                         data-container="container_66028"
+                                                                         data-container-pbid="66028"
+                                                                         data-container-type="circle"
+                                                                         data-container-percentage="0.7"
+                                                                         data-container-stroke-width="2"
+                                                                         data-container-trail-color="#e9e9e9"
+                                                                         data-container-trail-width="2"
+                                                                         data-container-easing="linear"
+                                                                         data-container-color-from="#0bc270"
+                                                                         data-container-depth-from="2"
+                                                                         data-container-color-to="#0bc270"
+                                                                         data-container-depth-to="2"
+                                                                         data-container-fill=""
+                                                                         data-container-duration="1500"
+                                                                         data-container-text="">
+                                                                        <div id="container_66028"
+                                                                             class="container">
+                                                                            <span data-ico-chemistry=""
+                                                                                  class="bt_bb_icon_holder">
+                                                                                <img src="~/LandinCss/images/3.png">
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_small"
+                                                                         data-bt-override-class="null"></div>
+                                                                    <div class="bt_bb_counter_holder bt_bb_size_normal"
+                                                                         data-bt-override-class="{}">
+                                                                        <span class="bt_bb_counter animate"
+                                                                              data-digit-length="3">
+                                                                            <span class="onedigit p3 d3"
+                                                                                  data-digit="@TempData["TotalUnitsfirst"]">
+                                                                                <span class="n0">0</span><span class="n1">1</span><span class="n2">2</span><span class="n3">3</span><span class="n4">4</span><span class="n5">5</span><span class="n6">6</span><span class="n7">7</span><span class="n8">8</span><span class="n9">9</span><span class="n0">0</span>
+                                                                            </span><span class="onedigit p2 d2"
+                                                                                         data-digit="@TempData["TotalUnitssecond"]">
+                                                                                <span class="n0">0</span><span class="n1">1</span><span class="n2">2</span><span class="n3">3</span><span class="n4">4</span><span class="n5">5</span><span class="n6">6</span><span class="n7">7</span><span class="n8">8</span><span class="n9">9</span><span class="n0">0</span>
+                                                                            </span><span class="onedigit p1 d0"
+                                                                                         data-digit="@TempData["TotalUnitsthird"]">
+                                                                                <span class="n0">0</span><span class="n1">1</span><span class="n2">2</span><span class="n3">3</span><span class="n4">4</span><span class="n5">5</span><span class="n6">6</span><span class="n7">7</span><span class="n8">8</span><span class="n9">9</span><span class="n0">0</span>
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <header class="bt_bb_headline bt_bb_dash_none bt_bb_size_extrasmall bt_bb_align_inherit"
+                                                                            data-bt-override-class="{}">
+                                                                        <h4 class="bt_bb_headline_tag">
+                         
+                                                                            <span class="bt_bb_headline_content">
+                                                                                <span>
+                                                                                    Total
+                                                                                    Units
+                                                                                </span>
+                                                                            </span>
+                                                                        </h4>
+                                                                    </header>
+                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_medium"
+                                                                         data-bt-override-class="null"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- cell_inner -->
+                        </div><!-- cell -->
+                    </div><!-- port -->
+                    <div class="bt_bb_section_bottom_section_coverage_image" style="z-index: 0;">
+                        <img src="~/LandinCss/images/bottom_cover_3.png" alt="bt_bb_section_bottom_section_coverage_image">
+                    </div>
+                </section>
+                <section id="bt_bb_section64869cd8088d3"
+                         class="bt_bb_section bt_bb_layout_boxed_1200 bt_bb_vertical_align_top bt_bb_bottom_spacing_large"
+                         data-bt-override-class="null">
+                    <div class="bt_bb_port">
+                        <div class="bt_bb_cell">
+                            <div class="bt_bb_cell_inner">
+                                <div class="bt_bb_row_wrapper">
+                                    <div class="bt_bb_row" data-bt-override-class="{}" data-structure="12">
+                                        <div class="bt_bb_column col-xxl-12 col-xl-12 bt_bb_vertical_align_top bt_bb_align_left bt_bb_padding_normal bt_bb_animation_fade_in animate"
+                                             data-width="12" data-bt-override-class="{}">
+                                            <div class="bt_bb_column_content">
+                                                <div class="bt_bb_column_content_inner">
+                                                    <header class="bt_bb_headline bt_bb_dash_none bt_bb_size_normal bt_bb_align_inherit"
+                                                            data-bt-override-class="{}">
+                                                        <h4 class="bt_bb_headline_tag">
+                                                            <span class="bt_bb_headline_content">
+                                                                <span style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                    Recent
+                                                                    <strong>news</strong>
+                                                                </span>
+                                                            </span>
+                                                        </h4>
+                                                    </header>
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_normal"
+                                                         data-bt-override-class="null"></div>
+                                                    <div class="bt_bb_latest_posts bt_bb_columns_1 bt_bb_gap_normal bt_bb_image_shape_square bt_bb_show_image_hide">
+                                                        <div class="bt_bb_latest_posts_item">
+                                                            <div class="bt_bb_latest_posts_item_content">
+                                                                <div class="bt_bb_latest_posts_item_meta">
+                                                                    <span class="bt_bb_latest_posts_item_date">
+                                                                        Feb
+                                                                        08,2023
+                                                                    </span>
+                                                                </div>
+                                                                <h5 class="bt_bb_latest_posts_item_title">
+                                                                    <a href="https://www.livemint.com/news/india/chemicals-fastest-growing-industry-adds-20-new-people-in-hurun-s-rich-list-2022-11663761797138.html"
+                                                                       target="_blank"
+                                                                       style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                        Chemicals
+                                                                        fastest
+                                                                        growing
+                                                                        industry, adds 20 new people in Hurun's
+                                                                        rich list 2022
+                                                                    </a>
+                                                                </h5>
+
+                                                                <span>
+                                                                    Chemicals are the fastest growing
+                                                                    industry,
+                                                                    as per the IIFL Wealth Hurun India Rich List
+                                                                    2022. The industry added 20 new faces from
+                                                                    the total new ....<a href="https://www.livemint.com/news/india/chemicals-fastest-growing-industry-adds-20-new-people-in-hurun-s-rich-list-2022-11663761797138.html"
+                                                                       target="_blank" >Read More</a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="bt_bb_latest_posts_item">
+                                                            <div class="bt_bb_latest_posts_item_content">
+                                                                <div class="bt_bb_latest_posts_item_meta">
+                                                                    <span class="bt_bb_latest_posts_item_date">
+                                                                        Sep
+                                                                        23,2022
+                                                                    </span>
+                                                                </div>
+                                                                <h5 class="bt_bb_latest_posts_item_title">
+                                                                    <a href="https://www.polymerupdate.com/Error/PageNotFound?aspxerrorpath=/blog/plastic-news/2022-09-23-Suspension-grade-PVC-imports-from-Japan-under-watch-on-talks-of-a-review-of-India-Japan-CEPA-agreement.aspx"
+                                                                       target="_blank"
+                                                                       style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                        A
+                                                                        Review Of
+                                                                        India-Japan
+                                                                        CEPA Agreement
+                                                                    </a>
+                                                                </h5>
+
+                                                                <span>
+                                                                    A dark cloud has started shadowing India’s
+                                                                    import of Suspension polyvinyl chloride
+                                                                    (PVC) from Japan after the Indian Minister
+                                                                    of Commerce and... <a href="https://www.polymerupdate.com/Error/PageNotFound?aspxerrorpath=/blog/plastic-news/2022-09-23-Suspension-grade-PVC-imports-from-Japan-under-watch-on-talks-of-a-review-of-India-Japan-CEPA-agreement.aspx"
+                                                                       target="_blank">Read More</a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="bt_bb_latest_posts_item">
+                                                            <div class="bt_bb_latest_posts_item_content">
+                                                                <div class="bt_bb_latest_posts_item_meta">
+                                                                    <span class="bt_bb_latest_posts_item_date">
+                                                                        Sep
+                                                                        20,2022
+                                                                    </span>
+                                                                </div>
+                                                                <h5 class="bt_bb_latest_posts_item_title">
+                                                                    <a href="https://www.thestatesman.com/india/mandaviya-calls-for-creating-indias-own-model-to-lead-global-chemicals-and-fertiliser-market-1503113196.html"
+                                                                       target="_blank"
+                                                                       style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                        Role
+                                                                        in boosting
+                                                                        the
+                                                                        nation's growth
+                                                                    </a>
+                                                                </h5>
+
+                                                                <span>
+                                                                    “Chemicals and Petro-Chemicals sector can
+                                                                    transform India into a global manufacturing
+                                                                    hub in sync with PM Shri Narendra Modi Ji's
+                                                                    vision of 'Make ..<a href="https://www.thestatesman.com/india/mandaviya-calls-for-creating-indias-own-model-to-lead-global-chemicals-and-fertiliser-market-1503113196.html"
+                                                                       target="_blank">Read more</a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="bt_bb_latest_posts_item">
+                                                            <div class="bt_bb_latest_posts_item_content">
+                                                                <div class="bt_bb_latest_posts_item_meta">
+                                                                    <span class="bt_bb_latest_posts_item_date">
+                                                                        Sep
+                                                                        06,2022
+                                                                    </span>
+                                                                </div>
+                                                                <h5 class="bt_bb_latest_posts_item_title">
+                                                                    <a href="https://finance.yahoo.com/news/usd-635-73-mn-growth-053000662.html?guccounter=2&guce_referrer=aHR0cHM6Ly9jaGVtaWNhbHMuZ292LmluLw&guce_referrer_sig=AQAAAFThoj5WITnPyYbf5EU7jR7t2UwTWs9e5Q5dZKAqU5jE7M1alWBMX6WJgLVMcB6wyoAxdJtiweNpWAeqUniJz3D1wXqVzvXtHhvUx-n1RjC_IYQItqaC8OWoJ6ypXABnYmgLr-Xs_E0u2u4CDiakwkNFwBRD54TLu8DoO6v1dphb"
+                                                                       target="_blank"
+                                                                       style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                        Safety
+                                                                        Instrumented
+                                                                        Systems (SIS) Market In Chemicals And
+                                                                        Petrochemicals Industry Market
+                                                                    </a>
+                                                                </h5>
+
+                                                                <span>
+                                                                    The safety instrumented systems (SIS)
+                                                                    market in the chemicals and petrochemicals
+                                                                    industry is expected to grow by USD 635.…
+                                                                    <a href="https://finance.yahoo.com/news/usd-635-73-mn-growth-053000662.html?guccounter=2&guce_referrer=aHR0cHM6Ly9jaGVtaWNhbHMuZ292LmluLw&guce_referrer_sig=AQAAAFThoj5WITnPyYbf5EU7jR7t2UwTWs9e5Q5dZKAqU5jE7M1alWBMX6WJgLVMcB6wyoAxdJtiweNpWAeqUniJz3D1wXqVzvXtHhvUx-n1RjC_IYQItqaC8OWoJ6ypXABnYmgLr-Xs_E0u2u4CDiakwkNFwBRD54TLu8DoO6v1dphb"
+                                                                       target="_blank">Read More</a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="bt_bb_latest_posts_item">
+                                                            <div class="bt_bb_latest_posts_item_content">
+                                                                <div class="bt_bb_latest_posts_item_meta">
+                                                                    <span class="bt_bb_latest_posts_item_date">
+                                                                        Jul
+                                                                        28,2022
+                                                                    </span>
+                                                                </div>
+                                                                <h5 class="bt_bb_latest_posts_item_title">
+                                                                    <a href="https://krishijagran.com/agriculture-world/dcpc-signs-mou-with-ilo-for-adoption-of-international-chemical-safety-cards/"
+                                                                       target="_blank"
+                                                                       style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                        DCPC
+                                                                        signs MoU
+                                                                        with
+                                                                        ILO
+                                                                    </a>
+                                                                </h5>
+
+                                                                <span>
+                                                                    Dr. Mansukh Mandaviya, Union Minister for
+                                                                    Chemicals and Fertilizers, and Health and
+                                                                    Family Welfare, presided over a seminar on
+                                                                    "Safe Use of ... <a href="https://krishijagran.com/agriculture-world/dcpc-signs-mou-with-ilo-for-adoption-of-international-chemical-safety-cards/"
+                                                                       target="_blank">Read More</a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_normal"
+                                                         data-bt-override-class="null"></div>
+                                                    <div class="bt_bb_button bt_bb_color_scheme_3 bt_bb_icon_position_right bt_bb_style_clean bt_bb_size_medium bt_bb_width_inline bt_bb_shape_inherit bt_bb_target_self bt_bb_align_inherit"
+                                                         style=" --primary-color:#0bc270; --secondary-color:#191919;"
+                                                         data-bt-override-class="{}">
+                                                        <a href="" target="_self"
+                                                           class="bt_bb_link" >
+                                                            <span class="bt_bb_button_text">
+                                                                NEWS
+                                                                ARCHIVE <i class="fas fa-chevron-right"></i>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- cell_inner -->
+                        </div><!-- cell -->
+                    </div><!-- port -->
+                </section>
+                <section id="bt_bb_section6492e0e4ae737"
+                         class="bt_bb_section bt_bb_color_scheme_13 bt_bb_layout_wide bt_bb_vertical_align_top bt_bb_top_section_coverage_image bt_bb_section_with_top_coverage_image bt_bb_top_spacing_large bt_bb_bottom_spacing_medium"
+                         style=" --section-primary-color:#191919; --section-secondary-color:#f8f9fb;"
+                         data-bt-override-class="null">
+                    <div class="bt_bb_background_image_holder_wrapper">
+                        <div class="bt_bb_background_image_holder btLazyLoadBackground bt_bb_parallax"
+                             data-background_image_src="https://novalab.bold-themes.com/nova-b/wp-content/uploads/sites/11/2020/06/background_right_squares.png"
+                             data-parallax="0.7" data-parallax-offset="0" data-parallax-zoom-start="1"
+                             data-parallax-zoom-end="1" data-parallax-blur-start="0" data-parallax-blur-end="0"
+                             data-parallax-opacity-start="1" data-parallax-opacity-end="1"
+                             style=" background-image: url(&#039;https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/img/blank.gif&#039;);">
+                        </div>
+                    </div>
+                    <div class="bt_bb_port">
+                        <div class="bt_bb_cell">
+                            <div class="bt_bb_cell_inner">
+                                <div class="bt_bb_row_wrapper">
+                                    <div class="bt_bb_row" data-bt-override-class="{}">
+                                        <div class="bt_bb_column col-xxl-12 col-xl-12 bt_bb_vertical_align_top bt_bb_align_left bt_bb_padding_normal"
+                                             data-width="12" data-bt-override-class="{}">
+                                            <div class="bt_bb_column_content">
+                                                <div class="bt_bb_column_content_inner">
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_medium"
+                                                         data-bt-override-class="null"></div>
+                                                    <div class="bt_bb_content_slider bt_bb_gap_no_gap bt_bb_arrows_size_no_arrows bt_bb_show_dots_bottom bt_bb_height_keep-height bt_bb_animation_fade bt_bb_animation_fade animate"
+                                                         data-bt-override-class="{}">
+                                                        <div class="slick-slider fade"
+                                                             data-slick='{ "lazyLoad": "progressive", "cssEase": "ease-out", "speed": "600", "accessibility": false, "fade": true, "arrows": false, "dots": true,"autoplay": true, "autoplaySpeed": 3000}'>
+                                                            <div class="bt_bb_content_slider_item">
+                                                                <div class="bt_bb_content_slider_item_content content">
+                                                                    <div class="bt_bb_row_wrapper">
+                                                                        <div class="bt_bb_row_inner"
+                                                                             data-bt-override-class="{}">
+                                                                            <div class="bt_bb_column_inner col-xxl-7 col-xl-7 bt_bb_align_left bt_bb_vertical_align_top"
+                                                                                 data-width="7"
+                                                                                 data-bt-override-class="{}">
+                                                                                <div class="bt_bb_column_inner_content">
+                                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal"
+                                                                                         data-bt-override-class="null">
+                                                                                    </div>
+                                                                                    <header class="bt_bb_headline bt_bb_dash_none bt_bb_size_normal bt_bb_align_inherit"
+                                                                                            data-bt-override-class="{}">
+                                                                                        <h5 class="bt_bb_headline_tag">
+                                                                                            <span class="bt_bb_headline_content">
+
+                                                                                                <span style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                                                    What
+                                                                                                    our
+                                                                                                    Hon'ble
+                                                                                                    <strong>Dignitaries</strong>                                                                                                   
+                                                                                                    says...
+                                                                                                </span>
+                                                                                            </span>
+                                                                                        </h5>
+                                                                                    </header>
+                                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_medium">
+                                                                                    </div>
+                                                                                    <div class=" bt_bb_font_weight_light">
+                                                                                        <div class="bt_bb_testimonial_text">
+                                                                                            <span style="font-size: 1.3rem;">
+                                                                                                <img src="~/LandinCss/images/appostrophy.png"
+                                                                                                     style="width: 6rem; margin-bottom: -4rem; margin-left: -3rem;">
+                                                                                                “In
+                                                                                                our long
+
+                                                                                                association
+                                                                                                with
+
+                                                                                               
+                                                                                                the
+                                                                                                attribute
+                                                                                                which we
+                                                                                                admire
+                                                                                                most, is
+                                                                                                their
+                                                                                                passion
+                                                                                                for
+                                                                                                excellence.
+                                                                                                This
+                                                                                                passion
+                                                                                                is
+                                                                                                exemplified
+                                                                                                in a
+                                                                                                unique
+                                                                                                focus
+                                                                                                for
+                                                                                                quality
+                                                                                                both in
+                                                                                                their
+                                                                                                products
+                                                                                                as well
+                                                                                                as
+                                                                                                laboratory
+                                                                                                professional
+                                                                                                service,
+                                                                                                patients’
+                                                                                                convenience
+                                                                                                and
+                                                                                                comfort.”
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="bt_bb_testimonial_text_box">
+                                                                                            <header class="bt_bb_headline bt_bb_superheadline bt_bb_subheadline bt_bb_size_medium btNoHeadline"
+                                                                                                    data-bt-override-class="{}">
+                                                                                                <div class="bt_bb_headline_subheadline">
+                                                                                                    <strong>
+                                                                                                        Dr.
+                                                                                                        Mansukh
+                                                                                                        Mandaviya
+                                                                                                    </strong><br />
+
+                                                                                                    <span class="text-xl font-[popins]">
+                                                                                                        Hon'ble
+                                                                                                        Union
+                                                                                                        Minister,
+                                                                                                        for
+                                                                                                        Health
+                                                                                                        and
+                                                                                                        Family
+                                                                                                        Welfare
+                                                                                                        and
+                                                                                                        Chemicals
+                                                                                                        &
+                                                                                                        Fertilizers
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </header>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal"
+                                                                                         data-bt-override-class="null">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="bt_bb_column_inner col-xxl-5 col-xl-5 bt_bb_align_left bt_bb_vertical_align_bottom bt_bb_padding_normal"
+                                                                                 data-width="5"
+                                                                                 data-bt-override-class="{}">
+                                                                                <div class="bt_bb_column_inner_content">
+                                                                                    <div class="bt_bb_image bt_bb_shape_oval bt_bb_align_inherit bt_bb_hover_style_simple bt_bb_content_display_always bt_bb_content_align_middle"
+                                                                                         data-bt-override-class="{}">
+                                                                                        <span>
+                                                                                            <img src="https://static.pib.gov.in/WriteReadData/userfiles/image/image001GBM9.jpg"
+                                                                                                 data-full_image_src="https://static.pib.gov.in/WriteReadData/userfiles/image/image001GBM9.jpg"
+                                                                                                
+                                                                                                 alt="https://novalab.bold-themes.com/nova-b/wp-content/uploads/sites/11/2020/04/testimonial-4.jpg">
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="bt_bb_content_slider_item">
+                                                                <div class="bt_bb_content_slider_item_content content">
+                                                                    <div class="bt_bb_row_wrapper">
+                                                                        <div class="bt_bb_row_inner"
+                                                                             data-bt-override-class="{}">
+                                                                            <div class="bt_bb_column_inner col-xxl-7 col-xl-7 bt_bb_align_left bt_bb_vertical_align_top"
+                                                                                 data-width="7"
+                                                                                 data-bt-override-class="{}">
+                                                                                <div class="bt_bb_column_inner_content">
+                                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal"
+                                                                                         data-bt-override-class="null">
+                                                                                    </div>
+                                                                                    <header class="bt_bb_headline bt_bb_dash_none bt_bb_size_normal bt_bb_align_inherit"
+                                                                                            data-bt-override-class="{}">
+                                                                                        <h5 class="bt_bb_headline_tag">
+                                                                                            <span class="bt_bb_headline_content">
+
+                                                                                                <span style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                                                    What
+                                                                                                    our
+                                                                                                    Hon'ble
+                                                                                                    <strong>Dignitaries</strong>
+                                                                                                    say...
+                                                                                                </span>
+                                                                                            </span>
+                                                                                        </h5>
+                                                                                    </header>
+                                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_medium"
+                                                                                         data-bt-override-class="null">
+                                                                                    </div>
+                                                                                    <div class=" bt_bb_font_weight_light">
+                                                                                        <div class="bt_bb_testimonial_text">
+                                                                                            <span style="font-size: 1.3rem;">
+                                                                                                <img src="~/LandinCss/images/appostrophy.png"
+                                                                                                     style="width: 6rem; margin-bottom: -4rem; margin-left: -3rem;">
+                                                                                                “In
+                                                                                                our long
+
+                                                                                                association
+                                                                                                with
+
+                                                                                                Novalab
+                                                                                                the
+                                                                                                attribute
+                                                                                                which we
+                                                                                                admire
+                                                                                                most, is
+                                                                                                their
+                                                                                                passion
+                                                                                                for
+                                                                                                excellence.
+                                                                                                This
+                                                                                                passion
+                                                                                                is
+                                                                                                exemplified
+                                                                                                in a
+                                                                                                unique
+                                                                                                focus
+                                                                                                for
+                                                                                                quality
+                                                                                                both in
+                                                                                                their
+                                                                                                products
+                                                                                                as well
+                                                                                                as
+                                                                                                laboratory
+                                                                                                professional
+                                                                                                service,
+                                                                                                patients’
+                                                                                                convenience
+                                                                                                and
+                                                                                                comfort.”
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="bt_bb_testimonial_text_box">
+                                                                                            <header class="bt_bb_headline bt_bb_superheadline bt_bb_subheadline bt_bb_size_medium btNoHeadline"
+                                                                                                    data-bt-override-class="{}">
+                                                                                                <div class="bt_bb_headline_subheadline">
+                                                                                                    <strong>
+                                                                                                        Dr.
+                                                                                                        Mansukh
+                                                                                                        Mandaviya
+                                                                                                    </strong><br />
+                                                                                                    <span class="text-xl font-[popins]">
+                                                                                                        Hon'ble
+                                                                                                        Union
+                                                                                                        Minister,
+                                                                                                        for
+                                                                                                        Health
+                                                                                                        and
+                                                                                                        Family
+                                                                                                        Welfare
+                                                                                                        and
+                                                                                                        Chemicals
+                                                                                                        &
+                                                                                                        Fertilizers
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </header>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal"
+                                                                                         data-bt-override-class="null">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="bt_bb_column_inner col-xxl-5 col-xl-5 bt_bb_align_left bt_bb_vertical_align_bottom bt_bb_padding_normal"
+                                                                                 data-width="5"
+                                                                                 data-bt-override-class="{}">
+                                                                                <div class="bt_bb_column_inner_content">
+                                                                                    <div class="bt_bb_image bt_bb_shape_oval bt_bb_align_inherit bt_bb_hover_style_simple bt_bb_content_display_always bt_bb_content_align_middle"
+                                                                                         data-bt-override-class="{}">
+                                                                                        <span>
+                                                                                            <img src="https://static.pib.gov.in/WriteReadData/userfiles/image/image001GBM9.jpg"
+                                                                                                 data-full_image_src="https://static.pib.gov.in/WriteReadData/userfiles/image/image001GBM9.jpg"
+                                                                                               
+                                                                                                 alt="https://novalab.bold-themes.com/nova-b/wp-content/uploads/sites/11/2020/04/testimonial-4.jpg">
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="bt_bb_content_slider_item">
+                                                                <div class="bt_bb_content_slider_item_content content">
+                                                                    <div class="bt_bb_row_wrapper">
+                                                                        <div class="bt_bb_row_inner"
+                                                                             data-bt-override-class="{}">
+                                                                            <div class="bt_bb_column_inner col-xxl-7 col-xl-7 bt_bb_align_left bt_bb_vertical_align_top"
+                                                                                 data-width="7"
+                                                                                 data-bt-override-class="{}">
+                                                                                <div class="bt_bb_column_inner_content">
+                                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal"
+                                                                                         data-bt-override-class="null">
+                                                                                    </div>
+                                                                                    <header class="bt_bb_headline bt_bb_dash_none bt_bb_size_normal bt_bb_align_inherit"
+                                                                                            data-bt-override-class="{}">
+                                                                                        <h5 class="bt_bb_headline_tag">
+                                                                                            <span class="bt_bb_headline_content">
+
+                                                                                                <span style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                                                                                    What
+                                                                                                    our
+                                                                                                    Hon'ble
+                                                                                                    <strong>Dignitaries</strong>
+                                                                                                    say...
+                                                                                                </span>
+                                                                                            </span>
+                                                                                        </h5>
+                                                                                    </header>
+                                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_bottom_spacing_medium"
+                                                                                         data-bt-override-class="null">
+                                                                                    </div>
+                                                                                    <div class=" bt_bb_font_weight_light">
+                                                                                        <div class="bt_bb_testimonial_text">
+                                                                                            <span style="font-size: 1.3rem;">
+                                                                                                <img src="~/LandinCss/images/appostrophy.png"
+                                                                                                     style="width: 6rem; margin-bottom: -4rem; margin-left: -3rem;">
+                                                                                                “In
+                                                                                                our long
+
+                                                                                                association
+                                                                                                with
+
+                                                                                                Novalab
+                                                                                                the
+                                                                                                attribute
+                                                                                                which we
+                                                                                                admire
+                                                                                                most, is
+                                                                                                their
+                                                                                                passion
+                                                                                                for
+                                                                                                excellence.
+                                                                                                This
+                                                                                                passion
+                                                                                                is
+                                                                                                exemplified
+                                                                                                in a
+                                                                                                unique
+                                                                                                focus
+                                                                                                for
+                                                                                                quality
+                                                                                                both in
+                                                                                                their
+                                                                                                products
+                                                                                                as well
+                                                                                                as
+                                                                                                laboratory
+                                                                                                professional
+                                                                                                service,
+                                                                                                patients’
+                                                                                                convenience
+                                                                                                and
+                                                                                                comfort.”
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="bt_bb_testimonial_text_box">
+                                                                                            <header class="bt_bb_headline bt_bb_superheadline bt_bb_subheadline bt_bb_size_medium btNoHeadline"
+                                                                                                    data-bt-override-class="{}">
+                                                                                                <div class="bt_bb_headline_subheadline">
+                                                                                                    <strong>
+                                                                                                        Dr.
+                                                                                                        Mansukh
+                                                                                                        Mandaviya
+                                                                                                    </strong><br />
+
+                                                                                                    <span class="text-xl font-[popins]">
+                                                                                                        Hon'ble
+                                                                                                        Union
+                                                                                                        Minister,
+                                                                                                        for
+                                                                                                        Health
+                                                                                                        and
+                                                                                                        Family
+                                                                                                        Welfare
+                                                                                                        and
+                                                                                                        Chemicals
+                                                                                                        &
+                                                                                                        Fertilizers
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </header>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_normal"
+                                                                                         data-bt-override-class="null">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="bt_bb_column_inner col-xxl-5 col-xl-5 bt_bb_align_left bt_bb_vertical_align_bottom bt_bb_padding_normal"
+                                                                                 data-width="5"
+                                                                                 data-bt-override-class="{}">
+                                                                                <div class="bt_bb_column_inner_content">
+                                                                                    <div class="bt_bb_image bt_bb_shape_oval bt_bb_align_inherit bt_bb_hover_style_simple bt_bb_content_display_always bt_bb_content_align_middle"
+                                                                                         data-bt-override-class="{}">
+                                                                                        <span>
+                                                                                            <img src="https://newsonair.gov.in/writereaddata/News_Pictures/NAT/2022/Mar/NPIC-2022322202730.jpg"
+                                                                                                 data-full_image_src="https://newsonair.gov.in/writereaddata/News_Pictures/NAT/2022/Mar/NPIC-2022322202730.jpg"
+                                                                                                 title="Testimonial"
+                                                                                                 alt="#">
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="bt_bb_separator bt_bb_border_style_none bt_bb_border_color_none bt_bb_bottom_spacing_small"
+                                                         data-bt-override-class="null"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- cell_inner -->
+                        </div>
+                        <!-- cell -->
+                    </div>
+                    <!-- port -->
+                    <div class="bt_bb_section_top_section_coverage_image" style="z-index: 0;">
+                        <img src="https://novalab.bold-themes.com/nova-b/wp-content/uploads/sites/11/2020/03/top_cover_02.png"
+                             alt="bt_bb_section_top_section_coverage_image" />
+                    </div>
+                </section>
+
+
+
+                <section>
+                    <div class="col-lg-12" style="margin-bottom: -10rem;">
+                        <div>
+                            <div class='tableauPlaceholder abc' id='viz1685627062602'
+                                 style='position: relative'>
+                                <noscript>
+                                    <a href='https:&#47;&#47;chemicals.gov.in&#47;'>
+                                        <img alt='Dashboard 1 '
+                                             src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;HT&#47;HTTG8QYMT&#47;1_rss.png'
+                                             style='border: none' />
+                                    </a>
+                                </noscript>
+                                <object class='tableauViz' style='display:none;'>
+                                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                                    <param name='embed_code_version' value='3' />
+                                    <param name='path'
+                                           value='views&#47;Book1_16539111828500&#47;Dashboard1?:language=en-US&amp;:embed=y&amp;:toolbar=yes&amp;:embed_code_version=3&amp;:loadOrderID=0&amp;:display_count=yes' />
+                                    <param name='toolbar' value='yes' />
+                                    <param name='static_image'
+                                           value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;HT&#47;HTTG8QYMT&#47;1.png' />
+                                    <param name='animate_transition' value='yes' />
+                                    <param name='display_static_image' value='yes' />
+                                    <param name='display_spinner' value='yes' />
+                                    <param name='display_overlay' value='yes' />
+                                    <param name='display_count' value='yes' />
+                                    <param name='language' value='en-US' />
+                                </object>
+                            </div>
+                            <script type='text/javascript'>
+                                var divElement = document.getElementById('viz1685627062602'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.minWidth = '1820px'; vizElement.style.maxWidth = '1920px'; vizElement.style.width = '100%'; vizElement.style.minHeight = '487px'; vizElement.style.maxHeight = '887px'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else if (divElement.offsetWidth > 500) { vizElement.style.minWidth = '1820px'; vizElement.style.maxWidth = '1920px'; vizElement.style.width = '100%'; vizElement.style.minHeight = '487px'; vizElement.style.maxHeight = '887px'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '727px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                            </script>
+                        </div>
+
+                    </div>
+                </section>
+                <br />
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--Start Sticky Icon-->
+<div class="sticky-icon">
+
+<div>
+ <span class="rotated" style="font-size: 11px">Colour Code Acc. to Chemicals</span>
+    </div>
+
+
+ <a class="Instagram cursor-pointer" onclick="toggleModal()"></a>
+    <a class="Instagram1 cursor-pointer" onclick="toggleModal()"></a>
+    <a class="Facebook cursor-pointer" onclick="toggleModal()"></a>
+    <a class="Google cursor-pointer" onclick="toggleModal()"></a>
+    <a class="Youtube cursor-pointer" onclick="toggleModal()"></a>
+    <a class="Twitter cursor-pointer" onclick="toggleModal()"></a>
+    <a class="Twitter1 cursor-pointer" onclick="toggleModal()"></a>
+    <a class="Twitter2 cursor-pointer" onclick="toggleModal()"></a>
+    
+   
+</div>
+
+<section class="hidden cursor-pointer" id="modal">
+    <div class=" z-20 overflow-y-auto top-0 w-full left-0 ">
+        <div class="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity">
+                <div class="absolute inset-0  opacity-75" />
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+            <div class=" model_popup py-4 container mx-auto inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-12 sm:align-middle sm:max-w-lg sm:w-full "
+                 role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+
+                <div class=" text-right">
+                    <button type="button" class="  text-green-400 mr-2" onclick="toggleModal()">
+                        <i class="fa fa-close"></i>
+                    </button>
+
+                </div>
+                <div class="text-center mx-4 space-y-2" style="margin-top: -24px;">
+
+                    <b class="underline">ChemIndia - Chemicals Inventory of India Chemicals Colour</b>
+                    <div class="bg-green-100">
+                        <table class=" border-separate border border-green-900 ">
+                            <thead>
+                                <tr>
+                                    <th class="border border-green-600 ">Code</th>
+                                    <th class="border border-green-600 ">Colour</th>
+                                    <th class="border border-green-600 ">Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="w-full">
+                                    <td style="background:orange;" class="border border-green-600  px-2">1</td>
+                                    <td style="background:orange;"
+                                        class="border border-green-600 px-2 text-left">
+                                        Orange
+                                    </td>
+                                    <td style="background:orange;"
+                                        class="border border-green-600   text-left px-2 text-left">
+                                        Inorganic acids
+                                    </td>
+                                </tr>
+                                <tr class="w-full">
+                                    <td style="background: yellow;" class="border border-green-600  px-2">2</td>
+                                    <td style="background: yellow;"
+                                        class="border border-green-600 px-2 text-left">
+                                        yellow
+                                    </td>
+                                    <td style="background: yellow;"
+                                        class="border border-green-600  text-left px-2 text-left">
+                                        Organic acids
+                                    </td>
+                                </tr>
+                                <tr class="w-full">
+                                    <td style="background: darkgreen;" class="border border-green-600  px-2">
+                                        3
+                                    </td>
+                                    <td style="background: darkgreen;"
+                                        class="border border-green-600  px-2 text-left">
+                                        Dark Green
+                                    </td>
+                                    <td style="background: darkgreen;"
+                                        class="border border-green-600  text-left px-2 text-left">
+                                        Bases
+                                    </td>
+                                </tr>
+                                <tr class="w-full">
+                                    <td style="background: blue;" class="border border-green-600  px-2">4</td>
+                                    <td style="background: blue;"
+                                        class="border border-green-600 px-2 text-left">
+                                        Blue
+                                    </td>
+                                    <td style="background: blue;"
+                                        class="border border-green-600  text-left px-2 text-left">
+                                        Oxidizing Special HandlingInorganic Acids
+                                    </td>
+                                </tr>
+                                <tr class="w-full">
+                                    <td style="background: lightgreen;" class="border border-green-600  px-2">
+                                        5
+                                    </td>
+                                    <td style="background: lightgreen;"
+                                        class="border border-green-600  px-2 text-left">
+                                        Light Green
+                                    </td>
+                                    <td style="background: lightgreen;"
+                                        class="border border-green-600  text-left px-2 text-left">
+                                        Oxidizers
+                                    </td>
+                                </tr>
+                                <tr class="w-full">
+                                    <td style="background: purple;" class="border border-green-600  px-2">6</td>
+                                    <td style="background: purple;"
+                                        class="border border-green-600  px-2 text-left">
+                                        Purple
+                                    </td>
+                                    <td style="background: purple;"
+                                        class="border border-green-600  text-left px-2 text-left">
+                                        Toxics
+                                    </td>
+                                </tr>
+                                <tr class="w-full">
+                                    <td style="background: red;" class="border border-green-600  px-2">7</td>
+                                    <td style="background: red;" class="border border-green-600 px-2 text-left">
+                                        Red
+                                    </td>
+                                    <td style="background: red;"
+                                        class="border border-green-600  text-left px-2 text-left">
+                                        Flammables
+                                    </td>
+                                </tr>
+                                <tr class="w-full">
+                                    <td style="background: #fff;" class="border border-green-600  px-2">8</td>
+                                    <td style="background: #fff;"
+                                        class="border border-green-600  px-2 text-left">
+                                        White
+                                    </td>
+                                    <td style="background: #fff;"
+                                        class="border border-green-600  text-left px-2 text-left">
+                                        General Chemicals
+                                    </td>
+                                </tr>
+
+
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="z-index: 0;">
+    <div class="container mx-auto">
+       
+        <section class="customer-logos slider">
+            <div class="slide ">
+                <a href="https://gandhi.gov.in/" target="_blank">
+                    <img style="height:100px; padding:10px; margin-top:5px;"
+                         src="~/landincss/images/india6.png"
+                         alt="icon">
+                </a>
+            </div>
+            <div class="slide ">
+                <a href="https://innovateindia.mygov.in/" target="_blank">
+                    <img style="height:100px; padding:10px; margin-top:5px;"
+                         src="~/landincss/images/india4.png"
+                         alt="icon">
+                </a>
+            </div>
+
+            <div class="slide ">
+                <a href="https://www.india.gov.in/" target="_blank">
+                    <img style="height:100px; padding:10px; margin-top:5px;"
+                        src="~/landincss/images/india2.png"
+                         alt="icon">
+                </a>
+            </div>
+            <div class="slide ">
+                <a href="https://amritmahotsav.nic.in/" target="_blank">
+                    <img style="height:100px; padding:10px; margin-top:5px;"
+                         src="~/landincss/images/india7.png"
+                         alt="icon">
+                </a>
+            </div>
+            <div class="slide ">
+                <a href="https://www.indiacode.nic.in/" target="_blank">
+                    <img style="height:100px; padding:10px; margin-top:5px;"
+                          src="~/landincss/images/india1.png"
+                         alt="icon">
+                </a>
+            </div>
+            <div class="slide ">
+                <a href="https://www.indiachem.in/" target="_blank">
+                    <img style="height:100px; padding:10px; margin-top:5px;"
+                         src="~/landincss/images/india3.png"
+                         alt="icon">
+                </a>
+            </div>
+            <div class="slide ">
+                <a href="https://www.mygov.in/staysafeonline" target="_blank">
+                    <img style="height:100px; padding:10px; margin-top:5px;"
+                         src="~/landincss/images/india5.png"r
+                         alt="icon">
+                </a>
+            </div>
+        </section>
+    </div>
+</section>
+

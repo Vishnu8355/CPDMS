@@ -1,0 +1,288 @@
+﻿@model IEnumerable<CPDMSEF.UnitRegistrationViewEF>
+
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Units Approval";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+
+}
+
+@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+
+    </script>
+    ViewBag.msg = null;
+}
+@if (TempData["Message"] != null)
+{
+    <script>
+        swal("", '@TempData["Message"]', "warning");
+    </script>
+}
+<style>
+    #loading-gif {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+    /* Styling for the popup container */
+
+
+    #popupContainer {
+        width: 30%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        z-index: 9999;
+        height: 300px;
+        max-height: 600px;
+        overflow: auto;
+    }
+
+    /* Styling for the close link */
+    #closePopup {
+        float: right;
+        color: red;
+        text-decoration: underline;
+    }
+
+    /* Styling for the table inside the popup */
+
+</style>
+
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+
+<div class="authentication-box">
+    <div class="">
+        <div class="" page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Approval</li>
+
+                            <li class="breadcrumb-item active">Unit Profile</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Unit Profile</b></a> </li>
+                                </ul>
+                                <div role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="viewtable">
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table table-sm table-bordered table-textbreak">
+                                                        <thead>
+                                                            <tr>
+                                                                @* <th width="20px" class="text-center noprint">
+                                                                <input type="checkbox" id="ckbCheckAll">
+                                                                </th>*@
+                                                                <th width="20px">Sl#</th>
+                                                                <th>Address</th>
+                                                                <th>State</th>
+                                                                <th>District</th>
+                                                                <th>Block</th>
+                                                                <th>Pincode</th>
+                                                                <th>Status</th>
+                                                                <th>Latitude</th>
+                                                                <th>Longitude</th>
+                                                                <th width="40" class="text-center noprint">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                                                                var count = 0;
+                                                                foreach (var item in Model)
+                                                                {
+                                                                    count++;
+                                                                //var dyclass = @item.BIT_STATUS == "Active" ? "active-row" : "inactive-row";
+                                                                    <tr>
+
+                                                                        @*   <td class="text-center noprint">
+                                                                <input type="checkbox" class="checkBoxClass" id='chkData' value="@item.ID">
+                                                                </td>*@
+                                                                        <td>@count</td>
+                                                                        <td>@item.Address</td>
+                                                                        <td>@item.State_Name</td>
+                                                                        <td>@item.District_Name</td>
+                                                                        <td>@item.Block_Name</td>
+                                                                        <td>@item.Pincode</td>
+                                                                        <td>@item.Status_Desc</td>
+                                                                        <td>@item.Lat</td>
+                                                                        <td>@item.Lon</td>
+
+                                                                        <td class="text-center noprint">
+
+
+                                                                            <a data-toggle="tooltip" data-placement="top" id="lnkApprove" onclick="UApproval('@item.ID');" title="Approved" href="javascript:void(0)"
+                                                                               class="text-success btn-sm">
+                                                                                <i class="icon-pencil-alt-solid"></i>
+                                                                                Approved
+                                                                            </a>
+                                                                            <a data-toggle="tooltip" data-placement="top" id="lnkReject" title="Reject" href="javascript:void(0)" onclick="UReject('@item.ID');"
+                                                                               class="text-success btn-sm">
+                                                                                <i class="icon-pencil-alt-solid"></i>
+                                                                                Reject
+                                                                            </a>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+<!-- Start State,City,Block -->
+<!-- END State,City,Block -->
+<div id="popupContainer" style="display: none;">
+    <a href="#" id="closePopup">Close</a>
+    @using (Html.BeginForm("", "UnitRegistration", FormMethod.Post, new { enctype = "multipart/form-data", AUTOCOMPLETE = "Off", id = "form1" }))
+    {
+
+        <input type="text" class="form-control small-input center-input" id="type" name="type" hidden>
+
+        <input type="text" class="form-control small-input center-input" id="UnitID" name="UnitID" hidden>
+        <div class="form-group">
+            <label for="remark" class="form-label small-input center-input">Remark <span class="RequiredField">*</span></label>
+            <input type="text" class="form-control small-input center-input" id="remark" name="Remarks" placeholder="Remark" required>
+        </div>
+        <br />
+
+        <div class="d-flex justify-content-center space-x-2">
+            <div class="">
+                <div class="form-button"> <button class="btn btn-primary" id="btn" type="submit" style="background: #3f9b53 !important;">Update </button> </div>
+            </div>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+
+        </div>
+    }
+</div>
+<script>
+    document.getElementById("closePopup").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("popupContainer").style.display = "none";
+    });
+    $(document).ready(function () {
+        $('#form1').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            var type = $('#type').val(); // Get the value of the type input
+
+            // Modify the form action based on the type value
+            if (type === 'Approve') {
+                $(this).attr('action', '/UnitRegistration/UnitRegistration/UnitApprovalByUnitAdmin');
+            } else if (type === 'Reject') {
+                $(this).attr('action', '/UnitRegistration/UnitRegistration/UnitRejectByUnitAdmin');
+            } else {
+                // Handle other cases or show an error message
+            }
+
+            // Submit the form with the updated action
+            this.submit();
+        });
+    });
+</script>
+<script>
+    function UApproval(id, name) {
+        // const compnayname = document.getElementById("Compnayname");
+        const UnitID = document.getElementById("UnitID");
+        const Atype = document.getElementById("type");
+
+        //compnayname.value = name;
+        UnitID.value = id;
+        Atype.value = "Approve";
+
+        document.getElementById("btn").innerHTML = "Approve";
+        document.getElementById("popupContainer").style.display = "block";
+
+    }
+    function UReject(id, name) {
+        //const compnayname = document.getElementById("Compnayname");
+        const UnitID = document.getElementById("UnitID");
+        const Atype = document.getElementById("type");
+        // compnayname.value = name;
+        UnitID.value = id;
+        Atype.value = "Reject";
+        document.getElementById("btn").innerHTML = "Reject";
+        document.getElementById("popupContainer").style.display = "block";
+
+    }
+    function UnitApproval(par) {
+        //var Remarks = $(this).closest("tr").find(".Remarks").val();
+        var Remarks = $('.Remarks').val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/UnitApprovalByUnitAdmin',
+            data: { 'UnitID': par, "Remarks": Remarks },
+            dataType: 'json',
+            type: 'post',
+            success: function (response) {
+                // Handle the response from the controller action
+                console.log(response);
+            },
+            error: function (err) {
+
+            }
+        });
+
+    }
+    function UnitReject(par) {
+        //var Remarks = $(this).closest("tr").find(".Remarks").val();
+        var Remarks = $('.Remarks').val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/UnitRejectByUnitAdmin',
+            data: { 'UnitID': par, "Remarks": Remarks },
+            dataType: 'json',
+            type: 'post',
+            success: function (response) {
+                // Handle the response from the controller action
+                console.log(response);
+            },
+            error: function (err) {
+
+            }
+        });
+
+    }
+
+</script>

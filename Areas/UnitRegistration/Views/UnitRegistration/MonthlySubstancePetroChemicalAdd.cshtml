@@ -1,0 +1,335 @@
+﻿@model CPDMSEF.MonthlySubstancePetroChemicalEF
+@{
+     <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "MonthlySubstancePetroChemicalAdd";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+}
+@if (TempData["Message"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            alert('@(TempData["Message"])');
+        });
+        swal("", '@(TempData["Message"])', "success");
+        alert('@(TempData["Message"])');
+
+       @* alert('HI');*@
+
+
+    </script>
+}
+@*else
+{
+   
+
+}*@
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Entry</li>
+
+                            <li class="breadcrumb-item active">Monthly</li>
+                            <li class="breadcrumb-item active">Petro Chemical-Substances Used For The Production</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Petro Chemical-Substances Used For The Production</b></a> </li>
+                                </ul>
+                                <form method="post" enctype="multipart/form-data" action="#" class="file-upload-form">
+                                    <label for="file-upload" class="file-upload-label">
+
+                                        <span>CSV & Excel Import</span>
+
+                                        <input type="file" id="file-upload" name="file" accept=".xlsx, .xls" />
+                                    </label>
+                                    <button type="submit" class="upload-button">Upload</button>
+                                </form>
+                                <div role="tabpanel">
+                                    @using (Html.BeginForm("MonthlySubstancePetroChemicalAdd", "UnitRegistration", FormMethod.Post, new { AUTOCOMPLETE = "Off", id = "form1" }))
+                                    {
+                                        <div class="form-group">
+
+                                            @Html.LabelFor(m => m.Chemical_Code, "Chemical Group")
+                                            @Html.DropDownListFor(m => m.Chemical_Code, ViewBag.ViewChemicalGroupList as IEnumerable<SelectListItem>, "-- Select Group --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Chemical_Product_Code, "Chemical Product")
+
+                                            <select name="Chemical_Product_Code" id="Chemical_Product_Code" class="form-control searchableselect">
+                                                <option value="">-- Select Chemical Product --</option>
+                                                @{
+                                                    List<CPDMSEF.ChemicalProductGroup> lstChemicalProdModel = (List<CPDMSEF.ChemicalProductGroup>)ViewData["ChemicalProd"];
+                                                    if (lstChemicalProdModel != null)
+                                                    {
+                                                        foreach (var item in lstChemicalProdModel)
+                                                        {
+                                                            if (item.Chemical_Product_Code == Model.Chemical_Product_Code)
+                                                            {
+                                                                <option selected="selected" value="@item.Chemical_Product_Code">@item.Chemical_Product_Name</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.Chemical_Product_Code">@item.Chemical_Product_Name</option>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+
+                                            @Html.LabelFor(m => m.Y_PChemical_ID, "Yearly Petro Chemical Group")
+                         <select name="Y_PChemical_ID" id="Y_PChemical_ID" class="form-control searchableselect">
+                                                <option value="">-- Select Yealry Petro Chemical Group --</option>
+                                                @{
+                                                    List<CPDMSEF.YearlyPetroChemicalGroup> lstYChemicalModel = (List<CPDMSEF.YearlyPetroChemicalGroup>)ViewData["YChemicalGroup"];
+                                                    if (lstYChemicalModel != null)
+                                                    {
+                                                        foreach (var item in lstYChemicalModel)
+                                                        {
+                                                            if (item.Y_PChemical_ID == Model.Y_PChemical_ID)
+                                                            {
+                                                                <option selected="selected" value="@item.Y_PChemical_ID">@item.PC_Name</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.Y_PChemical_ID">@item.PC_Name</option>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+
+                                            @Html.LabelFor(m => m.Fyear_Code, "Financial Year")
+                                            @Html.DropDownListFor(m => m.Fyear_Code, ViewBag.ViewFinYEarList as IEnumerable<SelectListItem>, "-- Select Financial Year --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Month_Code, "Month")
+
+                                            @Html.DropDownListFor(m => m.Month_Code, ViewBag.ViewMonthList as IEnumerable<SelectListItem>, "-- Select Month --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <div class="form-group ">
+                                            <button type="button" class="form-control " style="background: #00baf2; color: black;">
+                                                Substances used for the production of products
+                                            </button>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            @Html.LabelFor(m => m.M_PC_Reactants_Quantity, "Reactants Quantity")
+                                            @Html.TextBoxFor(m => m.M_PC_Reactants_Quantity, new { onkeypress = "decimalOnly()", @class = "form-control", placeholder = "Reactants Quantity" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.M_PC_Reactants_Whether_From_ID, "Reactants From")
+                                            @Html.DropDownListFor(m => m.M_PC_Reactants_Whether_From_ID, ViewBag.ViewWhetherFromList as IEnumerable<SelectListItem>, "-- Select Reactants From --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.M_PC_Catalyst_Quantity, "Catalyst Quantity")
+                                            @Html.TextBoxFor(m => m.M_PC_Catalyst_Quantity, new { onkeypress = "decimalOnly()", @class = "form-control", placeholder = "Catalyst Quantity" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.M_PC_Catalyst_Whether_From_ID, "Catalyst From")
+                                            @Html.DropDownListFor(m => m.M_PC_Catalyst_Whether_From_ID, ViewBag.ViewWhetherFromList as IEnumerable<SelectListItem>, "-- Select Catalyst From --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.M_PC_Solvent_Quantity, "Solvent Quantity")
+                                            @Html.TextBoxFor(m => m.M_PC_Solvent_Quantity, new { onkeypress = "decimalOnly()", @class = "form-control", placeholder = "Solvent Quantity" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.M_PC_Solvent_Whether_From_ID, "Solvent From")
+                                            @Html.DropDownListFor(m => m.M_PC_Solvent_Whether_From_ID, ViewBag.ViewWhetherFromList as IEnumerable<SelectListItem>, "-- Select Solvent From --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.M_PC_Other_Quantity, "Other Quantity")
+                                            @Html.TextBoxFor(m => m.M_PC_Other_Quantity, new { onkeypress = "decimalOnly()", @class = "form-control", placeholder = "Other Quantity" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.M_PC_Other_Whether_From_ID, "Other From")
+
+                                            @Html.DropDownListFor(m => m.M_PC_Other_Whether_From_ID, ViewBag.ViewWhetherFromList as IEnumerable<SelectListItem>, "-- Select Other From --", new { @class = "form-control", autofocus = "autofocus" })
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm" style="text-align: right;">
+                                                <div class="form-button">
+                                                    <input type="submit" value='@ViewBag.Button' class="btn btn-primary" name="btnSubmit" id="btnSubmit" onclick="return Validate();" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <div class="form-button">
+                                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    }
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+        </div>
+    </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+</div>
+</div>
+
+
+
+    <script>
+        function lettersOnly() {
+            var regex = new RegExp("^[a-zA-Z ]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        }
+        function decimalOnly() {
+            var regex = /^\d*\.?\d*$/;
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        }
+
+
+        function Validate() {
+
+            if (!DropDownValidation("Chemical_Code", "Chemical Code")) {
+                return false;
+            }
+            else if (!DropDownValidation("Chemical_Product_Code", "Chemical Product Code")) {
+                return false;
+
+            }
+            else if (!DropDownValidation("Y_PChemical_ID", "Yearly Chemical Code")) {
+                return false;
+            }
+            else if (!DropDownValidation("Fyear_Code", "Financial Year")) {
+                return false;
+            }
+            else if (!DropDownValidation("Month_Code", "Month")) {
+                return false;
+            }
+            else if (!blankFieldValidation("M_PC_Reactants_Quantity", "Reactants Quantity")) {
+                return false;
+            }
+            else if (!DropDownValidation("M_PC_Reactants_Whether_From_ID", "Reactants Whether From")) {
+                return false;
+            }
+            else if (!blankFieldValidation("M_PC_Catalyst_Quantity", "Catalyst Quantity")) {
+                return false;
+            }
+            else if (!DropDownValidation("M_PC_Catalyst_Whether_From_ID", "Catalyst Whether From")) {
+                return false;
+            }
+            else if (!blankFieldValidation("M_PC_Solvent_Quantity", "Solvent Quantity")) {
+                return false;
+            }
+            else if (!DropDownValidation("M_PC_Solvent_Whether_From_ID", "Solvent Whether From")) {
+                return false;
+            }
+            else if (!blankFieldValidation("M_PC_Other_Quantity", "Other Quantity")) {
+                return false;
+            }
+            else if (!DropDownValidation("M_PC_Other_Whether_From_ID", "Other Whether From")) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script>
+
+        $('#Chemical_Code').change(function () {
+            debugger;
+            if ($('#Chemical_Code').val() != "") {
+                $.ajax({
+
+                    url: '/UnitRegistration/UnitRegistration/GetChemicalProductByID',
+                    data: { 'Chemical_Code': $('#Chemical_Code').val() },
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
+                        debugger;
+                        var row = "";
+                        $('#Chemical_Product_Code').html('');
+                        row += "<option value=''>-- Select Chemical Product --</option>";
+                        $.each(data, function (ind, item) {
+                            row += "<option value='" + item.chemical_Product_Code + "'>" + item.chemical_Product_Name + "</option>";
+                        });
+                        $('#Chemical_Product_Code').html(row);
+                    },
+                    error: function (err) {
+
+                    }
+                });
+            }
+            else {
+                var District2 = "";
+                $('#Chemical_Product_Code').html('');
+                District2 += "<option value=''>-- Select Chemical Product --</option>";
+                $('#Chemical_Product_Code').html(District2);
+
+            }
+        });
+        $('#Chemical_Product_Code').change(function () {
+            debugger;
+            if ($('#Chemical_Product_Code').val() != "") {
+                $.ajax({
+
+                    url: '/UnitRegistration/UnitRegistration/GetYearlyPetroChemicalEntryByID',
+                    data: {
+                        'Chemical_Code': $('#Chemical_Code').val(),
+                        'Chemical_Product_Code': $('#Chemical_Product_Code').val()
+                    },
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
+                        debugger;
+                        var row = "";
+                        $('#Y_PChemical_ID').html('');
+                        row += "<option value=''>-- Select Yearly Chemical Product --</option>";
+                        $.each(data, function (ind, item) {
+                            row += "<option value='" + item.y_PChemical_ID + "'>" + item.pC_Name + "</option>";
+                        });
+                        $('#Y_PChemical_ID').html(row);
+                    },
+                    error: function (err) {
+
+                    }
+                });
+            }
+            else {
+                var District2 = "";
+                $('#Y_PChemical_ID').html('');
+                District2 += "<option value=''>-- Select Yearly Chemical Product --</option>";
+                $('#Y_PChemical_ID').html(District2);
+
+            }
+        });
+
+
+    </script>
+

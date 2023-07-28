@@ -1,0 +1,266 @@
+﻿
+@using CPDMSEF;
+@using CPDMS.Web;
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+   // ViewData["Title"] = "Login";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+    UserLoginSession profile = HttpContextAccessor.HttpContext.Session.Get<UserLoginSession>(KeyHelper.UserKey);
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bigdeal admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Bigdeal admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="Image/logo.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="Image/logo.svg" type="image/x-icon">
+   
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="~/css1/font-awesome.css"> <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="~/css1/flag-icon.css"> <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="~/css1/icofont.css"> <!-- Prism css-->
+    <link rel="stylesheet" type="text/css" href="~/css1/prism.css"> <!-- Chartist css -->
+    <link rel="stylesheet" type="text/css" href="~/css1/chartist.css"> <!-- vector map css -->
+    <link rel="stylesheet" type="text/css" href="~/css1/vector-map.css"> <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="~/css1/bootstrap.css"> <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="~/css1/admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"> 
+    <title>@ViewData["Title"]</title>
+
+    <script src='@Url.Content("~/js/sweetalert.min.js")'></script>
+    <script src='@Url.Content("~/js/CSMValidation.js")'></script>
+
+    <style>
+        .authentication-box {
+            min-width: 0vw;
+            min-height: 0vh;
+            display: flow-root;
+        }
+
+             @@media screen and (min-width: 480px) {
+             .comhd1{
+            margin-left:10em;
+
+        }
+        }
+
+        .comhd{
+            margin-left:10em;
+
+        }
+        .RequiredField{
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper">
+        <!-- Page Header Start-->
+        <div class="page-main-header" style="background:#024828 !important;color:white">
+            <div class="main-header-left">
+                <div class="logo-wrapper"> <a href="/LandingPage/Home/LandingPage"> <img class="blur-up lazyloaded" src="https://chemicals.gov.in/themes/chem/images/logo.png" style="width:21rem" alt="logo"> </a> </div>
+            </div>
+            <div class="main-header-right ">
+                <div class="mobile-sidebar">
+                    <div class="media-body  switch-sm ">
+                        <label class="switch"> <input id="sidebar-toggle" type="checkbox" checked="checked"><span class="switch-state  "></span> </label>
+                        <div class="comhd comhd1" style="margin-left:23rem;margin-top:-2rem;">
+                            <h3 style="margin-top: -2rem;">@profile.Name_of_Unit</h3>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="nav-right col">
+                    <ul class="nav-menus">
+                        <li></li>
+                        <h1 style="font-size:13px;">Last Login: @profile.FormattedLoginDate @profile.LoginTime</h1>
+                        <h1 style="margin-top: -25px"><i class='fa fa-bell' style='font-size:20px;color:white;padding-left:10px'></i></h1>
+                        <li class="onhover-dropdown">
+                            <div class="media align-items-center">
+                                <img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" alt="header-user">
+                                <div><span class="animate-circle"></span><span class="main-circle"></span></div>
+                            </div>
+                            <ul class="profile-dropdown onhover-show-div p-20 profile-dropdown-hover" style="width:170px;">
+@*                                <li> <a href="#"> Profile<span class="pull-right"> <i data-feather="user"></i> </span> </a> </li>
+                                <li> <a href="#"> Profile<span class="pull-right"> <i data-feather="user"></i> </span> </a> </li>  *@
+                                <li><a href="/CompanyRegistraion/CompanyRegistration/Profile">Profile<span class="pull-right"></span></a></li>
+@*                                <li><a href="~/CompanyRegistraion/CompanyRegistration/ChangePassword">Change Password<span class="pull-right"></span></a></li>
+*@                                <li><a href="~/landingPage/home/Logout">Logout<span class="pull-right"></span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="d-lg-none mobile-toggle pull-right"><i data-feather="more-horizontal"></i></div>
+                </div>
+            </div>
+        </div> <!-- Page Header Ends -->
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+            <div class="page-sidebar" style="background-image: linear-gradient(to right bottom, #024828, #044f2d, #075632, #0b5e38, #0e653d, #166f45, #1e7a4e, #258457, #329466, #3ea476, #4ab486, #56c596);">
+                <div class="sidebar custom-scrollbar">
+                    <div class="sidebar-user text-center">
+                        <div> <img class="img-60 rounded-circle lazyloaded blur-up" src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" alt="#"> </div>
+                        @*<h6 class="mt-3 f-14">Admin</h6>
+                        <p>Department of Chemicals and Petrochemicals</p>*@
+                        <h6 class="mt-3 f-14" style="color: White;">@profile.Name_of_Unit</h6>
+                        <p style="color: White;">@profile.RoleDesc</p>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li><a class="sidebar-header" href="~/CompanyRegistraion/CompanyRegistration/CompanyDashboard" style="color: White;"><i data-feather="home"></i><span>Dashboard</span></a></li>
+                        <li>
+                            <a class="sidebar-header" href="" style="color: White;"><i data-feather="user-plus"></i><span>Company Entry</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="~/CompanyRegistraion/CompanyRegistration/CompanyEntryAdd"><i class="fa fa-circle"></i>Complete your Registration</a></li>
+      
+                                <li><a href="~/CompanyRegistraion/CompanyRegistration/CompanyUnitTagging"><i class="fa fa-circle"></i>Unit Tagging</a></li>
+                            </ul>
+                            <a class="sidebar-header" href="" style="color: White;"><i data-feather="check-circle"></i><span>Report</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                  <li>
+                                    <a href="~/UnitRegistration/UnitRegistration/ProductReport" style="color: White;"><i class="fa fa-circle"></i>Description of chemicals</a>
+                                        <ul class="sidebar-submenu">
+                                            <li><a href="~/cms/reports/ChemicalsDescription" style="color: White;"><i class="fa fa-circle"></i>Chemicals</a></li>
+                                            <li><a href="/cms/reports/PetroChemicalsDescription"><i class="fa fa-circle"></i>Petro-Chemicals </a></li>
+                                        </ul>
+                                    </li>                                
+                                <li>
+                                    <a href="javascript:void(0)" style="color: White;"> <i class="fa fa-circle"></i> <span>Purchase of Chemicals</span> <i class="fa fa-angle-right pull-right"></i> </a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="~/CMS/Reports/ChemicalImport" style="color: White;"><i class="fa fa-circle"></i>Chemicals</a></li>
+                                        <li><a href="/CMS/Reports/PetroChemicalImport"><i class="fa fa-circle"></i>Petro-Chemicals</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" style="color: White;"> <i class="fa fa-circle"></i> <span>Sales of Chemicals</span> <i class="fa fa-angle-right pull-right"></i> </a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="~/CMS/Reports/ChemicalExport" style="color: White;"><i class="fa fa-circle"></i>Chemicals</a></li>
+                                        <li><a href="/CMS/Reports/PetroChemicalExport"><i class="fa fa-circle"></i>Petro-Chemicals</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" style="color: White;"> <i class="fa fa-circle"></i> <span>Monthly</span> <i class="fa fa-angle-right pull-right"></i> </a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="/CMS/Chemical/MonthlyChemicalList"><i class="fa fa-circle"></i>Chemicals List</a></li>
+                                        <li><a href="/CMS/Chemical/MonthlyPetroChemicalList"><i class="fa fa-circle"></i>Petro-Chemicals List</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" style="color: White;"> <i class="fa fa-circle"></i> <span>Yearly </span> <i class="fa fa-angle-right pull-right"></i> </a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="/CMS/Chemical/YearlyChemicalList"><i class="fa fa-circle"></i>Chemicals List</a></li>
+                                        <li><a href="/CMS/Chemical/YearlyPetroChemicalList"><i class="fa fa-circle"></i>Petro-Chemicals List</a></li>
+
+                                    </ul>
+                                </li>
+
+                            </ul>
+
+                            <ul class="sidebar-submenu">
+                              @*  <li><a class="sidebar-header" href="" style="color: White;"><i class="fa fa-file-text"></i><span>Company Report</span></a></li>*@
+                                <li><a href="~/CompanyRegistraion/CompanyRegistration/Report"><i class="fa fa-circle"></i>List of Units</a></li>
+                                <li><a href="~/CompanyRegistraion/CompanyRegistration/BestPractisesReports"><i class="fa fa-circle"></i>Best Practices</a></li>
+
+                            </ul>
+                        <li>
+                            <a class="sidebar-header" href="#" style="color: White;"><i data-feather="check-square"></i><span>Settings</span></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="~/CompanyRegistraion/CompanyRegistration/Profile"><i class="fa fa-circle"></i>Profile</a></li>
+@*                                <li><a href="/CompanyRegistraion/CompanyRegistration/ChangePassword" style="color: White;"><i class="fa fa-circle"></i>Change Password</a></li>
+*@                            </ul>
+                        </li>
+                        <li><a class="sidebar-header" href="~/landingPage/home/Logout" style="color: White;"><i data-feather="log-out"></i><span>Logout</span></a></li>
+                    </ul>
+                </div>
+            </div> <!-- Page Sidebar Ends-->
+            <div class="page-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div> <!-- footer start-->
+    <!-- footer end-->
+    <!-- latest jquery-->
+    <script src="~/js/jquery-3.3.1.min.js"></script> <!-- Bootstrap js-->
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.js"></script> <!-- feather icon js-->
+    <script src="~/js/icons/feather-icon/feather.min.js"></script>
+    <script src="~/js/icons/feather-icon/feather-icon.js"></script> <!-- Sidebar jquery-->
+    <script src="~/js/sidebar-menu.js"></script>
+    <!--chartist js-->
+    <script src="~/js/chart/chartist/chartist.js"></script> <!-- lazyload js-->
+    <script src="~/js/lazysizes.min.js"></script>
+    <!--copycode js-->
+    <script src="~/js/prism/prism.min.js"></script>
+    <script src="~/js/clipboard/clipboard.min.js"></script>
+    <script src="~/js/custom-card/custom-card.js"></script>
+    <!--counter js-->
+    <script src="~/js/counter/jquery.waypoints.min.js"></script>
+    <script src="~/js/counter/jquery.counterup.min.js"></script>
+    <script src="~/js/counter/counter-custom.js"></script>
+    <!--Customizer admin-->
+  @*  <script src="~/js/admin-customizer.js"></script>*@
+    <!--map js-->
+    <script src="~/js/vector-map/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="~/js/vector-map/map/jquery-jvectormap-world-mill-en.js"></script>
+    <!--apex chart js-->
+    <script src="~/js/chart/apex-chart/apex-chart.js"></script>
+    <script src="~/js/chart/apex-chart/stock-prices.js"></script>
+    <!--chartjs js-->
+    <script src="~/js/chart/flot-chart/excanvas.js"></script>
+    <script src="~/js/chart/flot-chart/jquery.flot.js"></script>
+    <script src="~/js/chart/flot-chart/jquery.flot.time.js"></script>
+    <script src="~/js/chart/flot-chart/jquery.flot.categories.js"></script>
+    <script src="~/js/chart/flot-chart/jquery.flot.stack.js"></script>
+    <script src="~/js/chart/flot-chart/jquery.flot.pie.js"></script>
+    <!--dashboard custom js-->
+    <script src="~/js/dashboard/default.js"></script>
+    <!--right sidebar js-->
+    <script src="~/js/chat-menu.js"></script>
+    <!--height equal js-->
+    <script src="~/js/equal-height.js"></script> <!-- lazyload js-->
+    <script src="~/js/lazysizes.min.js"></script>
+    <!--script admin-->
+    <script src="~/js/admin-script.js"></script>
+
+    <script src="~/js/chart/chartjs/chart.min.js"></script>
+
+    <script src="~/js/chart/chartjs/chart.min.js"></script>
+    <script src="~/js/jsgrid/jsgrid.min.js"></script>
+    <script src="~/js/jsgrid/griddata-reports.js"></script>
+    <script src="~/js/jsgrid/jsgrid-reports.js"></script>
+    <script src="~/js/chart/google/google-chart-loader.js"></script>
+    <script src="~/js/admin-reports.js"></script>
+
+    @if (TempData["Message"] != null)
+    {
+        <script>
+            swal("", '@TempData["Message"]', "warning");
+            setTimeout(function () {
+                swal.close();
+            }, 5000);
+        </script>
+    }  
+    @if (TempData["Messages"] != null)
+    {
+        <script>
+            swal("", '@TempData["Messages"]', "success");
+            setTimeout(function () {
+                swal.close();
+            }, 5000);
+        </script>
+    }
+</body>
+
+</html>

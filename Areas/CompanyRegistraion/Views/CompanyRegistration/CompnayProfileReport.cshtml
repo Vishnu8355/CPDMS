@@ -1,0 +1,174 @@
+﻿@model IEnumerable<CPDMSEF.CompanyProfileEF>
+
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Report";
+    Layout = "~/Areas/CompanyRegistraion/Views/Shared/_CompanyRegisLayout.cshtml";
+
+}
+@{
+    var protocol = ViewBag.Protocol;
+    var host = ViewBag.Host;
+
+}
+@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+
+    </script>
+    ViewBag.msg = null;
+}
+@if (TempData["Message"] != null)
+{
+    <script>
+        swal("", '@TempData["Message"]', "warning");
+    </script>
+}
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/CompanyRegistraion/CompanyRegistration/CompanyDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Settings</li>
+
+                            <li class="breadcrumb-item active">Profile</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Profile</b></a> </li>
+                                </ul>
+
+                                <div class="excel-icon-container" id="exportButton">
+
+                                    <img src="~/ExecImage.png" alt="Export Excel" id="exportButton" class="excel-icon" onclick="exportfun()">
+                                </div>
+
+                                <div role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="viewtable">
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table table-sm table-bordered table-textbreak">
+
+                                                        <thead class="header-style">
+                                                            <tr>
+                                                                <th rowspan="2" width="20px">Slno</th>
+                                                                <th colspan="5">Company Details</th>
+                                                                <th colspan="7">Company Contact Details</th>
+                                                                <th colspan="4">Company Documents</th>
+
+
+
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Company Name</th>
+                                                                <th class="nowrap">Registration No</th>
+                                                                <th class="nowrap">Registration Date</th>
+                                                                <th class="nowrap">Company PAN Card</th>
+                                                                <th>GST No</th>
+                                                                <th>Mobile No</th>
+                                                                <th>Email Id</th>
+                                                                <th>Address</th>
+                                                                <th>State</th>
+                                                                <th>District</th>
+                                                                <th>Block</th>
+                                                                <th>Pin Code</th>
+                                                                <th class="nowrap"> Registration Certificate</th>
+                                                                <th class="nowrap">Pollution Clearance Certificate</th>
+                                                                <th class="nowrap">GST Certificate</th>
+                                                                <th>PAN Card</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in Model)
+                                                            {
+                                                                <tr>
+                                                                    <td>@item.Id</td>
+                                                                    <td>@item.Name</td>
+                                                                    <td>@item.RegistrationNo</td>
+                                                                    <td>@item.RegistrationDate</td>
+                                                                    <td>@item.CompanyPanCard</td>
+                                                                    <td>@item.GSTNo</td>
+                                                                    <td>@item.MobileNo</td>
+                                                                    <td>@item.EmailId</td>
+                                                                    <td>@item.Address</td>
+                                                                    <td>@item.State</td>
+                                                                    <td>@item.District</td>
+                                                                    <td>@item.Block</td>
+                                                                    <td>@item.PinCode</td>
+                                                                    <td> <a href="@($"{protocol}://{host}{Url.Action("DownloadDoc", "CompanyRegistration", new { fileName = item.RegistrationCertificate })}")" target="_blank">View Certificate</a></td>
+                                                                    <td> <a href="@($"{protocol}://{host}{Url.Action("DownloadDoc", "CompanyRegistration", new { fileName = item.PollutionClearanceCertificate })}")" target="_blank">View Certificate</a></td>
+                                                                    <td> <a href="@($"{protocol}://{host}{Url.Action("DownloadDoc", "CompanyRegistration", new { fileName = item.GSTCertificate })}")" target="_blank">View Certificate</a></td>
+                                                                    <td> <a href="@($"{protocol}://{host}{Url.Action("DownloadDoc", "CompanyRegistration", new { fileName = item.PanCard })}")" target="_blank">View Certificate</a></td>
+
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+<!-- Start State,City,Block -->
+
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+<script type="text/javascript">
+    function exportfun() {
+        var table = document.getElementById('datatable');
+
+        var workbook = XLSX.utils.table_to_book(table);
+
+        var excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+        var blob = new Blob([excelData], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'Report.xlsx';
+        document.body.appendChild(link);
+
+        link.click();
+
+        URL.revokeObjectURL(url);
+        document.body.removeChild(link);
+    }
+
+</script>
+
+
+
+
+
+

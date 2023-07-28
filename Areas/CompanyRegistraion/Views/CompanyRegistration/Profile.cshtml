@@ -1,0 +1,318 @@
+﻿@model IEnumerable<CPDMSEF.ProfileEF>
+
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Profile";
+    Layout = "~/Areas/CompanyRegistraion/Views/Shared/_CompanyRegisLayout.cshtml";
+ 
+}
+@{
+    var protocol = ViewBag.Protocol;
+    var host = ViewBag.Host;
+
+}
+<div class="page-wrapper">
+
+        <div class="page-body-wrapper">
+
+              <div class="page-body">
+
+                <!-- Container-fluid starts-->
+                <div class="container-fluid">
+
+                    <div class="row">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item">
+                                    <a href="~/CompanyRegistraion/CompanyRegistration/CompanyDashboard"><i data-feather="home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active">Settings</li>
+
+                                <li class="breadcrumb-item active">Profile</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                        <div class="col-xl-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="profile-details text-center">
+                                        <img src="../assets/images/dashboard/designer.jpg" alt=""
+                                            class="img-fluid img-90 rounded-circle blur-up lazyloaded">
+                                        <h5 class="f-w-600 mb-0"> @ViewBag.CompnayName </h5>
+                                    <span>@ViewBag.Email</span>
+                                       
+                                    </div>
+                                    <hr>
+                                    <div class="project-status">
+                                     @*   <h5 class="f-w-600">Status</h5>
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <h6>Performance<span class="pull-right">80%</span></h6>
+                                                <div class="progress sm-progress-bar">
+                                                    <div class="progress-bar bg-primary" role="progressbar"
+                                                        style="width: 90%" aria-valuenow="25" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <h6>Time <span class="pull-right">60%</span></h6>
+                                                <div class="progress sm-progress-bar">
+                                                    <div class="progress-bar bg-secondary" role="progressbar"
+                                                        style="width: 60%" aria-valuenow="25" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <h6>Company<span class="pull-right">70%</span></h6>
+                                                <div class="progress sm-progress-bar">
+                                                    <div class="progress-bar bg-danger" role="progressbar"
+                                                        style="width: 70%" aria-valuenow="25" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-8">
+                            <div class="card tab2-card">
+                                <div class="card-body">
+                                    <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                        <li class="nav-item"><a class="nav-link active" id="top-profile-tab"
+                                                data-bs-toggle="tab" href="#top-profile" role="tab"
+                                                aria-controls="top-profile" aria-selected="true"><i data-feather="user"
+                                                    class="me-2"></i>Profile</a>
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" id="contact-top-tab"
+                                                data-bs-toggle="tab" href="#top-contact" role="tab"
+                                                aria-controls="top-contact" aria-selected="false"><i
+                                                    data-feather="settings" class="me-2"></i>Change Password</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="top-tabContent">
+                                        <div class="tab-pane fade show active" id="top-profile" role="tabpanel"
+                                            aria-labelledby="top-profile-tab">
+                                            <h5 class="f-w-600">Profile</h5>
+                                            <div class="table-responsive profile-table">
+                                                <table class="table table-responsive">
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                      
+                                                        <tr>
+                                                            <td>Company Name</td>
+                                                            <td>@item.Company_Name</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>PAN Card</td>
+                                                            <td>@item.Pan_Card</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email</td>
+                                                            <td>@item.C_Email</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Mobile No</td>
+                                                            <td>@item.C_Mobile_No</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>GST No</td>
+                                                            <td>@item.GST_No</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Registration No</td>
+                                                            <td>@item.Registration_No</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Registration Date</td>
+                                                            <td>@item.Registration_date</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Registered Office Address</td>
+                                                            <td>@item.ROffice_Address</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Communication Office Address</td>
+                                                            <td>@item.COffice_Address</td>
+                                                        </tr>
+
+                                                        
+                                                    }
+                                                </tbody>
+
+                                                </table>
+                                                <div class="d-flex justify-content-center space-x-2">
+                                                <div class="">
+                                                    <input type="button" onclick="location.href='/CompanyRegistraion/CompanyRegistration/CompanyEntryAdd';" class="btn btn-primary" style="background: #3f9b53 !important;" value="Edit"   />
+                                                </div>      
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="top-contact" role="tabpanel"
+                                            aria-labelledby="contact-top-tab">
+                                            <div class="container dash dash1">
+                                            @using (Html.BeginForm("ChangePassword", "CompanyRegistration", FormMethod.Post, new { enctype = "multipart/form-data", AUTOCOMPLETE = "Off", id = "form1" }))
+                                            {
+                                                <div class="form-group">
+                                                    <label for="currentPassword" class="form-label small-input center-input">Current Password <span class="RequiredField">*</span></label>
+                                                    <input type="text" class="form-control small-input center-input" id="currentPassword" name="CurrentPassword" placeholder="Current Password" required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="newPassword" class="form-label small-input center-input">New Password <span class="RequiredField">*</span></label>
+
+                                                    <input type="password"  class="form-control small-input center-input" id="newPassword" name="NewPassword" placeholder="New Password" required>
+                                              
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="confirmNewPassword" class="form-label small-input center-input">Confirm New Password <span class="RequiredField">*</span></label>
+                                                    
+                                                    <input id="password" type="password" class="form-control small-input center-input mb-[-2rem]" id="confirmNewPassword " name="ConfirmNewPassword" placeholder="Confirm New Password" required  >
+                                               <i id="icon" class="fa fa-eye far" style=" "></i>
+
+                                                </div>
+
+                                            <br/>
+
+ <br/>
+                                                <div class="d-flex justify-content-center space-x-2">
+                                                    <div class="">
+                                                        <div class="form-button"> <button class="btn btn-primary" type="submit" style="background: #3f9b53 !important;">Update Password</button> </div>
+                                                    </div>
+                                                    &nbsp;
+                                                    &nbsp;
+                                                    &nbsp;
+                                                    &nbsp;
+                                                    <div class="">
+                                                        <div class="form-button"> <button class="btn btn-primary" type="reset" style="background: #3f9b53 !important;">Reset</button> </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+<style> 
+.far {
+  position: absolute;
+  left : 36rem;
+  bottom: 110px;
+  padding: 15px;
+  border-radius: 50%;
+ 
+ 
+
+  font-size: 25px;
+}
+</style>
+       
+<script>
+
+var myInput = document.getElementById('password'),
+    myIcon = document.getElementById('icon');
+
+myInput.onfocus = function () {
+  myIcon.style.right = '3px'
+}
+
+myInput.onblur = function () {
+  myIcon.style.right = '14px'
+}
+
+myIcon.onclick = function () {
+
+
+
+  if (myIcon.classList.contains('fa-eye')) {
+
+    this.classList.toggle('fa-eye-slash');
+    this.classList.toggle('fa-eye');
+
+    myInput.setAttribute('type', 'text');
+
+
+
+  } else {
+
+
+    myInput.setAttribute('type', 'password');
+
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+
+  };
+}
+
+</script>
+
+<script>
+
+var myInput1 = document.getElementById('password1'),
+    myIcon1 = document.getElementById('icon1');
+
+myInput1.onfocus = function () {
+  myIcon1.style.right = '3px'
+}
+
+myInput1.onblur = function () {
+  myIcon.style.right = '14px'
+}
+
+myIcon1.onclick = function () {
+
+
+
+  if (myIcon1.classList.contains('fa-eye')) {
+
+    this.classList.toggle('fa-eye-slash');
+    this.classList.toggle('fa-eye');
+
+    myInput1.setAttribute('type', 'text');
+
+
+
+  } else {
+
+
+    myInput1.setAttribute('type', 'password1');
+
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+
+  };
+}
+
+</script>
+
+<style>
+
+.fa-eye{
+    margin-top : "3rem";
+}
+</style>
+

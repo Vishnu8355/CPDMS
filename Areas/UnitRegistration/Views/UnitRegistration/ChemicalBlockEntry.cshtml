@@ -1,0 +1,1950 @@
+﻿@model CPDMSEF.Block1EF
+
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Yearly Chemicals block entry";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+
+}
+<style>
+    #suggestionList, #suggestionList1, #suggestionList2, #suggestionList3, #suggestionList4 {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+        #suggestionList, #suggestionList1, #suggestionList2, #suggestionList3, #suggestionList4 li {
+            margin-bottom: 5px;
+            cursor: pointer;
+            display: grid;
+        }
+
+    input[type=text]:focus {
+        border: 3px solid black;
+    }
+</style>
+<style>
+    .fixed-columns {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background-color: #fff;
+    }
+
+    #tblMain_Constituents_Data thead th:first-child,
+    #tblMain_Constituents_Data tbody td:first-child {
+        position: sticky;
+        left: 0;
+        background-color: #fff;
+        z-index: 2;
+    }
+
+    #tblMain_Constituents_Data thead th:nth-child(2),
+    #tblMain_Constituents_Data tbody td:nth-child(2) {
+        position: sticky;
+        left: 50px;
+        background-color: #fff;
+        z-index: 2;
+    }
+
+    input[type=text]:focus {
+        border: 3px solid black;
+    }
+</style>
+<style>
+
+    .popup-container {
+        width: 60%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        z-index: 9999;
+        height: 600px;
+        max-height: 600px;
+        overflow: auto;
+    }
+
+    .popup-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+        position: relative;
+        width: auto;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+</style>
+
+<style>
+    div.searchable {
+    }
+
+    .searchable input {
+        width: 100%;
+        display: block;
+    }
+
+    .searchable ul {
+        display: none;
+        border-radius: 0 0 5px 5px;
+        border: 1px solid #add8e6;
+        border-top: none;
+        max-height: 180px;
+        margin: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding: 0;
+    }
+
+        .searchable ul li {
+            display: grid;
+            padding: 7px 9px;
+            border-bottom: 1px solid #e1e1e1;
+            cursor: pointer;
+        }
+
+            .searchable ul li.selected {
+            }
+</style>
+<style>
+    .form-group > img {
+     
+            position: absolute;
+    right: 14px;
+    top: 39px;
+    width: 4%;
+    }
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    function lettersOnly() {
+        var regex = new RegExp("^[a-zA-Z ]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    }
+    function decimalOnly() {
+        var regex = /^\d*\.?\d*$/;
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    }
+
+    //$('#btnSubmit').on('click', function (e) {
+    //    if (Validate()) {
+    //        e.preventDefault(); //cancel default action
+    //        //pop up
+    //        swal({
+    //            title: "Are you confirmed to submit Form",
+    //            //text: 'Hello',
+    //            icon: "warning",
+    //            //buttons: true,
+    //            buttons: ["No", "Yes"],
+    //            //dangerMode: true,
+    //        })
+    //            .then((willDelete) => {
+    //                if (willDelete) {
+    //                    $('#screenLoading').show();
+    //                    $('#btnSubmit').prop('disabled', true);
+    //                    $('#form1').submit();
+    //                }
+    //            });
+    //    }
+    //    else { return false; }
+
+    //});
+    function Validate() {
+         if ($('#Substance_Detail_ID').val() == "1")
+         {
+            AddRow();
+         }
+        
+        if (!DropDownValidation("Category", "Category")) {
+            return false;
+        }
+        else if (!DropDownValidation("Chemical_Code", "Chemicals")) {
+            return false;
+        }
+        else if (!DropDownValidation("Chemical_Product_Code", "Chemicals Product")) {
+            return false;
+
+        }
+      
+        else if (!DropDownValidation("Substance_Detail_ID", "Substance")) {
+            return false;
+        }
+      
+      
+        //else if (!blankFieldValidation("C_Maximum_Quantity_Stored", "Maximum Quantity Stored")) {
+        //    return false;
+        //}
+        var constituents = '';
+    var classification = '';
+
+        var tbody = $("#tblMain_Constituents_Data tbody");
+        if (tbody.children().length != 0) {
+            var Constituents = '';
+            $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+                    var CASNo = $(this).find('td:eq(1)').text();
+                var CommonName = $(this).find('td:eq(2)').text();
+                var IUPAC = $(this).find('td:eq(2)').text();
+              
+                var HSCode = $(this).find('td:eq(4)').text();
+                var Molecular = $(this).find('td:eq(5)').text();
+                var MolecularImage = $(this).find('td:eq(6)').text();
+                var Isomer = $(this).find('td:eq(7)').text();
+              
+                var physicalState = $(this).find('td:eq(8)').text();
+
+               // Constituents += CASNo + '|' + CommonName + '|' + IUPAC + '|' + HSCode + '|' + Molecular + '|'+ '|' + MolecularImage + '|' + Isomer +  '|' + physicalState + '^';
+
+
+
+            });
+            if (Constituents != '') {
+                $('#Main_Constituents_Data').val(Constituents);
+            }
+            }
+            else{
+            swal("", "Main Constituent all fields are mandatory", "warning");
+            return false;
+
+            }
+
+            //for classfication table
+                var tbody = $("#tblMain_Classification_Datacode tbody");
+        if (tbody.children().length != 0) {
+                var Constituents = '';
+
+            $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+                var CASNo = $(this).find('td:eq(1)').text();
+                var CommonName = $(this).find('td:eq(2)').text();
+                var IUPAC = $(this).find('td:eq(3)').text();
+
+                var HSCode = $(this).find('td:eq(4)').text();
+                var Molecular = $(this).find('td:eq(5)').text();
+                var MolecularImage = $(this).find('td:eq(6)').text();
+                var Isomer = $(this).find('td:eq(7)').text();
+
+                var physicalState = $(this).find('td:eq(8)').text();
+
+                //Constituents += CASNo + '|' + CommonName + '|' + IUPAC + '|' + HSCode + '|' + Molecular + '|' + '|' + MolecularImage + '|' + Isomer + '|' + physicalState + '|';
+
+                constituents += CASNo + '|' + CommonName + '|' + IUPAC + '|' + HSCode + '|' + Molecular + '|' + MolecularImage + '|' + Isomer + '|' + physicalState + '|';
+
+
+            });
+
+            var Classification = '';
+            $('#tblMain_Classification_Datacode tbody tr').each(function (index) {
+      
+//new added
+                    var HazardClassification = $(this).find('td:eq(1)').text();
+                    var ResultingHazard = $(this).find('td:eq(2)').text();
+                    
+                      var HazardCategory = $(this).find('td:eq(3)').text();
+                     var HazardSubCategory = $(this).find('td:eq(4)').text();
+
+                    var SpecificConcentrationLimits = $(this).find('td:eq(5)').text();
+                    var MainUseCategory = $(this).find('td:eq(6)').text();
+                    var SpecificationIndustrialProfessional =$(this).find('td:eq(7)').text();
+                    var SignificantRouteExposure = $(this).find('td:eq(8)').text();
+                    var EnvironmentalExposure = $(this).find('td:eq(9)').text();
+                    var PatternExposure =$(this).find('td:eq(10)').text();
+                    //Classification +=Constituents + HazardClassification + '|' + ResultingHazard + '|' + SpecificConcentrationLimits + '|' + MainUseCategory + '|' + SpecificationIndustrialProfessional + '|' + SignificantRouteExposure + '|' + EnvironmentalExposure + '|' + PatternExposure + '^';
+
+                classification += constituents + HazardClassification + '|' + ResultingHazard + '|' + HazardCategory + '|' + HazardSubCategory + '|' + SpecificConcentrationLimits + '|' + MainUseCategory + '|' + SpecificationIndustrialProfessional + '|' + SignificantRouteExposure + '|' + EnvironmentalExposure + '|' + PatternExposure + '^';
+
+            });
+            var combined = classification;
+
+            if (combined != '') {
+                $('#Main_Classification_Data').val(combined);
+            }
+        }
+        return true;
+       
+        }
+   
+</script>
+@*@if (TempData["Message"] != null)
+{
+    <script>
+        var vv = '@TempData["Message"]';
+
+        if (vv == 1) {
+            swal("", "Unit created successfully.", "success");
+        }
+        else if (vv == 2) {
+            swal("", "Unit already exists.", "warning");
+        }
+        else if (vv == 3) {
+            swal("", "Something Errror occured. Please Try After Sometime!!", "error");
+        }
+    </script>
+}*@
+
+@*@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+    </script>
+}*@
+
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitOPTDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Entry</li>
+                            <li class="breadcrumb-item active">Master Entry </li>
+
+                         
+                            <li class="breadcrumb-item active">Description of chemicals</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><h3 style="text-transform: capitalize;">Description of chemicals</h3></a> </li>
+                                </ul>
+
+                                <div role="tabpanel">
+                                    @using (Html.BeginForm("ChemicalBlockEntry", "UnitRegistration", FormMethod.Post, new { AUTOCOMPLETE = "Off", id = "form1" }))
+                                    {
+                                          <div class="row">
+                                            <div class="col-sm 6">
+                                         <div class="form-group">
+                                        <label>Category</label> <label class="RequiredField">*</label>
+
+                                                    <select id="Category" name="CategoryID" class="form-control category">
+                                                <option value="">-- Select Category--</option>
+                                                <option value="1">Chemicals</option>
+                                                <option value="2">Petro-Chemicals</option>
+                                            </select>
+@*                                           <img src="~/image/infoicon.png" title="Please Select Category; i.e.:  Chemicals or Petro-Chemicals" onclick="" />
+*@
+                                        </div>
+                                        </div>
+                                            <div class="col-sm 6">
+                                                <div class="form-group">
+                                                    <label>Group</label> <label class="RequiredField">*</label>
+
+                                                 
+                                                        <select name="Chemical_Code" id="Chemical_Code" class="form-control searchableselect">
+                                                            <option value="">-- Select Chemicals Product --</option>
+                                                            @{
+                                                                List<CPDMSEF.ChemicalGroup> lstChemicalModel = (List<CPDMSEF.ChemicalGroup>)ViewData["Chemical"];
+                                                                if (lstChemicalModel != null)
+                                                                {
+                                                                    foreach (var item in lstChemicalModel)
+                                                                    {
+                                                                        if (item.Chemical_Code == Model.Chemical_Code)
+                                                                        {
+                                                                            <option selected="selected" value="@item.Chemical_Code">@item.Chemical_Code</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option value="@item.Chemical_Name">@item.Chemical_Name</option>
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        </select>
+@*                                                    <img src="~/image/infoicon.png" title="Please Select Groups" onclick="" />
+*@
+                                                    
+                                                    </div>
+                                            </div>
+                                        </div>
+                                       
+                                        
+                                       
+                                           <div class="row">
+                                               <div class="col-sm 6">
+                                                <input type="text" id="Chemical_Product_Code1" name="Chemical_Product_Code" hidden>
+
+                                        <div class="form-group">
+                                            <label>Product</label> <label class="RequiredField">*</label>
+
+
+                                            <div class="searchable form-group">
+
+                                                <input type="text" id="Chemical_Product_Code" name="Chemical_Product_Name" class="form-control"  placeholder="-- Select /Enter Product -" onkeyup="filterFunction(this,event)">
+                                                <ul>
+                                                    <li>-- Select Product - </li>
+
+                                                </ul>
+                                            </div>
+@*                                                    <img src="~/image/infoicon.png" title="Please Select Product; i.e.: if Product in not selected list; Please Enter Product Name" onclick="" />
+*@
+                                        </div>
+
+                                                   </div>
+                                            <div class="col-sm 6">
+                                        <div class="form-group">
+                                            <label>Select Substance/Articles/Mixtures</label> <label class="RequiredField">*</label>
+                                            @Html.DropDownListFor(m => m.Substance_Detail_ID, ViewBag.ViewSubstanceList as IEnumerable<SelectListItem>, "--Select Substance/Articles/Mixtures--", new { @class = "form-control", autofocus = "autofocus" })
+@*                                                    <img src="~/image/infoicon.png" title="Please SelectSubstance/Articles/Mixtures" onclick="" />
+*@
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <button type="button" class="form-control "
+                                                    style="background: #329466; color: white; ">
+                                                List main constituents of the substance/ mixture/article with 10% (w/w) or more concentration
+                                            </button>
+                                        </div>
+                                        @*<div class="form-group">
+                                    @Html.TextBoxFor(m => m.C_Substance_Present_mixture_concentration, new {onkeypress = "decimalOnly()", @class = "form-control",placeholder="If mixture/article, then all substance present in mixture along with at least 10% concentration." })
+                                    </div>*@
+                                        @*  <div class="form-group ">
+                                    <button type="button" class="form-control "
+                                    style="background: #00baf2; color: black;">
+                                    List main constituents of the substance with 10% (w/w) or more concentration
+                                    </button>
+                                    </div>*@
+                                        @*<div class="form-group ">*@
+                                        <div class="row">
+                                            <div class="col-sm 6">
+                                                <label>CAS No</label> <label class="RequiredField">*</label>
+                                        <div class="form-group">
+                                            <input type="text" id="cashno" name="cashno" class="form-control CASNo"  placeholder="Enter CAS No">
+                                                    <img src="~/image/infoicon.png" title="Please Enter CAS No; i.e.: CAS No example 324-24-22" onclick="" />
+
+                                            <ul id="suggestionList"></ul>
+                                        </div>      
+                                        </div>
+                                           <div class="col-sm 6">
+                                       <label>Common Name</label> <label class="RequiredField">*</label>
+
+                                        <div class="form-group">
+                                            <input type="text" id="CommonName" name="CommonName" class="form-control CommonName"  placeholder="Enter Common Name">
+@*                                                    <img src="~/image/infoicon.png" title="Please Enter Common Name " onclick="" />
+*@
+                                        </div>  
+                                        </div>
+                                        </div>
+
+                                          <div class="row">
+                                                 <div class="col-sm 6">
+                                           <label>IUPAC Name</label> <label class="RequiredField">*</label>
+
+                                        <div class="form-group">
+                                            <input type="text" id="IUPAC" name="IUPAC" class="form-control IUPAC"  placeholder="Enter IUPAC Name">
+@*                                                    <img src="~/image/infoicon.png" title="Please Enter IUPAC Name " onclick="" />
+*@                                        </div>  
+                                        </div>
+                                           <div class="col-sm 6">
+
+                                        <div class="form-group">
+                                                    <label>HS Code</label> <label class="RequiredField">*</label>
+
+                                            <input type="text" id="HsCode" name="HsCode" class="form-control HsCode"  placeholder="Enter HS Code">
+@*                                                    <img src="~/image/infoicon.png" title="Please Enter HS Code " onclick="" />
+*@                                        </div>  
+                                        </div>
+                                        </div>
+                                        
+                                         <div class="row">
+                                                 <div class="col-sm 6">
+                                        <div class="form-group">
+                                                   <label>Molecular Formula</label> <label class="RequiredField">*</label>
+
+                                                    <input type="text" id="Molecular" name="Molecular" class="form-control Molecular"  placeholder="Enter Molecular Formula">
+                                        <img src="~/image/infoicon.png" title="Please Enter Molecular Formula; i.e.: Formula example NaOH" onclick="" />
+                                                </div>   
+                                        </div>
+                                               <div class="col-sm 6">
+
+                                        <div class="form-group">
+                                             <label>Molecular Structure</label> <label class="RequiredField">*</label>
+
+                                            <input type="file" id="Molecularimage" name="Molecularimage" class="form-control MolecularImage"  placeholder="Enter Molecular Structure">
+                                                    <img src="~/image/infoicon.png" title="Please Enter Molecular Structure; i.e.: Structure example sodium cations Na + and hydroxide anions OH −. −15.8•10−6 cm3/mol (aq.) " onclick="" />
+
+                                        </div>   
+                                        </div>
+                                        </div>
+                                          <div class="row">
+                                            <div class="col-sm 6">
+                                                <div class="form-group">
+                                            <label>Isomer</label> <label class="RequiredField">*</label>
+
+                                                    <input type="text" id="Isomer" name="Isomer" class="form-control Isomer"  placeholder="Enter Isomer">
+@*                                                    <img src="~/image/infoicon.png" title="Please Enter Isomer" onclick="" />
+*@
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm 6">
+                                        <div class="form-group">
+                                                   <label>Select State</label> <label class="RequiredField">*</label>
+
+                                            <select id="PhysicalStateID" name="PhysicalStateID" class="form-control physicalState">
+                                                        <option value="">-- Select State--</option>
+                                                <option value="Solid">Solid</option>
+                                                        <option value="Liqued">Liquid</option>
+                                                <option value="Gas">Gas</option>
+                                            </select>
+@*                                                    <img src="~/image/infoicon.png" title="Please Select; i.e.: Solid, Liquid, Gas" onclick="" />
+*@
+                                        </div>
+                                        </div>
+                                      
+                                        </div>
+                                      
+                                   
+                                        <div class="form-group ">
+                                            <button type="button" class="form-control "
+
+                                                style="background: #329466; color: white; ">
+
+                                                Classification and labelling information: (according to 9th revision of UN-GHS)
+                                            </button>
+                                        </div>
+                                         <div class="row">
+                                                 <div class="col-sm 6">
+
+                                        <div class="form-group">
+                                            <label>Hazard Classification</label> <label class="RequiredField"></label>
+
+                                            @Html.DropDownListFor(m => m.Hazard_Classification_ID, ViewBag.ViewHazardList as IEnumerable<SelectListItem>, "-- Select Hazard Classification --", new { @class = "form-control HazardClassification", autofocus = "autofocus" })
+                                                   <img src="~/image/infoicon.png" title="Please select Hazard Classification; i.e. example - Physicals, Health, Environmental" onclick="" />
+
+                                            </div>
+                                        </div>
+                                           <div class="col-sm 6">
+
+                                        <div class="form-group">
+                                            <label>Resulting Hazard</label> <label class="RequiredField"></label>
+
+                                            <select name="Resulting_Hazard_ID" id="Resulting_Hazard_ID" class="form-control searchableselect Resulting_Hazard">
+                                                <option value="">-- Select Resulting Hazard --</option>
+                                                @{
+                                                    List<CPDMSEF.ResultingHazardSubstance> ResultingHazard = (List<CPDMSEF.ResultingHazardSubstance>)ViewData["Resulting_Hazard_ID"];
+                                                    if (ResultingHazard != null)
+                                                    {
+                                                        foreach (var item in ResultingHazard)
+                                                        {
+                                                            if (item.Resulting_Hazard_ID == Model.Resulting_Hazard_ID)
+                                                            {
+                                                                <option selected="selected" value="@item.Resulting_Hazard_ID">@item.Resulting_Hazard_ID</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.Resulting_Hazard_ID">@item.Resulting_Hazard_ID</option>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                                   <img src="~/image/infoicon.png" onclick="getImage1()" />
+                                        </div>
+                                        </div>
+                                        </div>
+                                         <div class="row">
+                                                                                        <div class="col-sm 6">
+
+                                        <div class="form-group">
+                                                    <label> Hazard Category</label> <label class="RequiredField"></label>
+
+                                                    <select name="Resulting_Hazard_ID" id="HazardCategoryid" class="form-control searchableselect HazardCategoryid">
+                                                        <option value="">-- Select Hazard Category--</option>
+                                                @{
+                                                            List<CPDMSEF.HazardCategory> ResultingHazardcat = (List<CPDMSEF.HazardCategory>)ViewData["HazardCategoryid"];
+                                                    if (ResultingHazardcat != null)
+                                                    {
+                                                        foreach (var item in ResultingHazardcat)
+                                                        {
+                                                                    if (item.HazardCategory_ID == Model.HazardCategory_ID)
+                                                            {
+                                                                <option selected="selected" value="@item.HazardCategory_ID">@item.HazardCategory_Name</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                        <option value="@item.HazardCategory_ID">@item.HazardCategory_Name</option>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                                    <img src="~/image/infoicon.png" onclick="getImage2()"/>
+                                       </div>
+                                        </div>
+                                            <div class="col-sm 6">
+
+                                                <div class="form-group">
+                                                    <label>Hazard Sub Category</label> <label class="RequiredField"></label>
+
+                                                    <select name="Resulting_Hazard_ID" id="HazardSubCategoryid" class="form-control searchableselect HazardSubCategoryid">
+                                                        <option value="">-- Select Resulting Hazard --</option>
+                                                        @{
+                                                            List<CPDMSEF.HazardsubCategory> ResultingHazardsubcat = (List<CPDMSEF.HazardsubCategory>)ViewData["HazardSubCategoryid"];
+                                                            if (ResultingHazardsubcat != null)
+                                                            {
+                                                                foreach (var item in ResultingHazardsubcat)
+                                                                {
+                                                                    if (item.HazardSubCategory_ID == Model.HazardSubCategory_ID)
+                                                                    {
+                                                                        <option selected="selected" value="@item.HazardSubCategory_ID">@item.HazardSubCategory_Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@item.HazardSubCategory_ID">@item.HazardSubCategory_Name</option>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+                                                    <img src="~/image/infoicon.png" title="Please select Hazard Sub Category" onclick="" />
+
+                                                </div>
+                                            </div>
+
+
+                                             </div>
+
+                                          <div class="row">
+                                                 <div class="col-sm 6">
+                                            <label>Specific Concentration Limits</label> <label class="RequiredField"></label>
+
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(m => m.C_Specific_Concentration_Limits , new {onkeypress = "decimalOnly()", @class = "form-control Specific_Concentration_Limits",placeholder="Specific concentration limits, where applicable" })
+@*                                                    <img src="~/image/infoicon.png" title="Please Enter Specific Concentration Limits" onclick="" />
+
+                                        </div>
+                                        </div>
+                                          <div class="col-sm 6">
+                                        <div class="form-group">
+                                            <label>Main use category</label> <label class="RequiredField"></label>
+
+                                            @Html.DropDownListFor(m => m.Main_Use_Category_ID, ViewBag.ViewMainCategoryList as IEnumerable<SelectListItem>, "-- Select Main use category --", new { @class = "form-control Main_Use_Category", autofocus = "autofocus" })
+@*                                                    <img src="~/image/infoicon.png" title="Please select Main use category" onclick="" />
+*@
+                                        </div>
+                                        </div>
+                                        </div>
+                                             <div class="row">
+                                                 <div class="col-sm 6">
+                                        <div class="form-group">
+                                            <label>Specification Industrial Professional</label> <label class="RequiredField"></label>
+
+                                            @Html.DropDownListFor(m => m.Specification_Industrial_Professional_ID, ViewBag.ViewSpecificationList as IEnumerable<SelectListItem>, "-- Select Specification Industrial Professional --", new { @class = "form-control Specification_Industrial_Professional", autofocus = "autofocus" })
+@*                                                <img src="~/image/infoicon.png" title="Please Select Specification Industrial Professional" onclick="" />
+*@
+                                        </div>
+                                        </div>
+                                        <div class="col-sm 6">
+                                        <div class="form-group">
+                                            <label>Route Exposure</label> <label class="RequiredField">*</label>
+
+                                            @Html.DropDownListFor(m => m.Significant_Route_Exposure_ID, ViewBag.ViewRouteList as IEnumerable<SelectListItem>, "-- Select Route Exposure --", new { @class = "form-control Significant_Route_Exposure", autofocus = "autofocus",  })
+@*                                                <img src="~/image/infoicon.png" title="Please Select Route Exposure" onclick="" />
+*@
+                                            </div>
+                                        </div>
+                                        </div>
+                                         <div class="row">
+                                                 <div class="col-sm 6">
+                                        <div class="form-group">
+                                            <label>Environmental Exposure</label> <label class="RequiredField"></label>
+
+                                            @Html.DropDownListFor(m => m.Environmental_Exposure_ID, ViewBag.ViewEnvironmentalList as IEnumerable<SelectListItem>, "-- Select Environmental Exposure --", new { @class = "form-control Environmental_Exposure", autofocus = "autofocus" })
+                                                  @*  <img src="~/image/infoicon.png" title="Please Select Environmental Exposure" onclick="" />*@
+
+                                            </div>
+                                        </div>
+                                                      <div class="col-sm 6">
+
+                                        <div class="form-group">
+                                            <label>Pattern Exposure</label> <label class="RequiredField"></label>
+
+                                            @Html.DropDownListFor(m => m.Pattern_Exposure_ID, ViewBag.ViewPatterList as IEnumerable<SelectListItem>, "-- Select Pattern Exposure --", new { @class = "form-control Pattern_Exposure", autofocus = "autofocus" })
+                                                    @*<img src="~/image/infoicon.png" title="Please Select Pattern Exposure" onclick="" />*@
+
+                                        </div>
+                                    </div>
+                                    </div>
+                                      
+
+                                           <div class="row">
+                                            <div class="col-sm" style="text-align: center;">
+                                                <div class="form-button addmore">
+                                                    <input type="" class="btn btn-success" value='Add' name="btnSubmit" id="btnadd" onclick="AddRow();" />
+                                                    @*<button class="btn btn-primary" type="submit">Save</button>*@
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <br/>
+                                        @Html.HiddenFor(model => model.lstMainConstituents, new { id = "Main_Constituents_Data" })
+                                        <div class="table-responsive">
+                                            <table id="tblMain_Constituents_Data" class="table table-bordered tblMain_Constituents_Data">
+                                                <thead>
+
+                                                    <tr>
+                                                        <th class="fixed-columns">#SL</th>
+                                                        <th>CAS No.</th>
+                                                        <th>Common Name</th>
+
+                                                        <th class="fixed-columns">IUPAC Name</th>
+                                                        <th>HS Code</th>
+                                                        <th>Molecular Structure</th>
+                                                        <th>Molecular Image</th>
+
+                                                        <th>Isomer</th>
+                                                        <th>Physical State</th>
+
+                                                        <th>Edit</th>
+                                                        <th>Delete</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        @Html.HiddenFor(model => model.lstMainClassification, new { id = "Main_Classification_Data" })
+                                        <div class="table-responsive">
+                                            <table id="tblMain_Classification_Data" class="table table-bordered tblMain_Classification_Data">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#SL</th>
+
+                                                        <th>Hazard Classification</th>
+                                                        <th>Resulting Hazard</th>    
+                                                        <th>Hazard Category</th>
+                                                        <th>Hazard Sub Category</th>
+                                                        <th>Specific Concentration Limits</th>
+                                                        <th>Main Use Category</th>
+                                                        <th>Specification Industrial Professional</th>
+                                                        <th>Route Exposure</th>
+                                                        <th>Environmental Exposure</th>
+                                                        <th>Pattern Exposure</th>
+                                                        <th>Edit</th>
+                                                        <th>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="claasficationid" style="display:none">
+                                                     <table id="tblMain_Classification_Datacode" class="table table-bordered tblMain_Classification_Data">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#SL</th>
+
+                                                        <th>Hazard Classification</th>
+                                                        <th>Resulting Hazard</th>
+                                                        <th>Hazard Category</th>
+                                                        <th>Hazard Sub Category</th>
+                                                        <th>Specific Concentration Limits</th>
+                                                        <th>Main Use Category</th>
+                                                        <th>Specification Industrial Professional</th>
+                                                        <th>Route Exposure</th>
+                                                        <th>Environmental Exposure</th>
+                                                        <th>Pattern Exposure</th>
+                                                        <th>Edit</th>
+                                                        <th>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+
+                                            </div>
+                                        <div class="row">
+                                            <div class="col-sm" style="text-align: right;">
+                                                <div class="form-button">
+
+                                                    <input type="submit" value='@ViewBag.Button'  style="background: #329466 !important;" class="btn btn-primary" name="btnSubmit" id="btnSubmit" onclick="return Validate();" />
+                                                    @*<button class="btn btn-primary" type="submit">Save</button>*@
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm"> 
+                                                <div class="form-button">
+
+                                                    <button class="btn btn-primary" style="background: #329466 !important;" type="reset">Reset</button>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+
+<div id="popupContainer" class="popup-container" style="display:none">
+    <div class="popup-content">
+      
+        <image id="image" style="width: auto;height:auto"/>
+        <br /><br />
+        <button onclick="agreePopup()" class=" btn" style="background-color:#3f9b53 !important; width:30%; border-radius:10px">Ok</button>
+        <span class="close-button" onclick="closePopup()">&#10006;</span>
+    </div>
+</div>
+
+
+@*<script>
+    $('.single-item').slick({
+        arrows: false,
+        dots: true
+    }
+    );
+</script>*@
+
+<script>
+
+    // $(document).ready(function () {
+function AddImage(path)
+{
+    debugger
+    $.ajax({
+         type: "GET",
+            url: "/UnitRegistration/UnitRegistration/MolicularImage",
+            data: "MolecularImage=" + path,
+         success: function(msg){
+                     alert( "Data Saved: " + msg );
+                  }
+    });
+}
+
+
+
+
+  
+    $('#tblMain_Classification_Data').hide()  
+    $('#tblMain_Constituents_Data').hide()
+    function AddRow() {
+        debugger
+          $('#tblMain_Classification_Data').show()
+        $('#tblMain_Constituents_Data').show()
+        if ($('#Substance_Detail_ID').val() == "1") {
+            var rowCount = $("#tblMain_Constituents_Data  >tbody >tr").length;
+           // alert(rowCount);
+            if (rowCount > 0) {
+                $('#btnadd').hide();
+                return 
+            } else {
+                $('#btnadd').show();
+            }
+        }
+      //  AddRow3();
+        //$('#add').click(function () {
+        var checkVal = 0;
+        var cont = 1;
+       
+       // var textbox = table.getElementsByClassName("IUPAC")[0]; 
+       var textbox1 = document.getElementById("IUPAC");
+        var textbox1 = document.getElementById("IUPAC");
+        //var row = $(this).closest('tr');
+    //   var textbox = row.find('input[type="text"]');
+       // var IUPACvalue = textbox.val();
+        var IUPACvalue = textbox1.value;
+        var CASNo = $('.CASNo').val();
+        var CommonName = $('.CommonName').val();
+
+        //var IUPAC = $('.IUPAC').val();
+
+        var HsCode = $('.HsCode').val();
+        var Molecular = $('.Molecular').val();
+        var MolecularImage = $('.MolecularImage').val();
+        var Isomer = $('.Isomer').val();
+
+        var physicalState = $('.physicalState').val();
+
+        if ((IUPACvalue == "")||(CASNo=="")||(CommonName=="")||(CommonName=="")||(HsCode=="")||(Molecular=="")||(Isomer=="")||(physicalState=="")) {
+
+            swal('Main Constituent Value can not be blank !');
+            // $("#PillarName").focus();
+            return false;
+        }
+
+        $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+            $(this).find('td:eq(0)').text(cont++);
+            var UPAC = $(this).find('td:eq(3)').text();
+            if (IUPACvalue == UPAC) {
+                checkVal = 1;
+                swal('Same IUPAC name alredy exist !');
+                // $("#PillarName").focus();
+                return false;
+            }
+        });
+        if (checkVal != 1) {
+
+             var CASNo = $('.CASNo').val();
+            var CommonName = $('.CommonName').val();
+
+            var IUPAC = $('.IUPAC').val();
+           
+            var HsCode = $('.HsCode').val();
+            var Molecular = $('.Molecular').val();
+            var MolecularImage = $('.MolecularImage').val();
+            var Isomer = $('.Isomer').val();
+
+            var physicalState = $('.physicalState').val();
+            ////////////////////////////////////////////////////
+            //var path = "C:\\fakepath\\example.doc";
+            //var filename = MolecularImage.replace(/^.*\\/, "");
+
+            //var x = URL.createObjectURL(filename.target.files[0]);
+            //        $("#upload-img").attr("src", x);
+
+            //var formData  = new FormData();
+            //var files = $(".MolecularImage").get(0).files;
+            //formData.append("MolecularImage", files[0]);
+
+
+            //AddImage(formData)
+
+            var Uploadimagesucess;
+            
+                var files = $(".MolecularImage")[0].files;
+                var formData = new FormData();
+                formData.append("MolecularImage", files[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "/UnitRegistration/UnitRegistration/MolicularImage",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                success: function (msg) {
+                    alert(msg);
+                    Uploadimagesucess = msg;
+                    //var figrhtmlcode = '<img src="' + Uploadimagesucess + '" width="300" height="300">';
+                },
+                    error: function (errorMessage) {
+                        Uploadimagesucess ="Uploadimage/" +errorMessage;
+                    }
+                });
+
+            var figrhtmlcode = '<img src="' + Uploadimagesucess + '" width="300" height="300">';
+            ///////////////////////////////////////////////////////////
+           
+            // create new row with input values
+            var editButton = '<button class="btn btn-success" style="background-color: blue;" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete additional-class" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+            //var newRow = $('<tr><td></td><td>' + CASNo + '</td><td>' + CommonName + '</td><td>' + IUPAC + '</td><td>' + HsCode + '</td><td>' + Molecular + '</td><td>' + MolecularImage + '</td><td>' + Isomer + '</td><td>' + physicalState + '</td></tr>');
+            var newRow = $('<tr><td></td><td>' + CASNo + '</td><td>' + CommonName + '</td><td>' + IUPAC + '</td><td>' + HsCode + '</td><td>' + Molecular + '</td><td>' + figrhtmlcode + '</td><td>' + Isomer + '</td><td>' + physicalState + '</td></tr>');
+
+
+            //var newRow = $('<tr><td>' + cont++ + '</td><td>' + IUPAC + '</td><td>' + CommonName + '</td><td>' + CASNo + '</td><td>' + HsCode + '</td><td>' + Molecular + '</td><td>' + Isomer + '</td><td>' + Conc + '</td><td>' + physicalState + '</td><td>' + AnnualInstalledCapacity + '</td><td>' + Unit + '</td><td>' + PuritySubstance + '</td><td>' + impurities1 + '</td><td>' + CASNo1 + '</td><td>' + Range1 + '</td><td>' + Nature1 + '</td><td>' + impurities2 + '</td><td>' + CASNo2 + '</td><td>' + Range2 + '</td><td>' + Nature2 + '</td><td>' + impurities3 + '</td><td>' + CASNo3 + '</td><td>' + Range3 + '</td><td>' + Nature3 + '</td><td>' + impurities4 + '</td><td>' + CASNo4 + '</td><td>' + Range4 + '</td><td>' + Nature4 + '</td></tr>');
+            // append new row to table
+            $('#tblMain_Constituents_Data tbody').append(newRow);
+            UpdateSerialNumbers();
+
+            // clear input values
+            $('.IUPAC').val('');
+            $('.CommonName').val('');
+            $('.CASNo').val('');
+            $('.HsCode').val('');
+            $('.Molecular').val('');
+            $('.MolecularImage').val('');
+            $('.Isomer').val('');
+         
+
+            
+        }
+        // });
+
+    
+
+        //$('#add').click(function () {
+     
+        //var table = document.getElementById("Main_Classification");
+        //var textbox1 = table.getElementsByClassName("HazardClassification")[0];
+        //var row = $(this).closest('tr');
+        //var textbox = row.find('input[type="text"]');
+        //var IUPACvalue = textbox.val();
+        //var IUPACvalue = textbox1.value;
+        //$('#tblMain_Classification_Data tbody tr').each(function (index) {
+        //    $(this).find('td:eq(0)').text(cont++);
+        //    var UPAC = $(this).find('td:eq(1)').text();
+        //    if (IUPACvalue == UPAC) {
+        //        checkVal = 1;
+        //        swal('Same IUPAC name alredy exist !');
+        //        // $("#PillarName").focus();
+        //        return false;
+        //    }
+        //});
+        if (checkVal != 1) {
+              var HazardClassification1 = $('.HazardClassification').val();
+            var ResultingHazard1 = $('.Resulting_Hazard').val();
+            var SpecificConcentrationLimits1 = $('.Specific_Concentration_Limits').val();
+            var MainUseCategory1 = $('.Main_Use_Category').val();
+            var SpecificationIndustrialProfessional1 = $('.Specification_Industrial_Professional').val();
+            var SignificantRouteExposure1 = $('.Significant_Route_Exposure').val();
+            var EnvironmentalExposure1 = $('.Environmental_Exposure').val();
+            var PatternExposure1 = $('.Pattern_Exposure').val();
+             var HazardCategory1 = $('.HazardCategoryid').val();
+            var HazardSubCategory1 = $('.HazardSubCategoryid').val();
+            //var editButton = '<button class="btn btn-success" style="background-color: blue;" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            //var deleteButton = '<button class="btn btn-danger btn-delete additional-class" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+
+            // create new row with input values
+            var newRow = $('<tr><td>' + cont++ + '</td><td>' + HazardClassification1+ '</td><td>' + ResultingHazard1 + '</td><td>' + HazardCategory1 + '</td><td>' + HazardSubCategory1 + '</td><td>' + SpecificConcentrationLimits1 + '</td><td>' + MainUseCategory1 + '</td><td>' + SpecificationIndustrialProfessional1 + '</td><td>' + SignificantRouteExposure1 + '</td><td>' + EnvironmentalExposure1 + '</td><td>' + PatternExposure1 + '</td></tr>');
+            // append new row to table
+            $('#tblMain_Classification_Datacode tbody').append(newRow);
+           
+         
+            if(HazardClassification1== "") {
+                       var HazardClassification ="";
+            }else
+            {
+                  var HazardClassification = $('.HazardClassification :selected').text();
+            }
+            if(ResultingHazard1== "")
+            {
+                var ResultingHazard ="";
+            }
+            else
+            {
+                    var ResultingHazard = $('.Resulting_Hazard :selected').text();
+            }
+         if(SpecificConcentrationLimits1== "")
+         {
+           var SpecificConcentrationLimits = "";
+         }else
+         {
+              var SpecificConcentrationLimits = $('.Specific_Concentration_Limits').val();
+         }if(MainUseCategory1=="")
+         {
+              var MainUseCategory = "";
+         }else
+         {
+              var MainUseCategory = $('.Main_Use_Category :selected').text();
+         }
+           if(SpecificationIndustrialProfessional1=="")
+         {
+              var SpecificationIndustrialProfessional = "";
+         }else
+         {
+            var SpecificationIndustrialProfessional = $('.Specification_Industrial_Professional :selected').text();
+         }
+         if(SignificantRouteExposure1=="")
+         {
+              var SignificantRouteExposure = "";
+         }else
+         {
+            var SignificantRouteExposure = $('.Significant_Route_Exposure :selected').text();
+         }
+          if(EnvironmentalExposure1=="")
+         {
+              var EnvironmentalExposure = "";
+         }else
+         {
+                var EnvironmentalExposure = $('.Environmental_Exposure :selected').text();
+            }
+            if (PatternExposure1 == "") {
+                var PatternExposure = "";
+            } else {
+            var PatternExposure = $('.Pattern_Exposure :selected').text();
+            }
+            if (HazardCategory1 == "") {
+                var HazardCategory = "";
+            } else {
+            var HazardCategory = $('.HazardCategoryid :selected').text();
+            }
+             if (HazardSubCategory1 == "") {
+                var HazardSubCategory = "";
+            } else {
+                var HazardSubCategory = $('.HazardSubCategoryid :selected').text();
+            }
+            var editButton = '<button class="btn btn-success" style="background-color: blue;" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete additional-class" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+
+            // create new row with input values
+            var newRow = $('<tr><td>' + cont++ + '</td><td>' + HazardClassification + '</td><td>' + ResultingHazard + '</td><td>' + HazardCategory + '</td><td>' + HazardSubCategory + '</td><td>' + SpecificConcentrationLimits + '</td><td>' + MainUseCategory + '</td><td>' + SpecificationIndustrialProfessional + '</td><td>' + SignificantRouteExposure + '</td><td>' + EnvironmentalExposure + '</td><td>' + PatternExposure + '</td></tr>');
+            // append new row to table
+            $('#tblMain_Classification_Data tbody').append(newRow);
+            // clear input values
+            $('.HazardClassification, .Resulting_Hazard,.HazardCategoryid,.HazardSubCategoryid, .Specific_Concentration_Limits, .Main_Use_Category, .Specification_Industrial_Professional, .Significant_Route_Exposure, .Environmental_Exposure, .Pattern_Exposure').each(function () {
+                $(this).val('');
+            });
+            //bind row
+         
+            // clear input values
+            //$('.HazardClassification, .Resulting_Hazard, .Specific_Concentration_Limits, .Main_Use_Category, .Specification_Industrial_Professional, .Significant_Route_Exposure, .Environmental_Exposure, .Pattern_Exposure').each(function () {
+            //    $(this).val('');
+            //});
+            //
+            //for bind value above
+          
+            // create new row with input values
+
+        }
+        // });
+   
+ 
+    }
+    function AddRow3() {
+
+        //$('#add').click(function () {
+        var checkVal = 0;
+        var cont = 1;
+        //var table = document.getElementById("Main_Classification");
+        //var textbox1 = table.getElementsByClassName("HazardClassification")[0];
+        //var row = $(this).closest('tr');
+        //var textbox = row.find('input[type="text"]');
+        //var IUPACvalue = textbox.val();
+        //var IUPACvalue = textbox1.value;
+        //$('#tblMain_Classification_Data tbody tr').each(function (index) {
+        //    $(this).find('td:eq(0)').text(cont++);
+        //    var UPAC = $(this).find('td:eq(1)').text();
+        //    if (IUPACvalue == UPAC) {
+        //        checkVal = 1;
+        //        swal('Same IUPAC name alredy exist !');
+        //        // $("#PillarName").focus();
+        //        return false;
+        //    }
+        //});
+        if (true) {
+            var HazardClassification = $('.HazardClassification :selected').text();
+            var ResultingHazard = $('.Resulting_Hazard :selected').text();
+            var SpecificConcentrationLimits = $('.Specific_Concentration_Limits').val();
+            var MainUseCategory = $('.Main_Use_Category :selected').text();
+            var SpecificationIndustrialProfessional = $('.Specification_Industrial_Professional :selected').text();
+            var SignificantRouteExposure = $('.Significant_Route_Exposure :selected').text();
+            var EnvironmentalExposure = $('.Environmental_Exposure :selected').text();
+            var PatternExposure = $('.Pattern_Exposure :selected').text();
+            var HazardCategory = $('.HazardCategoryid :selected').text();
+            var HazardSubCategory = $('.HazardSubCategoryid :selected').text();
+            var editButton = '<button class="btn btn-success" style="background-color: blue;" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete additional-class" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+
+            // create new row with input values
+            var newRow = $('<tr><td>' + cont++ + '</td><td>' + HazardClassification + '</td><td>' + ResultingHazard + '</td><td>' + HazardCategory + '</td><td>' + HazardSubCategory + '</td><td>' + SpecificConcentrationLimits + '</td><td>' + MainUseCategory + '</td><td>' + SpecificationIndustrialProfessional + '</td><td>' + SignificantRouteExposure + '</td><td>' + EnvironmentalExposure + '</td><td>' + PatternExposure + '</td></tr>');
+            // append new row to table
+            $('#tblMain_Classification_Data tbody').append(newRow);
+            // clear input values
+            //$('.HazardClassification, .Resulting_Hazard, .Specific_Concentration_Limits, .Main_Use_Category, .Specification_Industrial_Professional, .Significant_Route_Exposure, .Environmental_Exposure, .Pattern_Exposure').each(function () {
+            //    $(this).val('');
+            //});
+            //
+            //for bind value above
+            var HazardClassification = $('.HazardClassification').val();
+            var ResultingHazard = $('.Resulting_Hazard').val();
+            var SpecificConcentrationLimits = $('.Specific_Concentration_Limits').val();
+            var MainUseCategory = $('.Main_Use_Category').val();
+            var SpecificationIndustrialProfessional = $('.Specification_Industrial_Professional').val();
+            var SignificantRouteExposure = $('.Significant_Route_Exposure').val();
+            var EnvironmentalExposure = $('.Environmental_Exposure').val();
+            var PatternExposure = $('.Pattern_Exposure').val();
+             var HazardCategory = $('.HazardCategoryid').val();
+            var HazardSubCategory = $('.HazardSubCategoryid').val();
+
+            var editButton = '<button class="btn btn-success" style="background-color: blue;" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete additional-class" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+
+            // create new row with input values
+            var newRow = $('<tr><td>' + cont++ + '</td><td>' + HazardClassification + '</td><td>' + ResultingHazard + '</td><td>' + HazardCategory + '</td><td>' + HazardSubCategory + '</td><td>' + SpecificConcentrationLimits + '</td><td>' + MainUseCategory + '</td><td>' + SpecificationIndustrialProfessional + '</td><td>' + SignificantRouteExposure + '</td><td>' + EnvironmentalExposure + '</td><td>' + PatternExposure + '</td></tr>');
+            // append new row to table
+            $('#tblMain_Classification_Datacode tbody').append(newRow);
+            // clear input values
+            $('.HazardClassification, .Resulting_Hazard,.HazardCategoryid,.HazardSubCategoryid, .Specific_Concentration_Limits, .Main_Use_Category, .Specification_Industrial_Professional, .Significant_Route_Exposure, .Environmental_Exposure, .Pattern_Exposure').each(function () {
+                $(this).val('');
+            });
+            // create new row with input values
+
+        }
+        // });
+    }
+
+    function UpdateSerialNumbers() {
+        $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+            $(this).find('td:first').text(index + 1);
+        });
+    }
+
+    function EditRow(row) {
+        var currentRow = $(row).closest('tr');
+        var cells = currentRow.find('td');
+
+        // retrieve the values from the selected row
+        var IUPAC = cells.eq(1).text();
+        var CommonName = cells.eq(2).text();
+        var CASNo = cells.eq(3).text();
+        var HsCode = cells.eq(4).text();
+        var Molecular = cells.eq(5).text();
+        var Isomer = cells.eq(6).text();
+        var Conc = cells.eq(7).text();
+        var physicalState = cells.eq(8).text();
+        var AnnualInstalledCapacity = cells.eq(9).text();
+        var Unit = cells.eq(10).text();
+        var PuritySubstance = cells.eq(11).text();
+        var impurities1 = cells.eq(12).text();
+        var CASNo1 = cells.eq(13).text();
+        var Range1 = cells.eq(14).text();
+        var Nature1 = cells.eq(15).text();
+        var impurities2 = cells.eq(16).text();
+        var CASNo2 = cells.eq(17).text();
+        var Range2 = cells.eq(18).text();
+        var Nature2 = cells.eq(19).text();
+        var impurities3 = cells.eq(20).text();
+        var CASNo3 = cells.eq(21).text();
+        var Range3 = cells.eq(22).text();
+        var Nature3 = cells.eq(23).text();
+        var impurities4 = cells.eq(24).text();
+        var CASNo4 = cells.eq(25).text();
+        var Range4 = cells.eq(26).text();
+        var Nature4 = cells.eq(27).text();
+
+        $('.IUPAC').val(IUPAC);
+        $('.CommonName').val(CommonName);
+        $('.CASNo').val(CASNo);
+        $('.HsCode').val(HsCode);
+        $('.Molecular').val(Molecular);
+        $('.Isomer').val(Isomer);
+        $('.Conc').val(Conc);
+        $('.physicalState').val(physicalState);
+        $('.AnnualInstalledCapacity').val(AnnualInstalledCapacity);
+        $('.Unit').val(Unit);
+        $('.PuritySubstance').val(PuritySubstance);
+        $('.impurities1').val(impurities1);
+        $('.CASNo1').val(CASNo1);
+        $('.Range1').val(Range1);
+        $('.Nature1').val(Nature1);
+        $('.impurities2').val(impurities2);
+        $('.CASNo2').val(CASNo2);
+        $('.Range2').val(Range2);
+        $('.Nature2').val(Nature2);
+        $('.impurities3').val(impurities3);
+        $('.CASNo3').val(CASNo3);
+        $('.Range3').val(Range3);
+        $('.Nature3').val(Nature3);
+        $('.impurities4').val(impurities4);
+        $('.CASNo4').val(CASNo4);
+        $('.Range4').val(Range4);
+        $('.Nature4').val(Nature4);
+
+
+        currentRow.remove();
+
+
+        UpdateSerialNumbers();
+    }
+
+    function DeleteRow(row) {
+        var currentRow = $(row).closest('tr');
+
+
+        currentRow.remove();
+
+
+        UpdateSerialNumbers();
+    }
+    //function addImpurities() {
+    //    // $('#addImpurities').click(function () {
+    //    var cont = 1;
+    //    $('#tblImpurities_Data tbody tr').each(function (index) {
+    //        $(this).find('td:eq(0)').text(cont++);
+    //    });
+    //    var NameImpurities = $('.NameImpurities').val();
+    //    var PerImpurities = $('.PerImpurities').val();
+    //    // create new row with input values
+    //    var newRow = $('<tr><td>' + cont++ + '</td><td>' + NameImpurities + '</td><td>' + PerImpurities + '</td></tr>');
+    //    // append new row to table
+    //    $('#tblImpurities_Data tbody').append(newRow);
+    //    // clear input values
+    //    $('.NameImpurities').val('');
+    //    $('.PerImpurities').val('');
+    //    //  });
+    //}
+
+    //  });
+
+    function EditRow1(row) {
+        var currentRow = $(row).closest('tr');
+        var cells = currentRow.find('td');
+
+        var NameUnit = cells.eq(1).text();
+        var designateduser = cells.eq(2).text();
+        var Location = cells.eq(3).text();
+
+        $('.NameUnit').val(NameUnit);
+        $('.designateduser').val(designateduser);
+        $('.Location').val(Location);
+
+        currentRow.remove();
+
+        UpdateSerialNumbers1();
+    }
+
+    function DeleteRow1(row) {
+        var currentRow = $(row).closest('tr');
+        currentRow.remove();
+
+        UpdateSerialNumbers1();
+    }
+    //  });
+    function UpdateSerialNumbers1() {
+        $('#tblDownstream_Data tbody tr').each(function (index) {
+            $(this).find('td:first').text(index + 1);
+        });
+    }
+
+    $('#Chemical_Code').change(function () {
+        
+        if ($('#Chemical_Code').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetChemicalProductBycategoryID',
+                data: { 'Chemical_Code': $('#Chemical_Code').val(), 'category': $('#Category').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    var vl = "";
+                    $('#Chemical_Product_Code').val('');
+
+                    
+                    var ul = $('#Chemical_Product_Code').closest(".searchable").find("ul");
+                    ul.empty();
+
+                    $.each(data, function (ind, item) {
+                        ul.append("<li value='" + item.chemical_Product_Code + "'>" + item.chemical_Product_Name + "</li>");
+                    });
+
+
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#Chemical_Product_Code').html('');
+            // District2 += "<option value=''>-- Select Chemical Product --</option>";
+            $('#Chemical_Product_Code').html(District2);
+
+        }
+    });
+
+
+</script>
+<script>
+    $('#Hazard_Classification_ID').change(function () {
+        
+        if ($('#Hazard_Classification_ID').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetResultingHazardByID',
+                data: { 'Hazard_Classification_ID': $('#Hazard_Classification_ID').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    
+                    var row = "";
+                    $('#Resulting_Hazard_ID').html('');
+                    row += "<option value=''>-- Select Resulting Hazard --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.resulting_Hazard_ID + "'>" + item.resulting_Hazard_Name + "</option>";
+                    });
+                    $('#Resulting_Hazard_ID').html(row);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#Resulting_Hazard_ID').html('');
+            District2 += "<option value=''>-- Select Resulting Hazard --</option>";
+            $('#Resulting_Hazard_ID').html(District2);
+
+        }
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        // Bind the change event of the dropdown
+        $("#Substance_Detail_ID").change(function () {
+            var selectedOption = $(this).val(); // Get the selected value from the dropdown
+
+            // Update the placeholder attribute of the text input based on the selected option
+            switch (selectedOption) {
+                case "1":
+                    $("#C_Name").attr("placeholder", "Name of Substances ");
+                    break;
+                case "2":
+                    $("#C_Name").attr("placeholder", "Name of Articles ");
+                    break;
+                case "3":
+                    $("#C_Name").attr("placeholder", "Name of Mixtures ");
+                    break;
+                default:
+                    $("#C_Name").attr("placeholder", "Name of Substances ");
+            }
+        });
+    });
+</script>
+
+<script>
+    $('.CASNo').on('input', function () {
+        var inputText = $(this).val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/CashNoSuggestion',
+            data: { 'inputText': inputText, 'mode': 1 },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var suggestionList = $('#suggestionList');
+                suggestionList.empty();
+
+
+                $.each(data, function (index, suggestion) {
+                    var listItem = $('<li>' + suggestion.casnO_Code + '</li>');
+                    listItem.on('click', function () {
+                        $('.CASNo').val(suggestion.casnO_Code);
+                        suggestionList.empty();
+                    });
+                    suggestionList.append(listItem);
+                });
+            }
+        });
+    });
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.CASNo').length) {
+            var suggestionList = $('#suggestionList');
+            suggestionList.empty();
+        }
+    });
+
+    //cash1
+    $('.CASNo1').on('input', function () {
+        var inputText1 = $(this).val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/CashNoSuggestion',
+            data: { 'inputText': inputText1, 'mode': 1 },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var suggestionList = $('#suggestionList1');
+                suggestionList.empty();
+
+
+                $.each(data, function (index, suggestion) {
+                    var listItem = $('<li>' + suggestion.casnO_Code + '</li>');
+                    listItem.on('click', function () {
+                        $('.CASNo1').val(suggestion.casnO_Code);
+                        suggestionList.empty();
+                    });
+                    suggestionList.append(listItem);
+                });
+            }
+        });
+    });
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.CASNo').length) {
+            var suggestionList = $('#suggestionList1');
+            suggestionList.empty();
+        }
+    });
+    //cash2
+    $('.CASNo2').on('input', function () {
+        var inputText1 = $(this).val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/CashNoSuggestion',
+            data: { 'inputText': inputText1, 'mode': 1 },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var suggestionList = $('#suggestionList2');
+                suggestionList.empty();
+
+
+                $.each(data, function (index, suggestion) {
+                    var listItem = $('<li>' + suggestion.casnO_Code + '</li>');
+                    listItem.on('click', function () {
+                        $('.CASNo2').val(suggestion.casnO_Code);
+                        suggestionList.empty();
+                    });
+                    suggestionList.append(listItem);
+                });
+            }
+        });
+    });
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.CASNo2').length) {
+            var suggestionList = $('#suggestionList2');
+            suggestionList.empty();
+        }
+    });
+    //cash3
+    $('.CASNo3').on('input', function () {
+        var inputText1 = $(this).val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/CashNoSuggestion',
+            data: { 'inputText': inputText1, 'mode': 1 },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var suggestionList = $('#suggestionList3');
+                suggestionList.empty();
+
+
+                $.each(data, function (index, suggestion) {
+                    var listItem = $('<li>' + suggestion.casnO_Code + '</li>');
+                    listItem.on('click', function () {
+                        $('.CASNo3').val(suggestion.casnO_Code);
+                        suggestionList.empty();
+                    });
+                    suggestionList.append(listItem);
+                });
+            }
+        });
+    });
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.CASNo3').length) {
+            var suggestionList = $('#suggestionList3');
+            suggestionList.empty();
+        }
+    });
+    //cash4
+    $('.CASNo4').on('input', function () {
+        var inputText1 = $(this).val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/CashNoSuggestion',
+            data: { 'inputText': inputText1, 'mode': 1 },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var suggestionList = $('#suggestionList4');
+                suggestionList.empty();
+
+
+                $.each(data, function (index, suggestion) {
+                    var listItem = $('<li>' + suggestion.casnO_Code + '</li>');
+                    listItem.on('click', function () {
+                        $('.CASNo4').val(suggestion.casnO_Code);
+                        suggestionList.empty();
+                    });
+                    suggestionList.append(listItem);
+                });
+            }
+        });
+    });
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.CASNo4').length) {
+            var suggestionList = $('#suggestionList4');
+            suggestionList.empty();
+        }
+    });
+</script>
+
+<script>
+    function filterFunction(that, event) {
+        let container, input, filter, li, input_val;
+        container = $(that).closest(".searchable");
+        input_val = container.find("input").val().toUpperCase();
+
+        if (["ArrowDown", "ArrowUp", "Enter"].indexOf(event.key) != -1) {
+            keyControl(event, container);
+        } else {
+            li = container.find("ul li");
+            li.each(function (i, obj) {
+                if ($(this).text().toUpperCase().indexOf(input_val) > -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+
+            container.find("ul li").removeClass("selected");
+            setTimeout(function () {
+                container.find("ul li:visible").first().addClass("selected");
+            }, 100);
+        }
+    }
+
+    function keyControl(e, container) {
+        if (e.key == "ArrowDown") {
+            if (container.find("ul li").hasClass("selected")) {
+                if (container.find("ul li:visible").index(container.find("ul li.selected")) + 1 < container.find("ul li:visible").length) {
+                    container.find("ul li.selected").removeClass("selected").nextAll().not('[style*="display: none"]').first().addClass("selected");
+                }
+            } else {
+                container.find("ul li:first-child").addClass("selected");
+            }
+        } else if (e.key == "ArrowUp") {
+            if (container.find("ul li:visible").index(container.find("ul li.selected")) > 0) {
+                container.find("ul li.selected").removeClass("selected").prevAll().not('[style*="display: none"]').first().addClass("selected");
+            }
+        } else if (e.key == "Enter") {
+            container.find("input").val(container.find("ul li.selected").text()).blur();
+            onSelect(container.find("ul li.selected").text());
+        }
+
+        container.find("ul li.selected")[0].scrollIntoView({
+            behavior: "smooth",
+        });
+    }
+
+    function onSelect(val, text) {
+        $("#Chemical_Product_Code1").val(val);
+        $("#Chemical_Product_Code").val(text);
+
+        // $("#PChemical_Product_Code").text(text);
+        //  alert(val + text);
+
+
+    }
+
+    $(".searchable input").focus(function () {
+        $(this).closest(".searchable").find("ul").show();
+        $(this).closest(".searchable").find("ul li").show();
+    });
+    var clickTriggered = false;
+
+    $(".searchable input").blur(function () {
+        let that = this;
+        setTimeout(function () {
+            const container = $(that).closest(".searchable");
+            const inputVal = $(that).val();
+            const selectedLi = container.find("ul li.selected");
+            if (!clickTriggered) {
+                if (selectedLi.length > 0 && selectedLi.text().toUpperCase() === inputVal.toUpperCase()) {
+                    const val = selectedLi.attr("value");
+                    const text = selectedLi.text();
+                    $(that).val(text);
+                    onSelect(val, text);
+                    //alert(val+text)
+                } else {
+                    onSelect(null, inputVal);
+                    // alert("null");
+                }
+                container.find("ul").hide();
+            }
+
+
+            clickTriggered = false;
+        }, 300);
+    });
+
+    $(document).on('click', '.searchable ul li', function () {
+        var val = $(this).attr("value");
+        var text = $(this).text();
+        $(this).closest(".searchable").find("input").val(text).blur();
+        onSelect(val, text);
+        clickTriggered = true;
+        const container = $(this).closest(".searchable");
+        container.find("ul").hide();
+
+    });
+
+
+    $(".searchable ul li").hover(function () {
+        $(this).closest(".searchable").find("ul li.selected").removeClass("selected");
+        $(this).addClass("selected");
+
+    });
+
+
+</script>
+
+
+<script>
+      $('#Category').change(function () {
+       
+        if ($('#Category').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetCemicalbyCategory',
+                data: { 'chemcid': $('#Category').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    
+
+                    $("#Chemical_Product_Code").val('');
+                    
+                    var row = "";
+                    $('#Chemical_Code').html('');
+                    row += "<option value=''>-- Select Chemicals --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.chemical_Name + "'>" + item.chemical_Code + "</option>";
+                    });
+                    $('#Chemical_Code').html(row);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#Chemical_Code').html('');
+            District2 += "<option value=''>-- Select Chemicals  --</option>";
+            $('#Chemical_Code').html(District2);
+
+        }
+    });
+
+</script>
+<script>
+    $('#Substance_Detail_ID').change(function () {
+        
+        if ($('#Substance_Detail_ID').val() == "1") {
+             $('.addmore').hide();
+            //var rowCount = $("#tblMain_Constituents_Data  >tbody >tr").length;
+           // alert(rowCount);
+            //if (rowCount > 1) {
+            //    $('#btnadd').hide();
+            //} else {
+            //    $('#btnadd').show();
+            //}
+        }
+        else
+        {
+                 $('.addmore').show();
+        }
+    });
+
+</script>
+<script>
+    $('#Resulting_Hazard_ID').change(function () {
+        
+        if ($('#Resulting_Hazard_ID').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetResultingHazardCategoryByID',
+                data: { 'Hazard_Classification_ID': $('#Resulting_Hazard_ID').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    
+                    var row = "";
+                    $('#HazardCategoryid').html('');
+                    row += "<option value=''>-- Select  Hazard Category--</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.hazardCategory_ID + "'>" + item.hazardCategory_Name + "</option>";
+                    });
+                    $('#HazardCategoryid').html(row);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#Resulting_Hazard_ID').html('');
+            District2 += "<option value=''>-- Select  Hazard Category--</option>";
+            $('#Resulting_Hazard_ID').html(District2);
+
+        }
+    });
+</script>
+<script>
+    $('#HazardCategoryid').change(function () {
+        
+        if ($('#HazardCategoryid').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetResultingHazardSubCategoryByID',
+                data: { 'Hazard_Classification_ID': $('#HazardCategoryid').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    
+                    var row = "";
+                    $('#HazardSubCategoryid').html('');
+                    row += "<option value=''>-- Select  Hazard Sub Category --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.hazardSubCategory_ID + "'>" + item.hazardSubCategory_Name + "</option>";
+                    });
+                    $('#HazardSubCategoryid').html(row);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#HazardSubCategoryid').html('');
+            District2 += "<option value=''>-- Select Hazard Sub Category--</option>";
+            $('#HazardSubCategoryid').html(District2);
+
+        }
+    });
+</script>
+<script>
+    function info()
+    {
+        alert("test");
+    }
+</script>
+
+
+
+
+<script>
+    async function getImage1() {
+        var imagename = '';
+
+        if ($('#Hazard_Classification_ID').val() != "") {
+            $.ajax({
+                url: '/UnitRegistration/UnitRegistration/GetImageByID',
+                data: { 'Hazard_Classification_ID': $('#Hazard_Classification_ID').val(),'mode':1 },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    imagename = data[0].imagepath;
+                   // alert(imagename);
+                    console.log(imagename);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", '/UnitRegistration/UnitRegistration/GetHazardImage?imageName=' + imagename , true);
+                    xhr.responseType = "arraybuffer";
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            var image = new Image();
+                            var base64Image = arrayBufferToBase64(xhr.response);
+                            $('#image').attr('src', "data:image/jpg;base64," + base64Image);
+                            showPopup();
+                        } else {
+                            alert("Error getting image");
+                        }
+                    };
+                    xhr.send();
+                },
+                error: function (err) {
+                    // Handle error
+                }
+            });
+        }
+    }
+    async function getImage2() {
+        var imagename = '';
+
+        if ($('#Resulting_Hazard_ID').val() != "") {
+            $.ajax({
+                url: '/UnitRegistration/UnitRegistration/GetImageByID',
+                data: { 'Hazard_Classification_ID': $('#Resulting_Hazard_ID').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    imagename = data[0].imagepath;
+                   // alert(imagename);
+                    console.log(imagename);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "/UnitRegistration/UnitRegistration/GetHazardImage?imageName=" + imagename, true);
+                    xhr.responseType = "arraybuffer";
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            var image = new Image();
+                            var base64Image = arrayBufferToBase64(xhr.response);
+                            $('#image').attr('src', "data:image/jpg;base64," + base64Image);
+                            showPopup();
+                        } else {
+                            alert("Error getting image");
+                        }
+                    };
+                    xhr.send();
+                },
+                error: function (err) {
+                    // Handle error
+                }
+            });
+        }
+    }
+
+    function arrayBufferToBase64(buffer) {
+        var binary = '';
+        var bytes = new Uint8Array(buffer);
+        var len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return window.btoa(binary);
+    }
+</script>
+
+
+
+   <script>
+    function showPopup() {
+        var popupContainer = document.getElementById("popupContainer");
+        popupContainer.style.display = "block";
+    }
+
+    function closePopup() {
+        var popupContainer = document.getElementById("popupContainer");
+        popupContainer.style.display = "none";
+    }
+    function agreePopup() {
+
+        var popupContainer = document.getElementById("popupContainer");
+        popupContainer.style.display = "none";
+        var termsCheckbox = document.getElementById("termsCheckbox");
+
+       
+
+        }
+</script>
+<script>
+    async function  getimagename(){
+  if ($('#Hazard_Classification_ID').val() != "") {
+            $.ajax({
+
+            url: '/UnitRegistration/UnitRegistration/GetImageByID',
+            data: { 'Hazard_Classification_ID': $('#Hazard_Classification_ID').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    
+                    return data[0].imagepath;
+                   
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+    }
+        </script>

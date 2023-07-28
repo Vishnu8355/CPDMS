@@ -1,0 +1,672 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    <title>ChemIndia - Chemicals Inventory of India </title>
+    <meta name='robots' content='max-image-preview:large' />
+
+ 
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel='stylesheet' id='bt_bb_content_elements-css'
+          href='https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/css/front_end/content_elements.crush.css?ver=4.5.6'
+          type='text/css' media='all' />
+    <link rel='stylesheet' id='novalab-style-css'
+          href='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/style.css?ver=6.2.2' type='text/css'
+          media='screen' />
+
+    <link rel='stylesheet' id='novalab-print-css'
+          href='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/print.css?ver=6.2.2' type='text/css'
+          media='print' />
+    <link rel='stylesheet' id='novalab-fonts-css'
+          href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100italic%2C200italic%2C300italic%2C400italic%2C500italic%2C600italic%2C700italic%2C800italic%2C900italic%7CRoboto+Slab%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100italic%2C200italic%2C300italic%2C400italic%2C500italic%2C600italic%2C700italic%2C800italic%2C900italic%7CRoboto%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100italic%2C200italic%2C300italic%2C400italic%2C500italic%2C600italic%2C700italic%2C800italic%2C900italic%7CRoboto%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100italic%2C200italic%2C300italic%2C400italic%2C500italic%2C600italic%2C700italic%2C800italic%2C900italic%7CRoboto%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100italic%2C200italic%2C300italic%2C400italic%2C500italic%2C600italic%2C700italic%2C800italic%2C900italic%7CBarlow%3A600&#038;subset=latin%2Clatin-ext&#038;ver=1.0.0'
+          type='text/css' media='all' />
+
+    <link rel='stylesheet' id='boldthemes-framework-css'
+          href='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/framework/css/style.css?ver=6.2.2'
+          type='text/css' media='all' />
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-includes/js/jquery/jquery.min.js?ver=3.6.4'
+            id='jquery-core-js'></script>
+
+
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.0'
+            id='jquery-migrate-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/slick/slick.min.js?ver=4.5.6'
+            id='bt_bb_slick-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/content_elements_misc/js/jquery.magnific-popup.min.js?ver=4.5.6'
+            id='bt_bb_magnific-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/content_elements_misc/js/content_elements.js?ver=4.5.6'
+            id='bt_bb-js'></script>
+   
+    <link rel="stylesheet" href="~/LandinCss/css/style.css">
+    <!--local css links-->
+    <!-- font-awesome icon cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--icon cdn-->
+
+   @* <link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">*@
+    <!-- template-style-->
+   @* <link href="~/LandinCss/css/style1.css" rel="stylesheet">*@
+
+    <style>
+        @@media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
+        }
+
+    </style>
+    <style>
+
+
+        #TopScroll {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #024828;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+            #TopScroll:hover {
+                background-color: green;
+            }
+    </style>
+
+</head>
+
+<body id="content" class="home page-template-default page page-id-1689 page-parent theme-novalab bt_bb_plugin_active bt_bb_fe_preview_toggle woocommerce-no-js btHeadingWeight_normal btSupertitleWeight_normal btSubtitleWeight_normal btMenuWeight_default btButtonWeight_default btCapitalizeMainMenuItems btMenuLeftEnabled btStickyEnabled btHideHeadline btLightSkin btNoDashInSidebar noBodyPreloader btHardRoundedButtons btTransparentDarkHeader btNoSidebar">
+    <div class="bt-page-wrap" id="top">
+        <div class="bt-vertical-header-top">
+            <div class="bt-vertical-menu-trigger">
+                &nbsp;
+                <div class="bt_bb_icon bt_bb_text_empty" data-bt-override-class="{}">
+                    <a href="#" target="_self" data-ico-fa="&#xf0c9;" class="bt_bb_icon_holder"></a>
+                </div>
+            </div>
+            <div class="bt-logo-area">
+                <div class="logo">
+                    <span>
+                         <a href="/LandingPage/Home/LandingPage">
+                            <img class="btMainLogo" data-hw="2.1875" src="~/LandinCss/images/logo_green (3).png"
+                                 alt="CHARAK_LOGO">
+                        </a>
+                    </span>
+                </div>
+                <!-- /logo -->
+            </div>
+            <!-- /bt-logo-area -->
+        </div>
+        <header class="mainHeader btClear  ">
+            <div class="main-header-inner">
+                <div>
+                    <div class="Top_Header" style="flex-wrap: wrap !important;">
+                        <div>भारत सरकार | GOVERNMENT OF INDIA</div>
+                        <div></div>
+                        <div>
+                            <div class="Menu_icon">
+                                <span><a href="#content1">SKIP TO MAIN CONTENT | </a></span>
+
+                                <div class="header-search-wrapper">
+  <span class="search-main">
+    <span><i class="fa fa-search ml-[-0.6rem]" style="font-size:20px"></i></span>&nbsp;
+  </span>
+  <div class="search-form-main clearfix">
+    <form id="searchForm" action="/LandingPage/Home/search" method="get">
+      <label>
+                                                <input type="search" class="search-field ml-[-11px]" placeholder="Search …" value="" name="searchQuery">
+      </label>
+      <a><input type="submit" class="search-submit ml-[13rem] mt-[-1.9rem]" id="allsearch" value="Search"></a>
+    </form>
+  </div>
+</div>
+                                
+                                <span><a href="/LandingPage/Home/Sitemap"><i class="fa fa-sitemap" style="font-size:20px"></i></a></span>
+                                <div class="dropdown">
+                                    | <i class="fa fa-wheelchair-alt" aria-hidden="true" style="font-size: 20px;"></i>
+                                    <div class="dropdown-content" style="z-index: 10;">
+                                        <a class="btn zoom-init" href="#" id="reset">A</a>
+                                        <a class="btn zoom" href="#" id="increase">A+</a>
+                                        <a class="btn zoom-out" href="#" id="decrease">A-</a>
+                                    </div>
+                                </div>
+                                <span>| English |</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bt-logo-area menu-holder btClear">
+                    <div>
+                        <div class="bt-horizontal-menu-trigger">
+                            &nbsp;
+                            <div class="bt_bb_icon bt_bb_text_empty">
+                                <a href="#" target="_self" class="bt_bb_icon_holder"></a>
+                            </div>
+                        </div>
+                        <div class="logo">
+                            <span>
+                                <a href="/LandingPage/Home/LandingPage">
+                                    <img class="btMainLogo" data-hw="2.1875" src="~/LandinCss/images/logo_green (4).png"
+                                         alt="CHARAK_LOGO">
+                                </a>
+                            </span>
+
+                        </div>
+
+                        <!-- /logo -->
+                        <div class="menuPort">
+                            <div class="topBarInMenu">
+                                <div class="topBarInMenuCell" style="margin: 49px">
+                                    <div class="btIconWidget  btAccentIconWidget btWidgetWithText">
+                                        <div class="btIconWidgetIcon">
+                                            <span data-ico-fontawesome="&#xf2a0;" class="bt_bb_icon_holder"></span>
+                                        </div>
+                                        <h6 class="Para_text ml-[-30rem]" style="font-family:Georgia, 'Times New Roman', Times, serif">
+                                            ChemIndia - Chemicals Inventory of India
+                                        </h6>
+                                        <div class="btIconWidgetContent" >
+                                            <a href="/LandingPage/Home/Login">
+                                                <button style="padding: 10px; background-color: #024828; color: #fff; width: 100px;">Login</button>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /topBarInMenu -->
+                            </div>
+                            <!-- /topBarInMenuCell -->
+
+                        </div>
+                        <!-- .menuPort -->
+                    </div>
+                    <!-- /port -->
+                </div>
+                <!-- /menu-holder / bt-below-logo-area -->
+            </div>
+            <div class="main-header-inner menuPort1">
+                <div class="bt-logo-area menu-holder btClear">
+                    <div>
+
+                        <!-- /logo -->
+                        <div class="menuPort ">
+
+                            <!-- /topBarInMenuCell -->
+                            <nav>
+                                <ul id="menu-primary-menu" class="menu">
+                                    <li id="menu-item-3056"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-1689 current_page_item menu-item-3056">
+                                        <a href="/LandingPage/Home/LandingPage" aria-current="page">Home</a>
+                                    </li>
+
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="/LandingPage/Home/about">
+                                            About ChemIndia
+                                        </a>
+
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="#">
+                                            Category
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li id="menu-item-1995"
+                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1995">
+                                                <a href="/LandingPage/Home/Chemicals">CHEMICALS</a>
+                                            </li>
+                                            <li id="menu-item-1813"
+                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1813">
+                                                <a href="/LandingPage/Home/PetroChemicals">PETRO-CHEMICALS</a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="/LandingPage/Home/Team">
+                                            Team
+                                        </a>
+
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="/LandingPage/Home/Dashboard">
+                                            Dashboard
+                                        </a>
+
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="/LandingPage/Home/Data">
+                                            Data
+                                        </a>
+
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="#">
+                                            Support
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li id="menu-item-1995"
+                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1995">
+                                                <a href="/LandingPage/Home/VIDEO">USER MANUAL VIDEO</a>
+                                            </li>
+                                            <li id="menu-item-1813"
+                                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1813">
+                                                <a href="/LandingPage/Home/PDF">USER MANUAL PDF</a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="/LandingPage/Home/Appreciations">                                            
+                                            Appreciations
+                                        </a>
+
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="/LandingPage/Home/InterestingFacts">
+                                            Interesting Facts
+                                        </a>
+
+                                    </li>
+                                    <li id="menu-item-1598"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1598">
+                                        <a href="/LandingPage/Home/Contact">
+                                            Contact Us
+                                        </a>
+
+                                    </li>
+
+
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- .menuPort -->
+                    </div>
+                    <!-- /port -->
+                </div>
+                <!-- /menu-holder / bt-below-logo-area -->
+            </div>
+            <!-- / inner header for scrolling -->
+        </header>
+        <!-- /.mainHeader -->
+        @RenderBody()
+
+        <footer class=" footer_Style">
+
+            <div class="bg-gray-200 ">
+                <div class="flex conatiner  justify-evenly  p-2 mt-6" style="flex-wrap: wrap !important;">
+                    <div><a href="/LandingPage/Home/Disclaimer">Disclaimer </a></div>|
+                    <div><a href="/LandingPage/Home/Privacy">Privacy Policy </a></div>|
+                    <div><a href="/LandingPage/Home/Websitepolicy"> Website policy</a></div>|
+                    <div><a href="/LandingPage/Home/TermsConditions"> Terms & Conditions </a></div>|
+                    <!-- <div><a href="/LandingPage/Home/PDF">Manuals</a></div>| -->
+                    <div><a  href="/LandingPage/Home/Faq"> FAQs</a></div>|
+                    <!-- <div><a href="/LandingPage/Home/Contact""> Help</a></div>| -->
+              <div><a  href="/LandingPage/Home/feedback">Feedback</a></div> |
+                    <div><a  href="/LandingPage/Home/Sitemap"> Sitemap</a></div>
+
+
+
+                </div>
+            </div>
+            <div class="mx-auto w-full max-w-screen-xl p-10">
+
+                <div class="grid grid-cols-1 gap-8 sm:gap-6 sm:grid-cols-3 ">
+                    <div>
+                        <h2 class=" text-xl font-bold text-gray-900 uppercase dark:text-white text-left">
+                            Useful links
+                        </h2>
+                        <ul class="text-gray-600 dark:text-gray-400 font-medium ml-[-.4rem]"> 
+                            <li>
+                                <a href="https://www.cas.org/cas-data/cas-registry" class="hover:underline">Chemicals Abstracts Service</a>
+                            </li>
+                            <li>
+                                <a href="https://echa.europa.eu/" class="hover:underline">ECHA-European Union</a>
+                            </li>
+                            <li>
+                                <a href="https://www.industrialchemicals.gov.au/" class="hover:underline">Australian Industrial Chemicals Introduction Scheme</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div>
+                     
+
+                      
+                    </div>
+                    <div class="">
+
+                       <div class="flex space-x-4 ">
+                                
+                                <a target="_blank"  href="https://www.facebook.com/profile.php?id=100093704022779"><img src="~/Image/facebook.png" class="w-10 mt-1"></a>
+
+                        
+                                <a target="_blank" href="https://www.instagram.com/chemindia_dcpc/"><img src="~/Image/instagram.png" class="w-12"></a>
+                                
+                                <a target="_blank" href="https://twitter.com/ChemIndia_DCPC"><img src="~/Image/twitter.png" class="w-10 mt-1"></a>
+                        </div>
+                       
+                        <h2 class=" text-sm font-semibold text-gray-900 uppercase dark:text-white text-left mt-4">
+                            Last
+                            Update: @DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")
+                        </h2>
+                        <ul class="text-gray-600 dark:text-gray-400 font-medium">
+                            <li>
+                                Visitor Count: @TempData["visitcountEF"]
+                                
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+
+         
+            <p class="text-[1rem] text-black text-center dark:text-gray-400 mt-[5rem]">
+                © 2023  Department of Chemicals & Petro-Chemicals. All Rights Reserved.
+            </p>
+
+       
+            </div>
+
+         
+        </footer>
+    </div>
+    <button onclick="topFunction()" id="TopScroll" title="Go to top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 5l0 14" />
+            <path d="M16 9l-4 -4" />
+            <path d="M8 9l4 -4" />
+        </svg>
+
+    </button>
+
+    <script>
+        // Get the button
+        let mybutton = document.getElementById("TopScroll");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+
+    <!--Header script-->
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/framework/js/header.misc.js?ver=6.2.2'
+            id='novalab-header-misc-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/framework/js/misc.js?ver=6.2.2'
+            id='novalab-misc-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/plugins/bold-page-builder/content_elements/bt_bb_section/bt_bb_elements.js?ver=4.5.6'
+            id='bt_bb_elements-js'></script>
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/bold-page-builder/content_elements/bt_bb_progress_bar_advanced/bb_progressbar_advanced.js?ver=6.2.2'
+            id='bt_bb_progressbar_advanced_js-js'></script>
+    <!--report count script-->
+    <script type='text/javascript'
+            src='https://novalab.bold-themes.com/nova-b/wp-content/themes/novalab/bold-page-builder/content_elements_misc/js/bt_bb_progress_bar_advanced.js?ver=6.2.2'
+            id='bt_bb_progressbar_advanced-js'></script>
+
+    <!--slider script-->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+
+    @*<script src="~/LandinCss/js/Chaptchascript.js"></script>*@
+
+    <script>
+        $(document).ready(function () {
+            $('.customer-logos').slick({
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 1500,
+                arrows: false,
+                dots: false,
+                pauseOnHover: false,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4
+                    }
+                }, {
+                    breakpoint: 520,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                }]
+            });
+        });
+    </script>
+    <script>
+        function toggleModal() {
+            document.getElementById('modal').classList.toggle('hidden')
+        }
+    </script>
+    <script>
+        /////////////////////// Start captcha /////////////////
+        $(document).ready(function () {
+
+            $("#refreshCaptcha").click(function () {
+                debugger
+                /*$("#captcha").text('');*/
+                $("#capt1").empty();
+                getCaptcha();
+            });
+        });
+
+        const captchas = document.querySelector(".captcha"),
+            reloadBtns = document.querySelector(".reload-btn"),
+            inputFields = document.querySelector(".input-area input"),
+            checkBtns = document.querySelector(".check-btn"),
+            statusTxts = document.querySelector(".status-text");
+
+        //storing all captcha characters in array
+        let allsCharacters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+            'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
+            'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+            't', 'u', 'v', 'w', 'x', 'y', 'z', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        function getCaptcha() {
+            for (let i = 0; i < 6; i++) { //getting 6 random characters from the array
+                let randomCharacter = allsCharacters[Math.floor(Math.random() * allsCharacters.length)];
+                captchas.innerText += ` ${randomCharacter}`; //passing 6 random characters inside captcha innerText
+            }
+        }
+        getCaptcha(); //calling getCaptcha when the page open
+        //calling getCaptcha & removeContent on the reload btn click
+        reloadBtns.addEventListener("click", () => {
+            removeContent();
+            getCaptcha();
+        });
+
+        checkBtns.addEventListener("click", e => {
+            e.preventDefault(); //preventing button from it's default behaviour
+            statusTxts.style.display = "block";
+            //adding space after each character of user entered values because I've added spaces while generating captcha
+            let inputVal = inputFields.value.split('').join(' ');
+            if (inputVal == captchas.innerText) { //if captcha matched
+                statusTxts.style.color = "#4db2ec";
+                statusTxts.innerText = "Nice! You don't appear to be a robot.";
+                setTimeout(() => { //calling removeContent & getCaptcha after 4 seconds
+                    removeContent();
+                    getCaptcha();
+                }, 2000);
+            } else {
+                statusTxts.style.color = "#ff0000";
+                statusTxts.innerText = "Captcha not matched. Please try again!";
+            }
+        });
+        function removeContent() {
+            inputFields.value = "";
+            captchas.innerText = "";
+            statusTxts.style.display = "none";
+        }                                    /////////////////////// END captcha /////////////////
+    </script>
+
+    <script src='@Url.Content("~/js/sweetalert.min.js")'></script>
+    <script src='@Url.Content("~/js/CSMValidation.js")'></script>
+
+    @if (TempData["Messages"] != null)
+    {
+        <script>
+            swal("", '@TempData["Messages"]', "success");
+            setTimeout(function () {
+                swal.close();
+            }, 5000);
+        </script>
+        TempData.Remove("Messages");
+
+    }
+    @if (TempData["Message"] != null)
+    {
+        <script>
+            swal("", '@TempData["Message"]', "warning");
+            setTimeout(function () {
+                swal.close();
+            }, 5000);
+        </script>
+    }
+
+    <script> 
+    document.addEventListener('DOMContentLoaded', function() {
+  const contentElement = document.getElementById('content');
+  const increaseButton = document.getElementById('increase');
+  const decreaseButton = document.getElementById('decrease');
+  const resetButton = document.getElementById('reset');
+
+  increaseButton.addEventListener('click', function() {
+    adjustFontSize(2);
+  });
+
+  decreaseButton.addEventListener('click', function() {
+    adjustFontSize(-2);
+  });
+
+  resetButton.addEventListener('click', function() {
+    contentElement.style.fontSize = '16px';
+  });
+
+  function adjustFontSize(sizeChange) {
+    const currentSize = parseInt(window.getComputedStyle(contentElement).fontSize);
+    const newSize = currentSize + sizeChange;
+    contentElement.style.fontSize = newSize + 'px';
+  }
+});
+    </script>
+
+    <script>
+    $('.header-search-wrapper .search-main').click(function(){
+    $('.search-form-main').toggleClass('active-search');
+    $('.search-form-main .search-field').focus();
+});
+    </script>
+
+    <style>
+    .header-search-wrapper {
+	float: right;
+	position: relative;
+}
+.search-main {
+	display: block;
+	line-height: 40px;
+	padding: 0 14px;
+	cursor: pointer;
+	color: black;
+    margin-top : -0.4rem;
+}
+.header-search-wrapper .search-form-main {
+    background: #fff none repeat scroll 0 0;
+    -webkit-box-shadow: 1px 1px 7px rgba(0,0,0,.15);
+    box-shadow: 1px 1px 7px rgba(0,0,0,.15);
+    border-top: 2px solid #408c40;
+    padding: 15px;
+    position: absolute;
+    right: 0;
+    top: 124%;
+    width: 300px;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+}
+.search-form-main.active-search {
+    opacity: 1;
+    visibility: visible;
+}
+.header-search-wrapper .search-form-main {
+    border-top-color: #d33;
+}
+.header-search-wrapper .search-form-main:before {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #408c40;
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: -10px;
+}
+.header-search-wrapper .search-form-main:before {
+    border-bottom-color: #d33;
+}
+.header-search-wrapper .search-form-main .search-field {
+    border-radius: 0;
+    padding: 4px 10px;
+    width: 75%;
+    float: left;
+}
+.header-search-wrapper .search-form-main .search-submit {
+    border: medium none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+    float: left;
+    padding: 10px 0 10px;
+    width: 25%;
+    height: 36px;
+    background: #024828;
+}
+    </style>
+
+</body>
+
+</html>

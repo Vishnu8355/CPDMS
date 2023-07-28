@@ -1,0 +1,960 @@
+﻿@model CPDMSEF.Block1EF
+@using CPDMSEF;
+@using CPDMS.Web;
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    UserLoginSession profile = HttpContextAccessor.HttpContext.Session.Get<UserLoginSession>(KeyHelper.UserKey);
+
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Yearly Chemicals block entry";
+   if (profile.Role == "COMADM")
+    {
+
+        Layout = "~/Areas/CompanyRegistraion/Views/Shared/_CompanyRegisLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+
+    }
+}
+<style>
+    #suggestionList, #suggestionList1, #suggestionList2, #suggestionList3, #suggestionList4 {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+        #suggestionList, #suggestionList1, #suggestionList2, #suggestionList3, #suggestionList4 li {
+            margin-bottom: 5px;
+            cursor: pointer;
+            display: grid;
+        }
+
+    input[type=text]:focus {
+        border: 3px solid black;
+    }
+</style>
+<style>
+    .fixed-columns {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background-color: #fff;
+    }
+
+    #tblMain_Constituents_Data thead th:first-child,
+    #tblMain_Constituents_Data tbody td:first-child {
+        position: sticky;
+        left: 0;
+        background-color: #fff;
+        z-index: 2;
+    }
+
+    #tblMain_Constituents_Data thead th:nth-child(2),
+    #tblMain_Constituents_Data tbody td:nth-child(2) {
+        position: sticky;
+        left: 50px;
+        background-color: #fff;
+        z-index: 2;
+    }
+
+    input[type=text]:focus {
+        border: 3px solid black;
+    }
+</style>
+<style>
+    div.searchable {
+    }
+
+    .searchable input {
+        width: 100%;
+        display: block;
+    }
+
+    .searchable ul {
+        display: none;
+        border-radius: 0 0 5px 5px;
+        border: 1px solid #add8e6;
+        border-top: none;
+        max-height: 180px;
+        margin: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding: 0;
+    }
+
+        .searchable ul li {
+            display: grid;
+            padding: 7px 9px;
+            border-bottom: 1px solid #e1e1e1;
+            cursor: pointer;
+        }
+
+            .searchable ul li.selected {
+            }
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    function lettersOnly() {
+        var regex = new RegExp("^[a-zA-Z ]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    }
+    function decimalOnly() {
+        var regex = /^\d*\.?\d*$/;
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    }
+
+ 
+    function Validate() {
+        debugger;
+       
+        var constituents = '';
+        var classification = '';
+
+        var tbody = $("#tblMain_Constituents_Data tbody");
+        if (tbody.children().length != 0) {
+            var Constituents = '';
+            $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+                var CASNo = $(this).find('td:eq(1)').text();
+                var CommonName = $(this).find('td:eq(2)').text();
+                var IUPAC = $(this).find('td:eq(2)').text();
+
+                var HSCode = $(this).find('td:eq(4)').text();
+                var Molecular = $(this).find('td:eq(5)').text();
+                var MolecularImage = $(this).find('td:eq(6)').text();
+                var Isomer = $(this).find('td:eq(7)').text();
+
+                var physicalState = $(this).find('td:eq(8)').text();
+
+                // Constituents += CASNo + '|' + CommonName + '|' + IUPAC + '|' + HSCode + '|' + Molecular + '|'+ '|' + MolecularImage + '|' + Isomer +  '|' + physicalState + '^';
+
+
+
+            });
+            if (Constituents != '') {
+                $('#Main_Constituents_Data').val(Constituents);
+            }
+        }
+
+        //for classfication table
+        var tbody = $("#tblMain_Classification_Datacode tbody");
+        if (tbody.children().length != 0) {
+            var Constituents = '';
+
+            $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+                var CASNo = $(this).find('td:eq(1)').text();
+                var CommonName = $(this).find('td:eq(2)').text();
+                var IUPAC = $(this).find('td:eq(3)').text();
+
+                var HSCode = $(this).find('td:eq(4)').text();
+                var Molecular = $(this).find('td:eq(5)').text();
+                var MolecularImage = $(this).find('td:eq(6)').text();
+                var Isomer = $(this).find('td:eq(7)').text();
+
+                var physicalState = $(this).find('td:eq(8)').text();
+
+                //Constituents += CASNo + '|' + CommonName + '|' + IUPAC + '|' + HSCode + '|' + Molecular + '|' + '|' + MolecularImage + '|' + Isomer + '|' + physicalState + '|';
+
+                constituents += CASNo + '|' + CommonName + '|' + IUPAC + '|' + HSCode + '|' + Molecular + '|' + MolecularImage + '|' + Isomer + '|' + physicalState + '|';
+
+
+            });
+
+            var Classification = '';
+            $('#tblMain_Classification_Datacode tbody tr').each(function (index) {
+
+                //new added
+                var HazardClassification = $(this).find('td:eq(1)').text();
+                var ResultingHazard = $(this).find('td:eq(2)').text();
+                var SpecificConcentrationLimits = $(this).find('td:eq(3)').text();
+                var MainUseCategory = $(this).find('td:eq(4)').text();
+                var SpecificationIndustrialProfessional = $(this).find('td:eq(5)').text();
+                var SignificantRouteExposure = $(this).find('td:eq(6)').text();
+                var EnvironmentalExposure = $(this).find('td:eq(7)').text();
+                var PatternExposure = $(this).find('td:eq(8)').text();
+                //Classification +=Constituents + HazardClassification + '|' + ResultingHazard + '|' + SpecificConcentrationLimits + '|' + MainUseCategory + '|' + SpecificationIndustrialProfessional + '|' + SignificantRouteExposure + '|' + EnvironmentalExposure + '|' + PatternExposure + '^';
+
+                classification += constituents + HazardClassification + '|' + ResultingHazard + '|' + SpecificConcentrationLimits + '|' + MainUseCategory + '|' + SpecificationIndustrialProfessional + '|' + SignificantRouteExposure + '|' + EnvironmentalExposure + '|' + PatternExposure + '^';
+
+            });
+            var combined = classification;
+
+            if (combined != '') {
+                $('#Main_Classification_Data').val(combined);
+            }
+        }
+        return true;
+
+    }
+
+</script>
+
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Report</li>
+                            <li class="breadcrumb-item active">Description of chemicals</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Description of chemicals</b></a> </li>
+                                </ul>
+
+                                <div role="tabpanel">
+                                    @using (Html.BeginForm("ProductReport", "UnitRegistration", FormMethod.Post, new { AUTOCOMPLETE = "Off", id = "form1" }))
+                                    {
+                                        <div class="row">
+                                            <div class="col-sm 6">
+                                                <div class="form-group">
+                                                    <label>Category</label> <label class="RequiredField">*</label>
+
+                                                    <select id="Category" name="CategoryID" class="form-control category">
+                                                        <option value="">-- Select Category--</option>
+                                                        <option value="1">Chemicals</option>
+                                                        <option value="2">Petro-Chemicals</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm 6">
+                                                <input type="text" id="Chemical_Product_Code1" name="Chemical_Product_Code" hidden>
+                                                
+                                                    <div class="form-group">
+                                                        <label>Product</label> <label class="RequiredField">*</label>
+
+
+                                                        <div class="searchable ">
+
+                                                            <input type="text" id="Chemical_Product_Code" name="Chemical_Product_Name" class="form-control" placeholder="-- Select Product -" onkeyup="filterFunction(this,event)">
+                                                            <ul>
+                                                                <li>-- Select  Product - </li>
+
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+
+                                                <div class="form-group" style="display:none">
+                                                    <label>Group</label> <label class="RequiredField">*</label>
+
+
+                                                    <select name="Chemical_Code" id="Chemical_Code" class="form-control searchableselect">
+                                                        <option value="">-- Select Chemicals Product --</option>
+                                                        @{
+                                                            List<CPDMSEF.ChemicalGroup> lstChemicalModel = (List<CPDMSEF.ChemicalGroup>)ViewData["Chemical"];
+                                                            if (lstChemicalModel != null)
+                                                            {
+                                                                foreach (var item in lstChemicalModel)
+                                                                {
+                                                                    if (item.Chemical_Code == Model.Chemical_Code)
+                                                                    {
+                                                                            <option selected="selected" value="@item.Chemical_Code">@item.Chemical_Code</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                            <option value="@item.Chemical_Name">@item.Chemical_Name</option>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row">
+                                            
+                                        </div>
+                                       
+
+                                        <br />
+                                       <div class="table-responsive">
+                                        <table id="Main_Constituents1" class="table table-bordered Main_Constituents">
+                                            <thead>
+                                                <tr>
+                                               
+                                                        <th colspan="10" style="background: #329466; color: white; text-align: center;">List main constituents of the substance/ mixture/article with 10% (w/w) or more concentration </th>
+                                               
+                                                </tr>
+                                                <tr>
+                                                    <th>#SL.No.</th>
+                                                    <th>IUPAC Name</th>
+                                                    <th>Common Name</th>
+                                                    <th>CAS No.</th>
+                                                    <th>HS Code</th>
+                                                    <th>Molecular Structure</th>
+                                                    <th>Isomer</th>
+
+                                                    <th>Physical State</th>
+                                                    <th>View Image</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody  id="Main_Constituents1body">
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table id="Main_Constituents" class="table table-bordered Main_Constituents">
+                                            <thead>
+                                                <tr>
+
+                                                    <th colspan="11" style="background: #329466; color: white; text-align: center;">Classification and labelling information: (according to 9th revision of UN-GHS) </th>
+
+
+                                                </tr>
+                                                <tr>
+                                                    <th>#SL.No</th>
+                                                    <th>Hazard Classification</th>
+                                                    <th>Resulting Hazard</th>
+                                                        <th>Hazard Category</th>
+                                                        <th>Hazard Sub Category</th>
+                                                    <th>Specific Concentration Limits, where applicable</th>
+                                                    <th>Main use category</th>
+                                                    <th>Specification Industrial Professional</th>
+                                                    <th>Route Exposure</th>
+                                                    <th>Environmental Exposure</th>
+                                                    <th>Pattern Exposure</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody  id="Main_Constituents2body">
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+
+<script>
+
+     $('#tblMain_Classification_Data').hide()
+    $('#tblMain_Constituents_Data').hide()
+    function AddRow() {
+        $('#tblMain_Classification_Data').show()
+        $('#tblMain_Constituents_Data').show()
+        if ($('#Substance_Detail_ID').val() == "1") {
+            var rowCount = $("#tblMain_Constituents_Data  >tbody >tr").length;
+            alert(rowCount);
+            if (rowCount > 0) {
+                $('#btnadd').hide();
+                return
+            } else {
+                $('#btnadd').show();
+            }
+        }
+        AddRow3();
+        //$('#add').click(function () {
+        var checkVal = 0;
+        var cont = 1;
+
+       
+        if (true) {
+            var CASNo = $('.CASNo').val();
+            var CommonName = $('.CommonName').val();
+
+            var IUPAC = $('.IUPAC').val();
+
+            var HsCode = $('.HsCode').val();
+            var Molecular = $('.Molecular').val();
+            var MolecularImage = $('.MolecularImage').val();
+            var Isomer = $('.Isomer').val();
+
+            var physicalState = $('.physicalState').val();
+
+            // create new row with input values
+            var editButton = '<button class="btn btn-success" style="background-color: blue;" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete additional-class" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+            var newRow = $('<tr><td></td><td>' + CASNo + '</td><td>' + CommonName + '</td><td>' + IUPAC + '</td><td>' + HsCode + '</td><td>' + Molecular + '</td><td>' + MolecularImage + '</td><td>' + Isomer + '</td><td>' + physicalState + '</td></tr>');
+
+            //var newRow = $('<tr><td>' + cont++ + '</td><td>' + IUPAC + '</td><td>' + CommonName + '</td><td>' + CASNo + '</td><td>' + HsCode + '</td><td>' + Molecular + '</td><td>' + Isomer + '</td><td>' + Conc + '</td><td>' + physicalState + '</td><td>' + AnnualInstalledCapacity + '</td><td>' + Unit + '</td><td>' + PuritySubstance + '</td><td>' + impurities1 + '</td><td>' + CASNo1 + '</td><td>' + Range1 + '</td><td>' + Nature1 + '</td><td>' + impurities2 + '</td><td>' + CASNo2 + '</td><td>' + Range2 + '</td><td>' + Nature2 + '</td><td>' + impurities3 + '</td><td>' + CASNo3 + '</td><td>' + Range3 + '</td><td>' + Nature3 + '</td><td>' + impurities4 + '</td><td>' + CASNo4 + '</td><td>' + Range4 + '</td><td>' + Nature4 + '</td></tr>');
+            // append new row to table
+            $('#tblMain_Constituents_Data tbody').append(newRow);
+            UpdateSerialNumbers();
+
+            // clear input values
+            $('.IUPAC').val('');
+            $('.CommonName').val('');
+            $('.CASNo').val('');
+            $('.HsCode').val('');
+            $('.Molecular').val('');
+            $('.MolecularImage').val('');
+            $('.Isomer').val('');
+
+
+
+        }
+        // });
+    }
+    function AddRow3() {
+
+        //$('#add').click(function () {
+        var checkVal = 0;
+        var cont = 1;
+       
+        if (true) {
+            var HazardClassification = $('.HazardClassification :selected').text();
+            var ResultingHazard = $('.Resulting_Hazard :selected').text();
+            var SpecificConcentrationLimits = $('.Specific_Concentration_Limits').val();
+            var MainUseCategory = $('.Main_Use_Category :selected').text();
+            var SpecificationIndustrialProfessional = $('.Specification_Industrial_Professional :selected').text();
+            var SignificantRouteExposure = $('.Significant_Route_Exposure :selected').text();
+            var EnvironmentalExposure = $('.Environmental_Exposure :selected').text();
+            var PatternExposure = $('.Pattern_Exposure :selected').text();
+            var editButton = '<button class="btn btn-success" style="background-color: blue;" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            var deleteButton = '<button class="btn btn-danger btn-delete additional-class" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+
+            // create new row with input values
+            var newRow = $('<tr><td>' + cont++ + '</td><td>' + HazardClassification + '</td><td>' + ResultingHazard + '</td><td>' + SpecificConcentrationLimits + '</td><td>' + MainUseCategory + '</td><td>' + SpecificationIndustrialProfessional + '</td><td>' + SignificantRouteExposure + '</td><td>' + EnvironmentalExposure + '</td><td>' + PatternExposure + '</td></tr>');
+            // append new row to table
+            $('#tblMain_Classification_Data tbody').append(newRow);
+            // clear input values
+            //$('.HazardClassification, .Resulting_Hazard, .Specific_Concentration_Limits, .Main_Use_Category, .Specification_Industrial_Professional, .Significant_Route_Exposure, .Environmental_Exposure, .Pattern_Exposure').each(function () {
+            //    $(this).val('');
+            //});
+            //
+            //for bind value above
+            var HazardClassification = $('.HazardClassification').val();
+            var ResultingHazard = $('.Resulting_Hazard').val();
+            var SpecificConcentrationLimits = $('.Specific_Concentration_Limits').val();
+            var MainUseCategory = $('.Main_Use_Category').val();
+            var SpecificationIndustrialProfessional = $('.Specification_Industrial_Professional').val();
+            var SignificantRouteExposure = $('.Significant_Route_Exposure').val();
+            var EnvironmentalExposure = $('.Environmental_Exposure').val();
+            var PatternExposure = $('.Pattern_Exposure').val();
+            //var editButton = '<button class="btn btn-success" style="background-color: blue;" onclick="EditRow(this)"><i class="fa fa-edit"></i></button>';
+            //var deleteButton = '<button class="btn btn-danger btn-delete additional-class" onclick="DeleteRow(this)"><i class="fa fa-trash-o"></i></button>';
+
+            // create new row with input values
+            var newRow = $('<tr><td>' + cont++ + '</td><td>' + HazardClassification + '</td><td>' + ResultingHazard + '</td><td>' + SpecificConcentrationLimits + '</td><td>' + MainUseCategory + '</td><td>' + SpecificationIndustrialProfessional + '</td><td>' + SignificantRouteExposure + '</td><td>' + EnvironmentalExposure + '</td><td>' + PatternExposure + '</td></tr>');
+            // append new row to table
+            $('#tblMain_Classification_Datacode tbody').append(newRow);
+            // clear input values
+            $('.HazardClassification, .Resulting_Hazard, .Specific_Concentration_Limits, .Main_Use_Category, .Specification_Industrial_Professional, .Significant_Route_Exposure, .Environmental_Exposure, .Pattern_Exposure').each(function () {
+                $(this).val('');
+            });
+            // create new row with input values
+
+        }
+        // });
+    }
+
+    function UpdateSerialNumbers() {
+        $('#tblMain_Constituents_Data tbody tr').each(function (index) {
+            $(this).find('td:first').text(index + 1);
+        });
+    }
+
+    function EditRow(row) {
+        var currentRow = $(row).closest('tr');
+        var cells = currentRow.find('td');
+
+        // retrieve the values from the selected row
+        var IUPAC = cells.eq(1).text();
+        var CommonName = cells.eq(2).text();
+        var CASNo = cells.eq(3).text();
+        var HsCode = cells.eq(4).text();
+        var Molecular = cells.eq(5).text();
+        var Isomer = cells.eq(6).text();
+        var Conc = cells.eq(7).text();
+        var physicalState = cells.eq(8).text();
+        var AnnualInstalledCapacity = cells.eq(9).text();
+        var Unit = cells.eq(10).text();
+        var PuritySubstance = cells.eq(11).text();
+        var impurities1 = cells.eq(12).text();
+        var CASNo1 = cells.eq(13).text();
+        var Range1 = cells.eq(14).text();
+        var Nature1 = cells.eq(15).text();
+        var impurities2 = cells.eq(16).text();
+        var CASNo2 = cells.eq(17).text();
+        var Range2 = cells.eq(18).text();
+        var Nature2 = cells.eq(19).text();
+        var impurities3 = cells.eq(20).text();
+        var CASNo3 = cells.eq(21).text();
+        var Range3 = cells.eq(22).text();
+        var Nature3 = cells.eq(23).text();
+        var impurities4 = cells.eq(24).text();
+        var CASNo4 = cells.eq(25).text();
+        var Range4 = cells.eq(26).text();
+        var Nature4 = cells.eq(27).text();
+
+        $('.IUPAC').val(IUPAC);
+        $('.CommonName').val(CommonName);
+        $('.CASNo').val(CASNo);
+        $('.HsCode').val(HsCode);
+        $('.Molecular').val(Molecular);
+        $('.Isomer').val(Isomer);
+        $('.Conc').val(Conc);
+        $('.physicalState').val(physicalState);
+        $('.AnnualInstalledCapacity').val(AnnualInstalledCapacity);
+        $('.Unit').val(Unit);
+        $('.PuritySubstance').val(PuritySubstance);
+        $('.impurities1').val(impurities1);
+        $('.CASNo1').val(CASNo1);
+        $('.Range1').val(Range1);
+        $('.Nature1').val(Nature1);
+        $('.impurities2').val(impurities2);
+        $('.CASNo2').val(CASNo2);
+        $('.Range2').val(Range2);
+        $('.Nature2').val(Nature2);
+        $('.impurities3').val(impurities3);
+        $('.CASNo3').val(CASNo3);
+        $('.Range3').val(Range3);
+        $('.Nature3').val(Nature3);
+        $('.impurities4').val(impurities4);
+        $('.CASNo4').val(CASNo4);
+        $('.Range4').val(Range4);
+        $('.Nature4').val(Nature4);
+
+
+        currentRow.remove();
+
+
+        UpdateSerialNumbers();
+    }
+
+    function DeleteRow(row) {
+        var currentRow = $(row).closest('tr');
+
+
+        currentRow.remove();
+
+
+        UpdateSerialNumbers();
+    }
+    
+    function EditRow1(row) {
+        var currentRow = $(row).closest('tr');
+        var cells = currentRow.find('td');
+
+        var NameUnit = cells.eq(1).text();
+        var designateduser = cells.eq(2).text();
+        var Location = cells.eq(3).text();
+
+        $('.NameUnit').val(NameUnit);
+        $('.designateduser').val(designateduser);
+        $('.Location').val(Location);
+
+        currentRow.remove();
+
+        UpdateSerialNumbers1();
+    }
+
+    function DeleteRow1(row) {
+        var currentRow = $(row).closest('tr');
+        currentRow.remove();
+
+        UpdateSerialNumbers1();
+    }
+    //  });
+    function UpdateSerialNumbers1() {
+        $('#tblDownstream_Data tbody tr').each(function (index) {
+            $(this).find('td:first').text(index + 1);
+        });
+    }
+
+    $('#Chemical_Code').change(function () {
+        debugger;
+        if ($('#Chemical_Code').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetChemicalProductBycategoryID',
+                data: { 'Chemical_Code': $('#Chemical_Code').val(), 'category': $('#Category').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    var vl = "";
+                    $('#Chemical_Product_Code').val('');
+
+                    debugger;
+                    var ul = $('#Chemical_Product_Code').closest(".searchable").find("ul");
+                    ul.empty();
+
+                    $.each(data, function (ind, item) {
+                        ul.append("<li value='" + item.chemical_Product_Code + "'>" + item.chemical_Product_Name + "</li>");
+                    });
+
+
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#Chemical_Product_Code').html('');
+            // District2 += "<option value=''>-- Select Chemical Product --</option>";
+            $('#Chemical_Product_Code').html(District2);
+
+        }
+    });
+
+
+</script>
+
+
+
+
+
+
+<script>
+    function filterFunction(that, event) {
+        let container, input, filter, li, input_val;
+        container = $(that).closest(".searchable");
+        input_val = container.find("input").val().toUpperCase();
+
+        if (["ArrowDown", "ArrowUp", "Enter"].indexOf(event.key) != -1) {
+            keyControl(event, container);
+        } else {
+            li = container.find("ul li");
+            li.each(function (i, obj) {
+                if ($(this).text().toUpperCase().indexOf(input_val) > -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+
+            container.find("ul li").removeClass("selected");
+            setTimeout(function () {
+                container.find("ul li:visible").first().addClass("selected");
+            }, 100);
+        }
+    }
+
+    $('#tblMain_Classification_Data').hide()
+    $('#tblMain_Constituents_Data').hide()
+    function keyControl(e, container) {
+        if (e.key == "ArrowDown") {
+            if (container.find("ul li").hasClass("selected")) {
+                if (container.find("ul li:visible").index(container.find("ul li.selected")) + 1 < container.find("ul li:visible").length) {
+                    container.find("ul li.selected").removeClass("selected").nextAll().not('[style*="display: none"]').first().addClass("selected");
+                }
+            } else {
+                container.find("ul li:first-child").addClass("selected");
+            }
+        } else if (e.key == "ArrowUp") {
+            if (container.find("ul li:visible").index(container.find("ul li.selected")) > 0) {
+                container.find("ul li.selected").removeClass("selected").prevAll().not('[style*="display: none"]').first().addClass("selected");
+            }
+        } else if (e.key == "Enter") {
+            container.find("input").val(container.find("ul li.selected").text()).blur();
+            onSelect(container.find("ul li.selected").text());
+        }
+
+        container.find("ul li.selected")[0].scrollIntoView({
+            behavior: "smooth",
+        });
+    }
+
+    function onSelect(val, text) {
+        $("#Chemical_Product_Code1").val(val);
+        $("#Chemical_Product_Code").val(text);
+
+  
+        $('#tblMain_Classification_Data').show()
+        $('#tblMain_Constituents_Data').show()
+    // AddRow();
+       // var selectedOption = $(this).val();
+        if ($('#Category').val() == "1")
+        {
+                    getdetails(val,1);
+
+        }
+        else if ($('#Category').val() == "2")
+        {
+                getdetails(val,2);
+
+        }
+       
+    }
+
+    $(".searchable input").focus(function () {
+        $(this).closest(".searchable").find("ul").show();
+        $(this).closest(".searchable").find("ul li").show();
+    });
+    var clickTriggered = false;
+
+    $(".searchable input").blur(function () {
+        let that = this;
+        setTimeout(function () {
+            const container = $(that).closest(".searchable");
+            const inputVal = $(that).val();
+            const selectedLi = container.find("ul li.selected");
+            if (!clickTriggered) {
+                if (selectedLi.length > 0 && selectedLi.text().toUpperCase() === inputVal.toUpperCase()) {
+                    const val = selectedLi.attr("value");
+                    const text = selectedLi.text();
+                    $(that).val(text);
+                    onSelect(val, text);
+                    //alert(val+text)
+                } else {
+                    onSelect(null, inputVal);
+                    // alert("null");
+                }
+                container.find("ul").hide();
+            }
+
+
+            clickTriggered = false;
+        }, 300);
+    });
+
+    $(document).on('click', '.searchable ul li', function () {
+        var val = $(this).attr("value");
+        var text = $(this).text();
+        $(this).closest(".searchable").find("input").val(text).blur();
+        onSelect(val, text);
+        clickTriggered = true;
+        const container = $(this).closest(".searchable");
+        container.find("ul").hide();
+
+    });
+
+
+    $(".searchable ul li").hover(function () {
+        $(this).closest(".searchable").find("ul li.selected").removeClass("selected");
+        $(this).addClass("selected");
+
+    });
+
+
+</script>
+<script>
+    $('#Category').change(function () {
+    jQuery(document).ready(function () {
+            if ($('#Category').val() == "1") {
+        debugger;
+        if (true) {
+            $.ajax({
+                url: '/UnitRegistration/UnitRegistration/GetChemicalProduct',
+                data: { 'Action': 26 },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                            var vl = "";
+                            $('#Chemical_Product_Code').val('');
+
+                            debugger;
+                            var ul = $('#Chemical_Product_Code').closest(".searchable").find("ul");
+                            ul.empty();
+
+                            $.each(data, function (ind, item) {
+                                ul.append("<li value='" + item.chemical_Product_Code + "'>" + item.chemical_Product_Name + "</li>");
+                            });
+
+                   
+                },
+                error: function (err) {
+
+                        }
+                    });
+                }
+
+        }
+            else if ($('#Category').val() == "2") {
+                debugger;
+                if (true) {
+                    $.ajax({
+                        url: '/UnitRegistration/UnitRegistration/GetChemicalPetroProduct',
+                        data: { 'Action': 27 },
+                        dataType: 'json',
+                        type: 'post',
+                        success: function (data) {
+                            debugger;
+                              var vl = "";
+                    $('#Chemical_Product_Code').val('');
+
+                    debugger;
+                    var ul = $('#Chemical_Product_Code').closest(".searchable").find("ul");
+                    ul.empty();
+
+                    $.each(data, function (ind, item) {
+                                ul.append("<li value='" + item.pChemical_Product_Code + "'>" + item.pChemical_Product_Name + "</li>");
+                    });
+
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+                }
+
+            }
+
+        else {
+            var District2 = "";
+            $('#Chemical_Product_Code').html('');
+            District2 += "<option value=''>-- Select Chemicals Product --</option>";
+            $('#Chemical_Product_Code').html(District2);
+
+        }
+    });
+    });
+
+</script>
+
+
+@*<script>
+    $('#Category').change(function () {
+        debugger;
+        if ($('#Category').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetCemicalbyCategory',
+                data: { 'chemcid': $('#Category').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    debugger;
+
+                    $("#Chemical_Product_Code").val('');
+
+                    var row = "";
+                    $('#Chemical_Code').html('');
+                    row += "<option value=''>-- Select Chemicals --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.chemical_Name + "'>" + item.chemical_Code + "</option>";
+                    });
+                    $('#Chemical_Code').html(row);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#Chemical_Code').html('');
+            District2 += "<option value=''>-- Select Chemicals  --</option>";
+            $('#Chemical_Code').html(District2);
+
+        }
+    });
+
+</script>
+*@  <script>
+           
+
+            function getdetails(prodcutid,mode) {
+                
+
+                var url = '/UnitRegistration/UnitRegistration/Bindblock3inpportbind';
+                //var data = JSON.stringify({ rowid: id });
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+
+                    data: {
+                        'productcode': prodcutid, 'mode':mode
+
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        // Bind the model data to the table
+                        //  var yearlySubDetails = response[0].yearlySubDetails;
+                        var tableBody = $('#Main_Constituents1body');
+                        tableBody.empty();
+                        var tableBody2 = $('#Main_Constituents2body');
+                        tableBody2.empty();
+                        // var yearlySubDetails2 = response[0].yearlySubDetails2;
+
+
+                        $.each(response, function (index, detail) {
+                            var row = $('<tr></tr>');
+                            var row2 = $('<tr></tr>');
+
+                            var srno = index + 1;
+                            row.append($('<td></td>').text(srno));
+                            row.append($('<td></td>').text(detail.c_IUPAC_Name));
+                            row.append($('<td></td>').text(detail.c_Common_Name));
+                            row.append($('<td></td>').text(detail.c_CAS_No));
+                            row.append($('<td></td>').text(detail.hsCode));
+                            row.append($('<td></td>').text(detail.c_Molecular_Structure));
+                            row.append($('<td></td>').text(detail.c_Isomer));
+                            row.append($('<td></td>').text(detail.physicalStateName));
+
+                              row2.append($('<td></td>').text(srno));
+
+                              row2.append($('<td></td>').text(detail.hazard_Classification_Name));
+                              row2.append($('<td></td>').text(detail.resulting_Hazard_Name)); 
+                              row2.append($('<td></td>').text(detail.hazardCategory));
+                              row2.append($('<td></td>').text(detail.hazardSubCategory));
+                              row2.append($('<td></td>').text(detail.specification_Industrial_Professional_Name));
+                              row2.append($('<td></td>').text(detail.main_Use_Category_Name));
+
+                              row2.append($('<td></td>').text(detail.significant_Route_Exposure_Name));
+                              row2.append($('<td></td>').text(detail.environmental_Exposure_Name));
+                              row2.append($('<td></td>').text(detail.pattern_Exposure_Name));
+
+
+                          
+
+
+                            tableBody.append(row);
+                             tableBody2.append(row2);
+
+                        });
+
+                     
+                       
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                      
+                        console.log('API request failed:', errorThrown);
+                    }
+                });
+            }
+
+
+        </script>
+

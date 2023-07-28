@@ -1,0 +1,108 @@
+﻿@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "HazardousClassification";
+    Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+}
+<link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">
+<!-- template-style-->
+<link href="~/LandinCss/css/style1.css" rel="stylesheet">
+<script src="~/adminlayout/assets/js/jquery-3.3.1.min.js"></script>
+<div class="bt-content-wrap btClear section_Top mt-[3rem]">
+    <div class="bt-content-holder ">
+        <div class="bt-content">
+            <div class="bt_bb_wrapper">
+                <section class="about-agency pad-tb block-1" style="padding-top:0px;">
+                    <div class="container mx-auto">
+                        <br />
+                        <br />
+                        <section class=" border border-1 border-black">
+                           <div class="container mx-auto">
+                               <div class="text-center justify-center p-4  ">
+                                    <h1 class="text-black  text-3xl text-left">Hazardous Classification (as per UN GHS): </h1>
+                                   <p class="font-[popins] text-xl text-left mt-4 text-justify">
+                                       The objective of Hazard classification is enhanced protection of human health and the environment by providing an internationally comprehensible system for hazards communication and facilitation of international trade
+                                   </p>
+                                   <h2 class="text-xl font-bold text-left p-2">
+                                        Hazardous Classification involves
+                                    </h2>
+                                    <p class="font-[popins] text-xl text-left text-justify">
+                                        1.	categorization of chemicals as substances and mixtures according to their physical, health, and environmental properties followed by,
+                                    </p>
+                                    <p class="font-[popins] text-xl text-left text-justify">
+                                        2.	employment of pictograms, signal words, hazard statements, and precautionary statements to convey critical information about the hazards posed by the chemicals
+                                    </p>
+                                    <h2 class="text-xl font-bold text-left p-2">
+                                        Occupational and Health Safety Risk Reduction process involves a 3 step Process:
+                                    </h2>
+                                    <p class="font-[popins] text-xl text-left text-justify">
+                                        1.	Classification of the chemicals based on their intrinsic properties and hazard communication through labels, SDS and training.
+                                    </p>
+                                    <p class="font-[popins] text-xl text-left text-justify">
+                                        2.	Assessing the use of chemicals in workplace and measuring control measures already in place, depending upon the risk levels risk reduction measures are applied.
+                                    </p>
+                                    <p class="font-[popins] text-xl text-left text-justify">
+                                        3.	If risk levels applied are not sufficient further risk Control measures are needed to be reduce the risk to an acceptable level.
+                                    </p>
+                                    <p class ="font-[popins] text-xl text-left">
+                                        These hazard classes include physical hazards (e.g., flammability, explosiveness), health hazards (e.g., toxicity, carcinogenicity), and environmental hazards (e.g., aquatic toxicity, ozone depletion). The classification process ensures that chemicals are accurately identified and their hazards are appropriately communicated.
+                                      </p>
+                                    <p class="font-[popins] text-xl text-left text-justify">
+                                        Once a chemicals is classified, the next step is to create standardized labels that convey the hazards identified during the classification process, labels consist of several elements that provide clear and easily understandable information to users, including product identification, hazard pictograms, signal words (such as "Danger" or "Warning" indicating the severity of the hazard), hazard statements (standardized phrases describing the nature of the hazards), and precautionary statements (guidelines on safe handling, storage, and use of the chemicals).
+                                    </p>
+                                    <p class="font-[popins] text-xl text-left text-justify">
+                                        Safety Data Sheets (SDS), also known as Material Safety Data Sheets (MSDS), provide comprehensive information about the hazards, safe handling, and emergency response procedures for a specific chemicals include details such as the chemical's composition, physical and chemicals properties, potential health effects, recommended exposure limits, first aid measures, fire-fighting procedures, handling and storage guidelines, ecological information, and regulatory information and enable users to access detailed information regarding the safe use and management of hazardous chemicals, ensuring that relevant data is readily available for reference.
+                                    </p>
+
+                                    <div class=" p-3" style="  text-align:-webkit-center!important;">
+
+                                     
+                                           
+                                          
+
+                                     
+                                  
+                                       
+                                    </div>
+
+                               </div>
+                           </div>
+       
+                       </section>
+                    </div>
+                    <button type="button" class="btn btn-dark" style="margin-left:29px" onclick="history.back()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M5 12l14 0" />
+                            <path d="M5 12l4 4" />
+                            <path d="M5 12l4 -4" />
+                        </svg>
+                    </button>
+                </section>
+                <div class="flex items-center justify-center gap-2 mb-4 -mt-10  " id="dpdf">
+                    <div class="-mt-4">
+
+                        <img src="/LandinCss/images/pdf.jpg" class="h-20 w-20 cursor-pointer  " alt="fhg" /><br />
+                        <p class="  underline text-red-500 cursor-pointer"> Download Pdf</p>
+                    </div>
+
+
+                </div>
+               
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+ 
+
+
+  
+<script>
+    $('#dpdf').click(function () { // you dont need the .each, because you are selecting by id
+       // var inputURL = $('#wpsl-search-input1').val();
+        window.location.href = '/LandingPage/Home/downloaddoc?fileName=UNGHSbrief.pdf'; // Redirecting to the passed url (also working relative to the current URL)
+        return false; // Cheap way to call the "event.preventDefault()" method
+    });
+</script>

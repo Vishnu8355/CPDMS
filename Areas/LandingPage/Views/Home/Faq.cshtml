@@ -1,0 +1,459 @@
+﻿@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Faq";
+    Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+}
+<link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">
+<!-- template-style-->
+<link href="~/LandinCss/css/style1.css" rel="stylesheet">
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<!-- ====== FAQ Section Start -->
+<section x-data="
+   {
+   openFaq1: false,
+   openFaq2: false,
+   openFaq3: false,
+   openFaq4: false,
+   openFaq5: false,
+   openFaq6: false
+   }
+   " class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] mb-10">
+    <div class="container mx-auto">
+        <div class="-mx-4 flex flex-wrap">
+            <div class="w-full px-4">
+                <div class="mx-auto mb-[60px] max-w-[520px] text-center lg:mb-20">
+
+
+                    <h3 class="mb-4 text-[#024828]  ">FAQ</h3>
+                    <h2 class="mb-4 text-[#024828] text-xl  font-semibold  ">
+                        Any Questions? Look Here
+                    </h2>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="-mx-4 flex flex-wrap">
+            <div class="w-full px-4 lg:w-1/2">
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left " @@click="openFaq1 = !openFaq1" id=" formButton">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            1
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What are the main products of the chemicals and petro-chemicals industry?
+                            </h4>
+
+                        </div>
+                    </button>
+                    <div x-show="openFaq1" class="faq-content pl-[62px]" id="form10">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            The industry produces a diverse range of products, including polymers, solvents, detergents,
+                            fertilizers, paints, coatings, pharmaceuticals, synthetic fibres, plastics, and various
+                            specialty chemicals used in different sectors.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq2 = !openFaq2">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            3
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What is a pure substance?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq2" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            A pure substance is a material that consists of only one type of element or compound. It has
+                            a consistent and uniform composition throughout.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq3 = !openFaq3">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            5
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What is a mixture?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq3" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            A mixture is a combination of two or more substances that are physically intermingled, but
+                            each retains its own individual properties and can be separated by physical means.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full px-4 lg:w-1/2">
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq4 = !openFaq4">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            2
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What is the difference between purity and concentration?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq4" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            Purity refers to the absence of impurities in a substance, while concentration refers to the
+                            amount of the desired substance present in a mixture or solution. Purity is a measure of
+                            quality, while concentration is a measure of quantity.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq5 = !openFaq5">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            4
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What is a pure substance?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq5" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            A pure substance is a material that consists of only one type of element or compound. It has
+                            a consistent and uniform composition throughout.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq6 = !openFaq6">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            6
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What is the role of Safety Data Sheets (SDS)?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq6" class="faq-content pl-[62px]">
+
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            Safety Data Sheets (SDS) provide comprehensive information about the hazards, safe handling,
+                            storage, and emergency response procedures for chemicals. SDS enable users to access
+                            detailed information regarding the safe use and management of hazardous substances.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="-mx-4 flex flex-wrap">
+            <div class="w-full px-4 lg:w-1/2">
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq1 = !openFaq1">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            7
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-bold text-black">
+                                What are the criteria for classifying chemicals?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq1" class="faq-content pl-[62px]">
+
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            Chemicals are classified based on their intrinsic properties, such as physical hazards
+                            (e.g., flammability, explosiveness), health hazards (e.g., acute toxicity, carcinogenicity),
+                            and environmental hazards (e.g., aquatic toxicity, ozone depletion).
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq2 = !openFaq2">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600 text-Black">
+                            9
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                How is toxicity measured and expressed?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq2" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            Toxicity is often measured by determining the lethal dose (LD50) or lethal concentration
+                            (LC50), which represents the dose or concentration required to cause death in 50% of the
+                            exposed population. Toxicity can also be expressed through other measures, such as the
+                            effective concentration (EC50) or effective dose (ED50) for specific toxic effects.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq3 = !openFaq3">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            11
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What is a CAS number?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq3" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            A CAS number is a unique numerical identifier assigned by the Chemicals Abstracts Service to
+                            each chemical substance. It provides a standardized way to identify and track specific
+                            substances.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full px-4 lg:w-1/2">
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq4 = !openFaq4">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            8
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What is toxicity?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq4" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            Toxicity refers to the ability of a substance to cause harm or adverse effects to living
+                            organisms, including humans, animals, and the environment, when exposed to certain
+                            concentrations or doses.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq5 = !openFaq5">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            10
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What are the different routes of exposure to toxic substances?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq5" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            Toxic substances can enter the body through various routes of exposure, including inhalation
+                            (breathing in), dermal (skin contact), ingestion (swallowing), and ocular (eye contact). The
+                            route of exposure can influence the potential toxicity and the organs or systems affected.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq6 = !openFaq6">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            12
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                Can two different substances have the same CAS number?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq6" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            No, each CAS number is assigned to a specific chemical substance and is unique to that
+                            substance. Different substances will have different CAS numbers, even if they have similar
+                            names or structures
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="-mx-4 flex flex-wrap">
+            <div class="w-full px-4 lg:w-1/2">
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq1 = !openFaq1">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            13
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                How many digits are in a CAS number?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq1" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            A CAS number consists of three parts: a two- to seven-digit number called the "CAS registry
+                            number," a hyphen, and two additional digits known as the "check digit." The total number of
+                            digits in a CAS number is typically 10, with the format XXXXXXX-XX-X.
+
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq2 = !openFaq2">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            15
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What is the role of hazard communication?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq2" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            Hazard communication is the process of conveying information about hazards associated with
+                            chemicals, products, or processes. It involves labelling, safety data sheets (SDS), warning
+                            signs, and other means to inform and educate individuals about the potential hazards and
+                            necessary precautions.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq3 = !openFaq3">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600 text-Black">
+                            17
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What is the purpose of HS codes?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq3" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            The main purpose of HS codes is to provide a universal system for classifying and
+                            identifying traded products. HS codes facilitate customs clearance, international trade
+                            documentation, tariff determination, statistical analysis, and regulatory compliance.
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full px-4 lg:w-1/2">
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq4 = !openFaq4">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            14
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What is a hazard?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq4" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            A hazard refers to a potential source of harm or danger that has the potential to cause
+                            injury, illness, damage to property, or harm to the environment.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq5 = !openFaq5">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            16
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                What is an HS code?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq5" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            HS code is a standardized numerical classification system used to classify products traded
+                            internationally and is widely adopted globally.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8">
+                    <button class="faq-btn flex w-full text-left" @@click="openFaq6 = !openFaq6">
+                        <div
+                            class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-green-600  text-Black">
+                            18
+                        </div>
+                        <div class="w-full">
+                            <h4 class="text-lg font-semibold text-black">
+                                How are HS codes structured?
+                            </h4>
+                        </div>
+                    </button>
+                    <div x-show="openFaq6" class="faq-content pl-[62px]">
+                        <p class="py-2 text-xl text-justify font-[popins] ">
+                            The first two digits represent the chapters in the HS system, broadly classifying products
+                            into different categories based on their nature or use, the next two digits indicate the
+                            heading then subheadings, offering a more detailed categorization within each heading.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="absolute bottom-0 right-0 z-[-1]">
+        <svg width="1440" height="886" viewBox="0 0 1440 886" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.5"
+                d="M193.307 -273.321L1480.87 1014.24L1121.85 1373.26C1121.85 1373.26 731.745 983.231 478.513 729.927C225.976 477.317 -165.714 85.6993 -165.714 85.6993L193.307 -273.321Z"
+                fill="url(#paint0_linear)" />
+            <defs>
+                <linearGradient id="paint0_linear" x1="1308.65" y1="1142.58" x2="602.827" y2="-418.681"
+                    gradientUnits="userSpaceOnUse">
+                    <stop offset="1" stop-color="#3056D3" stop-opacity="0.36" />
+                    <stop offset="1" stop-color="#F5F2FD" stop-opacity="0" />
+                    <stop offset="1" stop-color="#F5F2FD" stop-opacity="0.096144" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+</section>
+<!-- ====== FAQ Section End -->

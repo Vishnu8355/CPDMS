@@ -1,0 +1,182 @@
+﻿@model CPDMSEF.LoginEF
+
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Login";
+    Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+}
+<link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">
+<!-- template-style-->
+<link href="~/LandinCss/css/style1.css" rel="stylesheet">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">  </script>
+<style>
+    .form {
+        width: 250px
+    }
+
+    .main-password {
+        position: relative;
+    }
+
+    .icon-view {
+        position: absolute;
+        right: 19px;
+        top: 17px;
+    }
+</style>
+<script>
+    function Validate() {
+        debugger;
+        var Iss = false;
+        let inputVal = $('#Enter_chaptcha').val().split('').join(' ');
+
+        if (!DropDownValidation("Source", "Login type")) {
+            return false;
+        }
+
+        else if (!blankFieldValidation("UserName", "User Name")) {
+            return false;
+        }
+        else if (!blankFieldValidation("Password", "User Password")) {
+            return false;
+        }
+        else if (!blankFieldValidation("Enter_chaptcha", "Captcha")) {
+            return false;
+        }
+
+        else if ($('#capt1').html().trim() != inputVal) {
+            //alert('Invalid Captcha');
+            swal("", 'Invalid Captcha', "warning");
+            return false;
+        }
+        //else if (!$("#customControlAutosizing1").is(":checked")) {
+        //    swal("", 'Please consent to the terms of use', "warning");
+
+        //    return false;
+        //}
+        Iss = true;
+        return Iss;
+    }
+
+</script>
+<div class="bt-content-wrap btClear section_Top">
+    <div class="bt-content-holder">
+        <section class="login-page">
+            <div class="v-center m-auto">
+                <div class="login-form-div" style="max-width:641px !important;">
+                    <h4 class="mb40 text-center">Login to your Account</h4>
+                    <div class="form-block">
+                        <form id="contact-form" method="post" asp-action="Login">
+                            <div class="fieldsets row">
+                                @*<div class="col-md-12 form-group">
+                                <select name="Source" id="Source" required>
+                                <option selected value="0">Select</option>
+                                <option value="1">Dept.of Chemicals and Petro-Chemicals</option>
+                                <option value="2l">Company</option>
+                                <option value="3">Unit</option>
+                                </select>
+                                </div>*@
+
+
+
+
+
+                                <div class="col-md-12 form-group">
+                                    @* <input id="form_name UserName" type="text" placeholder="UserName" name="UserName"
+                                    required>*@
+                                    <input name="UserName" type="text" placeholder="User Name" id="UserName" required>
+                                </div>
+
+                                
+                                <div class="col-md-12 form-group">
+                                    <div class="main-password">
+                                    <input id="Password" name="Password" type="password" placeholder=" Password"
+                                    class="form-control input-password"required aria-label="password"/>
+                                     <a href="JavaScript:void(0);" class="icon-view">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        </div>
+                                    @* <input type="password" placeholder="password">*@
+                                </div>
+                                <div class="wrapper">
+                                    <input type="text" placeholder="Enter captcha" maxlength="6" spellcheck="false"
+                                        id="Enter_chaptcha" required />
+                                    <div class="captcha-area">
+                                        <div class="captcha-img">
+                                            <img src="~/LandinCss/images/captcha-bg.png" alt="Captch Background">
+                                            @*<span class="captcha"></span>*@
+                                            <div id="capt1" class="captcha"></div>
+                                        </div>
+                                        <button class="reload-btn" id="refreshCaptcha" type="button"
+                                            style="background-color: #358c6d!important;"><i
+                                                class="fa fa-refresh"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fieldsets row ">
+                                <div class="col-md-6 form-group v-center">
+                                    <button class="text-white p-2 "
+                                        style="background-color: #358c6d!important;     border-radius: 1rem;"
+                                        type="submit" onclick="return Validate();">
+                                        Sign In
+                                    </button>
+                                </div>
+                                <div class="col-md-6 form-group v-center text-right">
+                                    <a href="/LandingPage/Home/ForgotUserName" class="psforgt"><u>Forgot User
+                                            Name?</u></a> <br /> <br />
+                                    <a href="/LandingPage/Home/ForgotPasswordV1" class="psforgt"><u>Forgot
+                                            Password?</u></a>
+                                </div>
+                            </div>
+
+                            <br />
+                            <br />
+
+                            <div class="text-center">
+                                <p class="mb5"><u>New User Register here as</u></p>
+
+                                <br />
+                                <br />
+                                <div class="social-btnnxx">
+                                    <a href="~/CompanyRegistraion/CompanyRegistration/CompanyTRegistration"
+                                        class="btn-main fb-btn" style="background-color:#358c6d !important;">Company</a>
+                                    <a href="~/UnitRegistration/UnitRegistration/UnitTRegistration"
+                                        class="btn-main google-btn" style="background-color:#358c6d !important">Unit</a>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+			    $('.main-password').find('.input-password').each(function(index, input) {
+			        var $input = $(input);
+			        $input.parent().find('.icon-view').click(function() {
+			            var change = "";
+			            if ($(this).find('i').hasClass('fa-eye')) {
+			                $(this).find('i').removeClass('fa-eye')
+			                $(this).find('i').addClass('fa-eye-slash')
+			                change = "text";
+			            } else {
+			                $(this).find('i').removeClass('fa-eye-slash')
+			                $(this).find('i').addClass('fa-eye')
+			                change = "password";
+			            }
+			            var rep = $("<input type='" + change + "' />")
+			                .attr('id', $input.attr('id'))
+			                .attr('name', $input.attr('name'))
+			                .attr('class', $input.attr('class'))
+			                .val($input.val())
+			                .insertBefore($input);
+			            $input.remove();
+			            $input = rep;
+			        }).insertAfter($input);
+			    });
+			});
+</script>

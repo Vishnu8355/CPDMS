@@ -1,0 +1,703 @@
+﻿@model CPDMSEF.CompanyRegistrationEF
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Company Registration";
+    Layout = "~/Areas/CompanyRegistraion/Views/Shared/_CompanyRegisLayout.cshtml";
+}
+
+
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+    }</style>
+@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+
+    </script>
+    ViewBag.msg = null;
+}
+
+<script>
+
+    $(document).ready(function () {
+        $("#Submit").click(function () {
+            debugger;
+            if ($('#CompanyName').val().trim() == "") {
+                swal("", "Please Enter Company Name", "warning");
+
+                $("#CompanyName").focus();
+                return false;
+            }
+
+        });
+    });
+</script>
+<style>
+    .form-group > img {
+        position: absolute;
+        right: 23px;
+        top: 28px;
+        width: 25px
+    }
+</style>
+<style>
+   .dateTeg{
+       margin-left:-3px;
+        display: block;
+        width: 100%;
+        padding: 0.375rem 1.98rem!important;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.25rem;
+        -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+        transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    }
+</style>
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/CompanyRegistraion/CompanyRegistration/CompanyDashboard"><i data-feather="home"></i></a>
+                            </li>
+                                                        <li class="breadcrumb-item active">Company Entry</li>
+
+                            <li class="breadcrumb-item active">Company Regtistraiton</li>
+                        </ol>
+                    </div>
+                </div>
+               
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><h3 style="text-transform: capitalize;">Company Registration</h3></a> </li>
+                                </ul>
+                                <div role="tabpanel">
+                                    @using (Html.BeginForm("CompanyEntryAdd", "CompanyRegistration", FormMethod.Post, new { enctype = "multipart/form-data", AUTOCOMPLETE = "Off", id = "form1" }))
+                                    {
+                                        <div class="form-group bg-gray-300 p-2"> <button type="button" class=" text-left "> <b> Basic information</b> </button> </div>
+                                         <div class="row">
+                                            <div class="col-sm">
+                                        <div class="form-group">
+
+                                            Company Name <span class="RequiredField">*</span>
+                                            @Html.TextBoxFor(m => m.Company_Name, new { @class = "form-control",placeholder="Name of Company", required = "required" })
+                                  
+@*                                            <img src="~/image/infoicon.png" title="Please Enter Company Name; i.e.: xyz Pvt Ltd." onclick="" />
+*@
+                                        </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Registration No <span class="RequiredField">*</span>
+                                                    @Html.TextBoxFor(m => m.Registration_No , new { @class = "form-control", maxlength = "15", minlength = "15",required = "required",placeholder="Registration No." })
+                                                   @* <img src="~/image/infoicon.png" title="Please Enter Company Registration No; i.e.: xyzXXXXX989" onclick="" />*@
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                               
+                                                <div class="form-group">
+                                                    Registration Date <span class="RequiredField">*</span>
+
+                                                    @*<img src="~/image/infoicon.png" title="Please Enter Company Registration Date; i.e.: 20/05/1999" style="right:25px" onclick="" />*@
+                                                    @Html.TextBoxFor(m => m.Registration_date, new { @class = "form-control dateTeg",required = "required",placeholder="Registration Date",type ="Date", max = DateTime.Now.ToString("yyyy-MM-dd") })
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Pan Number <span class="RequiredField">*</span>
+                                                    @Html.TextBoxFor(m => m.Pan_Card, new { @class = "form-control", required = "required", placeholder = "Company Pan Card", maxlength = "10", minlength = "10" })
+                                                    @Html.ValidationMessageFor(m => m.Pan_Card, "", new { @class = "text-danger" })
+                                                    <img src="~/image/infoicon.png" title="Please Enter Company Pan Number; i.e unique 10-character PAN, ABCD1234AS." onclick="" />
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    GST Number <span class="RequiredField">*</span>
+                                                    @Html.TextBoxFor(m => m.GST_No, new { @class = "form-control", maxlength = "15", minlength = "15",required = "required",placeholder="GST No." })
+                                                   <img src="~/image/infoicon.png" title="Please Enter Company GST Number; i.e 10AXXX9603R1Z2" onclick="" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Mobile Number <span class="RequiredField">*</span>
+                                                    @Html.TextBoxFor(m => m.C_Mobile_No, new { @class = "form-control", required = "required", type="number" ,pattern="[0-9]{4}", maxlength="10", oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);",placeholder="Mobile Number",id = "mobileNumber" })
+@*                                                    <img src="~/image/infoicon.png" title="Please Enter Valid Mobile No; i.e.: 9304XXXXXX for Communication" onclick="" />
+*@
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Email ID <span class="RequiredField">*</span>
+                                                    @Html.TextBoxFor(m => m.C_Email, new { @class = "form-control",type="email",placeholder="abc@gmail.com",required = "required" })
+@*                                                    <img src="~/image/infoicon.png" title="Please Enter Valid Email ID; i.e.: xyx[dot]comp[dot] [at]gmail[dot]com for Communication" onclick="" />
+*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        @* register address *@
+                                        <div class="form-group bg-gray-300 p-2">
+                                            <button type="button" class="text-left">
+                                                <b>Registered Office Address</b>
+                                            </button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Registered Address <span class="RequiredField">*</span>
+                                                    @Html.TextBoxFor(m => m.ROffice_Address, new { @class = "form-control", id = "registeredAddress", required = "required", placeholder = "Registered Address" })
+@*                                                    <img src="~/image/infoicon.png" title="Please Enter Company Registered Address Mention on Company Registration Certificate" onclick="" />
+*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    State <span class="RequiredField">*</span>
+                                                    @Html.DropDownListFor(m => m.RState_Code, ViewBag.ViewStateList as IEnumerable<SelectListItem>, "-- Select State --", new { @class = "form-control", id="RState_Code", required = "required" })
+@*                                                    <img src="~/image/infoicon.png" title="Please Select State Mention on Company Registration Certificate" onclick="" />
+*@
+                                                    </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    District <span class="RequiredField">*</span>
+                                                    <select name="RDistrict_Code" id="RDistrict_Code" class="form-control searchableselect" required="required">
+                                                        <option value="">-- Select District --</option>
+                                                        @{
+                                                            List<CPDMSEF.MasterEF> lstRDistrictModel = (List<CPDMSEF.MasterEF>)ViewData["DistrictDetails"];
+                                                            if (lstRDistrictModel != null)
+                                                            {
+                                                                foreach (var item in lstRDistrictModel)
+                                                                {
+                                                                    if (item.District_Code == Model.District_Code)
+                                                                    {
+                                                                                        <option selected="selected" value="@item.District_Code">@item.District_Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                                        <option value="@item.District_Code">@item.District_Name</option>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+@*                                                    <img src="~/image/infoicon.png" title="Please Select District Mention on Company Registration Certificate" onclick="" />
+*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Block <span class="RequiredField"></span>
+                                                    <select name="RBlock_Code" id="RBlock_Code" class="form-control searchableselect" >
+                                                        <option value="">-- Select Block --</option>
+                                                        @{
+                                                            List<CPDMSEF.MasterEF> lstRBlockModel = (List<CPDMSEF.MasterEF>)ViewData["BlockDetails"];
+                                                            if (lstRBlockModel != null)
+                                                            {
+                                                                foreach (var item in lstRBlockModel)
+                                                                {
+                                                                    if (item.Block_Code == Model.Block_Code)
+                                                                    {
+                                                                                        <option selected="selected" value="@item.Block_Code">@item.Block_Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                                        <option value="@item.Block_Code">@item.Block_Name</option>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                                                                     
+
+                                                    </select>
+@*                                                    <img src="~/image/infoicon.png" title="Please Select Block Mention on Company Registration Certificate" onclick="" />
+*@                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Pin Code <span class="RequiredField">*</span>
+@*                                                    <img src="~/image/infoicon.png" title="Please Enter Pin Code Mention on Company Registration Certificate" onclick="" />
+*@    @Html.TextBoxFor(m => m.RPincode, new { @class = "form-control", required = "required", type = "number", pattern = "[0-9]{4}", maxlength = "6", oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", placeholder = "Enter PinCode" })
+                                               
+                                                </div>
+                                            </div>
+                                        </div>                                    
+                                        @*communication*@
+                                        <div class="form-group bg-gray-300 p-2"> <button type="button" class=" text-left "> <b>Communication Office Address</b> </button> </div>
+                                         @*end  register off address*@
+                                        <div class="form-group">
+                                            <label style="color:red">
+                                                <input type="checkbox" id="autoFillCheckbox"> Same as Registered Address
+
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Communication Address <span class="RequiredField">*</span>
+                                                    @Html.TextBoxFor(m => m.COffice_Address, new { @class = "form-control",id = "communicationAddress",required = "required",placeholder="Communication Address" })
+@*                                                    <img src="~/image/infoicon.png" title="Please Enter Communication Address" onclick="" />
+*@
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    State <span class="RequiredField">*</span>
+                                                    @Html.DropDownListFor(m => m.State_Code, ViewBag.ViewStateList as IEnumerable<SelectListItem>, "-- Select State --", new { @class = "form-control", required = "required" })
+@*                                                    <img src="~/image/infoicon.png" title="Please Select State" onclick="" />
+*@
+                                                    </div>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    District <span class="RequiredField">*</span>
+                                                    <select name="District_Code" id="District_Code" class="form-control searchableselect" required="required">
+                                                        <option value="">-- Select District --</option>
+                                                        @{
+                                                            List<CPDMSEF.MasterEF> lstDistrictModel = (List<CPDMSEF.MasterEF>)ViewData["DistrictDetails"];
+                                                            if (lstDistrictModel != null)
+                                                            {
+                                                                foreach (var item in lstDistrictModel)
+                                                                {
+                                                                    if (item.District_Code == Model.District_Code)
+                                                                    {
+                                                                                        <option selected="selected" value="@item.District_Code">@item.District_Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                                        <option value="@item.District_Code">@item.District_Name</option>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+@*                                                  <img src="~/image/infoicon.png" title="Please Select District" onclick="" />
+*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Block <span class="RequiredField"></span>
+                                                    <select name="Block_Code" id="Block_Code" class="form-control searchableselect">
+                                                        <option value="">-- Select Block --</option>
+                                                        @{
+                                                            List<CPDMSEF.MasterEF> lstBlockModel = (List<CPDMSEF.MasterEF>)ViewData["BlockDetails"];
+                                                            if (lstBlockModel != null)
+                                                            {
+                                                                foreach (var item in lstBlockModel)
+                                                                {
+                                                                    if (item.Block_Code == Model.Block_Code)
+                                                                    {
+                                                                                        <option selected="selected" value="@item.Block_Code">@item.Block_Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                                        <option value="@item.Block_Code">@item.Block_Name</option>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </select>
+@*                                                    <img src="~/image/infoicon.png" title="Please Select Block " onclick="" />
+*@
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Pin Code <span class="RequiredField">*</span>
+                                                    @Html.TextBoxFor(m => m.Pincode, new { @class = "form-control" ,required = "required", type="number" ,pattern="[0-9]{4}", maxlength="6", oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);",placeholder="Enter PinCode" })
+@*                                                    <img src="~/image/infoicon.png" title="Please Enter Pin Code " onclick="" />
+*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="form-group bg-gray-300 p-2"> <button type="button" class=" text-left text-black"> <b>Upload Document</b> </button> </div>
+                                        <p style="color:red">Only .jpeg, .jpg, .png, .pdf file types are allowed.</p>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Registration Certificate
+                                                    @Html.TextBoxFor(m => m.Registration_Certificate, new { @class = "form-control",type="file",required = "required",accept=".jpeg, .jpg, .png, .pdf",placeholder="Registration Certificate" })
+                                                    <img src="~/image/infoicon.png" title="Please Upload Registration Certificate (Only .jpeg, .jpg, .png, .pdf file types are allowed and Max Size of Document is 700KB)" onclick="" />
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Pollution Clearance Certificate
+                                                    @Html.TextBoxFor(m => m.Pollution_Clearance_Certificate, new { @class = "form-control",type="file",required = "required",accept=".jpeg, .jpg, .png, .pdf",placeholder="" })
+                                                    <img src="~/image/infoicon.png" title="Please Upload Pollution Clearance Certificate (Only .jpeg, .jpg, .png, .pdf file types are allowed and Max Size of Document is 700KB)" onclick="" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    GST Certificate
+                                                    @Html.TextBoxFor(m => m.GST_Certificate, new { @class = "form-control",type="file",required = "required",accept=".jpeg, .jpg, .png, .pdf",placeholder="" })
+                                                    <img src="~/image/infoicon.png" title="Please Upload GST Certificate (Only .jpeg, .jpg, .png, .pdf file types are allowed and Max Size of Document is 700KB)" onclick="" />
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Pan Card
+                                                    @Html.TextBoxFor(m => m.Pan_Certificate, new { @class = "form-control",type="file",required = "required",accept=".jpeg, .jpg, .png, .pdf",placeholder="" })
+                                                    <img src="~/image/infoicon.png" title="Please Upload Pan Card (Only .jpeg, .jpg, .png, .pdf file types are allowed and Max Size of Document is 700KB)" onclick="" />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center space-x-2">
+                                            <div class="">
+                                                <div class="form-button"> <button class="btn btn-primary" type="submit" style="background: #3f9b53 !important;">Save</button> </div>
+                                            </div>
+                                            &nbsp;
+                                            &nbsp;
+                                            &nbsp;
+                                            &nbsp;
+                                            <div class="">
+                                                <input type="button" onclick="location.href='/CompanyRegistraion/CompanyRegistration/CompanyEntryAdd';" class="btn btn-primary" style="background: #3f9b53 !important;" value="Edit"   />
+                                            </div>
+                                        </div>
+                                        
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+
+
+
+<!-- Start State,City,Block -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    var isCheckboxChecked = false;
+    $('#State_Code').change(function () {
+        debugger;
+        if ($('#State_Code').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetDistrictByStateId',
+                data: { 'State_Code': $('#State_Code').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    debugger;
+                    var row = "";
+                    $('#District_Code').html('');
+                    row += "<option value=''>-- Select District --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.district_Code + "'>" + item.district_Name + "</option>";
+                    });
+                    $('#District_Code').html(row);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+            var District2 = "";
+            $('#District_Code').html('');
+            District2 += "<option value=''>-- Select District --</option>";
+            $('#District_Code').html(District2);
+
+            $('#Block_Code').empty();
+            $('#Block_Code').append("<option value=''>-- Select Block --</option>");
+
+
+        }
+    });
+
+    $('#District_Code').change(function () {
+        debugger;
+        if ($('#District_Code').val() != "") {
+            $.ajax({
+
+                url: '/UnitRegistration/UnitRegistration/GetBlockByDistrictId',
+                data: {
+                    'State_Code': $('#State_Code').val(),
+                    'District_Code': $('#District_Code').val()
+                },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    debugger;
+                    var row = "";
+                    $('#Block_Code').html('');
+                    row += "<option value=''>-- Select Block --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.block_Code + "'>" + item.block_Name + "</option>";
+                    });
+                    $('#Block_Code').html(row);
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        else {
+
+            $('#Block_Code').empty();
+            $('#Block_Code').append("<option value=''>-- Select Block --</option>");
+
+
+        }
+    });
+    //  register ofiice
+    $('#RState_Code').change(function () {
+
+        if ($('#RState_Code').val() != "") {
+            $.ajax({
+                url: '/UnitRegistration/UnitRegistration/GetDistrictByStateId',
+                data: { 'State_Code': $('#RState_Code').val() },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+
+                    var row = "";
+                    $('#RDistrict_Code').html('');
+                    row += "<option value=''>-- Select District --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.district_Code + "'>" + item.district_Name + "</option>";
+                    });
+                    $('#RDistrict_Code').html(row);
+
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        } else {
+            var District2 = "";
+            $('#RDistrict_Code').html('');
+            District2 += "<option value=''>-- Select District --</option>";
+            $('#RDistrict_Code').html(District2);
+
+            $('#RBlock_Code').empty();
+            $('#RBlock_Code').append("<option value=''>-- Select Block --</option>");
+        }
+
+    });
+
+    $('#RDistrict_Code').change(function () {
+        if ($('#RDistrict_Code').val() != "") {
+            $.ajax({
+                url: '/UnitRegistration/UnitRegistration/GetBlockByDistrictId',
+                data: {
+                    'State_Code': $('#RState_Code').val(),
+                    'District_Code': $('#RDistrict_Code').val()
+                },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+
+                    var row = "";
+                    $('#RBlock_Code').html('');
+                    row += "<option value=''>-- Select Block --</option>";
+                    $.each(data, function (ind, item) {
+                        row += "<option value='" + item.block_Code + "'>" + item.block_Name + "</option>";
+                    });
+                    $('#RBlock_Code').html(row);
+
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        } else {
+            $('#RBlock_Code').empty();
+            $('#RBlock_Code').append("<option value=''>-- Select Block --</option>");
+        }
+
+    });
+    // check ext.
+    $(document).ready(function () {
+        $('input[type="file"]').change(function () {
+            var file = $(this)[0].files[0];
+            var validExtensions = ['.jpeg', '.jpg', '.png', '.pdf'];
+
+            var isValidExtension = validExtensions.some(function (extension) {
+                return file.name.toLowerCase().endsWith(extension);
+            });
+
+            if (!isValidExtension) {
+                alert('Invalid file extension! Please select a .jpeg, .jpg, .png, or .pdf file.');
+                $(this).val('');
+            }
+        });
+    });
+
+    //check box
+     $(document).ready(function () {
+
+    $('#autoFillCheckbox').change(function () {
+
+        if ($(this).is(':checked')) {
+            isCheckboxChecked = true;
+            $('#communicationAddress').val($('#registeredAddress').val());
+            $('#State_Code').val($('#RState_Code').val());
+
+            // Copy the selected option from RDistrict_Code to District_Code
+            const select = document.getElementById("RDistrict_Code");
+            const selectedIndex = select.selectedIndex;
+            const selectedValue = select.value;
+            const selectedText = select.options[selectedIndex].text;
+
+            row = "<option value='" + selectedValue + "'>" + selectedText + "</option>";
+            $('#District_Code').html(row);
+
+            // Copy the selected option from RBlock_Code to Block_Code
+            const select2 = document.getElementById("RBlock_Code");
+            const selectedIndex2 = select2.selectedIndex;
+            const selectedValue2 = select2.value;
+            const selectedText2 = select2.options[selectedIndex2].text;
+
+            row2 = "<option value='" + selectedValue2 + "'>" + selectedText2 + "</option>";
+            $('#Block_Code').html(row2);
+
+            // $('#Block_Code').val($('#RBlock_Code').val());
+            $('#Pincode').val($('#RPincode').val());
+        } else {
+            $('#communicationAddress').val('');
+            $('#State_Code').val('');
+            $('#District_Code').val('');
+            $('#Block_Code').val('');
+            $('#Pincode').val('');
+        }
+    });
+    });
+
+    //
+
+    document.querySelector("#mobileNumber").addEventListener("keypress", function (evt) {
+        if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+            evt.preventDefault();
+        }
+    });
+
+    document.querySelector("#RPincode").addEventListener("keypress", function (evt) {
+        if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+            evt.preventDefault();
+        }
+    });
+    document.querySelector("#Pincode").addEventListener("keypress", function (evt) {
+        if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+            evt.preventDefault();
+        }
+    });
+        //document.getElementById('mobileNumber').addEventListener('input', function () {
+        //    var mobileNumber = this.value.trim();
+
+        //    if (mobileNumber.length >= 1 && !mobileNumber.startsWith('+91')) {
+        //        this.value = '+91' + mobileNumber;
+        //    }
+        //});
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        
+        $('#Registration_date').keyup(function () {
+            debugger;
+            var enteredDate = new Date($(this).val());
+            var currentDate = new Date();
+
+            if (enteredDate > currentDate) {
+                swal("", "Future dates not allowed", "warning");
+                $(this).val('');
+            }
+        });
+    });
+</script>
+<!-- END State,City,Block -->
+<script>
+    //check box
+     $(document).ready(function () {
+
+        $('#RPincode').keyup(function () {
+
+            if ($('#autoFillCheckbox').is(':checked')) {
+
+            $('#Pincode').val($('#RPincode').val());
+        }
+    });
+     });
+</script>
+
+ @if ( ViewBag.ViewStateList1!= null)
+    {
+        <script>
+           $('#State_Code').val(@ViewBag.ViewStateList1);  
+        getDis();
+           $('#RState_Code').val(ViewBag.ViewStateList2);
+        @*$('#District_Code').val(ViewBag.ViewStateList1);*@
+        </script>
+    }
+
+@if (ViewBag.ViewStateList2 != null)
+{
+    <script>
+        @*$('#District_Code').val(ViewBag.ViewStateList2);*@
+    </script>
+}
+

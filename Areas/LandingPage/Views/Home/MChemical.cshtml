@@ -1,0 +1,23 @@
+﻿<table id="datatable" class="table table-sm table-bordered table-textbreak">
+    <thead>
+        <tr>
+           
+            <th>srno</th>
+            <th>Chemicals</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var count = 0;
+            foreach (var item in Model)
+            {
+                count++;
+                <tr class="table-row" title="Click for Substance Details">
+                    <td>@count</td>
+                   <td>@item.Chemical</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

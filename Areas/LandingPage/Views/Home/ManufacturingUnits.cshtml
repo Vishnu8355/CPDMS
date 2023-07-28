@@ -1,0 +1,69 @@
+﻿@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "ManufacturingUnits";
+    Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+}
+<link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">
+<!-- template-style-->
+<link href="~/LandinCss/css/style1.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<div class="bt-content-wrap btClear section_Top mt-[5rem]">
+
+    <div class="bt-content-holder ">
+        <div class="bt-content">
+            <div class="bt_bb_wrapper">
+                <section class="about-agency pad-tb block-1" style="padding-top:5px;">
+                    <div class="container mx-auto">
+                        <h1 class="text-black  text-3xl text-left">Manufacturing Units </h1>
+
+                        <br />
+                        <br />
+                        <section class=" border border-1 border-black">
+                            <div class="container mx-auto">
+                                <div class="text-center justify-center p-4  ">
+                                    <p class="font-[popins] text-xl text-left mt-4">
+                                        <b>Manufacturing Units:</b> This provides list of all major private companies (medium and large scale units) and also Public Sector Undertakings (PSUs) that are producing chemicals and chemicals products in the country. The addresses, telephone numbers, email addresses and factory locations of various producers of chemicals have been put at once palce. Chemicals and Petro-chemicals Industry Association are also included in the list.
+                                    </p>
+
+
+                                </div>
+                            </div>
+
+                        </section>
+                    </div>
+                    <button type="button" class="btn btn-dark" style="margin-left:29px" onclick="history.back()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M5 12l14 0" />
+                            <path d="M5 12l4 4" />
+                            <path d="M5 12l4 -4" />
+                        </svg>
+                    </button>
+                </section>
+                <div class="flex items-center justify-center gap-2 mb-4 -mt-10  " id="dpdf">
+                    <div class="-mt-4">
+
+                        <img src="/LandinCss/images/pdf.jpg" class="h-20 w-20 cursor-pointer  " alt="fhg" /><br />
+                        <p class="  underline text-red-500 cursor-pointer"> Download Pdf</p>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $('#dpdf').click(function () { // you dont need the .each, because you are selecting by id
+        // var inputURL = $('#wpsl-search-input1').val();
+        window.location.href = '/LandingPage/Home/downloaddoc?fileName=Manufacturing_Units.pdf'; // Redirecting to the passed url (also working relative to the current URL)
+        return false; // Cheap way to call the "event.preventDefault()" method
+    });
+</script>
+
+
+

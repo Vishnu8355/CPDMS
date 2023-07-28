@@ -1,0 +1,36 @@
+2023-07-27 11:19:15.1403 Info Message Template Auto Format enabled
+2023-07-27 11:19:15.2139 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2023-07-27 11:19:15.2139 Info Registered target NLog.Targets.FileTarget(Name=otherFile-web)
+2023-07-27 11:19:15.2530 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=45, FilePath=G:\Vishnu\Govt_Project\CPDMS\CPDMS\CPDMS\bin\Debug\net6.0\nlog.config
+2023-07-27 11:19:15.3329 Info Shutdown() called. Logger closing...
+2023-07-27 11:19:15.3329 Info Closing old configuration.
+2023-07-27 11:19:15.3556 Info Logger has been closed down.
+2023-07-27 11:19:16.6903 Info Loading NLog config from XML file: G:\Vishnu\Govt_Project\CPDMS\CPDMS\CPDMS\NLog.config
+2023-07-27 11:19:16.6903 Info Message Template Auto Format enabled
+2023-07-27 11:19:16.6903 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2023-07-27 11:19:16.6903 Info Registered target NLog.Targets.FileTarget(Name=otherFile-web)
+2023-07-27 11:19:16.6932 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=45, FilePath=G:\Vishnu\Govt_Project\CPDMS\CPDMS\CPDMS\NLog.config
+2023-07-27 18:03:16.6584 Info Message Template Auto Format enabled
+2023-07-27 18:03:16.7404 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2023-07-27 18:03:16.7404 Info Registered target NLog.Targets.FileTarget(Name=otherFile-web)
+2023-07-27 18:03:16.7834 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=45, FilePath=G:\Vishnu\Govt_Project\CPDMS\CPDMS\CPDMS\bin\Debug\net6.0\nlog.config
+2023-07-27 18:03:16.8606 Info Shutdown() called. Logger closing...
+2023-07-27 18:03:16.8606 Info Closing old configuration.
+2023-07-27 18:03:16.8846 Info Logger has been closed down.
+2023-07-27 18:03:18.2681 Info Loading NLog config from XML file: G:\Vishnu\Govt_Project\CPDMS\CPDMS\CPDMS\NLog.config
+2023-07-27 18:03:18.2681 Info Message Template Auto Format enabled
+2023-07-27 18:03:18.2702 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2023-07-27 18:03:18.2702 Info Registered target NLog.Targets.FileTarget(Name=otherFile-web)
+2023-07-27 18:03:18.2702 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=45, FilePath=G:\Vishnu\Govt_Project\CPDMS\CPDMS\CPDMS\NLog.config
+2023-07-28 11:06:55.9854 Info Message Template Auto Format enabled
+2023-07-28 11:06:56.1090 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2023-07-28 11:06:56.1090 Info Registered target NLog.Targets.FileTarget(Name=otherFile-web)
+2023-07-28 11:06:56.1587 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=45, FilePath=G:\Vishnu\Govt_Project\CPDMS\CPDMS\CPDMS\bin\Debug\net6.0\nlog.config
+2023-07-28 11:06:56.2670 Info Shutdown() called. Logger closing...
+2023-07-28 11:06:56.2670 Info Closing old configuration.
+2023-07-28 11:06:56.2934 Info Logger has been closed down.
+2023-07-28 11:06:58.5411 Info Loading NLog config from XML file: G:\Vishnu\Govt_Project\CPDMS\CPDMS\CPDMS\NLog.config
+2023-07-28 11:06:58.5411 Info Message Template Auto Format enabled
+2023-07-28 11:06:58.5411 Info Registered target NLog.Targets.FileTarget(Name=alldata)
+2023-07-28 11:06:58.5411 Info Registered target NLog.Targets.FileTarget(Name=otherFile-web)
+2023-07-28 11:06:58.5411 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=45, FilePath=G:\Vishnu\Govt_Project\CPDMS\CPDMS\CPDMS\NLog.config

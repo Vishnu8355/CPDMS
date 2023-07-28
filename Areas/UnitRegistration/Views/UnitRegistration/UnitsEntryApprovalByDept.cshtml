@@ -1,0 +1,161 @@
+﻿@model IEnumerable<CPDMSEF.UnitRegistrationViewEF>
+
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Units Approval Department";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+
+}
+
+@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+
+    </script>
+    ViewBag.msg = null;
+}
+@if (TempData["Message"] != null)
+{
+    <script>
+        swal("", '@TempData["Message"]', "warning");
+    </script>
+}
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+
+<div class="authentication-box">
+    <div class="">
+        <div class="authentication-box">
+            <div class="">
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Unit Entry</b></a> </li>
+                                </ul>
+                                <div role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="viewtable">
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table table-sm table-bordered table-textbreak">
+                                                        <thead>
+                                                            <tr>
+                                                                @* <th width="20px" class="text-center noprint">
+                                                                <input type="checkbox" id="ckbCheckAll">
+                                                                </th>*@
+                                                                <th width="20px">Sl#</th>
+                                                                <th>Address</th>
+                                                                <th>State</th>
+                                                                <th>District</th>
+                                                                <th>Block</th>
+                                                                <th>Pincode</th>
+                                                                <th>Status</th>
+                                                                <th>Latitude</th>
+                                                                <th>Longitude</th>
+                                                                <th>Remarks</th>
+                                                                <th width="40" class="text-center noprint">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                                                                var count = 0;
+                                                                foreach (var item in Model)
+                                                                {
+                                                                    count++;
+                                                                //var dyclass = @item.BIT_STATUS == "Active" ? "active-row" : "inactive-row";
+                                                                    <tr>
+
+                                                                        @*   <td class="text-center noprint">
+                                                                <input type="checkbox" class="checkBoxClass" id='chkData' value="@item.ID">
+                                                                </td>*@
+                                                                        <td>@count</td>
+                                                                        <td>@item.Address</td>
+                                                                        <td>@item.State_Name</td>
+                                                                        <td>@item.District_Name</td>
+                                                                        <td>@item.Block_Name</td>
+                                                                        <td>@item.Pincode</td>
+                                                                        <td>@item.Status_Desc</td>
+                                                                        <td>@item.Lat</td>
+                                                                        <td>@item.Lon</td>
+                                                                        <td>
+                                                                            <input type="text" id="Remarks" class="Remarks form-control">
+                                                                        </td>
+                                                                        <td class="text-center noprint">
+
+
+                                                                            <a data-toggle="tooltip" data-placement="top" id="lnkApprove" onclick="UnitApproval('@item.ID');" title="Approved" href="#"
+                                                                               class="text-success btn-sm">
+                                                                                <i class="icon-pencil-alt-solid"></i>
+                                                                                Approved
+                                                                            </a>
+                                                                            <a data-toggle="tooltip" data-placement="top" id="lnkReject" title="Reject" href="#" onclick="UnitReject('@item.ID');"
+                                                                               class="text-success btn-sm">
+                                                                                <i class="icon-pencil-alt-solid"></i>
+                                                                                Reject
+                                                                            </a>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+<!-- Start State,City,Block -->
+<!-- END State,City,Block -->
+<script>
+    function UnitApproval(par) {
+        //var Remarks = $(this).closest("tr").find(".Remarks").val();
+        var Remarks = $('.Remarks').val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/UnitApprovalByDeptAdmin',
+            data: { 'UnitID': par, "Remarks": Remarks },
+            dataType: 'json',
+            type: 'post',
+            success: function (response) {
+                // Handle the response from the controller action
+                console.log(response);
+            },
+            error: function (err) {
+
+            }
+        });
+
+    }
+    function UnitReject(par) {
+        //var Remarks = $(this).closest("tr").find(".Remarks").val();
+        var Remarks = $('.Remarks').val();
+        $.ajax({
+            url: '/UnitRegistration/UnitRegistration/UnitRejectByDeptAdmin',
+            data: { 'UnitID': par, "Remarks": Remarks },
+            dataType: 'json',
+            type: 'post',
+            success: function (response) {
+                // Handle the response from the controller action
+                console.log(response);
+            },
+            error: function (err) {
+
+            }
+        });
+
+    }
+
+</script>

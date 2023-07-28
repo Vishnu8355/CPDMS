@@ -1,0 +1,139 @@
+﻿@model CPDMSEF.ContactEF
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Contact";
+    Layout = "~/Areas/LandingPage/Views/Shared/_LandingPageLayout.cshtml";
+}
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+    }</style>
+
+<link href="~/LandinCss/css/bootstrap.min.css" rel="stylesheet">
+    <!-- template-style-->
+    <link href="~/LandinCss/css/style1.css" rel="stylesheet">
+
+ <div class="bt-content-wrap btClear section_Top">
+            <div class="bt-content-holder">
+        <i class='far fa-arrow-alt-circle-left' style='font-size:24px'></i>
+                <div class="bt-content">
+                    <div class="bt_bb_wrapper">
+
+                        <section class="contact-page pad-tb bg-gradient5">
+                    
+                            <div class="container">
+                              <div class="row justify-content-center">
+                                <div class="col-lg-7">
+                                  <div class="niwax23form shadow">
+                                    <div class="common-heading text-l">
+                                      <h2 class="mt0 mb0 text-[#024828] text-center" >Contact Us</h2>
+                                      <div class="d-flex gap-5">
+                                        <p class="mb50 mt10"><b style="font-size: 1.4rem;">Email</b>-ddgoffice-docp[at]gov[dot]in</p>
+                                        <p class="mb50 mt10"><b style="font-size: 1.4rem;">Helpline No.</b>011-23062895</p>
+                                      </div>
+                                      <p class="mb50 mt10">Fill all Mandatory Fields</p>
+                                    </div>
+                                    <div class="contact-form-card-pr contact-block-sw m0 iconin">
+                                      <div class="form-block niwaxform">
+                                           @* <form action="~/LandingPage/Home/Contact" id="contactform" method="post">*@
+                                            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { enctype = "multipart/form-data", AUTOCOMPLETE = "Off", id = "form1" }))
+                                            {
+                                          <div class="fieldsets row">
+                                            <div class="fieldsets row">
+                                              <div class="col-md-6 form-group floating-label">
+                                                <div class="formicon"><i class="fas fa-map-marker-alt"></i></div>
+                                                <input type="text" placeholder="Name" required="required" id="your_location" class="floating-input" name="Name">
+                                            
+                                                <div class="error-label"></div>
+                                              </div>
+                        
+                                              <div class="col-md-6 form-group floating-label">
+                                                <div class="formicon"><i class="fas fa-map-marker-alt"></i></div>
+                                                            @Html.TextBoxFor(m => m.Email, new { @class = "floating-input",type="email", placeholder="Email" ,required = "required" })
+                                                            @*<input type="text" placeholder=" " required="required" id="your_location" class="floating-input" name="Email">*@
+                   
+                                                <div class="error-label"></div>
+                                              </div>
+                        
+                        
+                                            </div>
+                                            <div class="fieldsets row">
+                        
+                                              <div class="col-md-6 form-group floating-label">
+                                                <div class="formicon"><i class="fas fa-map-marker-alt"></i></div>
+                                                            @Html.TextBoxFor(m => m.Mobile, new { @class = "floating-input",id="your_location", placeholder="Phone" , required = "required", type="number" ,pattern="[0-9]{4}", maxlength="10", oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                                      @*      <input type="text" placeholder=" " required="required" id="your_location" class="floating-input" name="Mobile">*@
+                                                
+                                                <div class="error-label"></div>
+                                              </div>
+                        
+                                              <div class="col-md-6 form-group floating-label">
+                                                <div class="formicon"><i class="fas fa-file-alt"></i></div>
+                                                            <select  id="interested_in" na class="floating-select" name="Department" required>
+                                                                <option value="">Select Department</option>
+                                                                <option value="Chemicals">Chemicals</option>
+                                                                <option value="Petro-Chemicals">Petro-Chemicals</option>
+                                                  
+                                                </select>
+                                                
+                                                <div class="error-label"></div>
+                                              </div>
+                                            </div>
+                        
+                                            <div class="fieldsets row">
+                                              <div class="col-md-6 form-group floating-label">
+                                                <div class="formicon"><i class="fas fa-map-marker-alt"></i></div>
+                                                            <input type="text" placeholder="Subject" required="required" id="your_location" class="floating-input" name="Subject">
+                                               
+                                                <div class="error-label"></div>
+                                              </div>
+                                              <div class="col-md-6 form-group floating-label">
+                                                <div class="formicon"><i class="fas fa-map-marker-alt"></i></div>
+                                                            <input type="text" placeholder="Description" required="required" id="your_location" class="floating-input" name="Description">
+                                               
+                                                <div class="error-label"></div>
+                                              </div>
+                                            </div>
+                        
+                                            <div class="custom-control custom-checkbox ctmsetsw">
+                                              <input type="checkbox" class="custom-control-input ctminpt" id="agree" name="agree"
+                                                checked="checked">
+                                              <label class="custom-control-label ctmlabl" for="agree" style="margin-top: 1.5rem;">By clicking the “Submit” button you agree
+                                                to our <a href="javascript:void(0)">Terms &amp; Conditions</a>.</label>
+                                            </div>
+
+                                          
+
+                                        
+                                            </div>
+                                            }
+                                        @*</form>*@
+                                      </div>
+                                       <div class="fieldsets mt20" style="width:20%!important">
+                                                    <button type="submit" name="submit"
+                                                        class="btn btn-main  w-fit " style=" background-color: #024828 !important; color: #fff; ">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            </div>
+            <button type="button" class="btn btn-dark" style="margin-left:290px" onclick="history.back()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M5 12l14 0" />
+                    <path d="M5 12l4 4" />
+                    <path d="M5 12l4 -4" />
+                </svg>
+            </button>
+                          </section>
+                    </div>               
+                </div>
+            </div>

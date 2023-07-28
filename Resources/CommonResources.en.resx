@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About Us" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="All Districts" xml:space="preserve">
+    <value>All Districts</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="Application Status Check" xml:space="preserve">
+    <value>Application Status Check</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Auction non-coal Mine &amp; Minor Mineral Leases, Organize National Conclave on Mines &amp; Minerals, Implement Khani Online- A Web based auto approval and single click multi head payment facility portal for end to end tracking" xml:space="preserve">
+    <value>Auction non-coal Mine &amp; Minor Mineral Leases, Organize National Conclave on Mines &amp; Minerals, Implement Khani Online- A Web based auto approval and single click multi head payment facility portal for end to end tracking</value>
+  </data>
+  <data name="Aution Gold black, Formation of DMF Trust in all 27 districts and implementation on PMKKKY, Implement NMET" xml:space="preserve">
+    <value>Aution Gold black, Formation of DMF Trust in all 27 districts and implementation on PMKKKY, Implement NMET</value>
+  </data>
+  <data name="Bauxite" xml:space="preserve">
+    <value>Bauxite</value>
+  </data>
+  <data name="Call Us" xml:space="preserve">
+    <value>Call Us</value>
+  </data>
+  <data name="Chhattisgarh" xml:space="preserve">
+    <value>Chhattisgarh</value>
+  </data>
+  <data name="Chhattisgarh 1st State" xml:space="preserve">
+    <value>Chhattisgarh 1st State</value>
+  </data>
+  <data name="Circulars Notification" xml:space="preserve">
+    <value>Circulars Notification</value>
+  </data>
+  <data name="Coal" xml:space="preserve">
+    <value>Coal</value>
+  </data>
+  <data name="Contact Us" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="Contractor Builder" xml:space="preserve">
+    <value>Contractor Builder</value>
+  </data>
+  <data name="Contributation of minerals in  stable's GDP" xml:space="preserve">
+    <value>Contributation of minerals in  stable's GDP</value>
+  </data>
+  <data name="Department of Geology &amp; Mining, Goverment of Chhattigarh. All right reserved" xml:space="preserve">
+    <value>Department of Geology &amp; Mining, Goverment of Chhattigarh. All right reserved</value>
+  </data>
+  <data name="e-Governance" xml:space="preserve">
+    <value>e-Governance</value>
+  </data>
+  <data name="e-TP Verfication" xml:space="preserve">
+    <value>e-TP Verfication</value>
+  </data>
+  <data name="en" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EndUser Registration" xml:space="preserve">
+    <value>EndUser Registration</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="Government of Chhattisgarh" xml:space="preserve">
+    <value>Government of Chhattisgarh</value>
+  </data>
+  <data name="Grievance" xml:space="preserve">
+    <value>Grievance</value>
+  </data>
+  <data name="hi" xml:space="preserve">
+    <value>Hindi</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Hon’ble Chief Minister, Chhattisgarh" xml:space="preserve">
+    <value>Hon’ble Chief Minister, Chhattisgarh</value>
+  </data>
+  <data name="Indravati  Bhavan, Block-4 Second Floor" xml:space="preserve">
+    <value>Indravati  Bhavan, Block-4 Second Floor</value>
+  </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>Introduction</value>
+  </data>
+  <data name="Iron Ore" xml:space="preserve">
+    <value>Iron Ore</value>
+  </data>
+  <data name="Lessee" xml:space="preserve">
+    <value>Lessee</value>
+  </data>
+  <data name="License Application" xml:space="preserve">
+    <value>License Application</value>
+  </data>
+  <data name="Licensee" xml:space="preserve">
+    <value>Licensee</value>
+  </data>
+  <data name="Limestone" xml:space="preserve">
+    <value>Limestone</value>
+  </data>
+  <data name="Mail Us" xml:space="preserve">
+    <value>Mail Us</value>
+  </data>
+  <data name="management system" xml:space="preserve">
+    <value>management system</value>
+  </data>
+  <data name="Mine Wise and Grade Wise" xml:space="preserve">
+    <value>Mine Wise and Grade WiseMine Wise and Grade Wise</value>
+  </data>
+  <data name="Mineral Map" xml:space="preserve">
+    <value>Mineral Map</value>
+  </data>
+  <data name="Mineral Resources" xml:space="preserve">
+    <value>Mineral Resources</value>
+  </data>
+  <data name="Mineral Resources Department" xml:space="preserve">
+    <value>Mineral Resources Department</value>
+  </data>
+  <data name="Mineral Revenue (2018-19)" xml:space="preserve">
+    <value>Mineral Revenue (2018-19)</value>
+  </data>
+  <data name="Minor Mineral" xml:space="preserve">
+    <value>Minor Mineral</value>
+  </data>
+  <data name="Monthly Pit Mouth Value" xml:space="preserve">
+    <value>Monthly Pit Mouth Value</value>
+  </data>
+  <data name="mrd dealing" xml:space="preserve">
+    <value>mrd dealing</value>
+  </data>
+  <data name="Mud Pond etc" xml:space="preserve">
+    <value>Mud Pond etc</value>
+  </data>
+  <data name="Mud Pond etc Registration" xml:space="preserve">
+    <value>Mud Pond etc Registration</value>
+  </data>
+  <data name="News Raipur Atal Nagar, Chhattigarh, India" xml:space="preserve">
+    <value>News Raipur Atal Nagar, Chhattigarh, India</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="Other Mineral" xml:space="preserve">
+    <value>Other Mineral</value>
+  </data>
+  <data name="Portals" xml:space="preserve">
+    <value>Portals</value>
+  </data>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="Production &amp; Dispatch(In mt.)" xml:space="preserve">
+    <value>Production &amp; Dispatch(In mt.)</value>
+  </data>
+  <data name="Production in coal &amp; iron ore   2017-2018" xml:space="preserve">
+    <value>Production in coal &amp; iron ore   2017-2018</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Registration &amp; Application" xml:space="preserve">
+    <value>Registration &amp; Application</value>
+  </data>
+  <data name="Registrations" xml:space="preserve">
+    <value>Registrations</value>
+  </data>
+  <data name="Revenue (In cr.)" xml:space="preserve">
+    <value>Revenue (In cr.)</value>
+  </data>
+  <data name="RTI" xml:space="preserve">
+    <value>RTI</value>
+  </data>
+  <data name="Sale Value Report for Bauxite, Iron Ore &amp; Cool Mines Wise" xml:space="preserve">
+    <value>Sale Value Report for Bauxite, Iron Ore &amp; Coal Mines Wise</value>
+  </data>
+  <data name="Sand stone Registration" xml:space="preserve">
+    <value>Sand stone Registration</value>
+  </data>
+  <data name="Sand stone Status" xml:space="preserve">
+    <value>Sand stone Status</value>
+  </data>
+  <data name="Send Message" xml:space="preserve">
+    <value>Send Message</value>
+  </data>
+  <data name="Shri. Bhupesh Baghel" xml:space="preserve">
+    <value>Shri. Bhupesh Baghel</value>
+  </data>
+  <data name="Sitemap" xml:space="preserve">
+    <value>Sitemap</value>
+  </data>
+  <data name="Staff Directory" xml:space="preserve">
+    <value>Staff Directory</value>
+  </data>
+  <data name="Statistical Report" xml:space="preserve">
+    <value>Statistical Report</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Status Check" xml:space="preserve">
+    <value>Status Check</value>
+  </data>
+  <data name="string1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Tailing Dam, Ashdyke," xml:space="preserve">
+    <value>Tailing Dam, Ashdyke,</value>
+  </data>
+  <data name="Tailing Dam, Ashdyke, Mud Pond" xml:space="preserve">
+    <value>Tailing Dam, Ashdyke, Mud Pond</value>
+  </data>
+  <data name="Tailing Dam|Ashdyke|Mud Pond" xml:space="preserve">
+    <value>Tailing Dam|Ashdyke|Mud Pond</value>
+  </data>
+  <data name="Tender" xml:space="preserve">
+    <value>Tender</value>
+  </data>
+  <data name="Tenders" xml:space="preserve">
+    <value>Tenders</value>
+  </data>
+  <data name="Terms of use" xml:space="preserve">
+    <value>Terms of use</value>
+  </data>
+  <data name="Testimonials" xml:space="preserve">
+    <value>Testimonials</value>
+  </data>
+  <data name="Tin Ore" xml:space="preserve">
+    <value>Tin Ore</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="User Manual" xml:space="preserve">
+    <value>User Manual</value>
+  </data>
+  <data name="User Registration" xml:space="preserve">
+    <value>User Registration</value>
+  </data>
+  <data name="Value of mineral  produced in india" xml:space="preserve">
+    <value>Value of mineral  produced in india</value>
+  </data>
+  <data name="Vehicle Owner" xml:space="preserve">
+    <value>Vehicle Owner</value>
+  </data>
+  <data name="Vehicle Owner Registration" xml:space="preserve">
+    <value>Vehicle Owner Registration</value>
+  </data>
+  <data name="VTD Vendor" xml:space="preserve">
+    <value>VTD Vendor</value>
+  </data>
+  <data name="Web based integrated mines and ninerals management system for effective adminstration and regulation of mineral resourses in the state of chhattisgarh." xml:space="preserve">
+    <value>Web based integrated mines and ninerals management system for effective adminstration and regulation of mineral resourses in the state of chhattisgarh.</value>
+  </data>
+  <data name="Web based mines &amp; minerals" xml:space="preserve">
+    <value>Web based mines &amp; minerals</value>
+  </data>
+  <data name="Year Wise Dispatch Report for Buaxite , Iron Ore and Coal" xml:space="preserve">
+    <value>Year Wise Dispatch Report for Buaxite , Iron Ore and Coal</value>
+  </data>
+  <data name="Year Wise Revenue Collected Reported" xml:space="preserve">
+    <value>Year Wise Revenue Collected Reported</value>
+  </data>
+  <data name="Yearly Production and Deducation Report" xml:space="preserve">
+    <value>Yearly Production and Deducation Report</value>
+  </data>
+</root>

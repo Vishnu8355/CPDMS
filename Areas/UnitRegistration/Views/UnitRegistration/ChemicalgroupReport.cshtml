@@ -1,0 +1,203 @@
+﻿@model IEnumerable<CPDMSEF.MonthlyChemicalEF>
+
+@{
+    <link rel="icon" type="image/x-icon" href="./images/departmentlogo.png">
+    ViewData["Title"] = "Chemical group Report";
+    Layout = "~/Areas/UnitRegistration/Views/Shared/_UnitRegisLayout.cshtml";
+}
+
+@if (ViewBag.msg != null)
+{
+    <script>
+        swal("", '@ViewBag.msg', "warning");
+
+    </script>
+    ViewBag.msg = null;
+}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<div class="authentication-box">
+    <div class="">
+        <div class="page-header">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ol class="breadcrumb pull-right">
+                            <li class="breadcrumb-item">
+                                <a href="~/UnitRegistration/UnitRegistration/UnitDPTADMDashboard"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Report</li>
+
+                            <li class="breadcrumb-item active">Chemicals Group </li>
+                            <li class="breadcrumb-item active">Group</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row card lg:w-[67rem] lg:ml-[14rem] ">
+                    <div class=" p-0 ">
+                        <div class=" tab2-card">
+                            <div class="card-body">
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false"><span class="icon-unlock me-2"></span><b>Chemicals Group</b></a> </li>
+                                </ul>
+
+                                <div class="excel-icon-container" id="exportButton">
+
+                                    <img src="~/ExecImage.png" alt="Export Excel" id="exportButton" class="excel-icon" onclick="exportfun()">
+                                </div>
+                                <div role="tabpanel">
+                                    <form method="post">
+
+                                        <div class="row">
+                                         
+                                            <div class="col-sm">
+                                                <div class="form-group">
+                                                    Chemicals group  <span class="RequiredField"></span>
+                                                    <select name="Chemical_Code" id="Chemical_Code" class="form-control searchableselect" style="width: 40%">
+                                                        <option value="0">--All Chemicals group --</option>
+                                                        @foreach (var comItem in ViewBag.ViewChemicalList)
+                                                        {
+                                                            <option value="@comItem.Value">@comItem.Text</option>
+                                                        }
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                          
+                                            <div class="col-sm">
+                                                <div>
+                                                    <button style=" background-color: #6767c5;  color: white;  border: none;  padding: 8px 16px;  cursor: pointer;margin-left:-58%">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="viewtable">
+                                                <div class="table-responsive">
+                                                    <table id="datatable" class="table table-sm table-bordered table-textbreak">
+                                                        <thead class="header-style">
+                                                            <tr>
+                                                                <th>Sr no</th>
+                                                                <th hidden>Chemical ID</th>
+                                                                <th>Chemical Name</th>                                                             
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                                                                var count = 0;
+                                                                foreach (var item in Model)
+                                                                {
+                                                                    count++;
+                                                                    <tr class="table-row">
+                                                                        <td>@count</td>
+                                                                        <td hidden>@item.Chemical_Code</td>
+                                                                        <td>@item.Chemical_Name</td>
+                                                                       
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                       
+                                                    </table>
+
+                                                </div>
+                                                <div id="pagination-container">
+                                                    <ul id="pagination" class="pagination"></ul>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+            </div>
+        </div> <!-- <a href="index.html" class="btn btn-primary back-btn"><i data-feather="arrow-left"></i>back</a> -->
+    </div>
+</div>
+<!-- Start State,City,Block -->
+
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+<script type="text/javascript">
+    function exportfun() {
+        var table = document.getElementById('datatable');
+
+        var workbook = XLSX.utils.table_to_book(table);
+
+        var excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+        var blob = new Blob([excelData], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'Report.xlsx';
+        document.body.appendChild(link);
+
+        link.click();
+
+        URL.revokeObjectURL(url);
+        document.body.removeChild(link);
+    }
+
+</script>
+<script>
+    var currentPage = 1;
+    var rowsPerPage = 5;
+    $(document).ready(function () {
+        function paginateTable() {
+            var table = $('#datatable');
+            var rows = table.find('tbody tr');
+
+
+            var totalPages = Math.ceil(rows.length / rowsPerPage);
+
+
+            var pagination = $('#pagination');
+            pagination.empty();
+
+            for (var i = 1; i <= totalPages; i++) {
+                var link = $('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
+
+
+                if (i === currentPage) {
+                    link.addClass('active');
+                }
+
+                pagination.append(link);
+            }
+
+
+            var startIndex = (currentPage - 1) * rowsPerPage;
+            var endIndex = startIndex + rowsPerPage;
+
+            rows.hide().slice(startIndex, endIndex).show();
+        }
+
+
+        paginateTable();
+
+        $(document).on('click', '#pagination li a', function (event) {
+            event.preventDefault();
+
+            var clickedPage = parseInt($(this).text());
+
+
+            currentPage = clickedPage;
+            paginateTable();
+
+
+            $('html, body').animate({ scrollTop: $('#table-container').offset().top }, 'slow');
+        });
+    });
+
+</script>
+
